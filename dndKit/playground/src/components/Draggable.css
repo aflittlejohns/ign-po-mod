@@ -8,10 +8,15 @@
 }
 .draggable-item-wrapper {
 	outline: 3px solid green;
+	position: absolute;
 	display: grid;
 	width: var(--_width);
 	grid-template-columns: 1fr var(--_title-bar--height);
 	grid-template-rows: var(--_title-bar--height) 1fr;
+	position-anchor: --anchor;
+	/* position-area: right ; */
+	inset-block-start: anchor(end);
+	inset-inline-start: anchor(self-end);
 	&
 	.button{
 		width:var(--_title-bar--height);

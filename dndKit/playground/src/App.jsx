@@ -29,18 +29,11 @@ function App() {
 		<DndContext >
 			{createPortal(
 				<>
-			<DraggablePopup id={"draggable-popup"} />
 			{draggables.map((draggable)=> (
-				<Draggable key={draggable.id} left={draggable.left} top={draggable.top} onClose={closePopup}>
+				<Draggable key={draggable.id} id={draggable.id} left={draggable.left} top={draggable.top} onClose={closePopup}>
 					<Popup id={draggable.id} />
 				</Draggable>
 			))}
-			<Draggable left={112} top={200}>
-				<Popup />
-			</Draggable>
-			<Draggable left={50} top={300}>
-				<Popup />
-			</Draggable>
 				</>,
 				document.body
 			)}

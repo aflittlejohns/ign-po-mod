@@ -1,0 +1,9 @@
+
+.valve {
+	position: absolute;
+	width: fit-content;
+	left: 50;
+	top: 50;
+	background-color: aqua;
+	anchor-name: --anchor;
+}
