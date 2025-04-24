@@ -6,7 +6,7 @@ function Popup({ children, className = "popup"}) {
 	// const id = useRef(uuidv4()).current;
 
 	const style = {
-		position: "absolute",
+		// position: "absolute",
 		// width: "100px",
 		height: "100px",
 		backgroundColor: "aqua",

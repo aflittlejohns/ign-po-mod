@@ -1,23 +1,20 @@
 
-export function Valve({onClick}){
+export function Valve({onClick, x=50 , y=50 }){
 
-	function handleClick(){
+	function handleClick(e){
 		console.log('clicked');
-		onClick && onClick();
+		onClick && onClick(e);
 	}
-
+const style = {
+	left: {x},
+	top: {y}
+}
 
 	return (
 		<div
+		style={style}
+		className={'valve anchor'}
 		onClick={handleClick}
-		style={{
-			position: 'absolute',
-			width: '30px',
-			aspectRatio: '1:1',
-			left: 50,
-			top: 50,
-			backgroundColor: 'aqua'
-		}}
 		>
 			<p>valve</p>
 		</div>

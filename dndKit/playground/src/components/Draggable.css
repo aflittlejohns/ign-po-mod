@@ -5,13 +5,21 @@
 :root{
 	--_width:var(--draggable-item--width, 100px);
 	--_title-bar--height:var(--title-bar--height, 24px);
+
 }
+
+
 .draggable-item-wrapper {
 	outline: 3px solid green;
 	display: grid;
 	width: var(--_width);
 	grid-template-columns: 1fr var(--_title-bar--height);
 	grid-template-rows: var(--_title-bar--height) 1fr;
+	position: fixed;
+	position-anchor: --anchor;
+	inset-block-start: anchor(end);
+	inset-inline-start: anchor(self-end);
+	/* position-area: bottom; */
 	&
 	.button{
 		width:var(--_title-bar--height);

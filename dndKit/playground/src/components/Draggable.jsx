@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 
 
 export function Draggable({
+	id,
 	onClose,
 	element: Element = "div",
 	left = 0,
@@ -12,20 +13,21 @@ export function Draggable({
 	children,
 	className='draggable'
 }) {
-	const id = useRef(uuidv4()).current;
+	// const id = useRef(uuidv4()).current;
 	const { attributes, listeners, setNodeRef, transform, setActivatorNodeRef } =
 		useDraggable({
 			id: id,
 		});
-
+ console.log(top)
 	const [dropPosition, setDropPosition] = useState({ x: left, y: top });
 	const finalPosition = {
 		x: dropPosition.x + (transform?.x || 0),
 		y: dropPosition.y + (transform?.y || 0),
 	};
+
 	const style = {
 		transform: `translate3d(${finalPosition.x}px, ${finalPosition.y}px,0)`,
-		position: "absolute",
+		position: 'absolute',
 	};
 
 	function handleDragEnd(event) {
@@ -58,10 +60,10 @@ export function Draggable({
 				id={id}
 				style={style}
 
-			>
+				>
 				<div
+				ref={setActivatorNodeRef}
 				className='draggable-item-wrapper'>
-
 				<span>Title</span>
 				<button
 					className={'button'}

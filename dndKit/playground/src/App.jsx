@@ -12,10 +12,13 @@ function App() {
 	const [draggables, setDraggables] = useState([]);
 
 	// Handle Valve click to add a new draggable component
-	function handleValveClick(){
+	function handleValveClick(e){
+		console.log(e)
+		const {clientX, clientY} = e;
+		const toTop = clientY - 50;
 		setDraggables((prev)=>[
 			...prev,
-			{id: `draggable-${prev.length+1}`, left: 100, top: 100},
+			{id: `draggable-${prev.length+1}`, left: {clientX}, top: {toTop}},
 	]);
 	};
 	// Handle to close popup
@@ -25,22 +28,22 @@ function App() {
 	}
 	return (
 		<>
-		<Valve onClick={handleValveClick}/>
+		<Valve onClick={handleValveClick} />
 		<DndContext >
 			{createPortal(
 				<>
-			<DraggablePopup id={"draggable-popup"} />
+			{/* <DraggablePopup id={"draggable-popup"} /> */}
 			{draggables.map((draggable)=> (
-				<Draggable key={draggable.id} left={draggable.left} top={draggable.top} onClose={closePopup}>
+				<Draggable key={draggable.id} id={draggable.id} left={draggable.left} top={draggable.top} onClose={closePopup}>
 					<Popup id={draggable.id} />
 				</Draggable>
 			))}
-			<Draggable left={112} top={200}>
+			{/* <Draggable left={112} top={200}>
 				<Popup />
 			</Draggable>
 			<Draggable left={50} top={300}>
 				<Popup />
-			</Draggable>
+			</Draggable> */}
 				</>,
 				document.body
 			)}
