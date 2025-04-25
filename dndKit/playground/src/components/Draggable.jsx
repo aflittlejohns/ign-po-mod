@@ -1,7 +1,8 @@
 import { useDndMonitor, useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
-import { useState, useRef, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { useState, useRef, useEffect, createContext } from "react";
+
+import { useGenericContext } from "../stores/DraggableGenericContext";
 
 
 export function Draggable({
@@ -13,39 +14,63 @@ export function Draggable({
 	children,
 	className='draggable'
 }) {
-	const { attributes, listeners, setNodeRef, transform, setActivatorNodeRef } =
+	const context = useGenericContext();
+	const {state, dispatch} = context;
+	const [isMounted, setMounted] = useState(false);
+
+	const { attributes, listeners, setNodeRef, transform, setActivatorNodeRef, isDragging } =
 		useDraggable({
 			id: id,
 		});
 	const elementRef = useRef(null);
-	const [position, setPosition] = useState({x:{left}, y:{top}});
+	const [position, setPosition] = useState({x:null, y: null});
+	console.log(position);
 
-	const finalPosition = position ? {
-		x: position.x + (transform?.x || 0),
-		y: position.y + (transform?.y || 0),
-	} : {x: transform?.x || left, y: transform?.y || top};
+	const finalPosition = isDragging ? {
+		x:  position.x + (transform?.x || 0), //position.x +
+		y: position.y + (transform?.y || 0), //position.y +
+	}: {x:position.x, y: position.y};
 
 useEffect(()=> {
 	const calculatePosition = () => {
 		const element = elementRef.current;
 		if(element){
+			console.log(element.getBoundingClientRect());
 			const {top, left} = element.getBoundingClientRect();
 			setPosition({y:top, x:left});
+			dispatch({
+				type: "UPDATE_POSITION",
+				payload:{
+					componentId:id,
+					data:{
+						x: left,
+						y: top,
+					},
+				} ,
+			})
 		}
 	};
 	calculatePosition();
+	setMounted(true);
+
+
 	window.addEventListener('resize', calculatePosition());
 
 	return() => {
 		window.removeEventListener('resize', calculatePosition());
 	}
 
-},[]);
+},[])
 
+
+// if (isMounted){
+// 	transformProp = `translate3d(${finalPosition.x}px, ${finalPosition.y}px,0)`
+// }
 	const style = {
-		transform: `translate3d(${finalPosition.x}px, ${finalPosition.y}px,0)`,
 		// transform: CSS.Translate.toString(transform),
-		position: "absolute",
+		transform: `translate3d(${finalPosition.x}px, ${finalPosition.y}px,0)`,
+		// transform: transformProp,
+		position: 'fixed',
 	};
 
 
@@ -79,7 +104,7 @@ useEffect(()=> {
 				id={id}
 				style={style}
 
-			>
+				>
 				<div
 				ref={elementRef}
 				className='draggable-item-wrapper'>
@@ -93,7 +118,7 @@ useEffect(()=> {
 						handleClose(e);
 					}}
 
-				>
+					>
 					X
 				</button>
 				<div ref={setActivatorNodeRef} {...attributes} {...listeners}>

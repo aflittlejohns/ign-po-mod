@@ -27,10 +27,12 @@ a:hover {
 
 body {
   margin: 0;
-  display: inline-block;
+  padding: 0;
+  display: block;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  outline: solid red;
 }
 
 h1 {

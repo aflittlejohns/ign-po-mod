@@ -7,6 +7,7 @@ import { DraggablePopup } from "./components/DraggablePopup";
 import Popup from "./components/Popup";
 import "./App.css";
 import { Valve } from "./components/Valve";
+import { GenericProvider } from "./stores/DraggableGenericContext";
 
 function App() {
 	const [draggables, setDraggables] = useState([]);
@@ -15,7 +16,7 @@ function App() {
 	function handleValveClick(){
 		setDraggables((prev)=>[
 			...prev,
-			{id: `draggable-${prev.length+1}`, left: 100, top: 100},
+			{id: `draggable-${prev.length+1}`},
 	]);
 	};
 	// Handle to close popup
@@ -25,12 +26,13 @@ function App() {
 	}
 	return (
 		<>
+		<GenericProvider>
 		<Valve onClick={handleValveClick}/>
 		<DndContext >
 			{createPortal(
 				<>
 			{draggables.map((draggable)=> (
-				<Draggable key={draggable.id} id={draggable.id} left={draggable.left} top={draggable.top} onClose={closePopup}>
+				<Draggable key={draggable.id} id={draggable.id} onClose={closePopup}>
 					<Popup id={draggable.id} />
 				</Draggable>
 			))}
@@ -38,6 +40,7 @@ function App() {
 				document.body
 			)}
 		</DndContext>
+		</GenericProvider>
 		</>
 	);
 }
