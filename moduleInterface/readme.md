@@ -6,19 +6,45 @@
 The of this document is to serve as a quick reference for developing a HMI/SCADA Component palette module to extend the Ignition Perspective Module.
 
 ## Common Scope
-#### Required to update the above file.
+#### Required to update the Component Class file.
 - Component Class Name - for example `Valve`
-- COMPONENT_ID - for example "hmi.processObjects.valve"
-- COMPONENT_NAME - for example "Process Valve"
-- COMPONENT_DESCRIPTION - for example "A Configurable Process Valve"
-- COMPONENT_DEFAULT_NAME - for example "process valve"
-- Props Schema. Create a json file
+- `COMPONENT_ID` - for example "hmi.processObjects.valve"
+- `COMPONENT_NAME` - for example "Process Valve"
+- `COMPONENT_DESCRIPTION` - for example "A Configurable Process Valve"
+- `COMPONENT_DEFAULT_NAME` - for example "process valve"
+- Create a component Props schema json file. Save in"./common/src/main/resources/props/"
+- Define `PROPS_SCHEMA_PATH` = for example - "/props/hmi-processObjects-valve.props.json"
+- Create a component thumbnail.png image file. Save in "./common/src/main/resources/images/"
+- Define `THUMBNAIL_PATH` = for example - "/images/hmi-processObjects-valve-thumbnail.png"
+- Create a component Event Schema file. Save in "./common/src/main/resources/events/componentName/eventType.json"
+- Register the Event Descriptor
 
+#### Required to define Constants and Utilities: for example `HmiConstants.java`
+- A Class name. for example - HmiConstants
+- `MODULE_ID` = for example "pf.perspective.hmi"
+- `MODULE_URL_ALIAS` = for example "pf-hmi-components". This is the folder name used by Ignition in mounting `BROWSER_RESOURCES`
+#### Required to expose file resources via the Ignition web server: for example `HmiComponents.java`
+- A Class name, for example - HmiComponents
+- `COMPONENT_CATEGORY` = "PF HMI UI Library" The category name for the PF HMI user interface library in the Perspective component palette.
+- File names of the .js and .css files built by Webpack. **Defined in the Web scope**
 
 
 ## Designer Scope
-
+### xxxDesignerHook.java
+- Create Component Icon svg file. --- This will be displayed in the component palette and visually represent your component in the designer.
+- Update Designer Hook
+- Class Name for designer hook
+  - `init()` - register component DESCRIPTOR and Icon file location , eg, "/images/valve-icon.svg"
+  - `shutdown()` - un-register "component.COMPONENT_ID"
 ## Gateway Scope
+### Update xxxGatewayHook.java
+Tasks
+- Name Class for gateway hook
+- In `startup()` - register component DESCRIPTOR
+ - In  `shutdown()` - un-register "component.COMPONENT_ID"
+- The gateway hook class also contains methods which handle resource mounting.
+- :bulb: The resource path for your components web resources (js/css) will be at
+- gatewayURL/res/${MODULE_URL_ALIAS}/"index".js / .css
 
 ### TODO's
 
