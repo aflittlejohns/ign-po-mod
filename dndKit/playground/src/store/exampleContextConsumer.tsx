@@ -18,8 +18,13 @@ item: ItemType<S , A>;
 updateItemState: ()=> void;
 auth: AuthType
 }
- type ExampleCompoundComponentProps = {
-	itemId: string;
+type State = {count: number}
+type Action<T,P> = {
+	type: T;
+	payload?: P;
+};
+ type ExampleCompoundComponentProps<S, A> = {
+	item: ItemType<S, A>;
 	close: ()=> void;
 	children: ReactNode;
  }
