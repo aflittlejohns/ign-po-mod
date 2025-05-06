@@ -6,7 +6,9 @@
 The of this document is to serve as a quick reference for developing a HMI/SCADA Component palette module to extend the Ignition Perspective Module.
 
 ## Common Scope
-#### Required to update the Component Class file.
+
+#### Required to update the Component Class file
+
 - Component Class Name - for example `Valve`
 - `COMPONENT_ID` - for example "hmi.processObjects.valve"
 - `COMPONENT_NAME` - for example "Process Valve"
@@ -20,28 +22,36 @@ The of this document is to serve as a quick reference for developing a HMI/SCADA
 - Register the Event Descriptor
 
 #### Required to define Constants and Utilities: for example `HmiConstants.java`
+
 - A Class name. for example - HmiConstants
 - `MODULE_ID` = for example "pf.perspective.hmi"
 - `MODULE_URL_ALIAS` = for example "pf-hmi-components". This is the folder name used by Ignition in mounting `BROWSER_RESOURCES`
+
 #### Required to expose file resources via the Ignition web server: for example `HmiComponents.java`
+
 - A Class name, for example - HmiComponents
 - `COMPONENT_CATEGORY` = "PF HMI UI Library" The category name for the PF HMI user interface library in the Perspective component palette.
 - File names of the .js and .css files built by Webpack. **Defined in the Web scope**
 
-
 ## Designer Scope
+
 ### xxxDesignerHook.java
+
 - Create Component Icon svg file. --- This will be displayed in the component palette and visually represent your component in the designer.
 - Update Designer Hook
 - Class Name for designer hook
   - `init()` - register component DESCRIPTOR and Icon file location , eg, "/images/valve-icon.svg"
   - `shutdown()` - un-register "component.COMPONENT_ID"
+
 ## Gateway Scope
+
 ### Update xxxGatewayHook.java
+
 Tasks
+
 - Name Class for gateway hook
 - In `startup()` - register component DESCRIPTOR
- - In  `shutdown()` - un-register "component.COMPONENT_ID"
+- In  `shutdown()` - un-register "component.COMPONENT_ID"
 - The gateway hook class also contains methods which handle resource mounting.
 - :bulb: The resource path for your components web resources (js/css) will be at
 - gatewayURL/res/${MODULE_URL_ALIAS}/"index".js / .css
@@ -49,7 +59,9 @@ Tasks
 ### TODO's
 
 In File `NamedComponentLibraryHook.java`
-#### Required to update the above file.
+
+#### Required to update the above file
+
 - Package Name i e.g "pf.aLittlejohns.perspective"
 - Module Name e.g "Hmi"
 - Component names- e.g. "Valve", "Motor"
@@ -59,8 +71,8 @@ In File `NamedComponentLibraryHook.java`
 - [ ]  3. Register each new component DESCRIPTOR in the startup method
 - [ ]  4. Remove each new component in the shutdown method.
 
-
 ### Explaination of Tasks
+
 #### Define a static logger for the Component Palette Class
 
 The `LifComponentLibraryGatewayHook` class uses the `LoggerEx` utility from the Ignition SDK. Here's an explanation of the selected line and its purpose:
@@ -69,7 +81,8 @@ The `LifComponentLibraryGatewayHook` class uses the `LoggerEx` utility from the 
 private static final LoggerEx log = LoggerEx.newBuilder().build(LifComponentLibraryGatewayHook.class);
 ```
 
-### Explanation:
+### Explanation
+
 1. **`LoggerEx`**:
    - `LoggerEx` is a utility class provided by the Ignition SDK for logging messages. It is commonly used in Ignition modules to log information, warnings, errors, and debug messages.
 
@@ -84,32 +97,37 @@ private static final LoggerEx log = LoggerEx.newBuilder().build(LifComponentLibr
    - It is `static` because logging is not tied to a specific instance of the class; it is shared across all instances.
    - It is `final` to ensure that the logger reference cannot be reassigned after initialization.
 
-### Purpose:
+### Purpose
 
 The logger is used throughout the class to log important events, such as errors, warnings, or informational messages. For example:
 
 - **Error Logging**:
+
   ```java
   log.error("Reference to component registry not found, Lifton UI Components will fail to function!");
   ```
+
   This logs an error message if the `componentRegistry` is null during startup.
 
 - **Info Logging**:
+
   ```java
   log.info("Shutting down Lifton UI module and removing registered components.");
   ```
+
   This logs an informational message when the module is shutting down.
 
 - **Warning Logging**:
+
   ```java
   log.warn("Component registry was null, could not unregister Lifton UI Components.");
   ```
+
   This logs a warning if the `componentRegistry` is null during shutdown.
 
-### Summary:
+### Summary
 
 The `LoggerEx` instance (`log`) is a utility for logging messages in the `LifComponentLibraryGatewayHook` class. It helps track the module's lifecycle events, such as startup, shutdown, and errors, making it easier to debug and monitor the module's behavior in the Ignition Gateway.
-
 
 ## Task 2 - Register Components
 
@@ -153,13 +171,13 @@ If the `ComponentRegistry` is not available, the module logs an error, as this i
 
 - **Failure Case**:
   - If the `ComponentRegistry` is `null`, the error message is logged:
+
     ```
     Reference to component registry not found, Lifton UI Components will fail to function!
     ```
+
   - This indicates a problem with the `PerspectiveContext` or the module's initialization process.
 
 ### Summary
 
 This snippet is a critical part of the module's startup process. It ensures that custom components (`ValveFaceplate` and `Valve`) are registered with the `ComponentRegistry`. If the registry is unavailable, an error is logged to help diagnose the issue. This ensures that the module's components are properly integrated into the Ignition Gateway.  - This indicates a problem with the `PerspectiveContext` or the module's initialization process.
-
-
