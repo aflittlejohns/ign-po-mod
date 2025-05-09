@@ -1,13 +1,23 @@
 import { getBoolAtIndex } from "../../../utils/numberUtil";
-import type { ValveStatus } from "./types";
-
+import { ItemNameEnum, type ValveStatus } from "./types";
+import {v4 as uuidv4 } from 'uuid'
+/**
+ * This is a utility function for the component "process-object/ValveFC"
+ *
+ * @param index: number the index of an dynamic visual element "item" within the Valve component
+ * @param valveStatus?:ValveStatus the status representing physical process valve
+ * @returns className:string returns additional classnames for an visual element of the valve component.
+ *
+ * Returned classnames are;
+ * 	hide - this hides the item
+ * 	show -
+ */
 export const getItemClassName = (index: number, valveStatus?: ValveStatus): string => {
 		let className = "";
-		// Handle the fAct that ActivatedConfig and DeactivatedConfig are optional and maybe undefined
+		// Handle the fact that ActivatedConfig and DeactivatedConfig are optional and maybe undefined
 		const ActivatedConfigValue = valveStatus?.activatedConfig ?? 0;
 		const DeactivatedConfigValue = valveStatus?.deactivatedConfig ?? 0;
 		if (index < 12) {
-			//console.log("index" + " ActFB", index, valveStatus?.ActFB);
 			if (
 				(getBoolAtIndex(ActivatedConfigValue, index) && valveStatus?.actFB) ||
 				(getBoolAtIndex(DeactivatedConfigValue, index) && valveStatus?.deActFB)
@@ -92,3 +102,14 @@ export const getItemClassName = (index: number, valveStatus?: ValveStatus): stri
 
 		return className; // default return value if no other condition is met
 	}
+/**
+ * @returns Array of itemName(s) for each visual element of a valve component
+ */
+export const itemNames = Object.keys(ItemNameEnum).map((itemName) => {
+		return {
+			key: uuidv4(),
+			name: itemName,
+			value: ItemNameEnum,
+			index: Object.keys(ItemNameEnum).indexOf(itemName),
+		};
+	});

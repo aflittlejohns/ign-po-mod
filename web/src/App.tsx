@@ -1,14 +1,19 @@
-import { useState } from 'react'
-
 import './App.css'
+import { ValveFCCompound } from './components/process-objects/valve/ValveFC'
+import { valveProps } from './components/process-objects/valve/initialState'
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
+		<ValveFCCompound.Root
+		valveProps={valveProps}
+		>
+			<ValveFCCompound.Valve />
+	</ValveFCCompound.Root>
 
-    </>
+</>
   )
 }
 
