@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "typedoc": "^0.28.4",
+    "typedoc-plugin-markdown": "^4.6.3"
+  },
+  "scripts": {
+    "rename-readme": "./renameReadmeToIndex.js"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  }
+}
