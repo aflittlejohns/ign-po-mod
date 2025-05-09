@@ -2,6 +2,6 @@
 **/.vscode
 **/.git
 **/node_modules
-**/package-lock.json
+# **/package-lock.json
 **/dist
 **/*.log
