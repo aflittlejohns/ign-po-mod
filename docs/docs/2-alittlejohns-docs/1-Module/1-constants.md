@@ -11,6 +11,6 @@ title: 'Module Constants'
 ### Module ID 
 
 ```java
-dev.aflittlejohns.perspective.hmi.StandardComponents
+dev.aflittlejohns.perspective.hmi.Components
 ```
 
