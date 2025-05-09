@@ -1,0 +1,93 @@
+/* NDJH ValveTemplate - Start
+ */
+ /* lif symbolComponent Wrappers */
+ .lif-symbolComponent {
+	display: flex;
+	flex-direction: column;
+	font-size: 14px;
+	overflow: hidden;
+ }
+ .lif-symbolComponent__column {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+ } /* TODO: complete Flex Wrappers */
+ .lif-symbolComponent__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+	flex: 1 1 100px;
+ }
+ .lif-symbolComponent__wrapper{
+    display: flex;
+    position: relative;
+ }
+.lif-valve-component{
+    display: grid;
+	height: 40cqmax;
+	width: 40cqmax;
+    container-type: inline-size;
+    grid-template-columns: 15fr minmax(0,1fr) minmax(0,3fr) minmax(0,2fr) minmax(0,3fr) minmax(0,1fr) minmax(0,3fr) minmax(0,2fr) minmax(0,3fr) minmax(0,1fr) 15fr;
+    grid-template-rows: 15fr minmax(0,1fr) minmax(0,3fr) minmax(0,2fr) minmax(0,3fr) minmax(0,1fr) minmax(0,3fr) minmax(0,2fr) minmax(0,3fr) minmax(0,1fr) 15fr;
+}
+
+.lif-valve-component.wrapper{
+    grid-area: 4 / 3 / 7 / 11;
+    justify-self: center;
+    align-self: center;
+
+}
+.lif-valve-component.wrapper .label{
+	font-size: 10cqi;
+	font-weight: bold;
+	border-radius: 12cqi;
+	background-color: var(--neutral-50);
+	padding: 2cqi;
+}
+.lif-valve-component.circle{
+    grid-area: 1 / 1 / -1 / -1;
+    background-color: yellow;
+    opacity: 50%;
+    border: solid var(--neutral-50);
+    border-radius: 90cqi;
+    border-width: 0.1cqi;
+    animation-name: circle;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    place-self: center;
+    margin-right: 18cqi;
+    margin-bottom: 18cqi;
+}
+.lif-valve-component.circleV2{
+    grid-area: 1 / 1 / -1 / -1;
+    background-color: yellow;
+    opacity: 50%;
+    border: solid var(--neutral-50);
+    border-radius: 90cqi;
+    border-width: 0.1cqi;
+    animation-name: circle;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    place-self: center;
+    margin-bottom: 18cqi;
+}
+.lif-valve-component.circleV3{
+    grid-area: 1 / 1 / -1 / -1;
+    background-color: yellow;
+    opacity: 50%;
+    border: solid var(--neutral-50);
+    border-radius: 90cqi;
+    border-width: 0.1cqi;
+    animation-name: circle;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    place-self: center;
+    margin-right: 18cqi;
+}
+@keyframes circle {
+  0%   {width:75%; height:75%;}
+  50%  {width:50%; height:50%;}
+  100% {width:75%; height:75%;}
+}
+/* NDJH ValveTemplate - End
+ */
