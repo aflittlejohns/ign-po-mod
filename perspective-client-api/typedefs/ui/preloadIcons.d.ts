@@ -1,0 +1,25 @@
+export declare const preloadIcons: {
+    ignitionCheck: JSX.Element;
+    ignitionEdgeCheck: JSX.Element;
+    gateway: JSX.Element;
+    backupGateway: JSX.Element;
+    lostConnection: JSX.Element;
+    fallbackRedirect: JSX.Element;
+    projectUpdate: JSX.Element;
+    dataMissing: JSX.Element;
+    beta: JSX.Element;
+    trial: JSX.Element;
+    expandLess: JSX.Element;
+    expandMore: JSX.Element;
+    close: JSX.Element;
+    done: JSX.Element;
+    getApp: JSX.Element;
+    block: JSX.Element;
+    lockOutline: JSX.Element;
+    noEncryption: JSX.Element;
+    arrowRight: JSX.Element;
+    exitProject: JSX.Element;
+    noIdp: JSX.Element;
+    phone: JSX.Element;
+    logout: JSX.Element;
+};

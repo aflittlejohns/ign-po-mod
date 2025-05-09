@@ -1,5 +1,5 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
@@ -35,29 +35,45 @@ const config: Config = {
     [
       'classic',
       {
-        svgr:{
-          svgrConfig:{
-           icon: true,
-           expandProps: false, 
+        svgr: {
+          svgrConfig: {
+            icon: true,
+            expandProps: false,
           }
         },
         docs: {
           sidebarPath: './sidebars.ts',
-		      routeBasePath:'/',
+          routeBasePath: '/',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-        //   editUrl:
-        //     'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          //   editUrl:
+          //     'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: false,
       },
-    ]  
+    ]
   ],
-  markdown:{
-	mermaid: true
+  markdown: {
+    mermaid: true
   },
 
-  themes:['@docusaurus/theme-mermaid'],
+  themes: ['@docusaurus/theme-mermaid',
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+      ({
+        // ... Your options.
+        // `hashed` is recommended as long-term-cache of index file is possible.
+        hashed: true,
+        indexBlog: false,
+        docsRouteBasePath: '/',
+        // For Docs using Chinese, it is recomended to set:
+        // language: ["en", "zh"],
+
+        // If you're using `noIndex: true`, set `forceIgnoreNoIndex` to enable local index:
+        // forceIgnoreNoIndex: true,
+      }),
+    ],],
 
   themeConfig: {
     // Replace with your project's social card
@@ -78,7 +94,7 @@ const config: Config = {
     },
 
     prism: {
-      additionalLanguages:['java'],
+      additionalLanguages: ['java'],
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
