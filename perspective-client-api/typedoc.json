@@ -1,0 +1,12 @@
+{    "compilerOptions": {
+    "skipLibCheck": true,
+    "strictNullChecks": false
+},
+    "entryPoints": ["./typedefs"], // Specify the entry point directory
+    "entryPointStrategy": "expand", // Include all files in the directory
+    "out": "./docs", // Output directory for Docusaurus
+    "plugin": ["typedoc-plugin-markdown"], // Use the Markdown plugin
+    "tsconfig": "./tsconfig.json", // Path to your tsconfig.json
+    "exclude": ["**/*.test.ts", "**/__mocks__/**"], // Exclude test files or mocks
+    "excludeExternals": true, // Exclude external modules
+  }
