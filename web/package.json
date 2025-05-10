@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@inductiveautomation/perspective-client": "2.1.44",
+    "immer": "^10.1.1",
     "path": "^0.12.7",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "use-immer": "^0.11.0",
     "uuid": "^11.1.0"
   },
   "devDependencies": {

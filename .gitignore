@@ -5,3 +5,6 @@
 # **/package-lock.json
 **/dist
 **/*.log
+**/.gradle
+build
+docker/backups

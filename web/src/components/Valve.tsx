@@ -3,7 +3,7 @@
 import {
 	type ValveProps,
 	type ValveStatus
-} from "./process-objects/valve/types";
+} from "../api/types";
 
 
 import {

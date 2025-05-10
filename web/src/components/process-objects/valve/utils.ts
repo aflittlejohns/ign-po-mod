@@ -1,5 +1,5 @@
 import { getBoolAtIndex } from "../../../utils/numberUtil";
-import { ItemNameEnum, type ValveStatus } from "./types";
+import { ItemNameEnum, type ValveStatus } from "../../../api/types";
 import {v4 as uuidv4 } from 'uuid'
 /**
  * This is a utility function for the component "process-object/ValveFC"

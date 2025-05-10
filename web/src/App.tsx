@@ -1,6 +1,6 @@
 import './App.css'
 import { ValveFCCompound } from './components/process-objects/valve/ValveFC'
-import { valveProps } from './components/process-objects/valve/initialState'
+import { valveProps } from './api/initialState'
 
 function App() {
 

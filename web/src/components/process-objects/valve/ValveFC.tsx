@@ -1,12 +1,13 @@
 import { type ReactNode } from 'react'
 import type {
 	ValveProps,
- } from './types'
+ } from '../../../api/types'
 import type { ComponentProps } from '@inductiveautomation/perspective-client'
 import { createContext } from '../../../utils/createContext'
 import { COMPONENT_TYPE } from '../../Valve'
 import { getItemClassName, itemNames } from './utils'
 import Item from './item'
+import { valveStatus } from '../../../api/initialState'
 
 type ValveCompoundProps = {
 	componentProps?:ComponentProps<any,any>,
@@ -18,7 +19,7 @@ const [ValveContextProvider, useValveContext] =
 	createContext<ValveCompoundProps>("ValveCompound");
 
 const Root = ({valveProps, componentProps, children}:ValveCompoundProps) =>{
-	const {props} = componentProps ?? {};
+const [valveState, setValve] = useReducer(useValveReducer, valveStatus)
 	/**
 	 * Handler for the component's action event.
 	 */

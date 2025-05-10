@@ -67,25 +67,43 @@ export const ItemPositionEnum = {
 }
 export type ItemPositionEnum = typeof ItemPositionEnum[keyof typeof ItemPositionEnum]
 
+const ValveStateEnum = {
+	alarm: "alarm",
+	manual: "manual",
+	masked: "masked",
+}
+export type ValveStateEnum = typeof ValveStateEnum[keyof typeof ValveStateEnum]
 
-export type ValveStatus = {
-	alarm?: boolean;
-	actFB?: boolean;
-	deActFB?: boolean;
-	activatedConfig?: number;
-	deactivatedConfig?: number;
-	tagName?: string;
-	manual?: boolean;
-	masked?: boolean;
-	changing?: boolean;
+export type ValveState = {
+	alarm: boolean;
+	actFB: boolean;
+	deActFB: boolean;
+	activatedConfig: number;
+	deactivatedConfig: number;
+	tagName: string;
+	manual: boolean;
+	masked: boolean;
+	changing: boolean;
 }
 export type ValveProps = {
-	ValveStatus?: ValveStatus;
+	ValveStatus?: ValveState;
 	handleClick?: () => void;
 }
 
 export type ItemData = {
 	key: string;
 	value: string;
-	props: ValveStatus;
+	props: ValveState;
+}
+/**
+ * Define the shape of the ValveAction object
+ * @Useage useValveReducer
+ */
+export type ValveAction = {
+	type: keyof ValveState;
+	payload?: {
+		boolValue?: boolean,
+		stringValue?: string,
+		numberValue?: number,
+	}
 }

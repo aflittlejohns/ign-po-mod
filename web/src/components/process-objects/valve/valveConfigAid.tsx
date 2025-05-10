@@ -1,6 +1,6 @@
 import React, { HTMLInputTypeAttribute, useState } from "react";
 import ItemClickable from "./itemClickable";
-import { ItemClickableNameEnum } from "./types";
+import { ItemClickableNameEnum } from "../../../api/types";
 
 type ValveConfigData = {
 	config: number;
