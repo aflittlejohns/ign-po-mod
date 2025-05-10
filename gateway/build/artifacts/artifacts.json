@@ -1,0 +1,15 @@
+{
+    "projectPath": ":gateway",
+    "projectName": "gateway",
+    "scope": "G",
+    "artifacts": [
+        {
+            "id": "web.jar (project :web)",
+            "jarName": "web-0.0.1-SNAPSHOT.jar"
+        },
+        {
+            "id": "hmi-components:gateway:0.0.1-SNAPSHOT",
+            "jarName": "gateway-0.0.1-SNAPSHOT.jar"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "projectPath": ":designer",
+    "projectName": "designer",
+    "scope": "D",
+    "artifacts": [
+        {
+            "id": "lifton-component-library:designer:0.0.1-SNAPSHOT",
+            "jarName": "designer-0.0.1-SNAPSHOT.jar"
+        }
+    ]
+}

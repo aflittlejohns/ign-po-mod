@@ -18,15 +18,12 @@ allprojects {
 // Configure the Ignition module build settings
 ignitionModule {
     // Basic module metadata
-    name.set("Lifton UI Component Library")  // The human-readable name shown in the Gateway
-    fileName.set("Lifton-UI-Component-Library.modl")  // The output file name
-    id.set("lif.perspective.LiftonUIComponentLibrary")  // Unique module identifier
-   // * name.set("Example Component Library")  // The human-readable name shown in the Gateway
-   //* fileName.set("Example-Component-Library.modl")  // The output file name
-   //* id.set("dev.kgamble.perspective.examples.ExampleComponentLibrary")  // Unique module identifier
+    name.set("HMI Components")  // The human-readable name shown in the Gateway
+    fileName.set("Hmi-Components.modl")  // The output file name
+    id.set("dev.aflittlejohns.perspective.hmi.Components")  // Unique module identifier
     moduleVersion.set("${project.version}")  // Version from allprojects block
     license.set("LICENSE.txt")  // License file to include
-    moduleDescription.set("A module that adds Example React components to Perspective.")
+    moduleDescription.set("A module that adds HMI React components to Perspective.")
     requiredIgnitionVersion.set("8.1.44")  // Minimum Ignition version required
 
     // Define where each subproject's code should run
@@ -47,10 +44,8 @@ ignitionModule {
     // Register the module hooks that initialize the module in each scope
     hooks.putAll(
         mapOf(
-       "lif.perspective.gateway.LifComponentLibraryGatewayHook" to "G",
-       "lif.perspective.designer.LifComponentLibraryDesignerHook" to "D"
-       // "dev.kgamble.perspective.examples.gateway.ExampleComponentLibraryGatewayHook" to "G",
-       // "dev.kgamble.perspective.examples.designer.ExampleComponentLibraryDesignerHook" to "D"
+       "dev.aflittlejohns.perspective.hmi.gateway.GatewayHook" to "G",
+       "dev.aflittlejohns.perspective.hmi.designer.DesignerHook" to "D"
 		)
 	)
 

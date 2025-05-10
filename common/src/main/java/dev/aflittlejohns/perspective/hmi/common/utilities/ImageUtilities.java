@@ -2,7 +2,7 @@
  * Copyright 2024 Keith Gamble
  * [License information]
  */
-package dev.kgamble.perspective.examples.common.utilities;
+package dev.aflittlejohns.perspective.hmi.common.utilities;
 
 import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
