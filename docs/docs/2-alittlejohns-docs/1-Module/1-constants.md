@@ -8,9 +8,14 @@ title: 'Module Constants'
 `{organisation}.{product}.{category}.{name}`
 :::
 
-### Module ID 
+### Module ID
 
 ```java
 dev.aflittlejohns.perspective.hmi.Components
 ```
 
+### MODULE_URL_ALIAS
+
+```java
+hmi.components
+```

@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { type ReactNode } from 'react'
 import type {
 	ValveProps,

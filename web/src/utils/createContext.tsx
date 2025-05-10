@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from 'react'
 
 export function createContext<ContextValueType extends object | null>(
   rootComponentName: string,

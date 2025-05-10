@@ -1,8 +1,7 @@
 import * as React from "react";
 
 import Item from "./item";
-import { ItemNameEnum } from "./types";
-import { ValveProps } from "../Valve";
+import { ItemNameEnum, ValveProps } from "./types";
 import { v4 as uuidv4 } from "uuid";
 import { ComponentProps } from "node_modules/@inductiveautomation/perspective-client/build/dist/typedefs/perspective-client";
 
