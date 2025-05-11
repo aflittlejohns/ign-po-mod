@@ -105,11 +105,12 @@ export const getItemClassName = (index: number, valveStatus?: ValveStatus): stri
 /**
  * @returns Array of itemName(s) for each visual element of a valve component
  */
-export const itemNames = Object.keys(ItemNameEnum).map((itemName) => {
-		return {
+export const itemNames = Object.keys(ItemNameEnum).map((key, value) => {
+		console.log(`key ${key} value ${value}`)
+	return {
 			key: uuidv4(),
-			name: itemName,
-			value: ItemNameEnum,
-			index: Object.keys(ItemNameEnum).indexOf(itemName),
+			name: key,
+			value: key,
+			index: value,
 		};
 	});

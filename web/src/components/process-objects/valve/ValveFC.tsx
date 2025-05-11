@@ -4,27 +4,25 @@ import type {
 	ValveProps,
  } from './types'
 import type { ComponentProps } from '@inductiveautomation/perspective-client'
-
-console.log(createContext)
 import { COMPONENT_TYPE } from '../../Valve'
 import { getItemClassName, itemNames } from './utils'
 import Item from './item'
-import { createContext } from '../../../utils/createContext'
-
+import { useCreateContext } from '../../../utils/createContext'
+console.log(useCreateContext);
 
 // import {valveStatus} from './initialState'
 
 type ValveCompoundProps = {
-	componentProps?:ComponentProps<any,any>,
+	componentProps:ComponentProps<any,any>,
 	valveProps:ValveProps,
 	children: ReactNode;
 }
 
 const [ValveContextProvider, useValveContext] =
-	createContext<ValveCompoundProps>("ValveCompound");
+	useCreateContext<ValveCompoundProps>("ValveCompound");
 
-const Root = ({valveProps, componentProps, children}:ValveCompoundProps) =>{
-	const {props} = componentProps ?? {};
+const Root = ({valveProps,componentProps, children}:ValveCompoundProps) =>{
+	const {props} = componentProps;
 	/**
 	 * Handler for the component's action event.
 	 */
@@ -52,7 +50,7 @@ const Root = ({valveProps, componentProps, children}:ValveCompoundProps) =>{
 const Valve = () => {
 const {valveProps, componentProps} = useValveContext("Valve");
 const {ValveStatus} = valveProps;
-const {position, props} = componentProps ?? {};
+const {position, props} = componentProps;
 const inCoord = position?.x ?? false;
 if (!inCoord){
 	return (
@@ -66,7 +64,7 @@ if (!inCoord){
 						<div className="hmi-component-valve">
 							{itemNames.map(
 								({ value, index, key }) => (
-									//console.log("re-rendered ", index),
+									console.log("re-rendered ", index),
 									(
 										<Item
 											itemClassName={

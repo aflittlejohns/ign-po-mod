@@ -17,6 +17,8 @@ import type {
 	,SizeObject
 } from '@inductiveautomation/perspective-client'//'@inductiveautomation/perspective-client';
 import { ValveFCCompound } from "./process-objects/valve/ValveFC";
+// import { valveProps } from "./process-objects/valve/initialState";
+// import { ValveFCCompound } from "./process-objects/valve/ValveFC";
 
 export const COMPONENT_TYPE = "hmi.process_objects.Valve";
 
@@ -35,12 +37,11 @@ export class Valve extends Component<ComponentProps<ValveProps>, any> {
 		return(
 			// <div>This is Valve</div>
 		<ValveFCCompound.Root
-		componentProps={this.props || {}}
+		componentProps={this.props}
 		valveProps={this.props.props}
-		>
-			<div>This is Valve</div>
-			{/* <ValveFCCompound.Valve /> */}
-		</ValveFCCompound.Root>
+		 >
+			  <ValveFCCompound.Valve />
+		 </ValveFCCompound.Root>
 	)
 }
 }

@@ -1,28 +1,28 @@
 /* NDJH ValveTemplate - Start
  */
  /* lif symbolComponent Wrappers */
- .lif-symbolComponent {
+ .hmi-Component {
 	display: flex;
 	flex-direction: column;
 	font-size: 14px;
 	overflow: hidden;
  }
- .lif-symbolComponent__column {
+ .hmi-Component__column {
     display: flex;
     flex-direction: column;
     align-self: center;
  } /* TODO: complete Flex Wrappers */
- .lif-symbolComponent__row {
+ .hmi-Component__row {
     display: flex;
     flex-direction: row;
     justify-content: center;
 	flex: 1 1 100px;
  }
- .lif-symbolComponent__wrapper{
+ .hmi-Component__wrapper{
     display: flex;
     position: relative;
  }
-.lif-valve-component{
+.hmi-component-valve{
     display: grid;
 	height: 40cqmax;
 	width: 40cqmax;
@@ -31,20 +31,20 @@
     grid-template-rows: 15fr minmax(0,1fr) minmax(0,3fr) minmax(0,2fr) minmax(0,3fr) minmax(0,1fr) minmax(0,3fr) minmax(0,2fr) minmax(0,3fr) minmax(0,1fr) 15fr;
 }
 
-.lif-valve-component.wrapper{
+.hmi-component-valve.wrapper{
     grid-area: 4 / 3 / 7 / 11;
     justify-self: center;
     align-self: center;
 
 }
-.lif-valve-component.wrapper .label{
+.hmi-component-valve.wrapper .label{
 	font-size: 10cqi;
 	font-weight: bold;
 	border-radius: 12cqi;
 	background-color: var(--neutral-50);
 	padding: 2cqi;
 }
-.lif-valve-component.circle{
+.hmi-component-valve.circle{
     grid-area: 1 / 1 / -1 / -1;
     background-color: yellow;
     opacity: 50%;
@@ -58,7 +58,7 @@
     margin-right: 18cqi;
     margin-bottom: 18cqi;
 }
-.lif-valve-component.circleV2{
+.hmi-component-valve.circleV2{
     grid-area: 1 / 1 / -1 / -1;
     background-color: yellow;
     opacity: 50%;
@@ -71,7 +71,7 @@
     place-self: center;
     margin-bottom: 18cqi;
 }
-.lif-valve-component.circleV3{
+.hmi-component-valve.circleV3{
     grid-area: 1 / 1 / -1 / -1;
     background-color: yellow;
     opacity: 50%;
