@@ -4,10 +4,15 @@ import type {
 	ValveProps,
  } from './types'
 import type { ComponentProps } from '@inductiveautomation/perspective-client'
-import { createContext } from '../../../utils/createContext'
+
+console.log(createContext)
 import { COMPONENT_TYPE } from '../../Valve'
 import { getItemClassName, itemNames } from './utils'
 import Item from './item'
+import { createContext } from '../../../utils/createContext'
+
+
+// import {valveStatus} from './initialState'
 
 type ValveCompoundProps = {
 	componentProps?:ComponentProps<any,any>,

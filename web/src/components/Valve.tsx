@@ -35,10 +35,11 @@ export class Valve extends Component<ComponentProps<ValveProps>, any> {
 		return(
 			// <div>This is Valve</div>
 		<ValveFCCompound.Root
-		componentProps={this.props}
+		componentProps={this.props || {}}
 		valveProps={this.props.props}
 		>
-			<ValveFCCompound.Valve />
+			<div>This is Valve</div>
+			{/* <ValveFCCompound.Valve /> */}
 		</ValveFCCompound.Root>
 	)
 }

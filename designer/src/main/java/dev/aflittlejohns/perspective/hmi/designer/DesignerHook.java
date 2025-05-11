@@ -20,8 +20,7 @@ import dev.aflittlejohns.perspective.hmi.common.components.level4.process_object
  * lifecycle in the Ignition Designer.
  */
 public class DesignerHook extends AbstractDesignerModuleHook {
- private static final LoggerEx log = LoggerEx.newBuilder()
- .build(Constants.MODULE_URL_ALIAS , "DesignerHook");
+ private static final LoggerEx log = LoggerEx.newBuilder().build(DesignerHook.class);
 
  private DesignerContext context;
  private DesignerComponentRegistry registry;
