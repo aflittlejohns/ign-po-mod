@@ -15,6 +15,7 @@ console.log(useCreateContext);
 type ValveCompoundProps = {
 	componentProps:ComponentProps<any,any>,
 	valveProps:ValveProps,
+	// onActionPerformed: ()=> void
 	children: ReactNode;
 }
 
@@ -50,28 +51,35 @@ const Root = ({valveProps,componentProps, children}:ValveCompoundProps) =>{
 const Valve = () => {
 const {valveProps, componentProps} = useValveContext("Valve");
 const {ValveStatus} = valveProps;
-const {position, props} = componentProps;
+const {position, emit, props} = componentProps;
 const inCoord = position?.x ?? false;
+// Memoize the handleClick function
+// const handleClick = React.useCallback(()=>{
+// 	props.onActionPerformed();
+// },[props]);
+  // Memoize itemNames to prevent re-creation on every render
+  const memoizedItemNames = React.useMemo(() => itemNames, []);
+{console.log(`itemName ${memoizedItemNames}`)}
 if (!inCoord){
 	return (
 				<div
-					{...componentProps?.emit({
+					{...emit({
 						classes: [`hmi-component hmi-component__column `],
 					})}
 					data-component={COMPONENT_TYPE}
 				>
 					<div className="hmi-component__row">
 						<div className="hmi-component-valve">
-							{itemNames.map(
+							{memoizedItemNames.map(
 								({ value, index, key }) => (
-									console.log("re-rendered ", index),
+									console.log(`re-rendered ,key ${key} value ${value} index ${index}`),
 									(
 										<Item
-											itemClassName={
-												value + " " + getItemClassName(index, ValveStatus)
-											}
-											handleClick={props.onActionPerformed}
-											key={key}
+										itemClassName={
+											value + " " + getItemClassName(index, ValveStatus)
+										}
+										handleClick={props.onActionPerformed()}
+										key={key}
 										/>
 									)
 								)
@@ -81,22 +89,22 @@ if (!inCoord){
 				</div>
 	)
 } else {
-			return (
-				<div
-					{...componentProps?.emit({
-						classes: [`hmi-component hmi-component-valve `],
-					})}
-					data-component={COMPONENT_TYPE}
-				>
-					{itemNames.map(
+	return (
+		<div
+		{...emit({
+			classes: [`hmi-component hmi-component-valve `],
+		})}
+		data-component={COMPONENT_TYPE}
+		>
+					{memoizedItemNames.map(
 						({ value, index, key }) => (
-							//console.log("re-rendered ", index),
+							console.log(`re-rendered ,key ${key} value ${value} index ${index}`),
 							(
 								<Item
 									itemClassName={
 										value + " " + getItemClassName(index, ValveStatus)
 									}
-									handleClick={props.onActionPerformed}
+									handleClick={() => {props.onActionPerformed}}
 									key={key}
 								/>
 							)
