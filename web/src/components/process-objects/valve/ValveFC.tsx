@@ -15,26 +15,27 @@ console.log(useCreateContext);
 type ValveCompoundProps = {
 	componentProps:ComponentProps<any,any>,
 	valveProps:ValveProps,
-	// onActionPerformed: ()=> void
+	onActionPerformed: ()=> void
 	children: ReactNode;
 }
 
 const [ValveContextProvider, useValveContext] =
 	useCreateContext<ValveCompoundProps>("ValveCompound");
 
-const Root = ({valveProps,componentProps, children}:ValveCompoundProps) =>{
+const Root = ({valveProps,componentProps , children}:ValveCompoundProps) =>{
 	const {props} = componentProps;
+	const {eventsEnabled, componentEvents} = props
 	/**
 	 * Handler for the component's action event.
-	 */
+	*/
 	const onActionPerformed = () => {
 		// If the designer is in "design" mode, don't do anything
-		if (!props.eventsEnabled) {
+		if (!eventsEnabled) {
 			console.log("Valve is disabled in the design-scope");
 			return;
 		}
 		console.log("Valve clicked!");
-		props.componentEvents.fireComponentEvent("onActionPerformed", {});
+		componentEvents. fireComponentEvent("onActionPerformed", {});
 	};
   return (
 	<ValveContextProvider
@@ -49,9 +50,9 @@ const Root = ({valveProps,componentProps, children}:ValveCompoundProps) =>{
   )
 }
 const Valve = () => {
-const {valveProps, componentProps} = useValveContext("Valve");
+const {valveProps, componentProps, onActionPerformed} = useValveContext("Valve");
 const {ValveStatus} = valveProps;
-const {position, emit, props} = componentProps;
+const {position, emit} = componentProps;
 const inCoord = position?.x ?? false;
 // Memoize the handleClick function
 // const handleClick = React.useCallback(()=>{
@@ -78,7 +79,7 @@ if (!inCoord){
 										itemClassName={
 											value + " " + getItemClassName(index, ValveStatus)
 										}
-										handleClick={props.onActionPerformed()}
+										handleClick={onActionPerformed}
 										key={key}
 										/>
 									)
@@ -104,7 +105,7 @@ if (!inCoord){
 									itemClassName={
 										value + " " + getItemClassName(index, ValveStatus)
 									}
-									handleClick={() => {props.onActionPerformed}}
+									handleClick={() => {onActionPerformed}}
 									key={key}
 								/>
 							)

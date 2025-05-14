@@ -39,6 +39,7 @@ export class Valve extends Component<ComponentProps<ValveProps>, any> {
 		<ValveFCCompound.Root
 		componentProps={this.props}
 		valveProps={this.props.props}
+		onActionPerformed={this.props.onActionPerformed}
 		 >
 			  <ValveFCCompound.Valve />
 		 </ValveFCCompound.Root>
