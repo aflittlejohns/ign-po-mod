@@ -1,3 +1,6 @@
+---
+title: locale-util
+---
 [**Documentation**](../../index.md)
 
 ***

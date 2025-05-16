@@ -1,3 +1,7 @@
+---
+title: QualifiedValue
+---
+
 [**Documentation**](../../index.md)
 
 ***

@@ -1,3 +1,7 @@
+---
+title: MobileDataSource
+---
+
 [**Documentation**](../../../../index.md)
 
 ***

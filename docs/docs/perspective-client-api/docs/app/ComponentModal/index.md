@@ -1,3 +1,7 @@
+---
+title: ComponentModal
+---
+
 [**Documentation**](../../index.md)
 
 ***

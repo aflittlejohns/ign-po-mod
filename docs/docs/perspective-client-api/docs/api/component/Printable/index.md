@@ -1,3 +1,7 @@
+---
+title: Printable
+---
+
 [**Documentation**](../../../index.md)
 
 ***

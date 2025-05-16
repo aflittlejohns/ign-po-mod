@@ -1,3 +1,7 @@
+---
+title: Interfaces
+---
+
 [**Documentation**](../index.md)
 
 ***

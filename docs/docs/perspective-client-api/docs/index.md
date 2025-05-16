@@ -1,6 +1,7 @@
-**Documentation**
+---
+title: Documentation
+---
 
-***
 
 # Documentation
 

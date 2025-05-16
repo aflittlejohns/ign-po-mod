@@ -1,3 +1,7 @@
+---
+title: ClientStore
+---
+
 [**Documentation**](../../index.md)
 
 ***

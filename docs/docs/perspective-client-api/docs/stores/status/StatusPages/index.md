@@ -1,3 +1,7 @@
+---
+title: StatusPage
+---
+
 [**Documentation**](../../../index.md)
 
 ***

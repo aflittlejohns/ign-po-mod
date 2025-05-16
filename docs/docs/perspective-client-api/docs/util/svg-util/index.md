@@ -1,3 +1,6 @@
+---
+title: svg-util
+---
 [**Documentation**](../../index.md)
 
 ***

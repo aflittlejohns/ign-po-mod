@@ -1,3 +1,7 @@
+---
+title: AbstractUIElementStore
+---
+
 [**Documentation**](../../index.md)
 
 ***

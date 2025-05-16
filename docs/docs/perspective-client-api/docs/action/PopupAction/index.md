@@ -1,3 +1,7 @@
+---
+title: PopupAction
+---
+
 [**Documentation**](../../index.md)
 
 ***

@@ -1,3 +1,7 @@
+---
+title: ComponentRegistry
+---
+
 [**Documentation**](../../../index.md)
 
 ***

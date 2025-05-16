@@ -1,3 +1,7 @@
+---
+title: MobileBridge
+---
+
 [**Documentation**](../../../index.md)
 
 ***

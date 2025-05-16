@@ -1,3 +1,7 @@
+---
+title: ClientIdleStore
+---
+
 [**Documentation**](../../index.md)
 
 ***

@@ -1,3 +1,7 @@
+---
+title: DebugAction
+---
+
 [**Documentation**](../../index.md)
 
 ***

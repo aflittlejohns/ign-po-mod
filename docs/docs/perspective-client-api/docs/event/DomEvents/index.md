@@ -1,3 +1,6 @@
+---
+title: DomEvents
+---
 [**Documentation**](../../index.md)
 
 ***

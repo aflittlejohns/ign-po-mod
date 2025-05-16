@@ -1,3 +1,7 @@
+---
+title: ComponentPath
+---
+
 [**Documentation**](../../index.md)
 
 ***

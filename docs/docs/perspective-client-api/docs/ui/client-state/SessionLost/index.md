@@ -1,3 +1,7 @@
+---
+title: SessionLost
+---
+
 [**Documentation**](../../../index.md)
 
 ***

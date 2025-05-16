@@ -1,3 +1,6 @@
+---
+title: Style
+---
 [**Documentation**](../../index.md)
 
 ***

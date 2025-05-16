@@ -1,3 +1,6 @@
+---
+title: logging
+---
 [**Documentation**](../../index.md)
 
 ***

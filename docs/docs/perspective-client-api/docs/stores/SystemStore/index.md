@@ -1,3 +1,7 @@
+---
+title: SystemStore
+---
+
 [**Documentation**](../../index.md)
 
 ***

@@ -1,3 +1,7 @@
+---
+title: RectangleBackground
+---
+
 [**Documentation**](../../../index.md)
 
 ***

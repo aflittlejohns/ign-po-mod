@@ -1,3 +1,7 @@
+---
+title: ClientAuth
+---
+
 [**Documentation**](../../../index.md)
 
 ***

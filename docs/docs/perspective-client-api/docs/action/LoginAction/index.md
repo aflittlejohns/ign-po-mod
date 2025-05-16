@@ -1,3 +1,6 @@
+---
+title: LoginAction
+---
 [**Documentation**](../../index.md)
 
 ***

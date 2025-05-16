@@ -1,3 +1,6 @@
+---
+title: FullScreenAction
+---
 [**Documentation**](../../index.md)
 
 ***

@@ -1,3 +1,6 @@
+---
+title: ActionRegistry
+---
 [**Documentation**](../../../index.md)
 
 ***

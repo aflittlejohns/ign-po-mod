@@ -1,3 +1,7 @@
+---
+title: Component
+---
+
 [**Documentation**](../../../index.md)
 
 ***

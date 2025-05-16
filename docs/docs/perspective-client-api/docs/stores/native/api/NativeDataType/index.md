@@ -1,3 +1,7 @@
+---
+title: NativeDataType
+---
+
 [**Documentation**](../../../../index.md)
 
 ***

@@ -1,3 +1,7 @@
+---
+title: WorkStationInterface
+---
+
 [**Documentation**](../../../../index.md)
 
 ***

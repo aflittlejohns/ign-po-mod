@@ -1,3 +1,7 @@
+---
+title: AppBar
+---
+
 [**Documentation**](../../index.md)
 
 ***

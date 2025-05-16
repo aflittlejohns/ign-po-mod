@@ -1,3 +1,7 @@
+---
+title: IconRender
+---
+
 [**Documentation**](../../index.md)
 
 ***

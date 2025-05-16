@@ -1,3 +1,7 @@
+---
+title: WorkStationBridge
+---
+
 [**Documentation**](../../../index.md)
 
 ***

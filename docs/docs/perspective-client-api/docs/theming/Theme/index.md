@@ -1,3 +1,7 @@
+---
+title: Theme
+---
+
 [**Documentation**](../../index.md)
 
 ***

@@ -1,3 +1,7 @@
+---
+title: ResourceStore
+---
+
 [**Documentation**](../../index.md)
 
 ***

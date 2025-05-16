@@ -1,3 +1,7 @@
+---
+title: PanelRoot
+---
+
 [**Documentation**](../../index.md)
 
 ***

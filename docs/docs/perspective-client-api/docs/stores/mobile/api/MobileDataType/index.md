@@ -1,3 +1,7 @@
+---
+title: MobileDateType
+---
+
 [**Documentation**](../../../../index.md)
 
 ***

@@ -1,3 +1,7 @@
+---
+title: BindingStore
+---
+
 [**Documentation**](../../index.md)
 
 ***

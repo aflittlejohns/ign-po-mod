@@ -1,3 +1,6 @@
+----
+title: enumerable-decorator
+---
 [**Documentation**](../../index.md)
 
 ***

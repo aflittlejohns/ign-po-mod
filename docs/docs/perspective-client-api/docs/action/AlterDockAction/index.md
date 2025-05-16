@@ -1,3 +1,7 @@
+---
+title: AlterDockAction
+---
+
 [**Documentation**](../../index.md)
 
 ***

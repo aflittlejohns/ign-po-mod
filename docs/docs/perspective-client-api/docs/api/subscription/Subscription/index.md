@@ -1,3 +1,7 @@
+---
+title: Subscription
+---
+
 [**Documentation**](../../../index.md)
 
 ***

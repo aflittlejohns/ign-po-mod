@@ -1,3 +1,7 @@
+---
+title: MobileInterface
+---
+
 [**Documentation**](../../../../index.md)
 
 ***

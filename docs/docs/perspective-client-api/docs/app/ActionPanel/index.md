@@ -1,3 +1,7 @@
+---
+title: ActionPanel
+---
+
 [**Documentation**](../../index.md)
 
 ***

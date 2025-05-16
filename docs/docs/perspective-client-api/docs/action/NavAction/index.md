@@ -1,3 +1,7 @@
+---
+title: NavAction
+---
+
 [**Documentation**](../../index.md)
 
 ***

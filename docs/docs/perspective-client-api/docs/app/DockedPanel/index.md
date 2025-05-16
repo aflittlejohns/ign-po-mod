@@ -1,3 +1,7 @@
+---
+title: DockedPanel
+---
+
 [**Documentation**](../../index.md)
 
 ***

@@ -1,3 +1,7 @@
+---
+title: NotificationStore
+---
+
 [**Documentation**](../../index.md)
 
 ***

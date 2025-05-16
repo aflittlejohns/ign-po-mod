@@ -1,3 +1,7 @@
+---
+title: LoginTerminalPage
+---
+
 [**Documentation**](../../../index.md)
 
 ***

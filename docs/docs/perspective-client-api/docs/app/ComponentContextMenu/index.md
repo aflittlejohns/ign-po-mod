@@ -1,3 +1,7 @@
+---
+title: ComponentContextMenu
+---
+
 [**Documentation**](../../index.md)
 
 ***

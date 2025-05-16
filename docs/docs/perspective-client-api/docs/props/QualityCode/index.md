@@ -1,3 +1,7 @@
+---
+title: QualityCode
+---
+
 [**Documentation**](../../index.md)
 
 ***

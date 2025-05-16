@@ -1,3 +1,7 @@
+---
+title: ComponentTooltip
+---
+
 [**Documentation**](../../index.md)
 
 ***
