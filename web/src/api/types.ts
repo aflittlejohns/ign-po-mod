@@ -67,12 +67,12 @@ export const ItemPositionEnum = {
 }
 export type ItemPositionEnum = typeof ItemPositionEnum[keyof typeof ItemPositionEnum]
 
-const ValveStateEnum = {
-	alarm: "alarm",
-	manual: "manual",
-	masked: "masked",
-}
-export type ValveStateEnum = typeof ValveStateEnum[keyof typeof ValveStateEnum]
+export type ValveActionType =
+	'alarm'
+	| 'manual'
+	;
+
+
 
 export type ValveState = {
 	alarm: boolean;
@@ -84,7 +84,7 @@ export type ValveState = {
 	manual: boolean;
 	masked: boolean;
 	changing: boolean;
-}
+};
 export type ValveProps = {
 	ValveStatus?: ValveState;
 	handleClick?: () => void;
@@ -100,7 +100,7 @@ export type ItemData = {
  * @Useage useValveReducer
  */
 export type ValveAction = {
-	type: keyof ValveState;
+	type: ValveActionType ;
 	payload?: {
 		boolValue?: boolean,
 		stringValue?: string,

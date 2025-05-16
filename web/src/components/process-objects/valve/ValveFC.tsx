@@ -7,7 +7,8 @@ import type { ComponentProps } from '@inductiveautomation/perspective-client'
 import { COMPONENT_TYPE } from '../../Valve'
 import { getItemClassName, itemNames } from './utils'
 import Item from './item'
-import { valveStatus } from '../../../api/initialState'
+import { useCreateContext } from 'src/utils/createContext'
+import { useValveReducer } from 'src/api/hooks'
 
 type ValveCompoundProps = {
 	componentProps:ComponentProps<any,any>,
@@ -19,26 +20,16 @@ type ValveCompoundProps = {
 const [ValveContextProvider, useValveContext] =
 	useCreateContext<ValveCompoundProps>("ValveCompound");
 
-const Root = ({valveProps, componentProps, children}:ValveCompoundProps) =>{
-const [valveState, setValve] = useReducer(useValveReducer, valveStatus)
-	/**
-	 * Handler for the component's action event.
-	*/
-	const onActionPerformed = () => {
-		// If the designer is in "design" mode, don't do anything
-		if (!eventsEnabled) {
-			console.log("Valve is disabled in the design-scope");
-			return;
-		}
-		console.log("Valve clicked!");
-		componentEvents. fireComponentEvent("onActionPerformed", {});
-	};
+const Root = ({valveProps, componentProps, onActionPerformed, children}:ValveCompoundProps) =>{
+
+
   return (
 	<ValveContextProvider
 	{...{
 		valveProps,
 		componentProps,
-		onActionPerformed
+		onActionPerformed,
+		useValveReducer // update PropertyTree from Actions on Component
 	}}
 	>
 	{children}

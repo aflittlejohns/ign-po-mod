@@ -1,5 +1,5 @@
 import { useImmerReducer } from 'use-immer';
-import { valveStatus } from './initialState';
+import { initialValveStatus } from './initialise';
 import type { ValveAction, ValveState} from './types';
 
 function valveReducer(draft: ValveState , action: ValveAction): ValveState{
@@ -19,7 +19,7 @@ function valveReducer(draft: ValveState , action: ValveAction): ValveState{
 export function useValveReducer() {
 	const [state, dispatch] = useImmerReducer(
 		valveReducer,
-		valveStatus
+		initialValveStatus
 	)
 	/**
 	 * Update alarm in state

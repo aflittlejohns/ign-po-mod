@@ -1,5 +1,5 @@
 import { getBoolAtIndex } from "../../../utils/numberUtil";
-import { ItemNameEnum, type ValveStatus } from "../../../api/types";
+import { ItemNameEnum, type ValveState } from "../../../api/types";
 import {v4 as uuidv4 } from 'uuid'
 /**
  * This is a utility function for the component "process-object/ValveFC"
@@ -12,7 +12,7 @@ import {v4 as uuidv4 } from 'uuid'
  * 	hide - this hides the item
  * 	show -
  */
-export const getItemClassName = (index: number, valveStatus?: ValveStatus): string => {
+export const getItemClassName = (index: number, valveStatus?: ValveState): string => {
 		let className = "";
 		// Handle the fact that ActivatedConfig and DeactivatedConfig are optional and maybe undefined
 		const ActivatedConfigValue = valveStatus?.activatedConfig ?? 0;

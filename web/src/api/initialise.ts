@@ -5,7 +5,7 @@
 
 
 
-export const valveStatus = {
+export const initialValveStatus = {
 	alarm: false,
 	actFB: false,
 	deActFB: true,
@@ -18,7 +18,7 @@ export const valveStatus = {
 };
 
 export const valveProps = {
-	ValveStatus: valveStatus,
+	ValveStatus: initialValveStatus,
 	handleClick: () => {
 		console.log("Valve clicked");
 	},

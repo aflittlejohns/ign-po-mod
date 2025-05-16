@@ -2,7 +2,7 @@
 import * as React from "react";
 import {
 	type ValveProps,
-	type ValveStatus
+	type ValveState
 } from "../api/types";
 
 
@@ -17,6 +17,7 @@ import type {
 	,SizeObject
 } from '@inductiveautomation/perspective-client'//'@inductiveautomation/perspective-client';
 import { ValveFCCompound } from "./process-objects/valve/ValveFC";
+import { initialValveStatus } from "src/api/initialise";
 // import { valveProps } from "./process-objects/valve/initialState";
 // import { ValveFCCompound } from "./process-objects/valve/ValveFC";
 
@@ -31,7 +32,20 @@ export class Valve extends Component<ComponentProps<ValveProps>, any> {
 
 	// This is a lifecycle method that is called when the component is first mounted to the DOM.
 	componentDidMount(): void {}
-	valveStatus: ValveStatus = this.props.props.ValveStatus ?? {};
+	valveStatus: ValveState = this.props.props.ValveStatus || initialValveStatus;
+
+		/**
+	 * Handler for the component's action event.
+	*/
+	onActionPerformed = () => {
+		// If the designer is in "design" mode, don't do anything
+		if (!this.props.eventsEnabled) {
+			console.log("Valve is disabled in the design-scope");
+			return;
+		}
+		console.log("Valve clicked!");
+		this.props.componentEvents. fireComponentEvent("onActionPerformed", {});
+	};
 
 	render(){
 		return(
@@ -39,7 +53,7 @@ export class Valve extends Component<ComponentProps<ValveProps>, any> {
 		<ValveFCCompound.Root
 		componentProps={this.props}
 		valveProps={this.props.props}
-		onActionPerformed={this.props.onActionPerformed}
+		onActionPerformed={this.onActionPerformed}
 		 >
 			  <ValveFCCompound.Valve />
 		 </ValveFCCompound.Root>
