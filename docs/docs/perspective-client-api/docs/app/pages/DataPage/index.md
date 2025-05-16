@@ -1,3 +1,7 @@
+---
+title: DataPage
+---
+
 [**Documentation**](../../../index.md)
 
 ***

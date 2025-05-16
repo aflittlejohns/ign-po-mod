@@ -1,6 +1,6 @@
-import * as React from "react";
+import * as React from 'react'
 
-export function createContext<ContextValueType extends object | null>(
+export function useCreateContext<ContextValueType extends object | null>(
   rootComponentName: string,
   defaultContext?: ContextValueType
 ) {

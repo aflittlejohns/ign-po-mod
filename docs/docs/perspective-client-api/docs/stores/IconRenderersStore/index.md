@@ -1,3 +1,7 @@
+---
+title: IconRendersStore
+---
+
 [**Documentation**](../../index.md)
 
 ***

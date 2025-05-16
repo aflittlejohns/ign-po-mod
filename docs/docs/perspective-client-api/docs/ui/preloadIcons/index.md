@@ -1,3 +1,6 @@
+---
+title: preloadicons
+---
 [**Documentation**](../../index.md)
 
 ***

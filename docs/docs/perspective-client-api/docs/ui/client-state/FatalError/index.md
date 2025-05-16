@@ -1,3 +1,7 @@
+---
+title: FatalError
+---
+
 [**Documentation**](../../../index.md)
 
 ***

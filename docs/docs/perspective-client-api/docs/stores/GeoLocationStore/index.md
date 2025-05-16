@@ -1,3 +1,7 @@
+---
+title: GeoLocationStore
+---
+
 [**Documentation**](../../index.md)
 
 ***

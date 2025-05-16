@@ -1,3 +1,7 @@
+---
+title: Client
+---
+
 [**Documentation**](../../index.md)
 
 ***

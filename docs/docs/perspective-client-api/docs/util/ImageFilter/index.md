@@ -1,3 +1,7 @@
+---
+title: ImageFilter
+---
+
 [**Documentation**](../../index.md)
 
 ***

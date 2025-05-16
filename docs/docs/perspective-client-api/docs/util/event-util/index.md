@@ -1,3 +1,6 @@
+---
+title: event-util
+---
 [**Documentation**](../../index.md)
 
 ***

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import * as React from "react";
+import * as React from "react";
 import {
 	type ValveProps,
 	type ValveStatus
@@ -17,6 +17,8 @@ import type {
 	,SizeObject
 } from '@inductiveautomation/perspective-client'//'@inductiveautomation/perspective-client';
 import { ValveFCCompound } from "./process-objects/valve/ValveFC";
+// import { valveProps } from "./process-objects/valve/initialState";
+// import { ValveFCCompound } from "./process-objects/valve/ValveFC";
 
 export const COMPONENT_TYPE = "hmi.process_objects.Valve";
 
@@ -33,12 +35,14 @@ export class Valve extends Component<ComponentProps<ValveProps>, any> {
 
 	render(){
 		return(
+			// <div>This is Valve</div>
 		<ValveFCCompound.Root
 		componentProps={this.props}
 		valveProps={this.props.props}
-		>
-			<ValveFCCompound.Valve />
-		</ValveFCCompound.Root>
+		onActionPerformed={this.props.onActionPerformed}
+		 >
+			  <ValveFCCompound.Valve />
+		 </ValveFCCompound.Root>
 	)
 }
 }

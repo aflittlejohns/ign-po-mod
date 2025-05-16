@@ -1,3 +1,6 @@
+---
+title: encoding-util
+---
 [**Documentation**](../../index.md)
 
 ***

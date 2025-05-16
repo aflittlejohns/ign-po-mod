@@ -1,3 +1,7 @@
+---
+title: KeyEventStore
+---
+
 [**Documentation**](../../index.md)
 
 ***

@@ -1,3 +1,7 @@
+---
+title: Closed
+---
+
 [**Documentation**](../../../index.md)
 
 ***

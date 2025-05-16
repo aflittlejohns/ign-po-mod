@@ -1,3 +1,6 @@
+---
+title: date-util
+---
 [**Documentation**](../../index.md)
 
 ***

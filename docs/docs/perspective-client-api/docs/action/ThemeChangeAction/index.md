@@ -1,3 +1,7 @@
+---
+title: ThemeChangeAction
+---
+
 [**Documentation**](../../index.md)
 
 ***

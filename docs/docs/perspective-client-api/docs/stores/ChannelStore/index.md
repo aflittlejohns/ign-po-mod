@@ -1,3 +1,7 @@
+---
+title: ChannelStore
+---
+
 [**Documentation**](../../index.md)
 
 ***

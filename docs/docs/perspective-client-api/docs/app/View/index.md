@@ -1,4 +1,8 @@
-[**Documentation**](../../index.md)
+---
+title: View
+---
+
+[**Documentation**](../../index.md
 
 ***
 

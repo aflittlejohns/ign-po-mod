@@ -1,3 +1,7 @@
+---
+title: ViewStore
+---
+
 [**Documentation**](../../index.md)
 
 ***

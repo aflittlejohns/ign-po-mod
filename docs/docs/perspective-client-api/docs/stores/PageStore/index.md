@@ -1,3 +1,7 @@
+---
+title: PageStore
+---
+
 [**Documentation**](../../index.md)
 
 ***

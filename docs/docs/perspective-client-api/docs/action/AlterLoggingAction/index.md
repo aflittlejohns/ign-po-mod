@@ -1,3 +1,7 @@
+---
+title: AlterLoggingAction
+---
+
 [**Documentation**](../../index.md)
 
 ***

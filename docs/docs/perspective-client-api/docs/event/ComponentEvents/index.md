@@ -1,3 +1,7 @@
+---
+title: ComponentEvents
+---
+
 [**Documentation**](../../index.md)
 
 ***

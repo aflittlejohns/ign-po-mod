@@ -1,3 +1,7 @@
+---
+title: MobileNotification
+---
+
 [**Documentation**](../../index.md)
 
 ***

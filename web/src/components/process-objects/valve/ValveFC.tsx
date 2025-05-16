@@ -1,36 +1,37 @@
+import * as React from 'react'
 import { type ReactNode } from 'react'
 import type {
 	ValveProps,
  } from '../../../api/types'
 import type { ComponentProps } from '@inductiveautomation/perspective-client'
-import { createContext } from '../../../utils/createContext'
 import { COMPONENT_TYPE } from '../../Valve'
 import { getItemClassName, itemNames } from './utils'
 import Item from './item'
 import { valveStatus } from '../../../api/initialState'
 
 type ValveCompoundProps = {
-	componentProps?:ComponentProps<any,any>,
+	componentProps:ComponentProps<any,any>,
 	valveProps:ValveProps,
+	onActionPerformed: ()=> void
 	children: ReactNode;
 }
 
 const [ValveContextProvider, useValveContext] =
-	createContext<ValveCompoundProps>("ValveCompound");
+	useCreateContext<ValveCompoundProps>("ValveCompound");
 
 const Root = ({valveProps, componentProps, children}:ValveCompoundProps) =>{
 const [valveState, setValve] = useReducer(useValveReducer, valveStatus)
 	/**
 	 * Handler for the component's action event.
-	 */
+	*/
 	const onActionPerformed = () => {
 		// If the designer is in "design" mode, don't do anything
-		if (!props.eventsEnabled) {
+		if (!eventsEnabled) {
 			console.log("Valve is disabled in the design-scope");
 			return;
 		}
 		console.log("Valve clicked!");
-		props.componentEvents.fireComponentEvent("onActionPerformed", {});
+		componentEvents. fireComponentEvent("onActionPerformed", {});
 	};
   return (
 	<ValveContextProvider
@@ -45,30 +46,37 @@ const [valveState, setValve] = useReducer(useValveReducer, valveStatus)
   )
 }
 const Valve = () => {
-const {valveProps, componentProps} = useValveContext("Valve");
+const {valveProps, componentProps, onActionPerformed} = useValveContext("Valve");
 const {ValveStatus} = valveProps;
-const {position, props} = componentProps ?? {};
+const {position, emit} = componentProps;
 const inCoord = position?.x ?? false;
+// Memoize the handleClick function
+// const handleClick = React.useCallback(()=>{
+// 	props.onActionPerformed();
+// },[props]);
+  // Memoize itemNames to prevent re-creation on every render
+  const memoizedItemNames = React.useMemo(() => itemNames, []);
+{console.log(`itemName ${memoizedItemNames}`)}
 if (!inCoord){
 	return (
 				<div
-					{...componentProps?.emit({
+					{...emit({
 						classes: [`hmi-component hmi-component__column `],
 					})}
 					data-component={COMPONENT_TYPE}
 				>
 					<div className="hmi-component__row">
 						<div className="hmi-component-valve">
-							{itemNames.map(
+							{memoizedItemNames.map(
 								({ value, index, key }) => (
-									//console.log("re-rendered ", index),
+									console.log(`re-rendered ,key ${key} value ${value} index ${index}`),
 									(
 										<Item
-											itemClassName={
-												value + " " + getItemClassName(index, ValveStatus)
-											}
-											handleClick={props.onActionPerformed}
-											key={key}
+										itemClassName={
+											value + " " + getItemClassName(index, ValveStatus)
+										}
+										handleClick={onActionPerformed}
+										key={key}
 										/>
 									)
 								)
@@ -78,22 +86,22 @@ if (!inCoord){
 				</div>
 	)
 } else {
-			return (
-				<div
-					{...componentProps?.emit({
-						classes: [`hmi-component hmi-component-valve `],
-					})}
-					data-component={COMPONENT_TYPE}
-				>
-					{itemNames.map(
+	return (
+		<div
+		{...emit({
+			classes: [`hmi-component hmi-component-valve `],
+		})}
+		data-component={COMPONENT_TYPE}
+		>
+					{memoizedItemNames.map(
 						({ value, index, key }) => (
-							//console.log("re-rendered ", index),
+							console.log(`re-rendered ,key ${key} value ${value} index ${index}`),
 							(
 								<Item
 									itemClassName={
 										value + " " + getItemClassName(index, ValveStatus)
 									}
-									handleClick={props.onActionPerformed}
+									handleClick={() => {onActionPerformed}}
 									key={key}
 								/>
 							)

@@ -1,3 +1,6 @@
+---
+title: WorkstationModeAction
+---
 [**Documentation**](../../index.md)
 
 ***

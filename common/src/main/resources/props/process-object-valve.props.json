@@ -1,0 +1,61 @@
+{
+	"type": "object",
+	"properties": {
+		"ValveStatus": {
+			"type": "object",
+			"properties": {
+				"TagName": {
+					"type": "string",
+					"default": "\"\"",
+					"description": "Name of the valve"
+				},
+				"ActivatedConfig": {
+					"type": "number",
+					"default": 12,
+					"description": "Activated configuration"
+				},
+				"DeactivatedConfig": {
+					"type": "number",
+					"default": 12,
+					"description": "De-activated configuration"
+				},
+				"Alarm": {
+					"type": "boolean",
+					"default": false,
+					"description": "Alarm status"
+				},
+				"ActFB": {
+					"type": "boolean",
+					"default": false,
+					"description": "Activated feedback"
+				},
+				"DeActFB": {
+					"type": "boolean",
+					"default": false,
+					"description": "De-activated feedback"
+				},
+				"Manual": {
+					"type": "boolean",
+					"default": false,
+					"description": "Manual mode"
+				},
+				"Masked": {
+					"type": "boolean",
+					"default": false,
+					"description": "Masked"
+				},
+				"Changing": {
+					"type": "boolean",
+					"default": false,
+					"description": "Changing"
+				}
+			}
+		},
+		"style": {
+			"$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
+			"default": {
+				"classes": ""
+			}
+		}
+	}
+}

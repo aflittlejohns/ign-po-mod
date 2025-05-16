@@ -1,3 +1,7 @@
+---
+title: ComponentStore
+---
+
 [**Documentation**](../../index.md)
 
 ***

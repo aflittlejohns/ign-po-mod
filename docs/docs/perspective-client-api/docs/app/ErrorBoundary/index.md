@@ -1,3 +1,7 @@
+---
+title: ErrorBoundary
+---
+
 [**Documentation**](../../index.md)
 
 ***

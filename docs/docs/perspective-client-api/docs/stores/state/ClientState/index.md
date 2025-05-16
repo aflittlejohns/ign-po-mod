@@ -1,3 +1,7 @@
+---
+title: ClientState
+---
+
 [**Documentation**](../../../index.md)
 
 ***

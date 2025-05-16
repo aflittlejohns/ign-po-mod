@@ -1,3 +1,6 @@
+---
+title: resizeLoopGuard
+---
 [**Documentation**](../../index.md)
 
 ***

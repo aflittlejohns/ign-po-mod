@@ -1,3 +1,7 @@
+---
+title: LoadingSpinner
+---
+
 [**Documentation**](../../../index.md)
 
 ***

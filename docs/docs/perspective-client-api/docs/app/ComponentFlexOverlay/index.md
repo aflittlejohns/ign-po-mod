@@ -1,3 +1,7 @@
+---
+title: ComponentFlexOverlay
+---
+
 [**Documentation**](../../index.md)
 
 ***

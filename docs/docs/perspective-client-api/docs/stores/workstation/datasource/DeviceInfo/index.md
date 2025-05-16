@@ -1,3 +1,7 @@
+---
+title: DeviceInfo
+---
+
 [**Documentation**](../../../../index.md)
 
 ***

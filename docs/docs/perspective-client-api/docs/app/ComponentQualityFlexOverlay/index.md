@@ -1,3 +1,7 @@
+---
+title: ComponentQualityFlexOverlay
+---
+
 [**Documentation**](../../index.md)
 
 ***

@@ -1,3 +1,7 @@
+---
+title: I18n
+---
+
 [**Documentation**](../../../index.md)
 
 ***

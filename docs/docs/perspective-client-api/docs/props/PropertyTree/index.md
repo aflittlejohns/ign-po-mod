@@ -1,3 +1,7 @@
+---
+title: PropertyTree
+---
+
 [**Documentation**](../../index.md)
 
 ***

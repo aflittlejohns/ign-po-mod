@@ -1,3 +1,7 @@
+---
+title: PrintAction
+---
+
 [**Documentation**](../../index.md)
 
 ***

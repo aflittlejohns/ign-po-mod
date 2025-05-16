@@ -1,3 +1,7 @@
+---
+title: AppModal
+---
+
 [**Documentation**](../../index.md)
 
 ***

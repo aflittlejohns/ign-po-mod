@@ -5,6 +5,7 @@
 # **/package-lock.json
 **/dist
 **/*.log
+# ignore .gradle directory
 **/.gradle
-build
-docker/backups
+build/
+# docker/backups

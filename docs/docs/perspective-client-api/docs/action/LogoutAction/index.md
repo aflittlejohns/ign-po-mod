@@ -1,3 +1,7 @@
+---
+title: LogoutAction
+---
+
 [**Documentation**](../../index.md)
 
 ***

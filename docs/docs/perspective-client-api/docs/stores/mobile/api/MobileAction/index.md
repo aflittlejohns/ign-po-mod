@@ -1,3 +1,7 @@
+---
+title: MobileAction
+---
+
 [**Documentation**](../../../../index.md)
 
 ***

@@ -1,3 +1,7 @@
+---
+title: WorkStationDataType
+---
+
 [**Documentation**](../../../../index.md)
 
 ***

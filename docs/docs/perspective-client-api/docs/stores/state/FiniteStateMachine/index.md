@@ -1,3 +1,7 @@
+---
+title: FiniteStateMachine
+---
+
 [**Documentation**](../../../index.md)
 
 ***

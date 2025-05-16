@@ -1,3 +1,7 @@
+---
+title: ComponentErrorBoundary
+---
+
 [**Documentation**](../../../index.md)
 
 ***

@@ -1,3 +1,7 @@
+---
+title: DockAction
+---
+
 [**Documentation**](../../index.md)
 
 ***

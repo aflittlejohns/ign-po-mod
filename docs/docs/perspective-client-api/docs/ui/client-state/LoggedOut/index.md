@@ -1,3 +1,7 @@
+---
+title: LoggedOut
+---
+
 [**Documentation**](../../../index.md)
 
 ***

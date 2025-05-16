@@ -1,3 +1,7 @@
+---
+title: AuthStore
+---
+
 [**Documentation**](../../index.md)
 
 ***

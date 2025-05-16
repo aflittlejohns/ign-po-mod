@@ -1,3 +1,7 @@
+---
+title: RefreshAction
+---
+
 [**Documentation**](../../index.md)
 
 ***
