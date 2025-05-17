@@ -1,5 +1,4 @@
 import * as React from "react";
-import { ValveState } from "src/api/types";
 
 export interface FormElements extends HTMLFormControlsCollection {
 	actConfig: HTMLInputElement;
@@ -17,7 +16,6 @@ export interface UsernameFormElement extends HTMLFormElement {
 function SimInterfaceForm({
 	onSubmit,
 }: {
-	valveState: ValveState;
 	onSubmit: (event: React.FormEvent<UsernameFormElement>) => void;
 }) {
 	function handleSubmit(event: React.FormEvent<UsernameFormElement>) {
