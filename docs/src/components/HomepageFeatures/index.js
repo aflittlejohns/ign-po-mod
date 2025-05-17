@@ -56,7 +56,7 @@ const FeatureList = [
 function Feature({ Svg,Icon, title, description ,link}) {
 	return (
 
-		<div className={clsx("col col--4 text--center")}>
+		<div className={clsx("col col--4 text--center margin-bottom--lg")}>
 			<div className="text--center">
 				<Svg className={styles.featureSvg} role="img" />
 			</div>

@@ -1,0 +1,25 @@
+:root{ /*Set up DevEnv Custom Variables */
+	--_grid--rows: var(--grid--rows, 2);
+	--_grid--columns: var(--grid--columns, 2);
+	--_sidebar--width: var(--sidebar--width, 1fr);
+	--_sim-interface--width: var(--sim-interface--width, 1fr);
+	--_component-view--width: var(--component-view--width, 1fr);
+	--_sidebar--grid-area-name: var(--component-view--grid-area-name, 'sidebar');
+	--_sim-interface--grid-area-name: var(--sim-interface--grid-area-name, 'sim-interface');
+	--_component-view--grid-area-name: var(--component-view--grid-area-name, 'component-view');
+
+}
+
+.dev-env.wrapper{
+	container-type: inline-size;
+}
+
+.dev-env.grid{
+	display: grid;
+	grid-template-rows: var(--_grid-rows);
+	grid-template-columns: var(--_grid-columns);
+	grid-template-areas:
+	"sidebar sim-interface component-view"
+	"sidebar sim-interface component-view"
+	;
+}
