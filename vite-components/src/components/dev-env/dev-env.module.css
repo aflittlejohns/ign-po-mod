@@ -10,11 +10,11 @@
 
 }
 
-.dev-env.wrapper{
+div.dev-env.wrapper{
 	container-type: inline-size;
 }
 
-.dev-env.grid{
+div.dev-env.grid{
 	display: grid;
 	grid-template-rows: var(--_grid-rows);
 	grid-template-columns: var(--_grid-columns);

@@ -1,11 +1,10 @@
-import type {ValveState} from '../../../../web/src/api/types'
-export type DevEnvCompoundConextType ={
-	valveState: ValveState;
-	reducer: (dispatch:string)=>void;
+import type { UseValveReducer } from '../../api/types';
+
+export type DevEnvCompoundContextType ={
+	useReducer: UseValveReducer
 }
 
 export type EditDevEnvCompoundProps ={
-	valveState: ValveState;
-	reducer: (dispatch:string)=>void;
+	useReducer: UseValveReducer
 	children: React.ReactNode;
 }

@@ -1,3 +1,4 @@
+import './valveConfig.module.css'
 import type{ HTMLInputTypeAttribute}from "react";
 import React, {useState} from "react";
 import ItemClickable from "../itemClickable/ItemClickable";
