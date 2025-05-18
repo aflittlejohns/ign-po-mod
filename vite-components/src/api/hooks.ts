@@ -4,12 +4,30 @@ import type { UseValveReducer, ValveAction, ValveState} from './types';
 
 function valveReducer(draft: ValveState , action: ValveAction): ValveState{
 	switch (action.type){
-		case 'SET_ALARM':
-			draft.alarm = true;
+		case 'UPDATE_ACT_CONFIG':
+			draft.activatedConfig = action.value;
 			return draft;
-		case 'RESET_ALARM':
-				draft.alarm = false;
-			return draft;
+			case 'UPDATE_DEACT_CONFIG':
+				draft.deactivatedConfig = action.value;
+				return draft;
+				case 'UPDATE_ACT_FB':
+					draft.actFB = !draft.actFB;
+					return draft;
+				case 'UPDATE_DE_ACT_FB':
+					draft.deActFB = !draft.deActFB;
+					return draft;
+				case 'UPDATE_MANUAL':
+					draft.manual = !draft.manual;
+					return draft;
+				case 'UPDATE_ALARM':
+					draft.alarm = !draft.alarm;
+					return draft;
+				case 'UPDATE_MASKED':
+					draft.masked = !draft.masked;
+					return draft;
+				case 'UPDATE_CHANGING':
+					draft.changing = !draft.changing;
+					return draft;
 		default: // #TODO Add more reducer case statements
 			return draft
 	}
@@ -18,22 +36,69 @@ function valveReducer(draft: ValveState , action: ValveAction): ValveState{
 export function useValveReducer(): UseValveReducer {
 	const [state, dispatch] = useImmerReducer(
 		valveReducer,
-		valveStatus
+		valveStatus,
 	)
 	/**
 	 * Set alarm in state
 	 * @return void
 	 */
-	function updateAlarm(){
+	function updateActConfig(value: number){
 		dispatch({
-			type: 'SET_ALARM',
+			type: 'UPDATE_ACT_CONFIG',
+			value: value
 		})
 	}
-	const reducer = {
-		state,
-		useReducer:{updateAlarm}
+	function updateDeActConfig(value: number){
+		dispatch({
+			type: 'UPDATE_DEACT_CONFIG',
+			value: value
+		})
+	}
+	function updateAlarm(){
+		dispatch({
+			type: 'UPDATE_ALARM',
+		})
+	}
+	function updateActFB(){
+		dispatch({
+			type: 'UPDATE_ACT_FB',
+		})
+	}
+	function updateDeActFB(){
+		dispatch({
+			type: 'UPDATE_DE_ACT_FB',
+		})
+	}
+	function updateManual(){
+		dispatch({
+			type: 'UPDATE_MANUAL',
+		})
+	}
+	function updateMasked(){
+		dispatch({
+			type: 'UPDATE_MASKED',
+		})
+	}
+	function updateChanging(){
+		dispatch({
+			type: 'UPDATE_CHANGING',
+		})
 	}
 
-	return reducer
+	const useEditValveReducer = {
+		state,
+		reducer:{
+			updateActConfig,
+			updateDeActConfig,
+			updateAlarm,
+			updateActFB,
+			updateDeActFB,
+			updateManual,
+			updateMasked,
+			updateChanging,
+	}
+}
+
+	return useEditValveReducer
 
 }

@@ -13,10 +13,7 @@ export const DevEnv = () => {
 				<DevEnvCompound.Sidebar>
 					<section>SideBar</section>
 				</DevEnvCompound.Sidebar>
-				<SimInterfaceForm
-					onSubmit={() => {
-					}}
-				/>
+				<SimInterfaceForm />
 				<DevEnvCompound.ComponentView>
 					<ValveConfigAid />
 				</DevEnvCompound.ComponentView>

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEditDevEnvContext } from "../dev-env/DevEnvCompound";
 
 export interface FormElements extends HTMLFormControlsCollection {
 	actConfig: HTMLInputElement;
@@ -13,16 +14,33 @@ export interface FormElements extends HTMLFormControlsCollection {
 export interface UsernameFormElement extends HTMLFormElement {
 	readonly elements: FormElements;
 }
-function SimInterfaceForm({
-	onSubmit,
-}: {
-	onSubmit: (event: React.FormEvent<UsernameFormElement>) => void;
-}) {
+
+function SimInterfaceForm() {
+	const {useReducer}= useEditDevEnvContext("SimInterfaceForm");
+	const {state, reducer} = useReducer;
+	const {
+		updateAlarm,
+		updateActConfig,
+		updateDeActConfig,
+		updateActFB,
+		updateDeActFB,
+		updateManual,
+		updateChanging,
+		updateMasked
+	} = reducer
+	const [actConfigState, updateActConfigState] = React.useState(state.activatedConfig);
+	const [deActConfigState, updateDeActConfigState] = React.useState(state.activatedConfig);
 	function handleSubmit(event: React.FormEvent<UsernameFormElement>) {
 		event.preventDefault();
+		console.log(`form submit event`);
+		const actConfigValue = event.currentTarget.elements.actConfig.value
+		const deActConfigValue = event.currentTarget.elements.deActConfig.value
+		updateActConfig(Number(actConfigValue));
+		updateDeActConfig(Number(deActConfigValue));
 
-		onSubmit(event);
+		// updateActConfig()
 	}
+
 
 	return (
 		<form className="sim-interface" onSubmit={handleSubmit}>
@@ -36,7 +54,9 @@ function SimInterfaceForm({
 					id="actConfig"
 					name="actConfig"
 					placeholder="Act Config"
-				/>
+					value={actConfigState}
+					onChange={(e)=> updateActConfigState(Number(e.target.value))}
+					/>
 				<input
 					style={{ gridArea: "deActConfig" }}
 					className="de-act-config"
@@ -44,12 +64,14 @@ function SimInterfaceForm({
 					id="deActConfig"
 					name="deActConfig"
 					placeholder="De-act Config"
-				/>
+					value={deActConfigState}
+					onChange={(e)=> updateDeActConfigState(Number(e.target.value))}
+					/>
 				<label
 					style={{ gridArea: "actFbLabel" }}
 					className="act-fb label"
 					htmlFor="actFB"
-				>
+					>
 					Act FB
 				<input
 					style={{ gridArea: "actFbCheckbox" }}
@@ -57,13 +79,15 @@ function SimInterfaceForm({
 					type="checkbox"
 					id="actFB"
 					name="actFB"
+					checked={state.actFB}
+					onChange={updateActFB}
 					/>
 					</label>
 				<label
 					style={{ gridArea: "deActFbLabel" }}
 					className="de-act-fb label"
 					htmlFor="deActFB"
-				>
+					>
 					DeAct FB
 				<input
 					style={{ gridArea: "deActFbCheckbox" }}
@@ -71,6 +95,8 @@ function SimInterfaceForm({
 					type="checkbox"
 					id="deActFB"
 					name="deActFB"
+					checked={state.deActFB}
+					onChange={updateDeActFB}
 					/>
 					</label>
 
@@ -78,7 +104,7 @@ function SimInterfaceForm({
 					style={{ gridArea: "manualLabel" }}
 					className="manual label"
 					htmlFor="manual"
-				>
+					>
 					Manual
 				<input
 					style={{ gridArea: "manualCheckbox" }}
@@ -86,13 +112,15 @@ function SimInterfaceForm({
 					type="checkbox"
 					id="manual"
 					name="manual"
+					checked={state.manual}
+					onChange={updateManual}
 					/>
 					</label>
 				<label
 					style={{ gridArea: "alarmLabel" }}
 					className="alarm label"
 					htmlFor="alarm"
-				>
+					>
 					Alarm
 				<input
 					style={{ gridArea: "alarmCheckbox" }}
@@ -100,13 +128,15 @@ function SimInterfaceForm({
 					type="checkbox"
 					id="alarm"
 					name="alarm"
+					checked={state.alarm}
+					onChange={updateAlarm}
 					/>
 					</label>
 				<label
 					style={{ gridArea: "maskedLabel" }}
 					className="masked label"
 					htmlFor="masked"
-				>
+					>
 					Masked
 				<input
 					style={{ gridArea: "maskedCheckbox" }}
@@ -114,13 +144,15 @@ function SimInterfaceForm({
 					type="checkbox"
 					id="masked"
 					name="masked"
+					checked={state.masked}
+					onChange={updateMasked}
 					/>
 					</label>
 				<label
 					style={{ gridArea: "changingLabel" }}
 					className="changing label"
 					htmlFor="changing"
-				>
+					>
 					Changing
 				<input
 					style={{ gridArea: "changingCheckbox" }}
@@ -128,6 +160,8 @@ function SimInterfaceForm({
 					type="checkbox"
 					id="changing"
 					name="changing"
+					checked={state.changing}
+					onChange={updateChanging}
 					/>
 					</label>
 				<button
