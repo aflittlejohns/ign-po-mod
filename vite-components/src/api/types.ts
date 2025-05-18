@@ -25,8 +25,8 @@ export type ValveReducer = (state: ValveState, action: ValveAction) => ValveStat
 
 export type UseValveReducer = {
 	state: ValveState,
-	 useReducer:{
-		updateAlarm: () => ValveState
+	useReducer:{
+		updateAlarm: () => void
 		//#TODO add more handlers as needed
 	}};
 

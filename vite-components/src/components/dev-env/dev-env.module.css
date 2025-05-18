@@ -1,25 +1,37 @@
 :root{ /*Set up DevEnv Custom Variables */
-	--_grid--rows: var(--grid--rows, 2);
-	--_grid--columns: var(--grid--columns, 2);
-	--_sidebar--width: var(--sidebar--width, 1fr);
-	--_sim-interface--width: var(--sim-interface--width, 1fr);
-	--_component-view--width: var(--component-view--width, 1fr);
+
+	--grid--rows: 1fr;
+	--grid--columns: 1fr 3fr 5fr;
 	--_sidebar--grid-area-name: var(--component-view--grid-area-name, 'sidebar');
 	--_sim-interface--grid-area-name: var(--sim-interface--grid-area-name, 'sim-interface');
 	--_component-view--grid-area-name: var(--component-view--grid-area-name, 'component-view');
 
 }
 
-div.dev-env.wrapper{
+div.dev-env.wrapper {
 	container-type: inline-size;
 }
 
 div.dev-env.grid{
 	display: grid;
-	grid-template-rows: var(--_grid-rows);
-	grid-template-columns: var(--_grid-columns);
+	grid-template-rows: 1fr;
+	grid-template-columns: 1fr 3fr 3fr;
 	grid-template-areas:
 	"sidebar sim-interface component-view"
 	"sidebar sim-interface component-view"
 	;
+}
+
+div.sidebar {
+	grid-area: var(--_sidebar--grid-area-name);
+
+}
+form.sim-interface {
+	grid-area: var(--_sim-interface--grid-area-name);
+	container-type: inline-size;
+
+}
+div.component-view {
+	grid-area: var(--_component-view--grid-area-name);
+
 }
