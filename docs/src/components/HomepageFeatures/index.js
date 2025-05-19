@@ -15,7 +15,7 @@ const FeatureList = [
 				web-based application platform. Authored by Keith Gamble.
 			</>
 		),
-		link: "/docs/keith-gamble-example-docs",
+		link: "https://keith-gamble.github.io/example-perspective-component-module/",
 	},
 	{
 		title: "Focus on What Matters",
@@ -27,7 +27,7 @@ const FeatureList = [
 				with process controllers to provide, visualisation and control.
 			</>
 		),
-		link: "/docs/aflittlejohns-docs",
+		link: "/docs/alittlejohns-docs/",
 	},
 	{
 		title: "Powered by React",
@@ -35,10 +35,10 @@ const FeatureList = [
 		Icon: require("@site/static/img/door-enter.svg").default,
 		description: (
 			<>
-				A resource of HMI Component Development Workflows.
+				A resource of HMI Component Development Design Patterns and Workflows.
 			</>
 		),
-		link: "/docs/aflittlejohns-docs",
+		link: "docs/development-workflows/",
 	},
 	{
 		title: "Perspective-Client API",

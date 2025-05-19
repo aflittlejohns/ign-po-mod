@@ -95,7 +95,7 @@ const config: Config = {
 	themeConfig: {
 		// Replace with your project's social card
 		navbar: {
-			title: "ign-po-mod",
+			title: "Ignition Perspective HMI Components Module",
 			logo: {
 				alt: "Ignition Logo",
 				src: "img/Logo-Ignition-Check.svg",
