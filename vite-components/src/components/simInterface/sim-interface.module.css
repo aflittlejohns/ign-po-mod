@@ -1,0 +1,30 @@
+div.sim-interface{
+	display: relative;
+}
+form.sim-interface--form {
+ outline: solid red 1px;
+}
+
+div.sim-interface--grid {
+	display: grid;
+	margin:1rem 0;
+	height: 50cqb;
+	grid-auto-rows: 1.5rem;
+	grid-template-areas:
+	"actConfig"
+	"deActConfig"
+	"actFbLabel"
+	"deActFbLabel"
+	"manualLabel"
+	"alarmLabel"
+	"maskedLabel"
+	"changingLabel"
+	"submitButton"
+	"simComponent"
+	;
+	gap: 1rem;
+}
+
+/* .sim-interface {
+
+} */

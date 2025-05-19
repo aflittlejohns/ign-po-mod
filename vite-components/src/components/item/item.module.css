@@ -1,0 +1,168 @@
+
+:root{
+	--lif-po-border-color: var(--neutral-50);
+	--lif-po-segment-color: var(--neutral-50);
+	--lif-po-activated-color: var(--neutral-70);
+	--lif-po-changing-color: var(--neutral-50);
+	--lif-po-deactivated-color: var(--neutral-20);
+	--lif-po-manual-color: var(--qual-2);
+	--lif-po-no-alarm-mask-color: var(--neutral-30);
+	--lif-po-alarm-start-color: var(--error);
+	--lif-po-alarm-end-color: var(--neutral-10);
+}
+
+.hmi-component-valve .v1 {
+	grid-area: 2/2/7/7;
+	border: solid var(--lif-po-border-color);
+	border-width: 2.1cqi;
+	border-radius: 5cqi;
+	stroke-width: 5cqi;
+}
+.hmi-component-valve .v2 {
+	grid-area: 2/6/7/11;
+	border: solid var(--lif-po-border-color);
+	border-width: 2.1cqi;
+	border-radius: 5cqi;
+}
+.hmi-component-valve .v3 {
+	grid-area: 6/2/11/7;
+	border: solid var(--lif-po-border-color);
+	border-width: 2.1cqi;
+	border-radius: 5cqi;
+}
+
+.hmi-component-valve .v2f1 {
+	grid-area: 2/4/2/9;
+	border-top: 2.1cqi solid var(--lif-po-border-color);
+}
+.hmi-component-valve .v2f2 {
+	grid-area: 6/4/6/9;
+	border-bottom: 2.1cqi solid var(--lif-po-border-color);
+	align-self: end;
+}
+.hmi-component-valve .v3f1 {
+	grid-area: 4/2/9/2;
+	border-left: 2.1cqi solid var(--lif-po-border-color);
+}
+.hmi-component-valve .v3f2 {
+	grid-area: 4/6/9/6;
+	border-right: 2.1cqi solid var(--lif-po-border-color);
+	justify-self: end;
+}
+.hmi-component-valve .v1b1 {
+	grid-area: 2/4/5/5;
+	background-color: var(--lif-po-segment-color);
+	z-index: 1;
+}
+.hmi-component-valve .v1b2 {
+	grid-area: 4/4/5/7;
+	background-color: var(--lif-po-segment-color);
+	z-index: 1;
+}
+.hmi-component-valve .v1b3 {
+	grid-area: 4/4/7/5;
+	background-color: var(--lif-po-segment-color);
+	z-index: 1;
+}
+.hmi-component-valve .v1b4 {
+	grid-area: 4/2/5/5;
+	background-color: var(--lif-po-segment-color);
+	z-index: 1;
+}
+.hmi-component-valve .v2b1 {
+	grid-area: 2/8/5/9;
+	background-color: var(--lif-po-segment-color);
+	z-index: 1;
+}
+.hmi-component-valve .v2b2 {
+	grid-area: 4/8/5/11;
+	background-color: var(--lif-po-segment-color);
+	z-index: 1;
+}
+.hmi-component-valve .v2b3 {
+	grid-area: 4/8/7/9;
+	background-color: var(--lif-po-segment-color);
+	z-index: 1;
+}
+.hmi-component-valve .v2b4 {
+	grid-area: 4/6/5/9;
+	background-color: var(--lif-po-segment-color);
+	z-index: 1;
+}
+.hmi-component-valve .v3b1 {
+	grid-area: 6/4/9/5;
+	background-color: var(--lif-po-segment-color);
+	z-index: 1;
+}
+.hmi-component-valve .v3b2 {
+	grid-area: 8/4/9/7;
+	background-color: var(--lif-po-segment-color);
+	z-index: 1;
+}
+.hmi-component-valve .v3b3 {
+	grid-area: 8/4/11/5;
+	background-color: var(--lif-po-segment-color);
+	z-index: 1;
+}
+.hmi-component-valve .v3b4 {
+	grid-area: 8/2/9/5;
+	background-color: var(--lif-po-segment-color);
+	z-index: 1;
+}
+
+.hmi-component-valve [class*="Activated"] {
+	background-color: var(--lif-po-activated-color);
+	fill: var(--lif-po-activated-color);
+}
+
+.hmi-component-valve [class*="Changing"] {
+	background-color: var(--lif-po-changing-color);
+	fill: var(--lif-po-changing-color);
+}
+
+.hmi-component-valve [class*="Deactivated"] {
+	background-color: var(--lif-po-deactivated-color);
+	fill: var(--lif-po-deactivated-color);
+}
+
+.hmi-component-valve [class*="Manual"] {
+	background-color: var(--lif-po-manual-color);
+	fill: var(--lif-po-deactivated-color);
+}
+
+.hmi-component-valve [class*="NoAlarmMask"] {
+	stroke: var(--lif-po-no-alarm-mask-color);
+	stroke-width: 2.1cqi;
+}
+.hmi-component-valve [class*="show"] {
+	visibility: visible;
+}
+.hmi-component-valve [class*="hide"] {
+	visibility: hidden;
+}
+
+@keyframes AlarmState-anim {
+	0% {
+		border-color: var(--lif-po-alarm-start-color);
+		border-width: 2.1cqi;
+		/* stroke: #000000;
+    stroke-width: 2.1cqi; */
+	}
+	100% {
+		border-color: var(--lif-po-alarm-end-color);
+		border-width: 5cqi;
+		/* stroke: var(--error);
+    stroke-width: 5.0cqi; */
+	}
+}
+.AlarmState {
+	animation-name: AlarmState-anim;
+	animation-delay: 0s;
+	animation-direction: reverse;
+	animation-duration: 0.75s;
+	animation-fill-mode: both;
+	animation-iteration-count: infinite;
+	animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+

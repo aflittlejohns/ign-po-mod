@@ -1,0 +1,191 @@
+import * as React from "react";
+import { useEditDevEnvContext } from "../dev-env/DevEnvCompound";
+import { ValveFCCompound } from "../valve/ValveFC";
+
+export interface FormElements extends HTMLFormControlsCollection {
+	actConfig: HTMLInputElement;
+	deActConfig: HTMLInputElement;
+	actFB: HTMLInputElement;
+	deActFB: HTMLInputElement;
+	manual: HTMLInputElement;
+	alarm: HTMLInputElement;
+	masked: HTMLInputElement;
+	changing: HTMLInputElement;
+}
+export interface UsernameFormElement extends HTMLFormElement {
+	readonly elements: FormElements;
+}
+
+function SimInterfaceForm() {
+	const {useReducer}= useEditDevEnvContext("SimInterfaceForm");
+	const {state, reducer} = useReducer;
+	const {
+		updateAlarm,
+		updateActConfig,
+		updateDeActConfig,
+		updateActFB,
+		updateDeActFB,
+		updateManual,
+		updateChanging,
+		updateMasked
+	} = reducer
+	const [actConfigState, updateActConfigState] = React.useState(state.activatedConfig);
+	const [deActConfigState, updateDeActConfigState] = React.useState(state.activatedConfig);
+	function handleSubmit(event: React.FormEvent<UsernameFormElement>) {
+		event.preventDefault();
+		console.log(`form submit event`);
+		const actConfigValue = event.currentTarget.elements.actConfig.value
+		const deActConfigValue = event.currentTarget.elements.deActConfig.value
+		updateActConfig(Number(actConfigValue));
+		updateDeActConfig(Number(deActConfigValue));
+
+		// updateActConfig()
+	}
+		const handleOnActionPerformed = ()=>{
+		console.log("Valve onActionPerformed")
+	}
+
+
+	return (
+		<div className="sim-interface">
+		<form className="sim-interface--form" onSubmit={handleSubmit}>
+			<div className={'sim-interface--grid'}
+
+			>
+				<input
+					style={{ gridArea: "actConfig" }}
+					className="act-config"
+					type="text"
+					id="actConfig"
+					name="actConfig"
+					placeholder="Act Config"
+					value={actConfigState}
+					onChange={(e)=> updateActConfigState(Number(e.target.value))}
+					/>
+				<input
+					style={{ gridArea: "deActConfig" }}
+					className="de-act-config"
+					type="text"
+					id="deActConfig"
+					name="deActConfig"
+					placeholder="De-act Config"
+					value={deActConfigState}
+					onChange={(e)=> updateDeActConfigState(Number(e.target.value))}
+					/>
+				<label
+					style={{ gridArea: "actFbLabel" }}
+					className="act-fb label"
+					htmlFor="actFB"
+					>
+					Act FB
+				<input
+					style={{ gridArea: "actFbCheckbox" }}
+					className="act-fb checkbox"
+					type="checkbox"
+					id="actFB"
+					name="actFB"
+					checked={state.actFB}
+					onChange={updateActFB}
+					/>
+					</label>
+				<label
+					style={{ gridArea: "deActFbLabel" }}
+					className="de-act-fb label"
+					htmlFor="deActFB"
+					>
+					DeAct FB
+				<input
+					style={{ gridArea: "deActFbCheckbox" }}
+					className="de-act-fb checkbox"
+					type="checkbox"
+					id="deActFB"
+					name="deActFB"
+					checked={state.deActFB}
+					onChange={updateDeActFB}
+					/>
+					</label>
+
+				<label
+					style={{ gridArea: "manualLabel" }}
+					className="manual label"
+					htmlFor="manual"
+					>
+					Manual
+				<input
+					style={{ gridArea: "manualCheckbox" }}
+					className="manual checkbox"
+					type="checkbox"
+					id="manual"
+					name="manual"
+					checked={state.manual}
+					onChange={updateManual}
+					/>
+					</label>
+				<label
+					style={{ gridArea: "alarmLabel" }}
+					className="alarm label"
+					htmlFor="alarm"
+					>
+					Alarm
+				<input
+					style={{ gridArea: "alarmCheckbox" }}
+					className="alarm checkbox"
+					type="checkbox"
+					id="alarm"
+					name="alarm"
+					checked={state.alarm}
+					onChange={updateAlarm}
+					/>
+					</label>
+				<label
+					style={{ gridArea: "maskedLabel" }}
+					className="masked label"
+					htmlFor="masked"
+					>
+					Masked
+				<input
+					style={{ gridArea: "maskedCheckbox" }}
+					className="masked checkbox"
+					type="checkbox"
+					id="masked"
+					name="masked"
+					checked={state.masked}
+					onChange={updateMasked}
+					/>
+					</label>
+				<label
+					style={{ gridArea: "changingLabel" }}
+					className="changing label"
+					htmlFor="changing"
+					>
+					Changing
+				<input
+					style={{ gridArea: "changingCheckbox" }}
+					className="changing checkbox"
+					type="checkbox"
+					id="changing"
+					name="changing"
+					checked={state.changing}
+					onChange={updateChanging}
+					/>
+					</label>
+				<button
+					style={{ gridArea: "submitButton" }}
+					className="submit button"
+					type="submit"
+				>
+					Submit
+				</button>
+			</div>
+		</form>
+						<ValveFCCompound.Root
+					// componentProps={props}
+					valveProps={{ValveStatus: state}}
+					onActionPerformed={handleOnActionPerformed}
+				>
+					<ValveFCCompound.valve />
+				</ValveFCCompound.Root>
+		</div>
+	);
+}
+export default SimInterfaceForm;
