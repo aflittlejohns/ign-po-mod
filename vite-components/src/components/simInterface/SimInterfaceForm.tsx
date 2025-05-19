@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useEditDevEnvContext } from "../dev-env/DevEnvCompound";
+import { ValveFCCompound } from "../valve/ValveFC";
 
 export interface FormElements extends HTMLFormControlsCollection {
 	actConfig: HTMLInputElement;
@@ -40,10 +41,14 @@ function SimInterfaceForm() {
 
 		// updateActConfig()
 	}
+		const handleOnActionPerformed = ()=>{
+		console.log("Valve onActionPerformed")
+	}
 
 
 	return (
-		<form className="sim-interface" onSubmit={handleSubmit}>
+		<div className="sim-interface">
+		<form className="sim-interface--form" onSubmit={handleSubmit}>
 			<div className={'sim-interface--grid'}
 
 			>
@@ -173,6 +178,14 @@ function SimInterfaceForm() {
 				</button>
 			</div>
 		</form>
+						<ValveFCCompound.Root
+					// componentProps={props}
+					valveProps={{ValveStatus: state}}
+					onActionPerformed={handleOnActionPerformed}
+				>
+					<ValveFCCompound.valve />
+				</ValveFCCompound.Root>
+		</div>
 	);
 }
 export default SimInterfaceForm;

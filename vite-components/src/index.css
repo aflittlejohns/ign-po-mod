@@ -2,6 +2,8 @@
 
 @import './components/dev-env/dev-env.module.css';
 @import './components/itemClickable/itemClickable.module.css';
+@import './components/item/item.module.css';
 @import './components/simInterface/sim-interface.module.css';
 @import './components/valve-config-aid/valveConfig.module.css';
+@import './components/valve/valve.module.css';
 

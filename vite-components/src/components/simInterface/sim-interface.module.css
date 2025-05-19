@@ -1,7 +1,14 @@
+div.sim-interface{
+	display: relative;
+}
+form.sim-interface--form {
+ outline: solid red 1px;
+}
+
 div.sim-interface--grid {
 	display: grid;
 	margin:1rem 0;
-	height: 95cqb;
+	height: 50cqb;
 	grid-auto-rows: 1.5rem;
 	grid-template-areas:
 	"actConfig"
@@ -13,6 +20,7 @@ div.sim-interface--grid {
 	"maskedLabel"
 	"changingLabel"
 	"submitButton"
+	"simComponent"
 	;
 	gap: 1rem;
 }

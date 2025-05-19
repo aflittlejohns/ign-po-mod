@@ -2,7 +2,7 @@ import './valveConfig.module.css'
 import type{ HTMLInputTypeAttribute}from "react";
 import React, {useState} from "react";
 import ItemClickable from "../itemClickable/ItemClickable";
-import { ItemClickableNameEnum } from "./types";
+import { ItemClickableNameEnum } from "../../api/types";
 
 type ValveConfigData = {
 	config: number;

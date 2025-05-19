@@ -2,7 +2,7 @@ import React from "react";
 import type {
 	DevEnvCompoundContextType,
 	EditDevEnvCompoundProps,
-} from "./types";
+} from "../../api/types";
 import { useCreateContext } from '../../utils/createContext';
 // import type { UseValveReducer } from "../../api/types";
 

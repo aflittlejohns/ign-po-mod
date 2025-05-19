@@ -1,3 +1,5 @@
+export const VALVE_COMPONENT_TYPE = "hmi.process_objects.Valve";
+
 export type ValveState = {
 	alarm: boolean;
 	actFB: boolean;
@@ -9,6 +11,14 @@ export type ValveState = {
 	masked: boolean;
 	changing: boolean;
 };
+export type DevEnvCompoundContextType ={
+	useReducer: UseValveReducer
+}
+
+export type EditDevEnvCompoundProps ={
+	useReducer: UseValveReducer
+	children: React.ReactNode;
+}
 /**
  * Define the shape of the ValveAction type
  * @Useage useValveReducer
