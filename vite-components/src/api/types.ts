@@ -10,6 +10,7 @@ export type ValveState = {
 	manual: boolean;
 	masked: boolean;
 	changing: boolean;
+	locate: boolean;
 };
 export type DevEnvCompoundContextType ={
 	useReducer: UseValveReducer
@@ -31,7 +32,9 @@ export type ValveAction =
 	| { type: "UPDATE_MANUAL" }
 	| { type: "UPDATE_ALARM" }
 	| { type: "UPDATE_MASKED" }
-	| { type: "UPDATE_CHANGING" };
+	| { type: "UPDATE_CHANGING" }
+	| { type: "UPDATE_LOCATE" }
+	;
 
 export type ValveReducer = (
 	state: ValveState,
@@ -49,6 +52,8 @@ export type UseValveReducer = {
 		updateManual: () => void;
 		updateMasked: () => void;
 		updateChanging: () => void;
+		updateLocate: () => void;
+
 		//add more handlers as needed
 	};
 };
@@ -61,6 +66,7 @@ export const ValveClassNameEnum = {
 	Masked: "Masked",
 	Changing: "Changing",
 	NoAlarmMask: "NoAlarmMask",
+	Locate: "Locate"
 };
 export type ValveClassNameEnum =
 	(typeof ValveClassNameEnum)[keyof typeof ValveClassNameEnum];

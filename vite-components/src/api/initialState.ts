@@ -15,6 +15,7 @@ export const valveStatus = {
 	manual: false,
 	masked: false,
 	changing: false,
+	locate: false,
 };
 
 export const valveProps = {

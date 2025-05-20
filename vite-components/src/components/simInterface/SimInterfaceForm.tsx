@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEditDevEnvContext } from "../dev-env/DevEnvCompound";
-import { ValveFCCompound } from "../valve/ValveFC";
+import { ValveMpCompound } from "../valve-mp/ValveMp";
 
 export interface FormElements extends HTMLFormControlsCollection {
 	actConfig: HTMLInputElement;
@@ -11,6 +11,7 @@ export interface FormElements extends HTMLFormControlsCollection {
 	alarm: HTMLInputElement;
 	masked: HTMLInputElement;
 	changing: HTMLInputElement;
+	locate: HTMLInputElement;
 }
 export interface UsernameFormElement extends HTMLFormElement {
 	readonly elements: FormElements;
@@ -27,7 +28,8 @@ function SimInterfaceForm() {
 		updateDeActFB,
 		updateManual,
 		updateChanging,
-		updateMasked
+		updateMasked,
+		updateLocate,
 	} = reducer
 	const [actConfigState, updateActConfigState] = React.useState(state.activatedConfig);
 	const [deActConfigState, updateDeActConfigState] = React.useState(state.activatedConfig);
@@ -77,7 +79,6 @@ function SimInterfaceForm() {
 					className="act-fb label"
 					htmlFor="actFB"
 					>
-					Act FB
 				<input
 					style={{ gridArea: "actFbCheckbox" }}
 					className="act-fb checkbox"
@@ -87,13 +88,13 @@ function SimInterfaceForm() {
 					checked={state.actFB}
 					onChange={updateActFB}
 					/>
+					Act FB
 					</label>
 				<label
 					style={{ gridArea: "deActFbLabel" }}
 					className="de-act-fb label"
 					htmlFor="deActFB"
 					>
-					DeAct FB
 				<input
 					style={{ gridArea: "deActFbCheckbox" }}
 					className="de-act-fb checkbox"
@@ -103,6 +104,7 @@ function SimInterfaceForm() {
 					checked={state.deActFB}
 					onChange={updateDeActFB}
 					/>
+					DeAct FB
 					</label>
 
 				<label
@@ -110,7 +112,6 @@ function SimInterfaceForm() {
 					className="manual label"
 					htmlFor="manual"
 					>
-					Manual
 				<input
 					style={{ gridArea: "manualCheckbox" }}
 					className="manual checkbox"
@@ -120,13 +121,13 @@ function SimInterfaceForm() {
 					checked={state.manual}
 					onChange={updateManual}
 					/>
+					Manual
 					</label>
 				<label
 					style={{ gridArea: "alarmLabel" }}
 					className="alarm label"
 					htmlFor="alarm"
 					>
-					Alarm
 				<input
 					style={{ gridArea: "alarmCheckbox" }}
 					className="alarm checkbox"
@@ -136,13 +137,13 @@ function SimInterfaceForm() {
 					checked={state.alarm}
 					onChange={updateAlarm}
 					/>
+					Alarm
 					</label>
 				<label
 					style={{ gridArea: "maskedLabel" }}
 					className="masked label"
 					htmlFor="masked"
 					>
-					Masked
 				<input
 					style={{ gridArea: "maskedCheckbox" }}
 					className="masked checkbox"
@@ -152,13 +153,13 @@ function SimInterfaceForm() {
 					checked={state.masked}
 					onChange={updateMasked}
 					/>
+					Masked
 					</label>
 				<label
 					style={{ gridArea: "changingLabel" }}
 					className="changing label"
 					htmlFor="changing"
 					>
-					Changing
 				<input
 					style={{ gridArea: "changingCheckbox" }}
 					className="changing checkbox"
@@ -168,6 +169,23 @@ function SimInterfaceForm() {
 					checked={state.changing}
 					onChange={updateChanging}
 					/>
+					Changing
+					</label>
+				<label
+					style={{ gridArea: "locateLabel" }}
+					className="locate label"
+					htmlFor="locate"
+					>
+				<input
+					style={{ gridArea: "locateCheckbox" }}
+					className="locate checkbox"
+					type="checkbox"
+					id="locate"
+					name="locate"
+					checked={state.locate}
+					onChange={updateLocate}
+					/>
+					Locate Item
 					</label>
 				<button
 					style={{ gridArea: "submitButton" }}
@@ -178,13 +196,13 @@ function SimInterfaceForm() {
 				</button>
 			</div>
 		</form>
-						<ValveFCCompound.Root
+						<ValveMpCompound.Root
 					// componentProps={props}
 					valveProps={{ValveStatus: state}}
 					onActionPerformed={handleOnActionPerformed}
 				>
-					<ValveFCCompound.valve />
-				</ValveFCCompound.Root>
+					<ValveMpCompound.valve />
+				</ValveMpCompound.Root>
 		</div>
 	);
 }

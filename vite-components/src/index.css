@@ -6,4 +6,5 @@
 @import './components/simInterface/sim-interface.module.css';
 @import './components/valve-config-aid/valveConfig.module.css';
 @import './components/valve/valve.module.css';
+@import './components/valve-mp/valve-mp.module.css';
 

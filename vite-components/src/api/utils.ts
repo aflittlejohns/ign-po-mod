@@ -98,6 +98,9 @@ export const getItemClassName = (index: number, valveStatus?: ValveState): strin
 			if (valveStatus?.deActFB) {
 				className = className.replace("Deactivated", "") + " Deactivated";
 			}
+			if (valveStatus?.locate) {
+				className = className.replace("circle", "") + " circle";
+			}
 		}
 
 		return className; // default return value if no other condition is met

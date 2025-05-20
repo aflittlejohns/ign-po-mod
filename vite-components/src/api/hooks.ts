@@ -28,6 +28,9 @@ function valveReducer(draft: ValveState , action: ValveAction): ValveState{
 				case 'UPDATE_CHANGING':
 					draft.changing = !draft.changing;
 					return draft;
+				case 'UPDATE_LOCATE':
+					draft.locate = !draft.locate;
+					return draft;
 		default: // #TODO Add more reducer case statements
 			return draft
 	}
@@ -84,6 +87,11 @@ export function useValveReducer(): UseValveReducer {
 			type: 'UPDATE_CHANGING',
 		})
 	}
+	function updateLocate(){
+		dispatch({
+			type: 'UPDATE_LOCATE',
+		})
+	}
 
 	const useEditValveReducer = {
 		state,
@@ -96,6 +104,7 @@ export function useValveReducer(): UseValveReducer {
 			updateManual,
 			updateMasked,
 			updateChanging,
+			updateLocate,
 	}
 }
 
