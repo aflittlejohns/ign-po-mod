@@ -65,10 +65,10 @@ export const ValveClassNameEnum = {
 export type ValveClassNameEnum =
 	(typeof ValveClassNameEnum)[keyof typeof ValveClassNameEnum];
 export const ItemNameEnum = {
+	V1b1: "v1b1", // index 0
 	V1b2: "v1b2", // index 1
 	V1b3: "v1b3", // index 2
 	V1b4: "v1b4", // index 3
-	V1b1: "v1b1", // index 0
 	V2b1: "v2b1", // index 4
 	V2b2: "v2b2", // index 5
 	V2b3: "v2b3", // index 6

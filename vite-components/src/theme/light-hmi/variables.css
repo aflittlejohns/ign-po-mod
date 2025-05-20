@@ -1,0 +1,36 @@
+   @import "../light/variables.css";
+   
+    :root {
+    /* Base variables for "connecting lines"*/
+    --con-line-width: 2;
+    --con-line-line-clr: var(--neutral-90);
+    --con-line-text-clr: var(--neutral-90);
+    --con-line-font-size:var(--font-size);
+    --con-line-font-family: sans-serif;
+    --con-line-marker-start-clr: var(--neutral-100);
+    --con-line-marker-mid-clr: var(--neutral-100);
+    --con-line-marker-end-clr: var(--neutral-100);
+    --con-line-text-horizontal-start-xOffset: 5;
+    --con-line-text-horizontal-start-yOffset: 5;
+    --con-line-text-horizontal-end-xOffset: 5;
+    --con-line-text-horizontal-end-yOffset: 5;
+    --con-line-text-vertical-start-xOffset: 5;
+    --con-line-text-vertical-start-yOffset: 5;
+    --con-line-text-vertical-end-xOffset: 5;
+    --con-line-text-vertical-end-yOffset: 5;
+    
+
+
+    /* product */
+    --con-line-product-width: 2;
+    --con-line-product-line-clr: var(--neutral-90);
+    --con-line-product-text-clr:var(--neutral-90);
+    --con-line-product-font-size:var(--font-size);
+    --con-line-product-font-family: Monospace;
+    --con-line-product-marker-start-clr:var(--qual-8);
+    --con-line-product-marker-mid-clr: var(--qual-8);
+    --con-line-product-marker-end-clr: var(--qual-8);
+    /* utility Water */
+    /* TODO - add further media types*/
+
+}
