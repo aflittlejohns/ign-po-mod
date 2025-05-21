@@ -1,22 +1,27 @@
 
-export function Valve({onClick, x=50 , y=50 }){
+export function Valve({onClick, x=50 , y=50, className="valve"}){
 
 	function handleClick(e){
 		console.log('clicked');
 		onClick && onClick(e);
 	}
 const style = {
-	left: {x},
-	top: {y}
+	display: "flex",
+	textBoxTrim:"trim-both" ,
+	left: x,
+	top: y,
+	width: "50px",
+	justifyContent: "center",
+	alignItems:"center",
 }
 
 	return (
 		<div
 		style={style}
-		className={'valve anchor'}
+		className={`${className} anchor`}
 		onClick={handleClick}
 		>
-			<p>valve</p>
+			<p>{className}</p>
 		</div>
 	)
 }
