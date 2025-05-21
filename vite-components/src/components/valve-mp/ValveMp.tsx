@@ -4,11 +4,12 @@ import type {
 	ValveProps,
  } from '../../api/types'
 
-import { getItemClassName, itemNames } from '../../api/utils'
+import { getValveMpItemClassName, valveMpItemNames } from '../../api/utils'
 import Item from '../item/item'
 import { useCreateContext } from '../../utils/createContext'
 import {VALVE_COMPONENT_TYPE
 } from '../../api/types'
+// import './valve-mp.module.css'
 // import {valveStatus} from '../../api/initialState'
 const COMPONENT_TYPE = VALVE_COMPONENT_TYPE;
 
@@ -63,7 +64,7 @@ const inCoord = false;
 // 	props.onActionPerformed();
 // },[props]);
   // Memoize itemNames to prevent re-creation on every render
-  const memoizedItemNames = React.useMemo(() => itemNames, []);
+  const memoizedItemNames = React.useMemo(() => valveMpItemNames, []);
 {console.log(`itemName ${memoizedItemNames}`)}
 if (!inCoord){
 	return (
@@ -75,14 +76,14 @@ if (!inCoord){
 					data-component={COMPONENT_TYPE}
 					>
 					<div className="hmi-component__row">
-						<div className="hmi-component-valve">
+						<div className="hmi-component-valve__mp">
 							{memoizedItemNames.map(
 								({ value, index, key }) => (
 									console.log(`re-rendered ,key ${key} value ${value} index ${index}`),
 									(
 										<Item
 										itemClassName={
-											value + " " + getItemClassName(index, ValveStatus)
+											value + " " + getValveMpItemClassName(index, ValveStatus)
 										}
 										handleClick={onActionPerformed}
 										key={key}
@@ -109,7 +110,7 @@ if (!inCoord){
 							(
 								<Item
 									itemClassName={
-										value + " " + getItemClassName(index, ValveStatus)
+										value + " " + getValveMpItemClassName(index, ValveStatus)
 									}
 									handleClick={() => {onActionPerformed}}
 									key={key}

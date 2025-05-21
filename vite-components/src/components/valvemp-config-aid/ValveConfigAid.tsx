@@ -1,10 +1,9 @@
-import './valveConfig.module.css'
+// import './valveConfig.module.css'
 import type{ HTMLInputTypeAttribute}from "react";
 import React, {useState} from "react";
-import ItemClickable from "../itemClickable/ItemClickable";
-import { ItemClickableNameEnum } from "../../api/types";
+import ItemClickable from "../valve-mp-itemClickable/ItemClickable";
+import { valveMpItemClickableNameEnum } from "../../api/types";
 import { UseCheckboxContext } from './hooks';
-// import './valveConfig.module.css'
 
 export type ValveConfigData = {
 	config: number;
@@ -37,15 +36,15 @@ export const initialCheckboxDataArr: CheckboxData[] = [
 	},
 ];
 const ValveConfigAid = () => {
-	const itemNames = Object.keys(ItemClickableNameEnum).map(
+	const itemNames = Object.keys(valveMpItemClickableNameEnum).map(
 		(itemName, index) => {
 			return {
 				key: index,
 				name: itemName,
-				value: ItemClickableNameEnum[
-					itemName as keyof typeof ItemClickableNameEnum
+				value: valveMpItemClickableNameEnum[
+					itemName as keyof typeof valveMpItemClickableNameEnum
 				],
-				index: Object.keys(ItemClickableNameEnum).indexOf(itemName),
+				index: Object.keys(valveMpItemClickableNameEnum).indexOf(itemName),
 			};
 		}
 	);
@@ -57,7 +56,7 @@ const ValveConfigAid = () => {
 	// );
 	const {draft, reducer} = UseCheckboxContext();
 	const {checked} = reducer;
-	const checkboxes = ["v2body", "v3body"];
+	const checkboxes = ["v2body"];
 	const anyChecked = draft.checkboxDataArr.some(cb => cb.checked);
 
     const checkBoxArr = checkboxes.map((item, index): CheckboxData => {
@@ -76,7 +75,7 @@ const ValveConfigAid = () => {
 			onChange: (): void => {
 				checked(index)
 				// setChecked(updatedCheckBoxes);
-				let newIndex = 12 + index;
+				let newIndex = 8 + index;
 				updateConfig((prev): ValveConfigData => {
 					const bitValue = 2 ** newIndex;
 					let newConfig = 0;
@@ -141,13 +140,13 @@ const ValveConfigAid = () => {
 			))}
 			{itemNames.map(({ key, value }, index) => {
 				let addToClassName = "";
-				if (index >= 12 && index <= 13) {
-					addToClassName = draft.checkboxDataArr[index - 12]?.checked
+				if (index >= 8 && index <= 9) {
+					addToClassName = draft.checkboxDataArr[index - 8]?.checked
 						? " clicked"
 						: "";
 					console.log(
 						`addToClassName = ${addToClassName} is checked = ${
-							draft.checkboxDataArr[index - 12]?.checked
+							draft.checkboxDataArr[index - 8]?.checked
 						}`
 					);
 				}

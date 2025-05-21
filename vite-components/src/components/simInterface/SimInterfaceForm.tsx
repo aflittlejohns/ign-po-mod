@@ -1,12 +1,15 @@
 import * as React from "react";
 import { useEditDevEnvContext } from "../dev-env/DevEnvCompound";
 import { ValveMpCompound } from "../valve-mp/ValveMp";
+// import './sim-interface.module.css'
 
 export interface FormElements extends HTMLFormControlsCollection {
 	actConfig: HTMLInputElement;
 	deActConfig: HTMLInputElement;
 	actFB: HTMLInputElement;
 	deActFB: HTMLInputElement;
+	usl: HTMLInputElement;
+	lsl: HTMLInputElement;
 	manual: HTMLInputElement;
 	alarm: HTMLInputElement;
 	masked: HTMLInputElement;
@@ -26,6 +29,8 @@ function SimInterfaceForm() {
 		updateDeActConfig,
 		updateActFB,
 		updateDeActFB,
+		updateUsl,
+		updateLsl,
 		updateManual,
 		updateChanging,
 		updateMasked,
@@ -105,6 +110,38 @@ function SimInterfaceForm() {
 					onChange={updateDeActFB}
 					/>
 					DeAct FB
+					</label>
+				<label
+					style={{ gridArea: "uslLabel" }}
+					className="usl label"
+					htmlFor="usl"
+					>
+				<input
+					style={{ gridArea: "uslCheckbox" }}
+					className="usl checkbox"
+					type="checkbox"
+					id="usl"
+					name="usl"
+					checked={state.usl}
+					onChange={updateUsl}
+					/>
+					Upper Seat Lift Active
+					</label>
+				<label
+					style={{ gridArea: "lslLabel" }}
+					className="lsl label"
+					htmlFor="lsl"
+					>
+				<input
+					style={{ gridArea: "lslCheckbox" }}
+					className="lsl checkbox"
+					type="checkbox"
+					id="lsl"
+					name="lsl"
+					checked={state.lsl}
+					onChange={updateLsl}
+					/>
+					Lower Seat Lift Active
 					</label>
 
 				<label

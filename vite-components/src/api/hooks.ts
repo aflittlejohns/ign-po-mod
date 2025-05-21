@@ -16,6 +16,12 @@ function valveReducer(draft: ValveState , action: ValveAction): ValveState{
 				case 'UPDATE_DE_ACT_FB':
 					draft.deActFB = !draft.deActFB;
 					return draft;
+				case 'UPDATE_USL':
+					draft.usl = !draft.usl;
+					return draft;
+				case 'UPDATE_LSL':
+					draft.lsl = !draft.lsl;
+					return draft;
 				case 'UPDATE_MANUAL':
 					draft.manual = !draft.manual;
 					return draft;
@@ -55,6 +61,16 @@ export function useValveReducer(): UseValveReducer {
 		dispatch({
 			type: 'UPDATE_DEACT_CONFIG',
 			value: value
+		})
+	}
+	function updateUsl(){
+		dispatch({
+			type: 'UPDATE_USL',
+		})
+	}
+	function updateLsl(){
+		dispatch({
+			type: 'UPDATE_LSL',
 		})
 	}
 	function updateAlarm(){
@@ -101,6 +117,8 @@ export function useValveReducer(): UseValveReducer {
 			updateAlarm,
 			updateActFB,
 			updateDeActFB,
+			updateUsl,
+			updateLsl,
 			updateManual,
 			updateMasked,
 			updateChanging,

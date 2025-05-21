@@ -1,10 +1,11 @@
 @import './theme/light.css';
 
 @import './components/dev-env/dev-env.module.css';
-@import './components/itemClickable/itemClickable.module.css';
+@import './components/valve-mp-itemClickable/valve-mp-itemClickable.module.css';
 @import './components/item/item.module.css';
 @import './components/simInterface/sim-interface.module.css';
 @import './components/valve-config-aid/valveConfig.module.css';
 @import './components/valve/valve.module.css';
 @import './components/valve-mp/valve-mp.module.css';
+@import './components/valvemp-config-aid/valveConfig.module.css'
 

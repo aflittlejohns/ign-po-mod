@@ -4,6 +4,8 @@ export type ValveState = {
 	alarm: boolean;
 	actFB: boolean;
 	deActFB: boolean;
+	usl?:boolean;
+	lsl?: boolean;
 	activatedConfig: number;
 	deactivatedConfig: number;
 	tagName: string;
@@ -29,6 +31,8 @@ export type ValveAction =
 	| { type: "UPDATE_DEACT_CONFIG"; value: number }
 	| { type: "UPDATE_ACT_FB" }
 	| { type: "UPDATE_DE_ACT_FB" }
+	| { type: "UPDATE_USL" }
+	| { type: "UPDATE_LSL" }
 	| { type: "UPDATE_MANUAL" }
 	| { type: "UPDATE_ALARM" }
 	| { type: "UPDATE_MASKED" }
@@ -49,6 +53,8 @@ export type UseValveReducer = {
 		updateAlarm: () => void;
 		updateActFB: () => void;
 		updateDeActFB: () => void;
+		updateUsl: () => void;
+		updateLsl: () => void;
 		updateManual: () => void;
 		updateMasked: () => void;
 		updateChanging: () => void;
@@ -92,6 +98,21 @@ export const ItemNameEnum = {
 	V3f2: "v3f2", // index 18
 };
 export type ItemNameEnum = (typeof ItemNameEnum)[keyof typeof ItemNameEnum];
+export const valveMpItemNameEnum = {
+	V1b1: "v1b1", // index 0
+	V1b2: "v1b2", // index 1
+	V1b3: "v1b3", // index 2
+	V1b4: "v1b4", // index 3
+	V2b1: "v2b1", // index 4
+	V2b2: "v2b2", // index 5
+	V2b3: "v2b3", // index 6
+	V2b4: "v2b4", // index 7
+	V2: "v2", // index 8
+	V1: "v1", // index 9
+	usl: "usl", // index 10 upper-seat-lift
+	lsl: "lsl", // index 11 lower-seat-lift
+};
+export type valveMpItemNameEnum = (typeof valveMpItemNameEnum)[keyof typeof valveMpItemNameEnum];
 
 export const ItemClickableNameEnum = {
 	V1b1: "v1b1", // index 0
@@ -112,6 +133,21 @@ export const ItemClickableNameEnum = {
 };
 export type ItemClickableNameEnum =
 	(typeof ItemClickableNameEnum)[keyof typeof ItemClickableNameEnum];
+export const valveMpItemClickableNameEnum = {
+	V1b1: "v1b1", // index 0
+	V1b2: "v1b2", // index 1
+	V1b3: "v1b3", // index 2
+	V1b4: "v1b4", // index 3
+	V2b1: "v2b1", // index 4
+	V2b2: "v2b2", // index 5
+	V2b3: "v2b3", // index 6
+	V2b4: "v2b4", // index 7
+	V2: "v2", // index 8
+	V1: "v1", // index 9
+};
+export type valveMpItemClickableNameEnum =
+	(typeof valveMpItemClickableNameEnum)[keyof typeof valveMpItemClickableNameEnum];
+
 export const ItemPositionEnum = {
 	v1b1: "v1b1",
 	v1b2: "v1b2",

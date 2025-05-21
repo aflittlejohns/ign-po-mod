@@ -1,0 +1,19 @@
+.gridItemClickable {
+    display: grid;
+	height: 40cqmax;
+	width: 40cqmax;
+    container-type: inline-size;
+    grid-template-columns: 15fr minmax(0,1fr) minmax(0,3fr) minmax(0,2fr) minmax(0,3fr) minmax(0,1fr) minmax(0,3fr) minmax(0,2fr) minmax(0,3fr) minmax(0,1fr) 15fr;
+    grid-template-rows: 15fr minmax(0,1fr) minmax(0,3fr) minmax(0,2fr) minmax(0,3fr) minmax(0,1fr) minmax(0,3fr) minmax(0,2fr) minmax(0,3fr) minmax(0,1fr) 15fr;
+}
+
+.configLabel{
+	grid-area: 3/1/4/2;
+	font-size: 5cqi;
+	text-align: center;
+}
+
+
+.v2body {
+	grid-area: 7/5/8/6;
+}

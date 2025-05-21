@@ -1,9 +1,9 @@
 // import React from 'react'
 import { DevEnvCompound } from "./DevEnvCompound";
 import SimInterfaceForm from "../simInterface/SimInterfaceForm";
-import ValveConfigAid from "../valve-config-aid/ValveConfigAid";
+import ValveConfigAid from "../valvemp-config-aid/ValveConfigAid";
 import { useValveReducer } from "../../api/hooks";
-import { ValveFCCompound } from "../valve/ValveFC";
+// import './dev-env.module.css'
 
 
 

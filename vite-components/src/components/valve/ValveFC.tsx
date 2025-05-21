@@ -9,6 +9,7 @@ import Item from '../item/item'
 import { useCreateContext } from '../../utils/createContext'
 import {VALVE_COMPONENT_TYPE
 } from '../../api/types'
+// import './valve.module.css'
 // import {valveStatus} from '../../api/initialState'
 const COMPONENT_TYPE = VALVE_COMPONENT_TYPE;
 
