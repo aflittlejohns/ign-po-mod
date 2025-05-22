@@ -1,6 +1,5 @@
 import * as React from "react";
-import { type ReactNode } from "react";
-import type { DraggableItem, DraggableProps, itemNameProps, ValveProps } from "../../api/types";
+import type { DraggableItem, DraggableProps, ValveCompoundContextType, ValveCompoundRootProps } from "../../api/types";
 import {v4 as uuid} from 'uuid';
 import { getValveMpItemClassName, valveMpItemNames } from "../../api/utils";
 import Item from "../item/item";
@@ -21,24 +20,12 @@ const COMPONENT_TYPE = VALVE_COMPONENT_TYPE;
 
 // import {valveStatus} from './initialState'
 
-type ValveCompoundProps = {
-	valveProps: ValveProps;
-	// onActionPerformed: ()=> void
-	openPopup: (e: React.MouseEvent<HTMLDivElement>) => void;
-	closePopup: (id: UniqueIdentifier) => void;
-	draggables: DraggableItem[];
-	setDraggables: React.Dispatch<DraggableItem[]>;
-	componentItemNames: itemNameProps[];
-	dropPosition: {x: number, y: number};
-	setDropPosition: (prev:{x: number, y: number}) => void;
-	useDraggable: (prev: UseDraggableArguments)=> void;
-	children: ReactNode;
-};
 
-const [ValveContextProvider, useValveContext] =
-useCreateContext<ValveCompoundProps>("ValveCompound");
 
-const Root = ({ valveProps, children }: ValveCompoundProps) => {
+export const [ValveContextProvider, useValveContext] =
+useCreateContext<ValveCompoundContextType>("ValveCompound");
+
+const Root = ({ valveProps, children }: ValveCompoundRootProps) => {
 	const [draggables, setDraggables] = React.useState<DraggableItem[]>([]);
 	const [dropPosition, setDropPosition] = React.useState({ x:0, y: 0 });
 	const eventsEnabled = true;
@@ -63,6 +50,7 @@ const Root = ({ valveProps, children }: ValveCompoundProps) => {
 		console.log(`Closing popup with id: ${id}`);
 		setDraggables((prev)=> prev.filter((draggable)=> draggable.id !== id))
 	};
+	const useDraggableItem = (args: UseDraggableArguments) => useDraggable(args);
 
 	return (
 		<ValveContextProvider
@@ -76,7 +64,7 @@ const Root = ({ valveProps, children }: ValveCompoundProps) => {
 				componentItemNames,
 				dropPosition,
 				setDropPosition,
-				useDraggable,
+				useDraggableItem,
 			}}
 		>
 			{children}
@@ -163,7 +151,7 @@ const valve = () => {
 		);
 	}
 };
-const draggableContext = (children: ReactNode) => {
+const draggableContext = ({children}:{children: React.ReactNode}) => {
 	return (
 		<DndContext >
 			{createPortal(
@@ -178,16 +166,15 @@ const draggableContext = (children: ReactNode) => {
 };
 export function draggable({
 	id,
+	left,
+	top,
 	onClose,
-	left = 0,
-	top = 0,
-	children,
-	className='draggable'
+children,
 }:DraggableProps) {
 	// const id = useRef(uuidv4()).current;
-	const {dropPosition, setDropPosition, useDraggable} = useValveContext("draggable");
+	const {dropPosition, setDropPosition, useDraggableItem, } = useValveContext("draggable");
 	const { attributes, listeners, setNodeRef, transform, setActivatorNodeRef } =
-		useDraggable({
+		useDraggableItem({
 			id: id,
 		});
 	setDropPosition({...dropPosition,x: left, y: top})
@@ -205,10 +192,10 @@ export function draggable({
 	function handleDragEnd(event: DragEndEvent) {
 		const { delta, active } = event;
 		if (active.id === id) {
-			setDropPosition((prev: {x:number, y: number}) => ({
-				x: prev.x + delta.x,
-				y: prev.y + delta.y,
-			}));
+			setDropPosition({...dropPosition,
+				x: dropPosition.x + delta.x,
+				y: dropPosition.y + delta.y,
+			});
 		}
 		if (!delta) return;
 	}
@@ -228,7 +215,7 @@ export function draggable({
 		<>
 			<div
 				ref={setNodeRef}
-				className={className}
+				className={`draggable`}
 				id={String(id)}
 				style={style}
 

@@ -1,0 +1,48 @@
+@import "./header.css";
+@import "./status.css";
+@import "./control.css";
+@import "./extd-params.css";
+
+/* @import "./footer.css"; */
+
+:root{
+	--_header-height: minmax(30px,1fr);
+	--_status-height: fit-content;
+	--_control-height: minmax(60px,4fr);
+	--_footer-height: minmax(30px,1fr);
+
+	/* Colors for lif-symbolComponents */
+}
+.lif-faceplate-container{
+	container-type: inline-size;
+}
+.lif-valve-faceplate{
+    display: grid;
+	height: var(--_header-height) + var(--_status-height) + 30px + var(--_control-height) + var(--_footer-height);
+	width: 200px;
+    container-type: inline-size;
+	gap: 0.2cqmax;
+	/* border: 2px solid var(--neutral-50); */
+    grid-template-columns: minmax(0,1fr) minmax(0,20fr) minmax(0,2fr) minmax(0,1fr);
+    grid-template-rows: 30px auto auto 30px;
+	border-radius: 10px;
+	background-color: var(--monokia-20, var(--neutral-10));
+	box-shadow: 5px 5px 15px 5px var(--neutral-30);
+}
+
+
+.lif-valve-faceplate .lif-valve-faceplate__footer{
+	grid-column: 2 / span 2;
+	grid-row: 4;
+	display: grid;
+	grid-template-columns: minmax(60px,9fr) minmax(10px,1fr);
+	grid-auto-rows: minmax(40px,0.1fr);
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 0.5rem;
+	background-color: var(--neutral-10);
+	color: var(--neutral-90);
+	font-size: 1.5rem;
+	font-weight: bold;
+	border-bottom: 1px solid var(--neutral-70);
+}

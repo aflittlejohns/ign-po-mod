@@ -1,4 +1,5 @@
-import type { UniqueIdentifier } from "@dnd-kit/core";
+import type { UniqueIdentifier, useDraggable, UseDraggableArguments } from "@dnd-kit/core";
+import type { ReactNode } from "react";
 
 
 
@@ -25,6 +26,24 @@ export type DevEnvCompoundContextType ={
 export type EditDevEnvCompoundProps ={
 	useReducer: UseValveReducer
 	children: React.ReactNode;
+}
+export type ValveCompoundContextType = {
+	valveProps: ValveProps;
+	// onActionPerformed: ()=> void
+	openPopup: (e: React.MouseEvent<HTMLDivElement>) => void;
+	closePopup: (id: UniqueIdentifier) => void;
+	draggables: DraggableItem[];
+	setDraggables: React.Dispatch<DraggableItem[]>;
+	componentItemNames: itemNameProps[];
+	dropPosition: {x: number, y: number};
+	setDropPosition: (prev:{x: number, y: number}) => void;
+	useDraggableItem: (args: UseDraggableArguments) => ReturnType<typeof useDraggable>;
+	children: ReactNode;
+};
+export type ValveCompoundRootProps = {
+	valveProps: ValveProps;
+	children: ReactNode;
+
 }
 /**
  * Define the shape of the ValveAction type

@@ -1,0 +1,44 @@
+.lif-valve-faceplate .lif-valve-faceplate__extd-params {
+	display: grid;
+	grid-template-columns: minmax(40px,5fr) minmax(36px,2fr) minmax(18px,1fr);
+	grid-auto-rows: minmax(20px,1fr);
+	align-items: center;
+	background-color: var(--lif-fp-status-bg-color);
+	color: var(--lif-fp-status-font-color);
+	font-size: 0.75rem;
+}
+.lif-valve-faceplate__extd-params__item{
+	display: grid;
+	grid-template-columns: subgrid;
+	grid-template-rows: minmax(16px,0.5cqh);
+	grid-column: 1 / 4;
+	 & button.hidden { /* Hide the button as used to disable event behaviour*/
+		display: none;
+	}
+}
+.lif-valve-faceplate__extd-params__item--header{
+	grid-column: 1 / 3;
+	font-weight: bold;
+	align-self: center;
+}
+.lif-valve-faceplate__extd-params__item-label{
+	grid-column: 1 / 3;
+	align-self: center;
+	display: grid;
+	grid-template-columns: subgrid;
+
+}
+
+.lif-valve-faceplate__extd-params__item-input{
+	grid-column: 2 / 3;
+	align-self: center;
+	border: none;
+	text-align: end ;
+	background-color: transparent;
+}
+.lif-valve-faceplate__extd-params__item-eu{
+	grid-column: 3 / 4;
+	align-self: center;
+}
+
+
