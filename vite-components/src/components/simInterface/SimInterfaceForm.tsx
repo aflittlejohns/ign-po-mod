@@ -236,7 +236,10 @@ function SimInterfaceForm() {
 						<ValveMpCompound.Root
 					// componentProps={props}
 					valveProps={{ValveStatus: state}}
-					onActionPerformed={handleOnActionPerformed}
+					openPopup={handleOnActionPerformed}
+					closePopup={()=> {} }
+					draggables={[]}
+					setDraggables={()=>{}}
 				>
 					<ValveMpCompound.valve />
 				</ValveMpCompound.Root>

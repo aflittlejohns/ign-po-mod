@@ -1,3 +1,7 @@
+import type { UniqueIdentifier } from "@dnd-kit/core";
+
+
+
 export const VALVE_COMPONENT_TYPE = "hmi.process_objects.Valve";
 
 export type ValveState = {
@@ -185,3 +189,27 @@ export type ItemData = {
 	value: string;
 	props: ValveState;
 };
+/**
+ * draggable component types
+ */
+export type DraggableItem = {
+	id: UniqueIdentifier;
+	left: number;
+	top: number;
+}
+
+export type DraggableProps = {
+	id: UniqueIdentifier,
+	onClose: (id: UniqueIdentifier)=> void,
+	element?: keyof HTMLElement,
+	left: number;
+	top : number;
+	children: React.ReactNode;
+	className: string;
+}
+export type itemNameProps = {
+			key: string,
+			name: [string,string],
+			value: string,
+			index: number,
+}

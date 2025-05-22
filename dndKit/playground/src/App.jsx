@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {createPortal} from 'react-dom'
-import { DndContext, useDroppable } from "@dnd-kit/core";
+import { DndContext } from "@dnd-kit/core";
 import { Draggable } from "./components/Draggable";
 // import { useDroppable } from "./components/Droppable";
 import { DraggablePopup } from "./components/DraggablePopup";

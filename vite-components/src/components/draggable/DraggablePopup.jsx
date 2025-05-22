@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { useDraggable, useDndMonitor, DragOverlay } from '@dnd-kit/core';
+import { useDraggable, useDndMonitor } from '@dnd-kit/core';
 // import { CSS } from '@dnd-kit/utilities';
 
 export function DraggablePopup(props) {
