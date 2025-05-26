@@ -1,82 +1,132 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
-	"$defs":{
-		"parameterlist_label":{
+	"$defs": {
+		"parameter_label": {
 			"description": "Parameter Label properties",
 			"type": "object",
 			"properties": {
-				"text":{
+				"text": {
 					"type": "string",
 					"description": "Parameter label text",
 					"default": ""
 				},
-				"className":{
+				"className": {
 					"type": "string",
 					"description": "Parameter label CSS class name(s)",
 					"default": ""
 				},
-				"tooltipText":{
+				"tooltipText": {
 					"type": "string",
 					"description": "Parameter label tooltip text",
 					"default": "description of parameter"
 				}
 			},
-			"required":["text"]
-		}
-	},
-
-
-
-	"properties": {
-		"ValveStatus": {
+			"required": ["text"]
+		},
+		"parameter_input": {
+			"description": "Parameter Input properties",
 			"type": "object",
 			"properties": {
-				"TagName": {
+				"type": {
 					"type": "string",
-					"default": "\"\"",
-					"description": "Name of the valve"
+					"description": "html input type",
+					"enum": [
+						"text",
+						"date",
+						"datetime-local",
+						"file",
+						"month",
+						"week",
+						"url",
+						"hidden"
+					]
 				},
-				"ActivatedConfig": {
+				"inputmode": {
+					"type": "string",
+					"description": "html input inputmode",
+					"enum": [
+						"none",
+						"text",
+						"decimal",
+						"numeric",
+						"tel",
+						"search",
+						"email",
+						"url"
+					]
+				},
+				"placeholder": {
+					"type": "string",
+					"description": "Placeholder text. If not set, the UI should use a default based on inputmode (e.g., 'Enter text' for 'text', 'Enter number' for 'numeric', etc.)",
+					"default": ""
+				},
+				"editable": {
+					"type": "boolean",
+					"description": "Enable editable value if true",
+					"default": false,
+					"enum": [true, false]
+				},
+				"pattern": {
+					"type": "string",
+					"description": "Regex expression which the input's value must match for the value to pass constraint validation.",
+					"enum": ["[0-9]{1,5}", "[0-9]{1,5}.[0-9]{1,2}"]
+				},
+				"min": {
 					"type": "number",
-					"default": 12,
-					"description": "Activated configuration"
+					"description": "Minimun Value.",
+					"default": 0
 				},
-				"DeactivatedConfig": {
+				"max": {
 					"type": "number",
-					"default": 12,
-					"description": "De-activated configuration"
+					"description": "Maximun Value.",
+					"default": 150
 				},
-				"Alarm": {
-					"type": "boolean",
-					"default": false,
-					"description": "Alarm status"
+				"decimalPlaces": {
+					"type": "number",
+					"description": "Decimal places.",
+					"default": 1
 				},
-				"ActFB": {
-					"type": "boolean",
-					"default": false,
-					"description": "Activated feedback"
+				"eu": {
+					"type": "string",
+					"description": "Engineering Unit.",
+					"examples": [
+						"\u00B0C",
+						"\u00B5S",
+						"\u006DS",
+						"l/hr",
+						"Secs",
+						"\u006DSecs",
+						""
+					]
 				},
-				"DeActFB": {
-					"type": "boolean",
-					"default": false,
-					"description": "De-activated feedback"
+				"value": {
+					"type": ["string , number"],
+					"description": "Parameter value."
+				}
+			},
+			"required": ["text"]
+		},
+		"parameter": {
+			"description": "A typical parameter",
+			"type": "object",
+			"properties": {
+				"label": {
+					"type": "object",
+					"$ref": "#/$defs/parameter_label"
 				},
-				"Manual": {
-					"type": "boolean",
-					"default": false,
-					"description": "Manual mode"
-				},
-				"Masked": {
-					"type": "boolean",
-					"default": false,
-					"description": "Masked"
-				},
-				"Changing": {
-					"type": "boolean",
-					"default": false,
-					"description": "Changing"
+				"input": {
+					"type": "object",
+					"$ref": "#/$defs/parameter_input"
 				}
 			}
+		}
+	},
+	"properties": {
+		"parameters": {
+			"type": "array",
+			"description": "Array of parameters",
+			"default": [],
+			"ref": "#/defs/parameter"
 		},
 		"style": {
 			"$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
