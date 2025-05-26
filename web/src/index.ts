@@ -2,16 +2,22 @@ import { ComponentMeta, ComponentRegistry } from '@inductiveautomation/perspecti
 //import { Button, ButtonMeta } from './components/Button';
 //import { Valve, ValveMeta } from "./components/Valve";
 import { Valve, ValveMeta } from './components/Valve';
-
+import { ParameterListComponent, ParameterListComponentMeta} from './components/ParameterList'
 
 // Export components for external reference
-export {  Valve };
+export {
+	Valve ,
+	ParameterListComponent,
+	};
 
 // Import component styles
 import './index.css';
 
 // Array of component metadata
-const components: Array<ComponentMeta> = [ new ValveMeta()];
+const components: Array<ComponentMeta> = [
+	new ValveMeta(),
+	new ParameterListComponentMeta(),
+];
 
 // Register each component with the Perspective ComponentRegistry
 components.forEach((c: ComponentMeta) => ComponentRegistry.register(c));
