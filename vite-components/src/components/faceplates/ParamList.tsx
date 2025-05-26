@@ -1,5 +1,5 @@
 
-import {ParamCompound, ParamItem} from './ParamsCompound';
+import {ParamCompound, type ParamItem} from './ParamsCompound';
 
 type ParamListProps = {
 	paramItemList: ParamItem [];
@@ -9,9 +9,9 @@ export const ParamList: React.FC<ParamListProps> = ({paramItemList}) => {
 		<ul className="definition-list">
 		{paramItemList.map((paramItem, index) => {
 		return (
-			<ParamCompound.Root key={index} paramItem={paramItem}>
+			<ParamCompound.Root key={index} paramItems={paramItem}>
 			<li className="field small error">
-				<ParamCompound.Param />
+				<ParamCompound.Param index={index}/>
 			</li>
 			</ParamCompound.Root>
 			);

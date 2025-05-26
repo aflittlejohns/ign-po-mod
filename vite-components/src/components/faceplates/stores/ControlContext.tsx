@@ -1,6 +1,6 @@
 import React, { createContext,useReducer, useContext } from "react";
-import controlsReducer, { initialControlState, Store } from "../controlReducer";
-import { Commands_LowerSeat, Commands_Main, Commands_UpperSeat } from "../types/commands";
+import controlsReducer, { initialControlState,type Store } from "../controlReducer";
+import type { Commands_LowerSeat, Commands_Main, Commands_UpperSeat } from "../types/commands";
 
 export interface ControlContextProps {
   state: Store;

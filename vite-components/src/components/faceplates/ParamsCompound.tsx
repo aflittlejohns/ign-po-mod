@@ -75,22 +75,23 @@ const Root: React.FC<EditParamInputComponentProps> = ({children}) => {
 
 	return (
 		<EditParamInputContextProvider
-		// {...{
-		// 		paramItems,
-		// 		reducer: (paramItems: any, index: number) => {
-		// 			dispatch({
-		// 				type: "UPDATE_PARAM_ITEM",
-		// 				payload: { paramItems, index },
-		// 			});
-		// 		}
-		// 	}}
-		value={{paramItems: paramItems, reducer: dispatch}}
+		{...{
+				paramItems,
+				reducer: (paramItems: any, index: number) => {
+					dispatch({
+						type: "UPDATE_PARAM_ITEM",
+						payload: { paramItems, index },
+					});
+				}
+			}}
+
 			>
 			{children}
 		</EditParamInputContextProvider>
 	);
 };
-const Param = (index:number) => {
+type ParamProps = {index: number}
+const Param = ({index}: ParamProps) => {
 	const { paramItems  } = useEditParamInputContext("Params");
 
 

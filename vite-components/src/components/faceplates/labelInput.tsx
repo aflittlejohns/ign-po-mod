@@ -1,5 +1,5 @@
 import * as React from "react";
-import { tExtdParam, tExtdParamsProps } from "./types/extdparams";
+// import type { tExtdParam, tExtdParamsProps } from "./types/extdparams";
 
 /**
  * Represents a label input item.

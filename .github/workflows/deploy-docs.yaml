@@ -31,6 +31,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Check if last commit merged docs branch
+        id: check_merge
+        run: |
+          # Get the last merge commit message
+          LAST_COMMIT_MSG=$(git log -1 --pretty=%B)
+          echo "Last commit message: $LAST_COMMIT_MSG"
+          # Check if it merged 'docs' branch
+          if [[ "$LAST_COMMIT_MSG" == *"Merge branch 'docs'"* ]] || [[ "$LAST_COMMIT_MSG" == *"Merge pull request"* && "$LAST_COMMIT_MSG" == *"docs"* ]]; then
+            echo "docs_merge=true" >> $GITHUB_OUTPUT
+          else
+            echo "docs_merge=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run only on docs->main merge
+        if: steps.check_merge.outputs.docs_merge == 'true'
+        run: |
+          echo "This job runs only when docs branch was merged into main."
 
       - name: Setup Node.js
         uses: actions/setup-node@v4

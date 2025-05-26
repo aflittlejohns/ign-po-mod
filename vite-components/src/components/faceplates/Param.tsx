@@ -1,5 +1,5 @@
 
-import {ParamCompound, ParamItem} from './ParamsCompound';
+import {ParamCompound, type ParamItem} from './ParamsCompound';
 
 type ParamProps = {
 	paramItem: ParamItem;
@@ -7,7 +7,7 @@ type ParamProps = {
 export const Param: React.FC<ParamProps> = ({paramItem}) => {
 	const { label, input } = paramItem;
 	return (
-		<ParamCompound.Root paramItem={paramItem}>
+		<ParamCompound.Root paramItems={paramItem}>
 		<label className="field small error">
 
 			<span className="label">{label.text}</span>

@@ -1,4 +1,4 @@
-import {
+import type {
 	Commands_Main,
 	Commands_UpperSeat,
 	Commands_LowerSeat,

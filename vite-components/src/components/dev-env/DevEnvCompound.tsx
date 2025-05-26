@@ -4,18 +4,20 @@ import type {
 	EditDevEnvCompoundProps,
 } from "../../api/types";
 import { useCreateContext } from '../../utils/createContext';
+// import { ValveContextProvider } from "../valve-mp/ValveMp";
 // import type { UseValveReducer } from "../../api/types";
 
 
 export const [EditDevEnvContextProvider, useEditDevEnvContext] =
 	useCreateContext<DevEnvCompoundContextType>("EditDevEnv");
 
-function Root({ children, useReducer }: EditDevEnvCompoundProps) {
+function Root({ children, useReducer, componentContext }: EditDevEnvCompoundProps) {
 
 	return(
 		<EditDevEnvContextProvider
 		{...{
-			useReducer
+			useReducer,
+			componentContext
 		}}
 		>
 			{children}

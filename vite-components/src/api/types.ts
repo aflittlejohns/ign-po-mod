@@ -20,11 +20,13 @@ export type ValveState = {
 	locate: boolean;
 };
 export type DevEnvCompoundContextType ={
-	useReducer: UseValveReducer
+	useReducer: UseValveReducer;
+	componentContext: ValveCompoundContextType
 }
 
 export type EditDevEnvCompoundProps ={
-	useReducer: UseValveReducer
+	useReducer: UseValveReducer;
+	componentContext: ValveCompoundContextType;
 	children: React.ReactNode;
 }
 export type ValveCompoundContextType = {
@@ -36,12 +38,13 @@ export type ValveCompoundContextType = {
 	setDraggables: React.Dispatch<DraggableItem[]>;
 	componentItemNames: itemNameProps[];
 	dropPosition: {x: number, y: number};
-	setDropPosition: (prev:{x: number, y: number}) => void;
+	setDropPosition: React.Dispatch<React.SetStateAction<{x: number, y: number}>>;
 	useDraggableItem: (args: UseDraggableArguments) => ReturnType<typeof useDraggable>;
 	children: ReactNode;
 };
 export type ValveCompoundRootProps = {
 	valveProps: ValveProps;
+	popup?:ReactNode;
 	children: ReactNode;
 
 }

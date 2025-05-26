@@ -25,7 +25,7 @@ const COMPONENT_TYPE = VALVE_COMPONENT_TYPE;
 export const [ValveContextProvider, useValveContext] =
 useCreateContext<ValveCompoundContextType>("ValveCompound");
 
-const Root = ({ valveProps, children }: ValveCompoundRootProps) => {
+const Root = ({ valveProps,popup, children }: ValveCompoundRootProps) => {
 	const [draggables, setDraggables] = React.useState<DraggableItem[]>([]);
 	const [dropPosition, setDropPosition] = React.useState({ x:0, y: 0 });
 	const eventsEnabled = true;
@@ -53,6 +53,7 @@ const Root = ({ valveProps, children }: ValveCompoundRootProps) => {
 	const useDraggableItem = (args: UseDraggableArguments) => useDraggable(args);
 
 	return (
+		<DndContext>
 		<ValveContextProvider
 			{...{
 				valveProps,
@@ -69,16 +70,19 @@ const Root = ({ valveProps, children }: ValveCompoundRootProps) => {
 		>
 			{children}
 			{draggables.map((draggableItem)=>
-				ValveMpCompound.draggable({
-					id: draggableItem.id,
-					onClose: closePopup,
-					left: draggableItem.left,
-					top: draggableItem.top,
-					className:"draggable",
-					children: <div>Popup Content</div>,
-})
+				<ValveMpCompound.draggable
+					id={draggableItem.id}
+					onClose={closePopup}
+					left={draggableItem.left}
+					top={draggableItem.top}
+					className="draggable"
+					>
+					{popup}
+					</ValveMpCompound.draggable>
+
 			)}
 		</ValveContextProvider>
+		</DndContext>
 	);
 };
 const valve = () => {
@@ -100,7 +104,7 @@ const valve = () => {
 				data-component={COMPONENT_TYPE}
 				onClick={(e) => {openPopup(e)}}
 			>
-				<div className="hmi-component__row">
+			<div className="hmi-component__row">
 					<div className="hmi-component-valve__mp">
 						{componentItemNames.map(
 							({ value, index, key }) => (
@@ -177,7 +181,14 @@ children,
 		useDraggableItem({
 			id: id,
 		});
-	setDropPosition({...dropPosition,x: left, y: top})
+		React.useEffect(() => {
+		  setDropPosition((prev)=>({
+			...prev,
+			x: left,
+			y: top
+			}))
+		}, [left,top])
+
 
  const finalPosition = {
 	 x: dropPosition.x + (transform?.x || 0),

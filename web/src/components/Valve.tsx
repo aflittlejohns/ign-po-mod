@@ -17,7 +17,7 @@ import type {
 	,SizeObject
 } from '@inductiveautomation/perspective-client'//'@inductiveautomation/perspective-client';
 import { ValveFCCompound } from "./process-objects/valve/ValveFC";
-import { initialValveStatus } from "src/api/initialise";
+import { valveStatus } from "../api/initialState";
 // import { valveProps } from "./process-objects/valve/initialState";
 // import { ValveFCCompound } from "./process-objects/valve/ValveFC";
 
@@ -32,7 +32,7 @@ export class Valve extends Component<ComponentProps<ValveProps>, any> {
 
 	// This is a lifecycle method that is called when the component is first mounted to the DOM.
 	componentDidMount(): void {}
-	valveStatus: ValveState = this.props.props.ValveStatus || initialValveStatus;
+	valveStatus: ValveState = this.props.props.ValveStatus || valveStatus;
 
 		/**
 	 * Handler for the component's action event.
@@ -95,6 +95,8 @@ export class ValveMeta implements ComponentMeta {
 				manual: tree.readBoolean("ValveStatus.Manual", false),
 				masked: tree.readBoolean("ValveStatus.Masked", false),
 				changing: tree.readBoolean("ValveStatus.Changing", false),
+				locate: tree.readBoolean("ValveStatus.Locate", false),
+
 			},
 		};
 	}

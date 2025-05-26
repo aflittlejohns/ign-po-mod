@@ -2,7 +2,7 @@ import * as React from "react";
 // import EditNoteIcon from "@mui/icons-material/EditNote";
 import IconButton from "@mui/material/IconButton";
 import { NoteIcon } from  '../utils/icons';
-import { HeaderProps } from "./types/header";
+import type { HeaderProps } from "./types/header";
 
 
 

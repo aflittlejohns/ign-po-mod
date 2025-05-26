@@ -1,4 +1,4 @@
-import {ParamItem} from "../faceplates/ParamsCompound";
+import type {ParamItem} from "../faceplates/ParamsCompound";
 
 export function paramItemsReducer(state:ParamItem[], action: { type: string; payload?: any }) {
 	switch (action.type) {

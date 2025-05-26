@@ -8,7 +8,7 @@ import { COMPONENT_TYPE } from '../../Valve'
 import { getItemClassName, itemNames } from './utils'
 import Item from './item'
 import { useCreateContext } from 'src/utils/createContext'
-import { useValveReducer } from 'src/api/hooks'
+import { useValveReducer } from '../../../api/hooks'
 
 type ValveCompoundProps = {
 	componentProps:ComponentProps<any,any>,
@@ -41,11 +41,11 @@ const {valveProps, componentProps, onActionPerformed} = useValveContext("Valve")
 const {ValveStatus} = valveProps;
 const {position, emit} = componentProps;
 const inCoord = position?.x ?? false;
-// Memoize the handleClick function
+//Memoize the handleClick function
 // const handleClick = React.useCallback(()=>{
 // 	props.onActionPerformed();
 // },[props]);
-  // Memoize itemNames to prevent re-creation on every render
+ // Memoize itemNames to prevent re-creation on every render
   const memoizedItemNames = React.useMemo(() => itemNames, []);
 {console.log(`itemName ${memoizedItemNames}`)}
 if (!inCoord){

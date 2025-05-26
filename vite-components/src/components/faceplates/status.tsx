@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StatusProps } from "./types/status";
+import type { StatusProps } from "./types/status";
 
 const Status: React.FC<StatusProps> = ({ statusItems }): React.ReactElement => {
 	return (

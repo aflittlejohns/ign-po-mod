@@ -12,8 +12,8 @@ import {
 	// ControlProvider,
 	useControlContext,
 } from "./stores/ControlContext";
-// import { extdParamsProps } from "../utils/constants";
-// import ExtdParams from "./faceplates/extdParams";
+// import { extdParamsProps } from "./utils/constants";
+// import ExtdParams from "./extdParams";
 // import { ParamCompound, type ParamItem } from "./ParamsCompound";
 // import { Param } from "./Param";
 import { ParamList } from "./ParamList";

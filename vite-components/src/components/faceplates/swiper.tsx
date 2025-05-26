@@ -1,7 +1,7 @@
 import React  from "react";
 import ReactDOMServer from "react-dom/server";
 // Import Swiper React components
-import { Swiper, SwiperSlide, SwiperRef, SwiperProps } from "swiper/react";
+import { Swiper, SwiperSlide,type SwiperRef, type SwiperProps } from "swiper/react";
 //import {SwiperRef} from 'swiper/types';
 // import required modules
 import { Pagination } from "swiper/modules";

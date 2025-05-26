@@ -1,7 +1,5 @@
 import * as React from "react";
 import { useEditDevEnvContext } from "../dev-env/DevEnvCompound";
-import { useValveContext, ValveMpCompound } from "../valve-mp/ValveMp";
-import ValveFaceplate from "../ValveFaceplate";
 // import './sim-interface.module.css'
 
 export interface FormElements extends HTMLFormControlsCollection {
@@ -57,7 +55,6 @@ function SimInterfaceForm() {
 	// 	console.log("Valve onActionPerformed");
 	// };
 
-	const { draggables, closePopup } = useValveContext("sim-interface");
 	return (
 		<div className="sim-interface">
 			<form className="sim-interface--form" onSubmit={handleSubmit}>
@@ -237,24 +234,7 @@ function SimInterfaceForm() {
 				</div>
 			</form>
 
-			<ValveMpCompound.Root valveProps={{ ValveStatus: state }}>
-				<ValveMpCompound.draggableContext>
-					<ValveMpCompound.valve />
-					{draggables.map((draggable) => (
-						<ValveMpCompound.draggable
-							id={draggable.id}
-							className="draggable"
-							left={draggable.left}
-							top={draggable.top}
-							key={draggable.id}
-							onClose={closePopup}
-						>
-							<ValveFaceplate />
-						</ValveMpCompound.draggable>
-					))}
-					;
-				</ValveMpCompound.draggableContext>
-			</ValveMpCompound.Root>
+
 		</div>
 	);
 }
