@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-
+import type { ComponentProps } from "@inductiveautomation/perspective-client";
 
 
 
@@ -19,25 +19,20 @@ export type ValveState = {
 	changing: boolean;
 	locate: boolean;
 };
-export type DevEnvCompoundContextType ={
-	useReducer: UseValveReducer;
-	componentContext: ValveCompoundContextType
-}
 
-export type EditDevEnvCompoundProps ={
-	useReducer: UseValveReducer;
-	componentContext: ValveCompoundContextType;
-	children: React.ReactNode;
-}
+
+
 export type ValveCompoundContextType = {
+	componentProps:ComponentProps<any,any>,
 	valveProps: ValveProps;
 	onActionPerformed: ()=> void
+	children: ReactNode;
 };
 export type ValveCompoundRootProps = {
-	valveProps: ValveProps;
-	// popup?:ReactNode;
+	componentProps:ComponentProps<any,any>,
+	valveProps:ValveProps,
+	onActionPerformed: ()=> void
 	children: ReactNode;
-
 }
 /**
  * Define the shape of the ParameterAction type

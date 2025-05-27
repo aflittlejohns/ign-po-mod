@@ -16,7 +16,7 @@ import type {
 	,PComponent
 	,SizeObject
 } from '@inductiveautomation/perspective-client'//'@inductiveautomation/perspective-client';
-import { ValveFCCompound } from "./process-objects/valve/ValveFC";
+import { ValveMpCompound } from "./process-objects/valve-mp/ValveMp";
 import { valveStatus } from "../api/initialState";
 // import { valveProps } from "./process-objects/valve/initialState";
 // import { ValveFCCompound } from "./process-objects/valve/ValveFC";
@@ -50,13 +50,13 @@ export class Valve extends Component<ComponentProps<ValveProps>, any> {
 	render(){
 		return(
 			// <div>This is Valve</div>
-		<ValveFCCompound.Root
+		<ValveMpCompound.Root
 		componentProps={this.props}
 		valveProps={this.props.props}
 		onActionPerformed={this.onActionPerformed}
 		 >
-			  <ValveFCCompound.Valve />
-		 </ValveFCCompound.Root>
+			  <ValveMpCompound.valve />
+		 </ValveMpCompound.Root>
 	)
 }
 }

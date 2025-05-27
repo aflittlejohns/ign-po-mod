@@ -7,7 +7,7 @@ import type { ComponentProps } from '@inductiveautomation/perspective-client'
 import { COMPONENT_TYPE } from '../../Valve'
 import { getItemClassName, itemNames } from './utils'
 import Item from './item'
-import { useCreateContext } from 'src/utils/createContext'
+import { useCreateContext } from '../../../utils/createContext'
 import { useValveReducer } from '../../../api/hooks'
 
 type ValveCompoundProps = {

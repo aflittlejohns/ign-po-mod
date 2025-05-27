@@ -23,12 +23,12 @@ public class ParameterList {
 	public static String COMPONENT_ID = "hmi.input.ParameterList";
 
 	// Path to the thumbnail image for the component palette
-	private static final String THUMBNAIL_PATH = "/images/valve-icon.svg"; // TODO: Change this to a valve image
+	private static final String THUMBNAIL_PATH = "/images/input/parameter-list/thumbnails/base.png"; // TODO: Change this to a valve image
 	private static final int THUMBNAIL_WIDTH = 70;
 	private static final int THUMBNAIL_HEIGHT = 35;
 
 	// Path to the JSON schema defining the component's properties
-	private static final String PROPS_SCHEMA_PATH = "/props/process-object-valve.props.json";
+	private static final String PROPS_SCHEMA_PATH = "/props/input-parameter-list.props.json";
 
 	// Component metadata
 	private static final String COMPONENT_NAME = "ParameterList";

@@ -1,137 +1,81 @@
 {
-	"$schema": "http://json-schema.org/draft-07/schema#",
-	"$defs": {
-		"parameter_label": {
-			"description": "Parameter Label properties",
-			"type": "object",
-			"properties": {
-				"text": {
-					"type": "string",
-					"description": "Parameter label text",
-					"default": ""
-				},
-				"className": {
-					"type": "string",
-					"description": "Parameter label CSS class name(s)",
-					"default": ""
-				},
-				"tooltipText": {
-					"type": "string",
-					"description": "Parameter label tooltip text",
-					"default": "description of parameter"
-				}
-			},
-			"required": ["text"]
-		},
-		"parameter_input": {
-			"description": "Parameter Input properties",
-			"type": "object",
-			"properties": {
-				"type": {
-					"type": "string",
-					"description": "html input type",
-					"enum": [
-						"text",
-						"date",
-						"datetime-local",
-						"file",
-						"month",
-						"week",
-						"url",
-						"hidden"
-					]
-				},
-				"inputmode": {
-					"type": "string",
-					"description": "html input inputmode",
-					"enum": [
-						"none",
-						"text",
-						"decimal",
-						"numeric",
-						"tel",
-						"search",
-						"email",
-						"url"
-					]
-				},
-				"placeholder": {
-					"type": "string",
-					"description": "Placeholder text. If not set, the UI should use a default based on inputmode (e.g., 'Enter text' for 'text', 'Enter number' for 'numeric', etc.)",
-					"default": ""
-				},
-				"editable": {
-					"type": "boolean",
-					"description": "Enable editable value if true",
-					"default": false,
-					"enum": [true, false]
-				},
-				"pattern": {
-					"type": "string",
-					"description": "Regex expression which the input's value must match for the value to pass constraint validation.",
-					"enum": ["[0-9]{1,5}", "[0-9]{1,5}.[0-9]{1,2}"]
-				},
-				"min": {
-					"type": "number",
-					"description": "Minimun Value.",
-					"default": 0
-				},
-				"max": {
-					"type": "number",
-					"description": "Maximun Value.",
-					"default": 150
-				},
-				"decimalPlaces": {
-					"type": "number",
-					"description": "Decimal places.",
-					"default": 1
-				},
-				"eu": {
-					"type": "string",
-					"description": "Engineering Unit.",
-					"examples": [
-						"\u00B0C",
-						"\u00B5S",
-						"\u006DS",
-						"l/hr",
-						"Secs",
-						"\u006DSecs",
-						""
-					]
-				},
-				"value": {
-					"type": ["string , number"],
-					"description": "Parameter value."
-				}
-			},
-			"required": ["text"]
-		},
-		"parameter": {
-			"description": "A typical parameter",
-			"type": "object",
-			"properties": {
-				"label": {
-					"type": "object",
-					"$ref": "#/$defs/parameter_label"
-				},
-				"input": {
-					"type": "object",
-					"$ref": "#/$defs/parameter_input"
-				}
-			}
-		}
-	},
+	"type": "object",
 	"properties": {
 		"parameters": {
 			"type": "array",
-			"description": "Array of parameters",
+			"description": "A list of parameters",
 			"default": [],
-			"ref": "#/defs/parameter"
-		},
-		"style": {
-			"$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
-			"default": {
-				"classes": ""
+			"items": {
+				"type": "object",
+				"properties": {
+					"label": {
+						"type": "object",
+						"properties": {
+							"text": {
+								"type": "string"
+							},
+							"className": {
+								"type": "string"
+							},
+							"tooltipText": {
+								"type": "string"
+							},
+							"tooltipPosition": {
+								"type": "string"
+							},
+							"tooltipClassName": {
+								"type": "string"
+							},
+							"tooltipId": {
+								"type": "string"
+							}
+						},
+						"required": ["text"],
+						"additionalProperties": false
+					},
+					"input": {
+						"type": "object",
+						"properties": {
+							"type": {
+								"type": "string"
+							},
+							"inputmode": {
+								"type": "string"
+							},
+							"placeholder": {
+								"type": "string"
+							},
+							"editable": {
+								"type": "boolean"
+							},
+							"pattern": {
+								"type": "string"
+							},
+							"min": {
+								"type": "number"
+							},
+							"max": {
+								"type": "number"
+							},
+							"decimalPlaces": {
+								"type": "number"
+							},
+							"eu": {
+								"type": "string"
+							},
+							"value": {
+								"type": "number"
+							}
+						},
+						"required": [
+							"editable",
+							"value"
+						],
+						"additionalProperties": false
+					}
+				},
+				"required": ["label", "input"],
+				"additionalProperties": false
 			}
 		}
 	}
