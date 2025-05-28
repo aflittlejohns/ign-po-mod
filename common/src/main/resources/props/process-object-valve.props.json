@@ -4,57 +4,77 @@
 		"ValveStatus": {
 			"type": "object",
 			"properties": {
-				"TagName": {
+				"itemName": {
 					"type": "string",
 					"default": "\"\"",
 					"description": "Name of the valve"
 				},
-				"ActivatedConfig": {
+				"activatedConfig": {
 					"type": "number",
 					"default": 511,
 					"description": "Activated configuration"
 				},
-				"DeactivatedConfig": {
+				"deactivatedConfig": {
 					"type": "number",
-					"default": 511,
+					"default": 4095,
 					"description": "De-activated configuration"
 				},
-				"Alarm": {
+				"alarm": {
 					"type": "boolean",
 					"default": false,
 					"description": "Alarm status"
 				},
-				"ActFB": {
+				"actFB": {
 					"type": "boolean",
 					"default": false,
 					"description": "Activated feedback"
 				},
-				"DeActFB": {
+				"deActFB": {
 					"type": "boolean",
-					"default": false,
+					"default": true,
 					"description": "De-activated feedback"
 				},
-				"Manual": {
+				"usl": {
+					"type": "boolean",
+					"default": false,
+					"description": "Upper Seat Lift active"
+				},
+				"lsl": {
+					"type": "boolean",
+					"default": false,
+					"description": "Lower seat lift active"
+				},
+				"manual": {
 					"type": "boolean",
 					"default": false,
 					"description": "Manual mode"
 				},
-				"Masked": {
+				"masked": {
 					"type": "boolean",
 					"default": false,
 					"description": "Masked"
 				},
-				"Changing": {
-					"type": "boolean",
-					"default": false,
-					"description": "Changing"
-				}
+        "changing": {
+          "type": "boolean",
+          "default": false,
+          "description": "Changing"
+        },
+        "locate": {
+          "type": "boolean",
+          "default": false,
+          "description": "Locate Item"
+        }
 			}
 		},
+    "showItemId": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show Item Name Popover"
+    },
 		"style": {
-			"$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
+      "$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
 			"default": {
-				"classes": ""
+        "classes": ""
 			}
 		}
 	}

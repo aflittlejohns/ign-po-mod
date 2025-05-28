@@ -16,7 +16,7 @@
 		"@fiverr/afterbuild-webpack-plugin": "^1.0.0",
 		"@inductiveautomation/perspective-client": "2.1.44",
 		"@mui/icons-material": "^6.4.4",
-		"@mui/material": "^6.4.4",
+		"@mui/material": "^6.4.11",
 		"@types/uuid": "^10.0.0",
 		"axios": "^0.28.0",
 		"immer": "^10.1.1",

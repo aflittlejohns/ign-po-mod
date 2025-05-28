@@ -4,6 +4,7 @@ import { useValveReducer} from '../../../api/hooks'
 import { getValveMpItemClassName , valveMpItemNames} from "../../../api/utils";
 import Item from "../valve/item";
 import { useCreateContext } from '../../../utils/createContext';
+import Popover from '@mui/material/Popover';
 import { VALVE_COMPONENT_TYPE } from '../../../api/types';
 
 // import './valve-mp.module.css'
@@ -40,7 +41,11 @@ const valve = () => {
 	const {position, emit} = componentProps
 	const { ValveStatus } = valveProps;
 	const inCoord = position?.x ?? false;
-	const componentItemNames = valveMpItemNames
+	// if not locate, trim last item from valveMpItemNames
+	let componentItemNames = valveMpItemNames
+	if (!ValveStatus?.locate){
+		componentItemNames = componentItemNames.slice(0,-1)
+	}
 
 	if (!inCoord) {
 		return (

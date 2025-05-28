@@ -155,14 +155,21 @@ export const getValveMpItemClassName = (
 			className = "hide";
 		}
 	} else if (index === 10) {
+		console.log(
+			`index ${index} deact config ${DeactivatedConfigValue} bit is ${getBoolAtIndex(
+				DeactivatedConfigValue,
+				10
+			)}`
+		);
+
 		if (
-			getBoolAtIndex(ActivatedConfigValue, 8) ||
-			getBoolAtIndex(DeactivatedConfigValue, 8)
+			getBoolAtIndex(ActivatedConfigValue, 10) ||
+			getBoolAtIndex(DeactivatedConfigValue, 10)
 		) {
 			className = "show item";
 			if (valveStatus?.usl) {
 				className = className.replace("Activated", "") + " Activated";
-			}else{
+			} else {
 				className = className.replace("Deactivated", "") + " Deactivated";
 			}
 		} else {
@@ -170,17 +177,27 @@ export const getValveMpItemClassName = (
 		}
 	} else if (index === 11) {
 		if (
-			getBoolAtIndex(ActivatedConfigValue, 8) ||
-			getBoolAtIndex(DeactivatedConfigValue, 8)
+			getBoolAtIndex(ActivatedConfigValue, 11) ||
+			getBoolAtIndex(DeactivatedConfigValue, 11)
 		) {
 			className = "show item";
 			if (valveStatus?.lsl) {
 				className = className.replace("Activated", "") + " Activated";
-			}else{
+			} else {
 				className = className.replace("Deactivated", "") + " Deactivated";
 			}
 		} else {
 			className = "hide item";
+		}
+	} else if (index === 12) {
+		if (valveStatus?.locate) {
+			className = className.replace("show item", "") + " show item";
+			if(getBoolAtIndex(ActivatedConfigValue, 8) ||
+			getBoolAtIndex(DeactivatedConfigValue, 8)){
+				className = className.replace("show large item", "") + " show large item";
+			}
+		} else {
+			className = className.replace("hide item", "") + " hide item";
 		}
 	}
 	// Additions to the className
@@ -208,11 +225,8 @@ export const getValveMpItemClassName = (
 		if (valveStatus?.deActFB) {
 			className = className.replace("Deactivated", "") + " Deactivated";
 		}
-		if (valveStatus?.locate) {
-			className = className.replace("circle", "") + " circle";
-		}
 	}
-console.log(`className ${className}`);
+	console.log("index", index, className);
 
 	return className; // default return value if no other condition is met
 };

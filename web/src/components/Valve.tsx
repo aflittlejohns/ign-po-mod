@@ -75,8 +75,8 @@ export class ValveMeta implements ComponentMeta {
 
 	getDefaultSize(): SizeObject {
 		return {
-			width: 75,
-			height: 75,
+			width: 24,
+			height: 48,
 		};
 	}
 
@@ -96,8 +96,11 @@ export class ValveMeta implements ComponentMeta {
 				masked: tree.readBoolean("ValveStatus.Masked", false),
 				changing: tree.readBoolean("ValveStatus.Changing", false),
 				locate: tree.readBoolean("ValveStatus.Locate", false),
+				usl: tree.readBoolean("ValveStatus.usl", false),
+				lsl: tree.readBoolean("ValveStatus.lsl", false),
 
 			},
+			showItemId: tree.readBoolean("ItemId", false)
 		};
 	}
 }

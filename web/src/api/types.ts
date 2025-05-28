@@ -173,6 +173,7 @@ export const valveMpItemNameEnum = {
 	V1: "v1", // index 9
 	usl: "usl", // index 10 upper-seat-lift
 	lsl: "lsl", // index 11 lower-seat-lift
+	locate: "locate" // index 12 locate animation
 };
 export type valveMpItemNameEnum = (typeof valveMpItemNameEnum)[keyof typeof valveMpItemNameEnum];
 
@@ -239,6 +240,7 @@ export type ValveStateEnum =
 
 export type ValveProps = {
 	ValveStatus?: ValveState;
+	showItemId?: boolean;
 	handleClick?: () => void;
 };
 
