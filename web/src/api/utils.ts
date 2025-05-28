@@ -95,7 +95,7 @@ export const getItemClassName = (
 	// Additions to the className
 
 	if (className.includes("show") && !className.includes("item")) {
-		console.log("index", index, className);
+		// console.log("index", index, className);
 		if (valveStatus?.alarm) {
 			className = className.replace("AlarmState", "") + " AlarmState";
 		}
@@ -132,7 +132,7 @@ export const getValveMpItemClassName = (
 	// Handle the fact that ActivatedConfig and DeactivatedConfig are optional and maybe undefined
 	const ActivatedConfigValue = valveStatus?.activatedConfig ?? 0;
 	const DeactivatedConfigValue = valveStatus?.deactivatedConfig ?? 0;
-	console.log(valveStatus);
+	// console.log(valveStatus);
 
 	if (index < 8) {
 		if (
@@ -155,12 +155,12 @@ export const getValveMpItemClassName = (
 			className = "hide";
 		}
 	} else if (index === 10) {
-		console.log(
-			`index ${index} deact config ${DeactivatedConfigValue} bit is ${getBoolAtIndex(
-				DeactivatedConfigValue,
-				10
-			)}`
-		);
+		// console.log(
+		// 	`index ${index} deact config ${DeactivatedConfigValue} bit is ${getBoolAtIndex(
+		// 		DeactivatedConfigValue,
+		// 		10
+		// 	)}`
+		// );
 
 		if (
 			getBoolAtIndex(ActivatedConfigValue, 10) ||
@@ -203,7 +203,7 @@ export const getValveMpItemClassName = (
 	// Additions to the className
 
 	if (className.includes("show") && !className.includes("item")) {
-		console.log("index", index, className);
+		// console.log("index", index, className);
 		if (valveStatus?.alarm) {
 			className = className.replace("AlarmState", "") + " AlarmState";
 		}
@@ -226,7 +226,7 @@ export const getValveMpItemClassName = (
 			className = className.replace("Deactivated", "") + " Deactivated";
 		}
 	}
-	console.log("index", index, className);
+	// console.log("index", index, className);
 
 	return className; // default return value if no other condition is met
 };
@@ -234,7 +234,7 @@ export const getValveMpItemClassName = (
  * @returns Array of itemName(s) for each visual element of a valve component
  */
 export const itemNames = Object.entries(ItemNameEnum).map((key, index) => {
-	console.log(`In build ItemNames name ${key} index ${index}`);
+	// console.log(`In build ItemNames name ${key} index ${index}`);
 	return {
 		key: uuidv4(),
 		name: key,
@@ -244,7 +244,7 @@ export const itemNames = Object.entries(ItemNameEnum).map((key, index) => {
 });
 export const valveMpItemNames = Object.entries(valveMpItemNameEnum).map(
 	(key, index) => {
-		console.log(`In build ItemNames name ${key} index ${index}`);
+		// console.log(`In build ItemNames name ${key} index ${index}`);
 		return {
 			key: uuidv4(),
 			name: key,

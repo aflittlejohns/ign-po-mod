@@ -29,9 +29,17 @@ export const COMPONENT_TYPE = "hmi.process_objects.Valve";
  * Provides a customizable valve with proper handling of designer/preview modes.
  */
 export class Valve extends Component<ComponentProps<ValveProps>, any> {
+	valveRef: React.RefObject<HTMLDivElement>;
+
+	constructor(props: ComponentProps<ValveProps>) {
+		super(props);
+		this.valveRef = React.createRef<HTMLDivElement>();
+	}
 
 	// This is a lifecycle method that is called when the component is first mounted to the DOM.
-	componentDidMount(): void {}
+	componentDidMount(): void {
+		// No need to initialize valveRef here
+	}
 	valveStatus: ValveState = this.props.props.ValveStatus || valveStatus;
 
 		/**
@@ -56,6 +64,7 @@ export class Valve extends Component<ComponentProps<ValveProps>, any> {
 		onActionPerformed={this.onActionPerformed}
 		 >
 			  <ValveMpCompound.valve />
+			  <ValveMpCompound.popover anchorEl={this.valveRef.current} />
 		 </ValveMpCompound.Root>
 	)
 }
@@ -86,16 +95,16 @@ export class ValveMeta implements ComponentMeta {
 		console.log("ValveStatus", tree.read("ValveStatus"));
 		return {
 			ValveStatus: {
-				alarm: tree.readBoolean("ValveStatus.Alarm", false),
-				actFB: tree.readBoolean("ValveStatus.ActFB", false),
-				deActFB: tree.readBoolean("ValveStatus.DeActFB", false),
-				activatedConfig: tree.readNumber("ValveStatus.ActivatedConfig", 6),
-				deactivatedConfig: tree.readNumber("ValveStatus.DeactivatedConfig", 0),
-				tagName: tree.readString("ValveStatus.TagName", ""),
-				manual: tree.readBoolean("ValveStatus.Manual", false),
-				masked: tree.readBoolean("ValveStatus.Masked", false),
-				changing: tree.readBoolean("ValveStatus.Changing", false),
-				locate: tree.readBoolean("ValveStatus.Locate", false),
+				alarm: tree.readBoolean("ValveStatus.alarm", false),
+				actFB: tree.readBoolean("ValveStatus.actFB", false),
+				deActFB: tree.readBoolean("ValveStatus.deActFB", false),
+				activatedConfig: tree.readNumber("ValveStatus.activatedConfig", 6),
+				deactivatedConfig: tree.readNumber("ValveStatus.deactivatedConfig", 0),
+				itemName: tree.readString("ValveStatus.itemName", ""),
+				manual: tree.readBoolean("ValveStatus.manual", false),
+				masked: tree.readBoolean("ValveStatus.masked", false),
+				changing: tree.readBoolean("ValveStatus.changing", false),
+				locate: tree.readBoolean("ValveStatus.locate", false),
 				usl: tree.readBoolean("ValveStatus.usl", false),
 				lsl: tree.readBoolean("ValveStatus.lsl", false),
 

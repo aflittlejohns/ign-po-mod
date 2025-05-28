@@ -13,7 +13,7 @@ export type ValveState = {
 	lsl?: boolean;
 	activatedConfig: number;
 	deactivatedConfig: number;
-	tagName: string;
+	itemName: string;
 	manual: boolean;
 	masked: boolean;
 	changing: boolean;

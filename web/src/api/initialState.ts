@@ -13,7 +13,7 @@ export const valveStatus = {
 	deActFB: true,
 	activatedConfig: 7,
 	deactivatedConfig: 5,
-	tagName: "VXXX",
+	itemName: "VXXX",
 	manual: false,
 	masked: false,
 	changing: false,
