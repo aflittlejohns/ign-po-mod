@@ -10,7 +10,7 @@ import type {
 } from '@inductiveautomation/perspective-client';
 
 // import { useCreateContext } from "src/utils/createContext";
-import { ParamItem, UseParameterReducer } from "src/api/types";
+import { ParametersListState, ParamItem } from "src/api/types";
 // Types
 
 // type EditParamInputContextType = {
@@ -22,36 +22,57 @@ import { ParamItem, UseParameterReducer } from "src/api/types";
 // 	reducer: UseParameterReducer;
 // }
 
-type EditParamInputComponentProps = {
-	state: ParamItem[];
-	reducer: UseParameterReducer;
+type ParametersListComponentProps = {
+	parameters: ParamItem[]
 }
+const initParameters = [{
+	label:{
+		text: "text"
+	},
+	input: {
+		value: null,
+		placeholder: "Enter a Number"
+	}
+}]
+
 // const [EditParamInputContextProvider, useEditParamInputContext] =
 // useCreateContext<EditParamInputContextType>("EditParamInputContext");
 
 export const COMPONENT_TYPE = "hmi.input.ParameterList";
 
-export const ParameterListComponent = (props: ComponentProps<EditParamInputComponentProps>) => {
-		const { state, reducer } =  props.props;
-		state.map((param, index)=>{
-			const { label, input } = param;
-			const { updateValue} = reducer.reducer;
+export const ParameterListComponent = (props: ComponentProps<ParametersListComponentProps>) => {
+const transformedProps = React.useMemo(() => {
+	const { parameters} = props.props || initParameters
+	return parameters
+}, [props.props.parameters])
+
+		console.log(`transformedProps: label ${transformedProps[0].label.text}`);
+		return(
+			<>
+		{transformedProps.map((param: ParamItem, index: number)=>{
+			const { input} = param;
+			console.log(input.value);
+
 			return (
-				<label className="field">
-					<span className="label">{label.text}</span>
+				<label key={index}className="field">
+					<span className="label">Numeric</span>
 					<input type="text"
 					inputMode="numeric"
 					pattern="[0-9]*"
-					placeholder={input?.placeholder}
+					placeholder="Placeholder"
+					// value={input.value}
 					onChange={(e) => {
 						console.log(e);
-						updateValue(parseFloat(parseFloat(e.target.value).toFixed(2)), index);
+						props.store.props.write
+						// updateValue(parseFloat(parseFloat(e.target.value).toFixed(2)), index);
 					}}
 					/>
 				</label>
 					)
 
 		})
+	}</>
+		)
 
 };
 
@@ -67,8 +88,11 @@ return COMPONENT_TYPE
 		}
 	}
 
-	getPropsReducer(tree: PropertyTree): ParamItem[] {
-		return tree.read('parameters', [])
+	getPropsReducer(tree: PropertyTree): ParametersListState {
+		console.log("parameters", tree.read("parameters"));
+		return {
+			parameters:tree.read('parameters')
+		}
 	}
 
 	getViewComponent(): PComponent {

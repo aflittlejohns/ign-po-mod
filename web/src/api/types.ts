@@ -84,6 +84,9 @@ export type ParamItem = {
 	label: ParamLabel;
 	input: ParamInput;
 }
+export type ParametersListState = {
+	parameters: ParamItem[]
+}
 /**
  * Define the shape of the ValveAction type
  * @Useage useValveReducer
