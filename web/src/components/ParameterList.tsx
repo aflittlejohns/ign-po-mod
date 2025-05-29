@@ -48,7 +48,7 @@ const transformedProps = React.useMemo(() => {
 
 		console.log(`transformedProps: label ${transformedProps[0].label.text}`);
 		return(
-			<>
+			<div className="display-flex-column">
 		{transformedProps.map((param: ParamItem, index: number)=>{
 			const { input} = param;
 			console.log(input.value);
@@ -59,11 +59,14 @@ const transformedProps = React.useMemo(() => {
 					<input type="text"
 					inputMode="numeric"
 					pattern="[0-9]*"
-					placeholder="Placeholder"
+					placeholder=" "
 					// value={input.value}
 					onChange={(e) => {
-						console.log(e);
-						props.store.props.write
+						// console.log(`On change event ${e.currentTarget.value}`);
+						props.store.props.write(
+							`parameters[${index}].input.value`,
+							e.currentTarget.value
+						)
 						// updateValue(parseFloat(parseFloat(e.target.value).toFixed(2)), index);
 					}}
 					/>
@@ -71,7 +74,7 @@ const transformedProps = React.useMemo(() => {
 					)
 
 		})
-	}</>
+	}</div>
 		)
 
 };
