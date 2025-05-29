@@ -107,7 +107,7 @@ module.exports = {
 				]
 			},{ // added scss loader... afl 16 Feb '25
 				test:/\.scss$/,
-				use: ['style-loader','css-loader','sass-loader'],
+				use: ['style-loader','css-loader','sass-loader', 'postcss-loader'],
 			}
 		]
 	},

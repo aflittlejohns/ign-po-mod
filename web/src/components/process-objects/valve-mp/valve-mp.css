@@ -122,6 +122,7 @@ div.hmi-component {
 		--_locate-large-keyframe-height-step-50
 	);
 }
+
 .hmi-component-valve__mp .locate {
 	position: absolute;
 	top: var(--_locate-top);

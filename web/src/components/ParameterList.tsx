@@ -59,7 +59,7 @@ const transformedProps = React.useMemo(() => {
 					<input type="text"
 					inputMode="numeric"
 					pattern="[0-9]*"
-					placeholder=" "
+					placeholder="Placeholder"
 					// value={input.value}
 					onChange={(e) => {
 						// console.log(`On change event ${e.currentTarget.value}`);

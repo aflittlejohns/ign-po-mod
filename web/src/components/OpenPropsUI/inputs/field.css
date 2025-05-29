@@ -208,7 +208,8 @@
     }
 
     /* Label */
-    .label {
+    .label,
+	 .eu {
       align-self: center;
       background-color: var(--_bg-color);
       border-radius: var(--field-border-radius);
@@ -234,6 +235,7 @@
       }
     }
 
+
     /*
   * Label transitions
   * Triggered by:
@@ -245,21 +247,25 @@
     &:has(:where(input:not([type="color"]), textarea):not(:placeholder-shown)),
     &:has(option[value=""]:not(:checked)),
     &:has(option:checked:not([value=""])) {
-      .label {
+      .label, .eu {
         border-color: transparent;
         color: var(--_accent-color);
         font-size: 0.75rem;
         inline-size: max-content;
         letter-spacing: 0.15px;
         line-height: 1.15;
-        margin-block-start: -2.7rem;
+        margin-block-start: -2.2rem; /* Make Custom Variable  with .label*/
         margin-inline-start: var(--_field-padding-inline);
         padding-inline: 0.125rem;
       }
+	  .eu {
+		margin-inline-start: calc( 100% - 4ch);
+	  }
 
       /* Neutral label color reset */
       &:not(:focus-within):not(.error) {
-        .label {
+        .label,
+		.eu {
           color: var(--text-color-2);
         }
       }
