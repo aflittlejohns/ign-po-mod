@@ -1,10 +1,10 @@
 <svg id="svg8" version="1.1" viewBox="0 0 1600 3200" xmlns="http://www.w3.org/2000/svg">
- <rect id="rect2" x="38.255" y="36.978" width="1523.5" height="1561" style="fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:.86667;stroke-width:76.51;stroke:#8a8886"/>
- <rect id="rect869" x="38.255" y="1600.8" width="1523.5" height="1561" style="fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:.86667;stroke-width:76.509;stroke:#8a8886"/>
+ <rect id="rect2" x="38.255" y="36.978" width="1523.5" height="1561" style="fill:#dcdcdc;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:.86667;stroke-width:76.51;stroke:#8a8886"/>
+ <rect id="rect869" x="38.255" y="1600.8" width="1523.5" height="1561" style="fill:#dcdcdc;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:.86667;stroke-width:76.509;stroke:#8a8886"/>
  <rect id="rect929" x="333.83" y="33.827" width="932.35" height="252.35" style="fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:.86667;stroke-width:67.654;stroke:#8a8886"/>
  <rect id="rect931" x="333.83" y="2913.8" width="932.35" height="252.35" style="fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:.86667;stroke-width:67.654;stroke:#8a8886"/>
- <rect id="rect1376" transform="matrix(-.072916 .99734 -1 -.00060904 0 0)" x="2406.1" y="-1635.5" width=".076704" height="1320.3" style="fill:none;stroke-width:260.34;stroke:#404040"/>
- <rect id="rect859" transform="matrix(-.072916 .99734 -1 -.00060904 0 0)" x="801.92" y="-1518.5" width=".076704" height="1320.3" style="fill:none;stroke-width:260.34;stroke:#404040"/>
  <rect id="rect4" transform="rotate(269.99)" x="-1508.8" y="-2450.6" width="0" height="1380.8" style="fill:none;stroke-linejoin:round;stroke-miterlimit:0;stroke-width:255.49;stroke:#404040"/>
  <rect id="rect917" x="708.25" y="38.255" width="183.49" height="3123.5" style="fill:#404040;paint-order:normal;stroke-linejoin:round;stroke-miterlimit:40.4;stroke-width:76.509;stroke:#404040"/>
+ <rect id="rect346" x="38.255" y="708.25" width="1523.5" height="183.49" style="fill:#3d3d3d;stroke-linejoin:round;stroke-miterlimit:40.4;stroke-width:76.509;stroke:#404040"/>
+ <rect id="rect904" x="38.255" y="2308.3" width="1523.5" height="183.49" style="fill:#3d3d3d;stroke-linejoin:round;stroke-miterlimit:40.4;stroke-width:76.509;stroke:#404040"/>
 </svg>

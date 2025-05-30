@@ -12,13 +12,20 @@
 						"type": "object",
 						"properties": {
 							"text": {
-								"type": "string"
+								"description": "Parameter Description",
+								"type": "string",
+
+								"default": "text"
 							},
 							"className": {
-								"type": "string"
+								"type": "string",
+								"description": "A className for addition css styling [optional]",
+								"default": ""
 							},
 							"tooltipText": {
-								"type": "string"
+								"type": "string",
+								"description": "tooltip text",
+								"default": ""
 							},
 							"tooltipPosition": {
 								"type": "string"
@@ -37,40 +44,91 @@
 						"type": "object",
 						"properties": {
 							"type": {
-								"type": "string"
+								"type": "string",
+								"description": "HTML input element types, for numbers use text type with inputmode numeric",
+								"default": "text",
+								"enum": [
+									"button",
+									"text",
+									"checkbox",
+									"radio",
+									"date",
+									"datetime-local",
+									"time",
+									"week"
+								]
 							},
 							"inputmode": {
-								"type": "string"
+								"description": "HTML input element inputmode, for numbers use text type with inputmode numeric",
+								"default": "numeric",
+								"type": "string",
+								"enum": ["numeric", "text", "none"]
 							},
 							"placeholder": {
-								"type": "string"
+								"description": "If field is empty, suggest something to enter",
+								"default": "enter parameter value",
+								"type": "string",
+								"suggestion": ["enter number", "enter text"]
 							},
 							"editable": {
+								"description": "enabled when true",
+								"default": false,
 								"type": "boolean"
 							},
 							"pattern": {
-								"type": "string"
+								"description": "If field is empty, suggest something to enter",
+								"default": "^\\d+(\\.\\d{1,2})?$",
+								"type": "string",
+								"suggestions": ["[0-9]*", "^\\d+(\\.\\d{1,2})?$"]
 							},
 							"min": {
+								"description": "Minimum value, for input validation",
+                "default": 0,
 								"type": "number"
 							},
 							"max": {
+                "default": "^\\d+(\\.\\d{1,2})?$",
 								"type": "number"
 							},
 							"decimalPlaces": {
-								"type": "number"
+                "default": 0,
+                "type": "number"
 							},
 							"eu": {
-								"type": "string"
+                "description": "Engineering Unit of parameter",
+                "default": "",
+								"type": "string",
+								"suggestions": [
+                  "\u00B0C",
+									"\u00B0F",
+									"kg",
+									"g",
+									"mg",
+									"\u00B5g",
+									"L",
+									"mL",
+									"\u00B5L",
+									"m\u00B3",
+									"cm\u00B3",
+									"s",
+									"min",
+									"h",
+									"Pa",
+									"bar",
+									"%",
+									"\u00B5S",
+									"mS",
+									"ppm",
+									"ppb"
+								]
 							},
 							"value": {
-								"type": "number"
+                "description": "Value of parameter",
+                "default": null,
+                "type": "number"
 							}
 						},
-						"required": [
-							"editable",
-							"value"
-						],
+						"required": ["editable", "value"],
 						"additionalProperties": false
 					}
 				},
@@ -79,9 +137,9 @@
 			}
 		},
 		"style": {
-      "$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
+			"$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
 			"default": {
-        "classes": ""
+				"classes": ""
 			}
 		}
 	}

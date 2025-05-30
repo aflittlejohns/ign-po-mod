@@ -50,7 +50,7 @@ public class DesignerHook extends AbstractDesignerModuleHook {
   registry = pdi.getDesignerComponentRegistry();
 //#TODO: Change the following to match the new components
   // Each component must be registered, with an optional icon, to the component registry.
-  ComponentUtilities.registerComponentWithIcon(registry, Valve.DESCRIPTOR, "/images/valve-icon.svg");
+  ComponentUtilities.registerComponentWithIcon(registry, Valve.DESCRIPTOR, "/images/process-objects/valve-mp/valve-mp-icon.svg");
   ComponentUtilities.registerComponentWithIcon(registry, ParameterList.DESCRIPTOR, "/images/input/parameter-list/component.icon.svg");
   }
 
