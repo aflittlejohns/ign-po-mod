@@ -1,5 +1,6 @@
 import { getBoolAtIndex } from "../utils/numberUtil";
 import {
+	ItemIdPositionType,
 	ItemNameEnum,
 	valveMpItemNameEnum,
 	type ValveState,
@@ -253,3 +254,38 @@ export const valveMpItemNames = Object.entries(valveMpItemNameEnum).map(
 		};
 	}
 );
+export const getItemIdPositionClassName = (className: string, itemIdPosition: ItemIdPositionType):ItemIdPositionType => {
+	// Check className includes 'itemId popover', if not return className and warn
+	if (!className.includes('itemId popover')){
+		console.warn("Function getItemIdPositionClassName called when 'itemId popover' not in given className");
+		return className
+	}
+	// Over write given className
+	className = "itemId popover";
+	switch (itemIdPosition) {
+	case "left":
+		className = className.replace("position-left", "") + " position-left";
+		break;
+	case "right":
+		className = className.replace("position-right", "") + " position-right";
+		break;
+	case "top-left":
+		className = className.replace("position-top-left", "") + " position-top-left";
+		break;
+	case "top-right":
+		className = className.replace("position-top-right", "") + " position-top-right";
+		break;
+	case "bottom-left":
+		className = className.replace("position-bottom-left", "") + " position-bottom-left";
+		break;
+	case "bottom-right":
+		className = className.replace("position-bottom-right", "") + " position-bottom-right";
+		break;
+
+	default:
+		break;
+}
+
+	return className;
+}
+

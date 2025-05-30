@@ -4,7 +4,7 @@ import type {
 	ValveCompoundRootProps,
 } from "../../../api/types";
 import { useValveReducer } from "../../../api/hooks";
-import { getValveMpItemClassName, valveMpItemNames } from "../../../api/utils";
+import { getItemIdPositionClassName, getValveMpItemClassName, valveMpItemNames } from "../../../api/utils";
 import Item from "../valve/item";
 import { useCreateContext } from "../../../utils/createContext";
 import { VALVE_COMPONENT_TYPE } from "../../../api/types";
@@ -112,17 +112,17 @@ const valve = () => {
 };
 
 const popover = ({ anchorEl }: { anchorEl: HTMLDivElement | null }) => {
-    const { valveProps, componentProps } = useValveContext("Popover");
-    const { showItemId, ValveStatus } = valveProps;
+	const { valveProps, componentProps } = useValveContext("Popover");
+    const { showItemId,itemIdPosition, ValveStatus } = valveProps;
+	if (!showItemId) return null;
     const { position } = componentProps;
-console.log(`Position.x: ${position.x}`);
-console.log(`showItemId: ${showItemId}`);
-if (!showItemId) return null;
-console.log(`showItemId after if: ${showItemId}`);
-
+	let className = "itemId popover position-left";
+	if (itemIdPosition) {
+		className = getItemIdPositionClassName(className, itemIdPosition)
+	}
     return (
         <div
-			className={"itemId popover"}
+			className={className}
             style={{
                 top: position.y,
                 left: position.x,

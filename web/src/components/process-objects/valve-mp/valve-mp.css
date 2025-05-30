@@ -10,7 +10,7 @@
 	--lif-po-alarm-end-color: var(--neutral-20);
 	/* itemId Popover Positions */
 	--_itemid-popup-position-right:var(--itemid-popup-position-right, translate(35%,10%));
-	--_itemid-popup-position-left:var(--itemid-popup-position-right, translate(-100%,10%));
+	--_itemid-popup-position-left:var(--itemid-popup-position-left, translate(-100%,10%));
 	--_itemid-popup-position-top-right:var(--itemid-popup-position-top-right, translate(35%,-75%));
 	--_itemid-popup-position-top-left:var(--itemid-popup-position-top-left, translate(-100%,-75%));
 	--_itemid-popup-position-bottom-right:var(--itemid-popup-position-bottom-right, translate(35%,100%));
@@ -300,15 +300,36 @@ div.hmi-component {
 	}
 }
 
-.itemId.popover {
+
+:where(.itemId.popover) {
 	position: absolute;
 	visibility: visible;
-	transform: var(--_itemid-popup-position);
 	background: #fff;
 	border: 1px solid #ccc;
 	border-radius: 20%;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 	z-index: 1000;
+
+	&.position-left {
+		--_itemid-popup-position: var(--_itemid-popup-position-left);
+	}
+	&.position-right {
+		--_itemid-popup-position: var(--_itemid-popup-position-right);
+	}
+	&.position-top-left {
+		--_itemid-popup-position: var(--_itemid-popup-position-top-left);
+	}
+	&.position-top-right {
+		--_itemid-popup-position: var(--_itemid-popup-position-top-right);
+	}
+	&.position-bottom-left {
+		--_itemid-popup-position: var(--_itemid-popup-position-bottom-left);
+	}
+	&.position-bottom-right {
+		--_itemid-popup-position: var(--_itemid-popup-position-bottom-right);
+	}
+
+	transform: var(--_itemid-popup-position);
 }
 /* NDJH ValveTemplate - End
  */

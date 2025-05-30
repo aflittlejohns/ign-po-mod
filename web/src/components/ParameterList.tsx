@@ -10,7 +10,9 @@ import type {
 } from '@inductiveautomation/perspective-client';
 
 // import { useCreateContext } from "src/utils/createContext";
-import { ParametersListState, ParamItem } from "src/api/types";
+import { ParametersListState, ParamItem } from "../api/types";
+import { parameterInitialState } from "../api/initialState";
+
 // Types
 
 // type EditParamInputContextType = {
@@ -46,27 +48,33 @@ const transformedProps = React.useMemo(() => {
 	return parameters
 }, [props.props.parameters])
 
+
 		console.log(`transformedProps: label ${transformedProps[0].label.text}`);
 		return(
-			<div className="display-flex-column">
+			<div className="display-flex-column"
+			>
 		{transformedProps.map((param: ParamItem, index: number)=>{
-			const { input} = param;
+			const { label,input} = param;
 			console.log(input.value);
 
 			return (
-				<label key={index}className="field">
-					<span className="label">Numeric</span>
+				<label key={`${label.text}-parameter${index}`}className="field small">
+					<span className="label">{label.text}</span>
+					<span className="eu">{input.eu}</span>
 					<input type="text"
-					inputMode="numeric"
-					pattern="[0-9]*"
-					placeholder="Placeholder"
-					// value={input.value}
-					onChange={(e) => {
-						// console.log(`On change event ${e.currentTarget.value}`);
-						props.store.props.write(
-							`parameters[${index}].input.value`,
-							e.currentTarget.value
-						)
+					id={`${label.text}-parameter${index}`}
+					inputMode={input.inputmode}
+					pattern={input.pattern || "[0-9]*"}
+					placeholder={input.placeholder}
+					disabled={!input.editable}
+					value={input.value}
+					onChange={
+						(e) => {
+							// console.log(`On change event ${e.currentTarget.value}`);
+							props.store.props.write(
+								`parameters[${index}].input.value`,
+								e.currentTarget.value
+							)
 						// updateValue(parseFloat(parseFloat(e.target.value).toFixed(2)), index);
 					}}
 					/>
@@ -92,9 +100,8 @@ return COMPONENT_TYPE
 	}
 
 	getPropsReducer(tree: PropertyTree): ParametersListState {
-		console.log("parameters", tree.read("parameters"));
 		return {
-			parameters:tree.read('parameters')
+			parameters:tree.read ('parameters', parameterInitialState)
 		}
 	}
 

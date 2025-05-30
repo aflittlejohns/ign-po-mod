@@ -65,7 +65,7 @@ export type ParamLabel = {
 }
 export type ParamInput = {
 	type: string;
-	inputmode: string;
+	inputmode: 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search' | undefined;
 	placeholder: string;
 	editable: boolean;
 	pattern: string;
@@ -241,9 +241,21 @@ const ValveStateEnum = {
 export type ValveStateEnum =
 	(typeof ValveStateEnum)[keyof typeof ValveStateEnum];
 
+const itemIdPositions = [
+	'right',
+	'left',
+	'top-left',
+	'top-right',
+	'bottom-left',
+	'bottom-right'
+];
+
+export type ItemIdPositionType = typeof itemIdPositions[number];
+
 export type ValveProps = {
 	ValveStatus?: ValveState;
 	showItemId?: boolean;
+	itemIdPosition?:ItemIdPositionType;
 	handleClick?: () => void;
 };
 

@@ -39,13 +39,13 @@ export const parameterInitialState = [{
 		input: {
 			type: "text",
 			inputmode: "numeric",
-			placeholder: "",
+			placeholder: "Enter a number",
 			editable: true,
 			pattern: "^[0-9]*[.,]?[0-9]*$",
 			min: 0,
 			max: 100,
 			decimalPlaces: 2,
-			eu: "",
+			eu: "\u00B5C",
 			value: 0,
 		},
 	} as ParamItem ];

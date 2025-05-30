@@ -71,6 +71,18 @@
       "default": false,
       "description": "Show Item Name Popover"
     },
+    "itemIdPosition": {
+      "type": "string",
+      "enum": ["left"
+      , "right"
+      , "top-left"
+      , "top-right"
+      , "bottom-left"
+      , "bottom-right"
+    ],
+      "default": "top-left",
+      "description": "Position of itemId label, relative to item location"
+    },
 		"style": {
       "$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
 			"default": {

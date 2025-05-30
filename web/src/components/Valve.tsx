@@ -109,7 +109,8 @@ export class ValveMeta implements ComponentMeta {
 				lsl: tree.readBoolean("ValveStatus.lsl", false),
 
 			},
-			showItemId: tree.readBoolean("ItemId", false)
+			showItemId: tree.readBoolean("showItemId", false),
+			itemIdPosition: tree.readString("itemIdPosition", "top-left"),
 		};
 	}
 }
