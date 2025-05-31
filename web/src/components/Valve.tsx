@@ -21,7 +21,7 @@ import { valveStatus } from "../api/initialState";
 // import { valveProps } from "./process-objects/valve/initialState";
 // import { ValveFCCompound } from "./process-objects/valve/ValveFC";
 
-export const COMPONENT_TYPE = "hmi.process_objects.Valve";
+export const COMPONENT_TYPE = "hmi.process_objects.Valve_mp";
 
 /**
  * Valve component class.

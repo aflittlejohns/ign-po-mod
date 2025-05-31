@@ -20,10 +20,10 @@ import dev.aflittlejohns.perspective.hmi.common.utilities.ImageUtilities;
 public class Valve {
 
 	// Unique ID of the component, matching the ID in the JavaScript implementation
-	public static String COMPONENT_ID = "hmi.process_objects.Valve";
+	public static String COMPONENT_ID = "hmi.process_objects.Valve_mp";
 
 	// Path to the thumbnail image for the component palette
-	private static final String THUMBNAIL_PATH = "/images/process-objects/valve-mp/valveImage.png"; // TODO: Change this to a valve image
+	private static final String THUMBNAIL_PATH = "/images/process-objects/valve-mp/thumbnail/valveImage.png"; // TODO: Change this to a valve image
 	private static final int THUMBNAIL_WIDTH = 35;
 	private static final int THUMBNAIL_HEIGHT = 70;
 
@@ -31,9 +31,9 @@ public class Valve {
 	private static final String PROPS_SCHEMA_PATH = "/props/process-object-valve.props.json";
 
 	// Component metadata
-	private static final String COMPONENT_NAME = "Valve";
-	private static final String COMPONENT_DESCRIPTION = "Process Valve";
-	private static final String COMPONENT_DEFAULT_NAME = "process-valve";
+	private static final String COMPONENT_NAME = "Valve multi-port";
+	private static final String COMPONENT_DESCRIPTION = "A configurable Multi-port Process Valve with optional seat-lift";
+	private static final String COMPONENT_DEFAULT_NAME = "multi-port-process-valve";
 
 	/**
 	 * Descriptor for the onActionPerformed event of the component.
