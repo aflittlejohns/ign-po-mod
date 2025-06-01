@@ -8,6 +8,7 @@ import { getItemIdPositionClassName, getValveMpItemClassName, valveMpItemNames }
 import Item from "../valve/item";
 import { useCreateContext } from "../../../utils/createContext";
 import { VALVE_COMPONENT_TYPE } from "../../../api/types";
+import { processObjectProps } from "src/api/initialState";
 
 // import './valve-mp.module.css'
 // import {valveStatus} from '../../api/initialState'
@@ -42,11 +43,12 @@ const valve = () => {
 		useValveContext("Valve");
 		const valveRef = React.useRef<HTMLDivElement>(null)
 	const { position, emit } = componentProps;
-	const { ValveStatus } = valveProps;
+	const { processObject} = valveProps;
+	const { status } = processObject || processObjectProps;
 	const inCoord = position?.x ?? false;
 	// if not locate, trim last item from valveMpItemNames
 	let componentItemNames = valveMpItemNames;
-	if (!ValveStatus?.locate) {
+	if (!status?.locate) {
 		componentItemNames = componentItemNames.slice(0, -1);
 	}
 
@@ -70,7 +72,7 @@ const valve = () => {
 								(
 									<Item
 									itemClassName={
-										value + " " + getValveMpItemClassName(index, ValveStatus)
+										value + " " + getValveMpItemClassName(index, status)
 									}
 									key={key}
 									/>
@@ -99,7 +101,7 @@ const valve = () => {
 						(
 							<Item
 								itemClassName={
-									value + " " + getValveMpItemClassName(index, ValveStatus)
+									value + " " + getValveMpItemClassName(index, status)
 								}
 								key={key}
 							/>
@@ -113,12 +115,12 @@ const valve = () => {
 
 const popover = ({ anchorEl }: { anchorEl: HTMLDivElement | null }) => {
 	const { valveProps, componentProps } = useValveContext("Popover");
-    const { showItemId,itemIdPosition, ValveStatus } = valveProps;
-	if (!showItemId) return null;
+    const { showLabel,labelPosition, status } = valveProps.processObject;
+	if (!showLabel) return null;
     const { position } = componentProps;
 	let className = "itemId popover position-left";
-	if (itemIdPosition) {
-		className = getItemIdPositionClassName(className, itemIdPosition)
+	if (labelPosition) {
+		className = getItemIdPositionClassName(className, labelPosition)
 	}
     return (
         <div
@@ -128,7 +130,7 @@ const popover = ({ anchorEl }: { anchorEl: HTMLDivElement | null }) => {
                 left: position.x,
             }}
         >
-            <div style={{ padding: 8 }}>{ValveStatus?.itemName}</div>
+            <div style={{ padding: 8 }}>{status?.itemName}</div>
         </div>
     );
 };

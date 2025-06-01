@@ -40,7 +40,7 @@ export class Valve extends Component<ComponentProps<ValveProps>, any> {
 	componentDidMount(): void {
 		// No need to initialize valveRef here
 	}
-	valveStatus: ValveState = this.props.props.ValveStatus || valveStatus;
+	status: ValveState = this.props.props.processObject.status || valveStatus;
 
 		/**
 	 * Handler for the component's action event.
@@ -94,23 +94,25 @@ export class ValveMeta implements ComponentMeta {
 	getPropsReducer(tree: PropertyTree): ValveProps {
 		console.log("ValveStatus", tree.read("ValveStatus"));
 		return {
-			ValveStatus: {
-				alarm: tree.readBoolean("ValveStatus.alarm", false),
-				actFB: tree.readBoolean("ValveStatus.actFB", false),
-				deActFB: tree.readBoolean("ValveStatus.deActFB", false),
-				activatedConfig: tree.readNumber("ValveStatus.activatedConfig", 6),
-				deactivatedConfig: tree.readNumber("ValveStatus.deactivatedConfig", 0),
-				itemName: tree.readString("ValveStatus.itemName", ""),
-				manual: tree.readBoolean("ValveStatus.manual", false),
-				masked: tree.readBoolean("ValveStatus.masked", false),
-				changing: tree.readBoolean("ValveStatus.changing", false),
-				locate: tree.readBoolean("ValveStatus.locate", false),
-				usl: tree.readBoolean("ValveStatus.usl", false),
-				lsl: tree.readBoolean("ValveStatus.lsl", false),
+			processObject:{
+				status: {
+					alarm: tree.readBoolean("ValveStatus.alarm", false),
+					actFB: tree.readBoolean("ValveStatus.actFB", false),
+					deActFB: tree.readBoolean("ValveStatus.deActFB", false),
+					activatedConfig: tree.readNumber("ValveStatus.activatedConfig", 6),
+					deactivatedConfig: tree.readNumber("ValveStatus.deactivatedConfig", 0),
+					itemName: tree.readString("ValveStatus.itemName", ""),
+					manual: tree.readBoolean("ValveStatus.manual", false),
+					masked: tree.readBoolean("ValveStatus.masked", false),
+					changing: tree.readBoolean("ValveStatus.changing", false),
+					locate: tree.readBoolean("ValveStatus.locate", false),
+					usl: tree.readBoolean("ValveStatus.usl", false),
+					lsl: tree.readBoolean("ValveStatus.lsl", false),
+			},
+			showLabel: tree.readBoolean("showLabel", false),
+			labelPosition: tree.readString("labelPosition", "top-left"),
 
 			},
-			showItemId: tree.readBoolean("showItemId", false),
-			itemIdPosition: tree.readString("itemIdPosition", "top-left"),
 		};
 	}
 }

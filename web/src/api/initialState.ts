@@ -26,6 +26,9 @@ export const valveProps = {
 		console.log("Valve clicked");
 	},
 };
+export const processObjectProps = {
+	valveProps
+}
 
 export const parameterInitialState = [{
 		label: {
