@@ -251,13 +251,13 @@ const itemIdPositions = [
 ];
 
 export type ItemIdPositionType = typeof itemIdPositions[number];
-
+export type ProcessObject = {
+	status: ValveState
+}
 export type ValveProps = {
-	processObject?:{
-		status?: ValveState;
-		showLabel?: boolean;
-		labelPosition?:ItemIdPositionType;
-	}
+	processObject?:ProcessObject;
+	labelPosition?:ItemIdPositionType;
+	showLabel?: boolean;
 	handleClick?: () => void;
 };
 

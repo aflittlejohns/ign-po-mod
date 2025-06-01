@@ -40,7 +40,9 @@
 	],
 	"exclude": [
 		"node_modules",
-		"dist"
+		"dist",
+		"**/_*.ts",
+		"**/_*.tsx",
 	],
 	"awesomeTypescriptLoaderOptions": {
         "useBabel": true,

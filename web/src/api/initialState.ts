@@ -20,15 +20,17 @@ export const valveStatus = {
 	locate: false,
 };
 
+export const processObjectProps = {
+	status:valveStatus
+}
 export const valveProps = {
-	ValveStatus: valveStatus,
+	processObject: processObjectProps,
 	handleClick: () => {
 		console.log("Valve clicked");
 	},
+	labelPosition: 'left',
+	showLabel: false
 };
-export const processObjectProps = {
-	valveProps
-}
 
 export const parameterInitialState = [{
 		label: {

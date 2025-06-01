@@ -92,7 +92,10 @@ module.exports = {
 			{
 				test: /\.tsx?$/,
 				use: 'ts-loader',
-				exclude: /node_modules/,
+				exclude: [
+					/node_modules/,
+					 /\/_[^/]*\.tsx?$/  // Exclude files starting with _ (in any folder)
+				]
 			},
 			{
 				test: /\.css$/,

@@ -1,23 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
-import {
-	type ValveProps,
-	type ValveState
-} from "../api/types";
-
+import { ItemIdPositionType, ProcessObject, type ValveProps, type ValveState } from "../api/types";
 
 import {
 	Component,
 	PropertyTree,
-} from '@inductiveautomation/perspective-client';
+} from "@inductiveautomation/perspective-client";
 import type {
-	ComponentProps
-	,ComponentMeta
-	,PComponent
-	,SizeObject
-} from '@inductiveautomation/perspective-client'//'@inductiveautomation/perspective-client';
+	ComponentProps,
+	ComponentMeta,
+	PComponent,
+	SizeObject,
+} from "@inductiveautomation/perspective-client"; //'@inductiveautomation/perspective-client';
 import { ValveMpCompound } from "./process-objects/valve-mp/ValveMp";
-import { valveStatus } from "../api/initialState";
+import { processObjectProps } from "../api/initialState";
 // import { valveProps } from "./process-objects/valve/initialState";
 // import { ValveFCCompound } from "./process-objects/valve/ValveFC";
 
@@ -40,11 +36,14 @@ export class Valve extends Component<ComponentProps<ValveProps>, any> {
 	componentDidMount(): void {
 		// No need to initialize valveRef here
 	}
-	status: ValveState = this.props.props.processObject.status || valveStatus;
+	processObject: ProcessObject = this.props.props.processObject || processObjectProps;
+	status: ValveState = this.processObject.status
+	showLabel: boolean = this.props.props.showLabel || false;
+	labelPosition: ItemIdPositionType = this.props.props.labelPosition || "left";
 
-		/**
+	/**
 	 * Handler for the component's action event.
-	*/
+	 */
 	onActionPerformed = () => {
 		// If the designer is in "design" mode, don't do anything
 		if (!this.props.eventsEnabled) {
@@ -52,22 +51,22 @@ export class Valve extends Component<ComponentProps<ValveProps>, any> {
 			return;
 		}
 		console.log("Valve clicked!");
-		this.props.componentEvents. fireComponentEvent("onActionPerformed", {});
+		this.props.componentEvents.fireComponentEvent("onActionPerformed", {});
 	};
 
-	render(){
-		return(
+	render() {
+		return (
 			// <div>This is Valve</div>
-		<ValveMpCompound.Root
-		componentProps={this.props}
-		valveProps={this.props.props}
-		onActionPerformed={this.onActionPerformed}
-		 >
-			  <ValveMpCompound.valve />
-			  <ValveMpCompound.popover anchorEl={this.valveRef.current} />
-		 </ValveMpCompound.Root>
-	)
-}
+			<ValveMpCompound.Root
+				componentProps={this.props}
+				valveProps={this.props.props}
+				onActionPerformed={this.onActionPerformed}
+			>
+				<ValveMpCompound.valve />
+				<ValveMpCompound.popover anchorEl={this.valveRef.current} />
+			</ValveMpCompound.Root>
+		);
+	}
 }
 // This is the actual thing that gets registered with the component registry.
 export class ValveMeta implements ComponentMeta {
@@ -92,27 +91,28 @@ export class ValveMeta implements ComponentMeta {
 	// Invoked when an update to the PropertyTree has occurred,
 	// effectively mapping the valveStatus of the tree to component props.
 	getPropsReducer(tree: PropertyTree): ValveProps {
-		console.log("ValveStatus", tree.read("ValveStatus"));
 		return {
-			processObject:{
+			processObject: {
 				status: {
-					alarm: tree.readBoolean("ValveStatus.alarm", false),
-					actFB: tree.readBoolean("ValveStatus.actFB", false),
-					deActFB: tree.readBoolean("ValveStatus.deActFB", false),
-					activatedConfig: tree.readNumber("ValveStatus.activatedConfig", 6),
-					deactivatedConfig: tree.readNumber("ValveStatus.deactivatedConfig", 0),
-					itemName: tree.readString("ValveStatus.itemName", ""),
-					manual: tree.readBoolean("ValveStatus.manual", false),
-					masked: tree.readBoolean("ValveStatus.masked", false),
-					changing: tree.readBoolean("ValveStatus.changing", false),
-					locate: tree.readBoolean("ValveStatus.locate", false),
-					usl: tree.readBoolean("ValveStatus.usl", false),
-					lsl: tree.readBoolean("ValveStatus.lsl", false),
+					alarm: tree.readBoolean("processObject.status.alarm", false),
+					actFB: tree.readBoolean("processObject.status.actFB", false),
+					deActFB: tree.readBoolean("processObject.status.deActFB", false),
+					activatedConfig: tree.readNumber("processObject.status.activatedConfig", 6),
+					deactivatedConfig: tree.readNumber(
+						"processObject.status.deactivatedConfig",
+						0
+					),
+					itemName: tree.readString("processObject.status.itemName", ""),
+					manual: tree.readBoolean("processObject.status.manual", false),
+					masked: tree.readBoolean("processObject.status.masked", false),
+					changing: tree.readBoolean("processObject.status.changing", false),
+					locate: tree.readBoolean("processObject.status.locate", false),
+					usl: tree.readBoolean("processObject.status.usl", false),
+					lsl: tree.readBoolean("processObject.status.lsl", false),
+				},
 			},
-			showLabel: tree.readBoolean("showLabel", false),
-			labelPosition: tree.readString("labelPosition", "top-left"),
-
-			},
+			showLabel: tree.readBoolean("processObject.showLabel", false),
+			labelPosition: tree.readString("processObject.labelPosition", "top-left"),
 		};
 	}
 }

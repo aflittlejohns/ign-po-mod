@@ -1,77 +1,83 @@
 {
 	"type": "object",
 	"properties": {
-		"ValveStatus": {
-			"type": "object",
-			"properties": {
-				"itemName": {
-					"type": "string",
-					"default": "\"\"",
-					"description": "Name of the valve"
-				},
-				"activatedConfig": {
-					"type": "number",
-					"default": 511,
-					"description": "Activated configuration"
-				},
-				"deactivatedConfig": {
-					"type": "number",
-					"default": 4095,
-					"description": "De-activated configuration"
-				},
-				"alarm": {
-					"type": "boolean",
-					"default": false,
-					"description": "Alarm status"
-				},
-				"actFB": {
-					"type": "boolean",
-					"default": false,
-					"description": "Activated feedback"
-				},
-				"deActFB": {
-					"type": "boolean",
-					"default": true,
-					"description": "De-activated feedback"
-				},
-				"usl": {
-					"type": "boolean",
-					"default": false,
-					"description": "Upper Seat Lift active"
-				},
-				"lsl": {
-					"type": "boolean",
-					"default": false,
-					"description": "Lower seat lift active"
-				},
-				"manual": {
-					"type": "boolean",
-					"default": false,
-					"description": "Manual mode"
-				},
-				"masked": {
-					"type": "boolean",
-					"default": false,
-					"description": "Masked"
-				},
-        "changing": {
-          "type": "boolean",
-          "default": false,
-          "description": "Changing"
-        },
-        "locate": {
-          "type": "boolean",
-          "default": false,
-          "description": "Locate Item"
+    "processObject": {
+      "type": "object",
+      "properties":{
+        "status": {
+          "type": "object",
+          "properties": {
+            "itemName": {
+              "type": "string",
+              "default": "\"\"",
+              "description": "Name of the valve"
+            },
+            "activatedConfig": {
+              "type": "number",
+              "default": 511,
+              "description": "Activated configuration"
+            },
+            "deactivatedConfig": {
+              "type": "number",
+              "default": 4095,
+              "description": "De-activated configuration"
+            },
+            "alarm": {
+              "type": "boolean",
+              "default": false,
+              "description": "Alarm status"
+            },
+            "actFB": {
+              "type": "boolean",
+              "default": false,
+              "description": "Activated feedback"
+            },
+            "deActFB": {
+              "type": "boolean",
+              "default": true,
+              "description": "De-activated feedback"
+            },
+            "usl": {
+              "type": "boolean",
+              "default": false,
+              "description": "Upper Seat Lift active"
+            },
+            "lsl": {
+              "type": "boolean",
+              "default": false,
+              "description": "Lower seat lift active"
+            },
+            "manual": {
+              "type": "boolean",
+              "default": false,
+              "description": "Manual mode"
+            },
+            "masked": {
+              "type": "boolean",
+              "default": false,
+              "description": "Masked"
+            },
+            "changing": {
+              "type": "boolean",
+              "default": false,
+              "description": "Changing"
+            },
+            "locate": {
+              "type": "boolean",
+              "default": false,
+              "description": "Locate Item"
+            }
+          }
         }
-			}
-		},
-    "showItemId": {
+
+      }
+    },
+    "showLabel": {
       "type": "boolean",
       "default": false,
       "description": "Show Item Name Popover"
     },
-    "itemIdPosition": {
+    "labelPosition": {
       "type": "string",
       "enum": ["left"
       , "right"

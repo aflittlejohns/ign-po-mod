@@ -8,7 +8,7 @@ import { getItemIdPositionClassName, getValveMpItemClassName, valveMpItemNames }
 import Item from "../valve/item";
 import { useCreateContext } from "../../../utils/createContext";
 import { VALVE_COMPONENT_TYPE } from "../../../api/types";
-import { processObjectProps } from "src/api/initialState";
+import { processObjectProps } from "../../../api/initialState";
 
 // import './valve-mp.module.css'
 // import {valveStatus} from '../../api/initialState'
@@ -115,7 +115,8 @@ const valve = () => {
 
 const popover = ({ anchorEl }: { anchorEl: HTMLDivElement | null }) => {
 	const { valveProps, componentProps } = useValveContext("Popover");
-    const { showLabel,labelPosition, status } = valveProps.processObject;
+    const { showLabel,labelPosition, processObject } = valveProps;
+	const { status } = processObject || processObjectProps;
 	if (!showLabel) return null;
     const { position } = componentProps;
 	let className = "itemId popover position-left";
