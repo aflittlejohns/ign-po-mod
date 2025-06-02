@@ -5,7 +5,6 @@ import {
 } from "../api/types";
 import { IconAuto, IconHandClick } from '../utils/icons';
 import {
-	Component,
 	PropertyTree,
 } from "@inductiveautomation/perspective-client";
 import type {
@@ -14,10 +13,8 @@ import type {
 	PComponent,
 	SizeObject,
 } from "@inductiveautomation/perspective-client"; //'@inductiveautomation/perspective-client';
-import {
-	CommandsValveMpCompound,
-} from "../components/input/commands-valve/commands";
-import { initialControlState } from "src/api/initialState";
+import { useValveMpCommandReducer } from "../api/hooks";
+import { initialControlState } from "../api/initialState";
 
 // import { valveProps } from "./process-objects/valve/initialState";
 // import { ValveFCCompound } from "./process-objects/valve/ValveFC";
@@ -36,15 +33,25 @@ const transformedProps = React.useMemo(() => {
 }, [props.props.main, props.props.upperSeat, props.props.lowerSeat])
 
  const {main} = transformedProps;
+ console.log(main);
 
 
-
+const {reducer } = useValveMpCommandReducer();
+const {updateAutoManSelection} = reducer;
 		return (
 			<div role="group" className="toggle-button-group">
-			<button className="selected">
+			<button
+			className="selected "
+			disabled={false}
+			onClick={() => updateAutoManSelection("auto")}
+			>
 				<IconAuto />
 			</button>
-			<button className="enabled">
+			<button
+			className="enabled"
+			disabled={false}
+			onClick={() => updateAutoManSelection("manual")}
+			>
 				<IconHandClick />
 			</button>
 

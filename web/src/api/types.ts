@@ -343,7 +343,7 @@ export type CommandsValveMpCompoundRootProps = {
  * @Useage useValveReducer
  */
 export type ValveMpCommandAction =
-	| { type: "UPDATE_AUTO_MANUAL"}
+	| { type: "UPDATE_AUTO_MANUAL", mode:"auto"| "manual"}
 	| { type: "UPDATE_MAIN_MAN_ON"}
 	| { type: "UPDATE_MAIN_MAN_OFF"}
 	| { type: "UPDATE_USL_MAN_ON"}
@@ -360,7 +360,7 @@ export type ValveMpCommandReducer = (
 export type UseValveMpCommandReducer = {
 	state: CommandValveMpProps;
 	reducer: {
-		updateAutoManSelection:() => void;
+		updateAutoManSelection:(mode:"auto"| "manual") => void;
 		updateMainManualOn: () => void;
 		updateMainManualOff: () => void;
 		updateUslManualOn: () => void;
