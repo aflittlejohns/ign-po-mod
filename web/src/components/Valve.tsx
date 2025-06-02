@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
-import { ItemIdPositionType, ProcessObject, type ValveProps, type ValveState } from "../api/types";
+import {
+	ItemIdPositionType,
+	ProcessObject,
+	type ValveProps,
+	type ValveState,
+} from "../api/types";
 
 import {
 	Component,
@@ -36,8 +41,9 @@ export class Valve extends Component<ComponentProps<ValveProps>, any> {
 	componentDidMount(): void {
 		// No need to initialize valveRef here
 	}
-	processObject: ProcessObject = this.props.props.processObject || processObjectProps;
-	status: ValveState = this.processObject.status
+	processObject: ProcessObject =
+		this.props.props.processObject || processObjectProps;
+	status: ValveState = this.processObject.status;
 	showLabel: boolean = this.props.props.showLabel || false;
 	labelPosition: ItemIdPositionType = this.props.props.labelPosition || "left";
 
@@ -91,16 +97,25 @@ export class ValveMeta implements ComponentMeta {
 	// Invoked when an update to the PropertyTree has occurred,
 	// effectively mapping the valveStatus of the tree to component props.
 	getPropsReducer(tree: PropertyTree): ValveProps {
+		console.log(
+			`itemName: ${tree.readString(
+				"processObject.status.itemName"
+			)} showLabel ${tree.readBoolean("showLabel")}`
+		);
+
 		return {
 			processObject: {
 				status: {
 					alarm: tree.readBoolean("processObject.status.alarm", false),
 					actFB: tree.readBoolean("processObject.status.actFB", false),
 					deActFB: tree.readBoolean("processObject.status.deActFB", false),
-					activatedConfig: tree.readNumber("processObject.status.activatedConfig", 6),
+					activatedConfig: tree.readNumber(
+						"processObject.status.activatedConfig",
+						511
+					),
 					deactivatedConfig: tree.readNumber(
 						"processObject.status.deactivatedConfig",
-						0
+						4095
 					),
 					itemName: tree.readString("processObject.status.itemName", ""),
 					manual: tree.readBoolean("processObject.status.manual", false),
@@ -111,8 +126,8 @@ export class ValveMeta implements ComponentMeta {
 					lsl: tree.readBoolean("processObject.status.lsl", false),
 				},
 			},
-			showLabel: tree.readBoolean("processObject.showLabel", false),
-			labelPosition: tree.readString("processObject.labelPosition", "top-left"),
+			showLabel: tree.readBoolean("showLabel", false),
+			labelPosition: tree.readString("labelPosition", "top-left"),
 		};
 	}
 }

@@ -290,3 +290,83 @@ export type itemNameProps = {
 			value: string,
 			index: number,
 }
+export type CommandValveMpProps = {
+	security?:{
+		enabled: boolean;
+		accesslevel: number;
+		userNames: string[];
+		userRoles: string[];},
+	interlocks?:{
+		main: boolean[];
+		upperSeat: boolean[];
+		lowerSeat: boolean[];},
+	main?:{
+	label: string;
+	auto: boolean;
+	// onActionPerformed__auto: () => void;
+	manual: boolean;
+	// onActionPerformed__manual: () => void;
+	off: boolean;
+	// onActionPerformed__on: () => void;
+	on: boolean;
+	// onActionPerformed__off: () => void;},
+	},
+	upperSeat?:{
+	label: string;
+	off: boolean;
+	on: boolean;
+	// onActionPerformed__off: React.MouseEventHandler ;
+	// onActionPerformed__on: React.MouseEventHandler ;
+},
+	lowerSeat?:{
+	label: string;
+	off: boolean;
+	on: boolean;
+	// onActionPerformed__off: React.MouseEventHandler ;
+	// onActionPerformed__on: React.MouseEventHandler ;
+},
+}
+
+
+export type CommandsValveMpCompoundContextType = {
+	componentProps:ComponentProps<any,any>,
+	useReducer: UseValveMpCommandReducer;
+	children: ReactNode;
+};
+export type CommandsValveMpCompoundRootProps = {
+	componentProps:ComponentProps<any,any>,
+	command: CommandValveMpProps;
+	children: ReactNode;
+}
+/**
+ * Define the shape of the ValveAction type
+ * @Useage useValveReducer
+ */
+export type ValveMpCommandAction =
+	| { type: "UPDATE_AUTO_MANUAL"}
+	| { type: "UPDATE_MAIN_MAN_ON"}
+	| { type: "UPDATE_MAIN_MAN_OFF"}
+	| { type: "UPDATE_USL_MAN_ON"}
+	| { type: "UPDATE_USL_MAN_OFF"}
+	| { type: "UPDATE_LSL_MAN_ON"}
+	| { type: "UPDATE_LSL_MAN_OFF"}
+
+	;
+export type ValveMpCommandReducer = (
+	state: CommandValveMpProps,
+	action: ValveMpCommandAction
+) => ValveState;
+
+export type UseValveMpCommandReducer = {
+	state: CommandValveMpProps;
+	reducer: {
+		updateAutoManSelection:() => void;
+		updateMainManualOn: () => void;
+		updateMainManualOff: () => void;
+		updateUslManualOn: () => void;
+		updateUslManualOff: () => void;
+		updateLslManualOn: () => void;
+		updateLslManualOff: () => void;
+		//add more handlers as needed
+	};
+};

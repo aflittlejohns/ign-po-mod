@@ -1,6 +1,6 @@
 import { useImmerReducer } from 'use-immer';
-import { parameterInitialState, valveStatus } from './initialState';
-import type { ParameterAction, ParamItem, UseParameterReducer, UseValveReducer, ValveAction, ValveState} from './types';
+import { initialControlState, parameterInitialState, valveStatus } from './initialState';
+import type { CommandValveMpProps, ParameterAction, ParamItem, UseParameterReducer, UseValveMpCommandReducer, UseValveReducer, ValveAction, ValveMpCommandAction, ValveState} from './types';
 
 function valveReducer(draft: ValveState , action: ValveAction): ValveState{
 	switch (action.type){
@@ -128,4 +128,91 @@ const useParameterReducer ={
 		}
 	}
 	return useParameterReducer
+}
+function valveMpReducer(draft: CommandValveMpProps , action: ValveMpCommandAction): CommandValveMpProps{
+	switch (action.type){
+		case 'UPDATE_AUTO_MANUAL':
+			if(draft.main){
+				draft.main.auto = !draft.main.auto;
+				draft.main.manual = !draft.main.manual;
+			}
+				return draft;
+		case 'UPDATE_MAIN_MAN_ON':
+			if(draft.main){
+				draft.main.on = !draft.main.on;
+			}
+				return draft;
+		case 'UPDATE_MAIN_MAN_OFF':
+			if(draft.main){
+				draft.main.off = !draft.main.off;
+			}
+				return draft;
+		case 'UPDATE_USL_MAN_ON':
+			if(draft.upperSeat){
+				draft.upperSeat.on = !draft.upperSeat.on;
+			}
+				return draft;
+		case 'UPDATE_USL_MAN_OFF':
+			if(draft.upperSeat){
+				draft.upperSeat.off = !draft.upperSeat.off;
+			}
+				return draft;
+		case 'UPDATE_LSL_MAN_ON':
+			if(draft.lowerSeat){
+				draft.lowerSeat.on = !draft.lowerSeat.on;
+			}
+				return draft;
+		case 'UPDATE_LSL_MAN_OFF':
+			if(draft.lowerSeat){
+				draft.lowerSeat.off = !draft.lowerSeat.off;
+			}
+				return draft;
+
+
+			default: // #TODO Add more reducer case statements
+			return draft
+	}
+};
+
+export function useValveMpCommandReducer(): UseValveMpCommandReducer {
+	const [state, dispatch] = useImmerReducer(valveMpReducer ,initialControlState );
+
+	function updateAutoManSelection() {
+		dispatch({ type: 'UPDATE_AUTO_MANUAL'});
+	}
+	function updateMainManualOn() {
+		dispatch({ type: 'UPDATE_MAIN_MAN_ON'});
+	}
+	function updateMainManualOff() {
+		dispatch({ type: 'UPDATE_MAIN_MAN_OFF' });
+	}
+	function updateUslManualOn() {
+		dispatch({ type: 'UPDATE_USL_MAN_ON' });
+	}
+	function updateUslManualOff() {
+		dispatch({ type: 'UPDATE_USL_MAN_OFF' });
+	}
+	function updateLslManualOn() {
+		dispatch({ type: 'UPDATE_LSL_MAN_ON' });
+	}
+	function updateLslManualOff() {
+		dispatch({ type: 'UPDATE_LSL_MAN_OFF' });
+	}
+
+
+	const useCommandsValveMpReducer = {
+		state,
+		reducer: {
+		updateAutoManSelection,
+		updateMainManualOn,
+		updateMainManualOff,
+		updateUslManualOn,
+		updateUslManualOff,
+		updateLslManualOn,
+		updateLslManualOff,
+	}
+}
+
+	return useCommandsValveMpReducer
+
 }

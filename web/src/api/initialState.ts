@@ -3,7 +3,7 @@
  */
 // initialState.ts
 
-import { ParamItem } from "./types";
+import { CommandValveMpProps, ParamItem } from "./types";
 
 
 
@@ -54,3 +54,27 @@ export const parameterInitialState = [{
 			value: 0,
 		},
 	} as ParamItem ];
+
+export const initialAutoManState = {
+	auto: true,
+	manual: false,
+};
+export const initialOffOnState = {
+	off: false,
+	on: false,
+};
+export const initialControlState = {
+	main: {
+		...initialAutoManState,
+		...initialOffOnState,
+		label: "Main",
+	},
+	upperSeat: {
+		...initialOffOnState,
+		label: "Upper Seat",
+	},
+	lowerSeat: {
+		...initialOffOnState,
+		label: "Lower Seat",
+	},
+}as CommandValveMpProps;
