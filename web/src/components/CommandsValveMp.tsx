@@ -3,7 +3,7 @@ import * as React from "react";
 import {
 	type CommandValveMpProps,
 } from "../api/types";
-
+import { IconAuto, IconHandClick } from '../utils/icons';
 import {
 	Component,
 	PropertyTree,
@@ -17,43 +17,44 @@ import type {
 import {
 	CommandsValveMpCompound,
 } from "../components/input/commands-valve/commands";
+import { initialControlState } from "src/api/initialState";
 
 // import { valveProps } from "./process-objects/valve/initialState";
 // import { ValveFCCompound } from "./process-objects/valve/ValveFC";
 
-export const COMPONENT_TYPE = "hmi.input.CommandsValve_mp";
+export const COMPONENT_TYPE = "hmi.input.CommandValveMp";
 
 /**
  * Valve component class.
  * Extends the base Component class from Perspective, typed with ValveProps.
  * Provides a customizable valve with proper handling of designer/preview modes.
  */
-export class CommandValveMp extends Component<
-	ComponentProps<CommandValveMpProps>,
-	any
-> {
-	constructor(props: ComponentProps<CommandValveMpProps>){
-		super(props);
-	}
+export const CommandValveMp = (props:ComponentProps<CommandValveMpProps>) => {
+const transformedProps = React.useMemo(() => {
+	const { main, upperSeat, lowerSeat } = props.props || initialControlState
+	return {main, upperSeat, lowerSeat}
+}, [props.props.main, props.props.upperSeat, props.props.lowerSeat])
 
-	// This is a lifecycle method that is called when the component is first mounted to the DOM.
-	componentDidMount(): void {
-		// No need to initialize valveRef here
-	}
+ const {main} = transformedProps;
 
-	render() {
+
+
 		return (
-			<CommandsValveMpCompound.root
-				componentProps={this.props}
-				command={this.props.props}
-			>
-				<CommandsValveMpCompound.valveControl />
-			</CommandsValveMpCompound.root>
+			<div role="group" className="toggle-button-group">
+			<button className="selected">
+				<IconAuto />
+			</button>
+			<button className="enabled">
+				<IconHandClick />
+			</button>
+
+
+		</div>
 		);
 	}
-}
+
 // This is the actual thing that gets registered with the component registry.
-export class ValveMeta implements ComponentMeta {
+export class CommandValveMpMeta implements ComponentMeta {
 	getComponentType(): string {
 		return COMPONENT_TYPE;
 	}

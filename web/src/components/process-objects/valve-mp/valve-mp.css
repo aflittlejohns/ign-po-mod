@@ -1,13 +1,13 @@
 :root {
-	--lif-po-border-color: var(--neutral-50);
-	--lif-po-segment-color: var(--neutral-50);
-	--lif-po-activated-color: var(--neutral-70);
-	--lif-po-changing-color: var(--neutral-50);
-	--lif-po-deactivated-color: var(--neutral-20);
-	--lif-po-manual-color: var(--qual-2);
-	--lif-po-no-alarm-mask-color: var(--neutral-30);
-	--lif-po-alarm-start-color: var(--error);
-	--lif-po-alarm-end-color: var(--neutral-20);
+	--hmi-po-border-color: var(--neutral-50);
+	--hmi-po-segment-color: var(--neutral-50);
+	--hmi-po-activated-color: var(--neutral-70);
+	--hmi-po-changing-color: var(--neutral-50);
+	--hmi-po-deactivated-color: var(--neutral-20);
+	--hmi-po-manual-color: var(--qual-2);
+	--hmi-po-no-alarm-mask-color: var(--neutral-30);
+	--hmi-po-alarm-start-color: var(--error);
+	--hmi-po-alarm-end-color: var(--neutral-20);
 	/* itemId Popover Positions */
 	--_itemid-popup-position-right:var(--itemid-popup-position-right, translate(35%,10%));
 	--_itemid-popup-position-left:var(--itemid-popup-position-left, translate(-100%,10%));
@@ -55,7 +55,7 @@
 }
 /* NDJH ValveTemplate - Start
 */
-/* lif symbolComponent Wrappers */
+/* hmi symbolComponent Wrappers */
 
 div.hmi-component {
 	container-type: inline-size;
@@ -153,16 +153,16 @@ div.hmi-component {
 
 .hmi-component-valve__mp .usl {
 	grid-area: 1/2/2/5;
-	background-color: var(--lif-po-activated-color);
-	border: solid var(--lif-po-border-color);
+	background-color: var(--hmi-po-activated-color);
+	border: solid var(--hmi-po-border-color);
 	border-width: 5cqi;
 	border-radius: 5cqi;
 	stroke-width: 5cqi;
 }
 .hmi-component-valve__mp .lsl {
 	grid-area: 11/2/12/5;
-	background-color: var(--lif-po-activated-color);
-	border: solid var(--lif-po-border-color);
+	background-color: var(--hmi-po-activated-color);
+	border: solid var(--hmi-po-border-color);
 	border-width: 5cqi;
 	border-radius: 5cqi;
 	stroke-width: 5cqi;
@@ -170,7 +170,7 @@ div.hmi-component {
 
 .hmi-component-valve__mp .v1 {
 	grid-area: 1/1/7/6;
-	border: solid var(--lif-po-border-color);
+	border: solid var(--hmi-po-border-color);
 	border-width: 5cqi;
 	border-radius: 5cqi;
 	stroke-width: 5cqi;
@@ -180,74 +180,74 @@ div.hmi-component {
 	grid-area: 6/1/12/6;
 
 	border-top: solid transparent;
-	border-bottom: solid var(--lif-po-border-color);
-	border-inline: solid var(--lif-po-border-color);
+	border-bottom: solid var(--hmi-po-border-color);
+	border-inline: solid var(--hmi-po-border-color);
 	border-width: 5cqi;
 	border-radius: 5cqi;
 }
 .hmi-component-valve__mp .v1b1 {
 	grid-area: 1/3/5/4;
-	background-color: var(--lif-po-segment-color);
+	background-color: var(--hmi-po-segment-color);
 	z-index: 1;
 }
 .hmi-component-valve__mp .v1b2 {
 	grid-area: 3/3/4/6;
-	background-color: var(--lif-po-segment-color);
+	background-color: var(--hmi-po-segment-color);
 	z-index: 1;
 }
 .hmi-component-valve__mp .v1b3 {
 	grid-area: 4/3/7/4;
-	background-color: var(--lif-po-segment-color);
+	background-color: var(--hmi-po-segment-color);
 	z-index: 1;
 }
 .hmi-component-valve__mp .v1b4 {
 	grid-area: 3/1/4/4;
-	background-color: var(--lif-po-segment-color);
+	background-color: var(--hmi-po-segment-color);
 	z-index: 1;
 }
 .hmi-component-valve__mp .v2b1 {
 	grid-area: 7/3/9/4;
-	background-color: var(--lif-po-segment-color);
+	background-color: var(--hmi-po-segment-color);
 	z-index: 1;
 }
 .hmi-component-valve__mp .v2b2 {
 	grid-area: 9/3/10/6;
-	background-color: var(--lif-po-segment-color);
+	background-color: var(--hmi-po-segment-color);
 	z-index: 1;
 }
 .hmi-component-valve__mp .v2b3 {
 	grid-area: 8/3/12/4;
-	background-color: var(--lif-po-segment-color);
+	background-color: var(--hmi-po-segment-color);
 	z-index: 1;
 }
 .hmi-component-valve__mp .v2b4 {
 	grid-area: 9/1/10/4;
-	background-color: var(--lif-po-segment-color);
+	background-color: var(--hmi-po-segment-color);
 	z-index: 1;
 }
 
 .hmi-component-valve__mp [class*="Activated"] {
-	background-color: var(--lif-po-activated-color);
-	fill: var(--lif-po-activated-color);
+	background-color: var(--hmi-po-activated-color);
+	fill: var(--hmi-po-activated-color);
 }
 
 .hmi-component-valve__mp [class*="Changing"] {
-	background-color: var(--lif-po-changing-color);
-	fill: var(--lif-po-changing-color);
+	background-color: var(--hmi-po-changing-color);
+	fill: var(--hmi-po-changing-color);
 }
 
 .hmi-component-valve__mp [class*="Deactivated"] {
-	background-color: var(--lif-po-deactivated-color);
-	fill: var(--lif-po-deactivated-color);
+	background-color: var(--hmi-po-deactivated-color);
+	fill: var(--hmi-po-deactivated-color);
 }
 
 .hmi-component-valve__mp [class*="Manual"] {
-	background-color: var(--lif-po-manual-color);
-	fill: var(--lif-po-deactivated-color);
+	background-color: var(--hmi-po-manual-color);
+	fill: var(--hmi-po-deactivated-color);
 }
 
 .hmi-component-valve__mp [class*="NoAlarmMask"] {
-	stroke: var(--lif-po-no-alarm-mask-color);
+	stroke: var(--hmi-po-no-alarm-mask-color);
 	stroke-width: 2.1cqi;
 }
 .hmi-component-valve__mp [class*="show"] {
@@ -259,13 +259,13 @@ div.hmi-component {
 
 @keyframes AlarmState-anim {
 	0% {
-		border-color: var(--lif-po-alarm-start-color);
+		border-color: var(--hmi-po-alarm-start-color);
 		border-width: 2.1cqi;
 		/* stroke: #000000;
     stroke-width: 2.1cqi; */
 	}
 	100% {
-		border-color: var(--lif-po-alarm-end-color);
+		border-color: var(--hmi-po-alarm-end-color);
 		border-width: 5cqi;
 		/* stroke: var(--error);
     stroke-width: 5.0cqi; */

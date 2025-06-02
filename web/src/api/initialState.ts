@@ -5,8 +5,6 @@
 
 import { CommandValveMpProps, ParamItem } from "./types";
 
-
-
 export const valveStatus = {
 	alarm: false,
 	actFB: false,
@@ -21,18 +19,19 @@ export const valveStatus = {
 };
 
 export const processObjectProps = {
-	status:valveStatus
-}
+	status: valveStatus,
+};
 export const valveProps = {
 	processObject: processObjectProps,
 	handleClick: () => {
 		console.log("Valve clicked");
 	},
-	labelPosition: 'left',
-	showLabel: false
+	labelPosition: "left",
+	showLabel: false,
 };
 
-export const parameterInitialState = [{
+export const parameterInitialState = [
+	{
 		label: {
 			text: "label",
 			className: "",
@@ -53,7 +52,8 @@ export const parameterInitialState = [{
 			eu: "\u00B5C",
 			value: 0,
 		},
-	} as ParamItem ];
+	} as ParamItem,
+];
 
 export const initialAutoManState = {
 	auto: true,
@@ -65,16 +65,20 @@ export const initialOffOnState = {
 };
 export const initialControlState = {
 	main: {
-		...initialAutoManState,
-		...initialOffOnState,
+		auto: true,
+		manual: false,
+		off: false,
+		on: false,
 		label: "Main",
 	},
 	upperSeat: {
-		...initialOffOnState,
+		off: false,
+		on: false,
 		label: "Upper Seat",
 	},
 	lowerSeat: {
-		...initialOffOnState,
+		off: false,
+		on: false,
 		label: "Lower Seat",
 	},
-}as CommandValveMpProps;
+} as CommandValveMpProps;

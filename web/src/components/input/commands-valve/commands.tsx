@@ -29,16 +29,7 @@ return(
 
 const valveControl = () => {
 	return (
-		<div role="group" className="toggle-button-group">
-			<button className="selected">
-				<IconAuto />
-			</button>
-			<button className="enabled">
-				<IconHandClick />
-			</button>
 
-
-		</div>
 	)
 }
 
