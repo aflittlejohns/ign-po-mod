@@ -3,9 +3,7 @@
  */
 // initialState.ts
 
-import { ParamItem } from "./types";
-
-
+import { CommandValveMpProps, ParamItem } from "./types";
 
 export const valveStatus = {
 	alarm: false,
@@ -13,21 +11,27 @@ export const valveStatus = {
 	deActFB: true,
 	activatedConfig: 7,
 	deactivatedConfig: 5,
-	tagName: "VXXX",
+	itemName: "VXXX",
 	manual: false,
 	masked: false,
 	changing: false,
 	locate: false,
 };
 
+export const processObjectProps = {
+	status: valveStatus,
+};
 export const valveProps = {
-	ValveStatus: valveStatus,
+	processObject: processObjectProps,
 	handleClick: () => {
 		console.log("Valve clicked");
 	},
+	labelPosition: "left",
+	showLabel: false,
 };
 
-export const parameterInitialState = [{
+export const parameterInitialState = [
+	{
 		label: {
 			text: "label",
 			className: "",
@@ -39,13 +43,53 @@ export const parameterInitialState = [{
 		input: {
 			type: "text",
 			inputmode: "numeric",
-			placeholder: "",
+			placeholder: "Enter a number",
 			editable: true,
 			pattern: "^[0-9]*[.,]?[0-9]*$",
 			min: 0,
 			max: 100,
 			decimalPlaces: 2,
-			eu: "",
+			eu: "\u00B5C",
 			value: 0,
 		},
-	} as ParamItem ];
+	} as ParamItem,
+];
+
+export const initialAutoManState = {
+	auto: true,
+	manual: false,
+};
+export const initialOffOnState = {
+	off: false,
+	on: false,
+};
+export const initialControlState = {
+	security:{
+		enabled: false,
+		accesslevel: 0,
+		userNames: ["admin"],
+		userRoles: ["Administrator"],
+	},
+	interlocks: {
+		main: [],
+		upperSeat: [],
+		lowerSeat: []
+	},
+	main: {
+		label: "Main",
+		auto: true,
+		manual: false,
+		off: true,
+		on: false,
+	},
+	upperSeat: {
+		label: "Upper Seat",
+		off: true,
+		on: false,
+	},
+	lowerSeat: {
+		label: "Lower Seat",
+		off: true,
+		on: false,
+	},
+} as CommandValveMpProps;

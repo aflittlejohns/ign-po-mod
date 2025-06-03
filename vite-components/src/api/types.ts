@@ -214,21 +214,21 @@ export type ItemData = {
 /**
  * draggable component types
  */
-export type DraggableItem = {
-	id: UniqueIdentifier;
-	left: number;
-	top: number;
-}
+// export type DraggableItem = {
+// 	id: UniqueIdentifier;
+// 	left: number;
+// 	top: number;
+// }
 
-export type DraggableProps = {
-	id: UniqueIdentifier,
-	onClose: (id: UniqueIdentifier)=> void,
-	element?: keyof HTMLElement,
-	left: number;
-	top : number;
-	children: React.ReactNode;
-	className: string;
-}
+// export type DraggableProps = {
+// 	id: UniqueIdentifier,
+// 	onClose: (id: UniqueIdentifier)=> void,
+// 	element?: keyof HTMLElement,
+// 	left: number;
+// 	top : number;
+// 	children: React.ReactNode;
+// 	className: string;
+// }
 export type itemNameProps = {
 			key: string,
 			name: [string,string],

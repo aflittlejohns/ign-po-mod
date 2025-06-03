@@ -92,7 +92,10 @@ module.exports = {
 			{
 				test: /\.tsx?$/,
 				use: 'ts-loader',
-				exclude: /node_modules/,
+				exclude: [
+					/node_modules/,
+					 /\/_[^/]*\.tsx?$/  // Exclude files starting with _ (in any folder)
+				]
 			},
 			{
 				test: /\.css$/,
@@ -107,7 +110,7 @@ module.exports = {
 				]
 			},{ // added scss loader... afl 16 Feb '25
 				test:/\.scss$/,
-				use: ['style-loader','css-loader','sass-loader'],
+				use: ['style-loader','css-loader','sass-loader', 'postcss-loader'],
 			}
 		]
 	},

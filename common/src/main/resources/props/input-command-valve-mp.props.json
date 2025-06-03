@@ -1,0 +1,128 @@
+{
+	"type": "object",
+	"properties": {
+		"security": {
+			"type": "object",
+			"properties": {
+				"enabled": {
+					"type": "boolean",
+					"default": false,
+					"description": "Command Operation Enabled if true"
+				},
+				"accesslevel": {
+					"type": "number",
+					"default": 511,
+					"description": "AccessLevels above this value are enabled"
+				},
+				"userNames": {
+					"type": "array",
+					"items": { "type": "string" },
+					"default": ["Admin"],
+					"description": "A list of users who may operate this component"
+				},
+				"userRoles": {
+					"type": "array",
+					"items": { "type": "string" },
+					"default": ["Administrators"],
+					"description": "A list of user roles which may operate this component"
+				}
+			}
+		},
+		"interlocks": {
+			"type": "object",
+			"properties": {
+				"main": {
+					"type": "boolean",
+					"default": false,
+					"description": "Command Operation of main Interlocked"
+				},
+				"upperSeat": {
+					"type": "boolean",
+					"default": false,
+					"description": "Command Operation of upperSeat Interlocked"
+				},
+				"lowerSeat": {
+					"type": "boolean",
+					"default": false,
+					"description": "Command Operation of lowerSeat Interlocked"
+				}
+			}
+		},
+		"main": {
+			"type": "object",
+			"properties": {
+				"label": {
+					"type": "string",
+					"default": "Main",
+					"description": "description of main activator"
+				},
+				"auto": {
+					"type": "boolean",
+					"default": true,
+					"description": "Item in Automatic"
+				},
+				"manual": {
+					"type": "boolean",
+					"default": false,
+					"description": "Item in Manual"
+				},
+				"off": {
+					"type": "boolean",
+					"default": false,
+					"description": "Item in Manual Off"
+				},
+				"on": {
+					"type": "boolean",
+					"default": false,
+					"description": "Item in Manual On"
+				}
+			}
+		},
+		"upperSeat": {
+			"type": "object",
+			"properties": {
+				"label": {
+					"type": "string",
+					"default": "UpperSeat",
+					"description": "upper seat-lift manual control"
+				},
+				"off": {
+					"type": "boolean",
+					"default": true,
+					"description": "upper seat manual off"
+				},
+				"on": {
+					"type": "boolean",
+					"default": false,
+					"description": "upper seat manual on"
+				}
+			}
+		},
+		"lowerSeat": {
+			"type": "object",
+			"properties": {
+				"label": {
+					"type": "string",
+					"default": "LowerSeat",
+					"description": "Lower Seat-lift manual control"
+				},
+				"off": {
+					"type": "boolean",
+					"default": true,
+					"description": "lower seat-lift manual off"
+				},
+				"on": {
+					"type": "boolean",
+					"default": false,
+					"description": "lower seat-lift manual on"
+				}
+			}
+		}
+	},
+	"style": {
+		"$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
+		"default": {
+			"classes": ""
+		}
+	}
+}

@@ -1,5 +1,6 @@
 import { getBoolAtIndex } from "../utils/numberUtil";
 import {
+	ItemIdPositionType,
 	ItemNameEnum,
 	valveMpItemNameEnum,
 	type ValveState,
@@ -95,7 +96,7 @@ export const getItemClassName = (
 	// Additions to the className
 
 	if (className.includes("show") && !className.includes("item")) {
-		console.log("index", index, className);
+		// console.log("index", index, className);
 		if (valveStatus?.alarm) {
 			className = className.replace("AlarmState", "") + " AlarmState";
 		}
@@ -132,7 +133,7 @@ export const getValveMpItemClassName = (
 	// Handle the fact that ActivatedConfig and DeactivatedConfig are optional and maybe undefined
 	const ActivatedConfigValue = valveStatus?.activatedConfig ?? 0;
 	const DeactivatedConfigValue = valveStatus?.deactivatedConfig ?? 0;
-	console.log(valveStatus);
+	// console.log(valveStatus);
 
 	if (index < 8) {
 		if (
@@ -155,14 +156,21 @@ export const getValveMpItemClassName = (
 			className = "hide";
 		}
 	} else if (index === 10) {
+		// console.log(
+		// 	`index ${index} deact config ${DeactivatedConfigValue} bit is ${getBoolAtIndex(
+		// 		DeactivatedConfigValue,
+		// 		10
+		// 	)}`
+		// );
+
 		if (
-			getBoolAtIndex(ActivatedConfigValue, 8) ||
-			getBoolAtIndex(DeactivatedConfigValue, 8)
+			getBoolAtIndex(ActivatedConfigValue, 10) ||
+			getBoolAtIndex(DeactivatedConfigValue, 10)
 		) {
 			className = "show item";
 			if (valveStatus?.usl) {
 				className = className.replace("Activated", "") + " Activated";
-			}else{
+			} else {
 				className = className.replace("Deactivated", "") + " Deactivated";
 			}
 		} else {
@@ -170,23 +178,33 @@ export const getValveMpItemClassName = (
 		}
 	} else if (index === 11) {
 		if (
-			getBoolAtIndex(ActivatedConfigValue, 8) ||
-			getBoolAtIndex(DeactivatedConfigValue, 8)
+			getBoolAtIndex(ActivatedConfigValue, 11) ||
+			getBoolAtIndex(DeactivatedConfigValue, 11)
 		) {
 			className = "show item";
 			if (valveStatus?.lsl) {
 				className = className.replace("Activated", "") + " Activated";
-			}else{
+			} else {
 				className = className.replace("Deactivated", "") + " Deactivated";
 			}
 		} else {
 			className = "hide item";
 		}
+	} else if (index === 12) {
+		if (valveStatus?.locate) {
+			className = className.replace("show item", "") + " show item";
+			if(getBoolAtIndex(ActivatedConfigValue, 8) ||
+			getBoolAtIndex(DeactivatedConfigValue, 8)){
+				className = className.replace("show large item", "") + " show large item";
+			}
+		} else {
+			className = className.replace("hide item", "") + " hide item";
+		}
 	}
 	// Additions to the className
 
 	if (className.includes("show") && !className.includes("item")) {
-		console.log("index", index, className);
+		// console.log("index", index, className);
 		if (valveStatus?.alarm) {
 			className = className.replace("AlarmState", "") + " AlarmState";
 		}
@@ -208,11 +226,8 @@ export const getValveMpItemClassName = (
 		if (valveStatus?.deActFB) {
 			className = className.replace("Deactivated", "") + " Deactivated";
 		}
-		if (valveStatus?.locate) {
-			className = className.replace("circle", "") + " circle";
-		}
 	}
-console.log(`className ${className}`);
+	// console.log("index", index, className);
 
 	return className; // default return value if no other condition is met
 };
@@ -220,7 +235,7 @@ console.log(`className ${className}`);
  * @returns Array of itemName(s) for each visual element of a valve component
  */
 export const itemNames = Object.entries(ItemNameEnum).map((key, index) => {
-	console.log(`In build ItemNames name ${key} index ${index}`);
+	// console.log(`In build ItemNames name ${key} index ${index}`);
 	return {
 		key: uuidv4(),
 		name: key,
@@ -230,7 +245,7 @@ export const itemNames = Object.entries(ItemNameEnum).map((key, index) => {
 });
 export const valveMpItemNames = Object.entries(valveMpItemNameEnum).map(
 	(key, index) => {
-		console.log(`In build ItemNames name ${key} index ${index}`);
+		// console.log(`In build ItemNames name ${key} index ${index}`);
 		return {
 			key: uuidv4(),
 			name: key,
@@ -239,3 +254,38 @@ export const valveMpItemNames = Object.entries(valveMpItemNameEnum).map(
 		};
 	}
 );
+export const getItemIdPositionClassName = (className: string, itemIdPosition: ItemIdPositionType):ItemIdPositionType => {
+	// Check className includes 'itemId popover', if not return className and warn
+	if (!className.includes('itemId popover')){
+		console.warn("Function getItemIdPositionClassName called when 'itemId popover' not in given className");
+		return className
+	}
+	// Over write given className
+	className = "itemId popover";
+	switch (itemIdPosition) {
+	case "left":
+		className = className.replace("position-left", "") + " position-left";
+		break;
+	case "right":
+		className = className.replace("position-right", "") + " position-right";
+		break;
+	case "top-left":
+		className = className.replace("position-top-left", "") + " position-top-left";
+		break;
+	case "top-right":
+		className = className.replace("position-top-right", "") + " position-top-right";
+		break;
+	case "bottom-left":
+		className = className.replace("position-bottom-left", "") + " position-bottom-left";
+		break;
+	case "bottom-right":
+		className = className.replace("position-bottom-right", "") + " position-bottom-right";
+		break;
+
+	default:
+		break;
+}
+
+	return className;
+}
+

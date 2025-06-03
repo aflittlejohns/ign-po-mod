@@ -12,6 +12,8 @@ import com.inductiveautomation.perspective.gateway.api.PerspectiveContext;
 //import dev.kgamble.perspective.examples.common.Constants;
 import dev.aflittlejohns.perspective.hmi.common.Constants;
 import dev.aflittlejohns.perspective.hmi.common.components.level4.process_objects.Valve;;
+import dev.aflittlejohns.perspective.hmi.common.components.level4.input.ParameterList;
+import dev.aflittlejohns.perspective.hmi.common.components.level4.input.CommandValveMp;
 
 /**
  * Gateway module hook for the Example Component Library.
@@ -51,6 +53,8 @@ public class GatewayHook extends AbstractGatewayModuleHook {
 		if (this.componentRegistry != null) {
 			// #TODO Task 3 Update component names
 			this.componentRegistry.registerComponent(Valve.DESCRIPTOR);
+			this.componentRegistry.registerComponent(ParameterList.DESCRIPTOR);
+			this.componentRegistry.registerComponent(CommandValveMp.DESCRIPTOR);
 		} else {
 			log.error("Reference to component registry not found, HMI Components will fail to function!");
 		}
@@ -65,6 +69,8 @@ public class GatewayHook extends AbstractGatewayModuleHook {
 		if (this.componentRegistry != null) {
 			// #TODO Task 4 Update component names
 			this.componentRegistry.removeComponent(Valve.COMPONENT_ID);
+			this.componentRegistry.removeComponent(ParameterList.COMPONENT_ID);
+			this.componentRegistry.removeComponent(CommandValveMp.COMPONENT_ID);
 		} else {
 			log.warn("Component registry was null, could not unregister HMI Components.");
 		}

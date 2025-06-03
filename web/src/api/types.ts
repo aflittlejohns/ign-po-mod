@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-
+import type { ComponentProps} from "@inductiveautomation/perspective-client";
 
 
 
@@ -13,31 +13,26 @@ export type ValveState = {
 	lsl?: boolean;
 	activatedConfig: number;
 	deactivatedConfig: number;
-	tagName: string;
+	itemName: string;
 	manual: boolean;
 	masked: boolean;
 	changing: boolean;
 	locate: boolean;
 };
-export type DevEnvCompoundContextType ={
-	useReducer: UseValveReducer;
-	componentContext: ValveCompoundContextType
-}
 
-export type EditDevEnvCompoundProps ={
-	useReducer: UseValveReducer;
-	componentContext: ValveCompoundContextType;
-	children: React.ReactNode;
-}
+
+
 export type ValveCompoundContextType = {
+	componentProps:ComponentProps<any,any>,
 	valveProps: ValveProps;
 	onActionPerformed: ()=> void
+	children: ReactNode;
 };
 export type ValveCompoundRootProps = {
-	valveProps: ValveProps;
-	// popup?:ReactNode;
+	componentProps:ComponentProps<any,any>,
+	valveProps:ValveProps,
+	onActionPerformed: ()=> void
 	children: ReactNode;
-
 }
 /**
  * Define the shape of the ParameterAction type
@@ -70,7 +65,7 @@ export type ParamLabel = {
 }
 export type ParamInput = {
 	type: string;
-	inputmode: string;
+	inputmode: 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search' | undefined;
 	placeholder: string;
 	editable: boolean;
 	pattern: string;
@@ -88,6 +83,9 @@ export type ParamInput = {
 export type ParamItem = {
 	label: ParamLabel;
 	input: ParamInput;
+}
+export type ParametersListState = {
+	parameters: ParamItem[]
 }
 /**
  * Define the shape of the ValveAction type
@@ -178,6 +176,7 @@ export const valveMpItemNameEnum = {
 	V1: "v1", // index 9
 	usl: "usl", // index 10 upper-seat-lift
 	lsl: "lsl", // index 11 lower-seat-lift
+	locate: "locate" // index 12 locate animation
 };
 export type valveMpItemNameEnum = (typeof valveMpItemNameEnum)[keyof typeof valveMpItemNameEnum];
 
@@ -242,8 +241,23 @@ const ValveStateEnum = {
 export type ValveStateEnum =
 	(typeof ValveStateEnum)[keyof typeof ValveStateEnum];
 
+const itemIdPositions = [
+	'right',
+	'left',
+	'top-left',
+	'top-right',
+	'bottom-left',
+	'bottom-right'
+];
+
+export type ItemIdPositionType = typeof itemIdPositions[number];
+export type ProcessObject = {
+	status: ValveState
+}
 export type ValveProps = {
-	ValveStatus?: ValveState;
+	processObject?:ProcessObject;
+	labelPosition?:ItemIdPositionType;
+	showLabel?: boolean;
 	handleClick?: () => void;
 };
 
@@ -276,3 +290,83 @@ export type itemNameProps = {
 			value: string,
 			index: number,
 }
+export type CommandValveMpProps = {
+	security?:{
+		enabled: boolean;
+		accesslevel: number;
+		userNames: string[];
+		userRoles: string[];},
+	interlocks?:{
+		main: boolean[];
+		upperSeat: boolean[];
+		lowerSeat: boolean[];},
+	main?:{
+	label: string;
+	auto: boolean;
+	// onActionPerformed__auto: () => void;
+	manual: boolean;
+	// onActionPerformed__manual: () => void;
+	off: boolean;
+	// onActionPerformed__on: () => void;
+	on: boolean;
+	// onActionPerformed__off: () => void;},
+	},
+	upperSeat?:{
+	label: string;
+	off: boolean;
+	on: boolean;
+	// onActionPerformed__off: React.MouseEventHandler ;
+	// onActionPerformed__on: React.MouseEventHandler ;
+},
+	lowerSeat?:{
+	label: string;
+	off: boolean;
+	on: boolean;
+	// onActionPerformed__off: React.MouseEventHandler ;
+	// onActionPerformed__on: React.MouseEventHandler ;
+},
+}
+
+
+export type CommandsValveMpCompoundContextType = {
+	componentProps:ComponentProps<any,any>,
+	useReducer: UseValveMpCommandReducer;
+	children: ReactNode;
+};
+export type CommandsValveMpCompoundRootProps = {
+	componentProps:ComponentProps<any,any>,
+	command: CommandValveMpProps;
+	children: ReactNode;
+}
+/**
+ * Define the shape of the ValveAction type
+ * @Useage useValveReducer
+ */
+export type ValveMpCommandAction =
+	| { type: "UPDATE_AUTO_MANUAL", mode:"auto"| "manual" }
+	| { type: "UPDATE_MAIN_MAN_ON" }
+	| { type: "UPDATE_MAIN_MAN_OFF" }
+	| { type: "UPDATE_USL_MAN_ON" }
+	| { type: "UPDATE_USL_MAN_OFF" }
+	| { type: "UPDATE_LSL_MAN_ON" }
+	| { type: "UPDATE_LSL_MAN_OFF" }
+
+	;
+export type ValveMpCommandReducer = (
+	state: CommandValveMpProps,
+	action: ValveMpCommandAction
+) => ValveState;
+
+export type UseValveMpCommandReducer = {
+	state: CommandValveMpProps;
+	reducer: {
+		updateAutoManSelection:(mode:"auto"| "manual", ) => void;
+		updateMainManualOn: () => void;
+		updateMainManualOff: () => void;
+		updateUslManualOn: () => void;
+		updateUslManualOff: () => void;
+		updateLslManualOn: () => void;
+		updateLslManualOff: () => void;
+		//add more handlers as needed
+	};
+};

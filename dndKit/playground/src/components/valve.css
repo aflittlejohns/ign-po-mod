@@ -1,9 +1,0 @@
-.anchor {
-	anchor-name: --anchor;
-	width: fit-content;
-	position: fixed;
-	aspect-ratio: 1/1;
-	left: 50px;
-	top: 50px;
-	background-color: aqua;
-}

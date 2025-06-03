@@ -9,6 +9,6 @@
  * @param i is a number representing the bit position to be tested
  * @returns the boolean value of the bit at index i.
  */
-export const getBoolAtIndex = (n: number, i: number): number => {
-	return (n >> i) & 1;
+export const getBoolAtIndex = (n: number, i: number): boolean => {
+	return Boolean((n >> i) & 1);
 };

@@ -1,0 +1,130 @@
+---
+title: 'Designer Scope'
+---
+import ValveIcon from '@site/static/img/valve-icon.svg'
+
+## Designer Scope Implementation
+
+:::tip 🗒️
+The designer scope handles how your component appears and behaves within the Ignition Designer environment. This includes component icons, registration, and any designer-specific behaviors.
+
+In a simple component, this is likely just showing the component in the palette and associating it with an icon. More complex components may require additional designer-specific behavior.
+:::
+:::warning NOT UPDATED FOR ParameterList Component
+## 1. Create Component icon
+
+``` xml "/designer/src/main/resources/images/hmi/process-objects/valve-icon.svg"
+<svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+ <rect x="1.9904" y="1.9904" width="20.019" height="20.019" style="fill:none;
+    stroke-linecap:round;stroke-linejoin:round;stroke-opacity:.86667;stroke-width:3.9808;stroke:#8a8886"
+    />
+ <rect x="11.797" y="1.7968" width=".40644" height="10.406" style="fill:none;
+    stroke-linecap:round;stroke-width:3.5936;stroke:#060504"
+    />
+ <rect transform="matrix(-.0099586 .99995 -.99999 -.003837 0 0)"
+    x="11.771" y="-12.328" width=".39802" height="10.332" style="fill:none;
+    stroke-linecap:round;stroke-width:3.5434;stroke:#060504"
+    />
+</svg>
+```
+
+Here's how the Valve Icon would look in the designer palette;
+
+<ValveIcon  />
+
+## 2. Update Designer Hook
+
+Modify the designer hook `init` and `shutdown` methods to register and remove components:
+
+```
+ign-po-mod/
+├── common/.../
+|
+├── designer/
+|    ├── src/main/
+|       ├── java/...package.../designer/
+|       |   ├── DesignerHook.java
+|       |   ├── IconUtilities.java
+|       |   └── ComponentUtilities.java
+|       └── resources/
+|           ├── hmi-component.properties  //module name
+|           └── images/
+|               └── valve-icon.svg
+|
+├── gateway/.../
+|
+└── web/.../
+
+```
+
+```java designer/src/main/java/dev/aflittlejohns/perspective/hmi/designer/DesignerHook.java
+
+package ldev.aflittlejohns.perspective.hmi.designer;
+
+import com.inductiveautomation.ignition.common.licensing.LicenseState;
+import com.inductiveautomation.ignition.common.util.LoggerEx;
+import com.inductiveautomation.ignition.designer.model.AbstractDesignerModuleHook;
+import com.inductiveautomation.ignition.designer.model.DesignerContext;
+import com.inductiveautomation.perspective.designer.DesignerComponentRegistry;
+import com.inductiveautomation.perspective.designer.api.PerspectiveDesignerInterface;
+
+import dev.aflittlejohns.perspective.hmi.designer.ComponentUtilities;
+import dev.aflittlejohns.perspective.hmi.designer.IconUtilities;
+
+import dev.aflittlejohns.perspective.hmi.common.components.level4.process-objects.Valve;
+
+/**
+ * Designer module hook for the HMI Component Library.
+ * This class is responsible for initializing and managing the module's
+ * lifecycle in the Ignition Designer.
+ */
+public class DesignerHook extends AbstractDesignerModuleHook {
+ private static final LoggerEx log = LoggerEx.newBuilder()
+ .build(HMIComponentsLevel4ProcessObjectsDesignerHook.class);
+
+ private DesignerContext context;
+ private DesignerComponentRegistry registry;
+
+ /**
+  * Initializes the module in the Designer scope.
+  *
+  * @param context         The DesignerContext for this module.
+  * @param activationState The current license state.
+  */
+ @Override
+ public void startup(DesignerContext context, LicenseState activationState) {
+  log.trace("Starting up HMI Component Library Designer Hook");
+  this.context = context;
+  init();
+ }
+
+ /**
+  * Initializes the component registry and registers components.
+  */
+ private void init() {
+  PerspectiveDesignerInterface pdi = PerspectiveDesignerInterface.get(context);
+
+  registry = pdi.getDesignerComponentRegistry();
+//#TODO: Change the following to match the new components
+  // Each component must be registered, with an optional icon, to the component registry.
+  ComponentUtilities.registerComponentWithIcon(registry, Valve.DESCRIPTOR, "/images/valve-icon.svg");
+  }
+
+ /**
+  * Shuts down the module and unregisters components.
+  */
+ @Override
+ public void shutdown() {
+  log.trace("Shutting down HMI Component Library Designer Hook");
+  removeComponents();
+ }
+
+ /**
+  * Removes registered components from the registry.
+  */
+ private void removeComponents() {
+  registry.removeComponent(Valve.COMPONENT_ID);
+ }
+}
+
+```
