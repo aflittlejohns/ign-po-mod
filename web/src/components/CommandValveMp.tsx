@@ -23,6 +23,13 @@ export const COMPONENT_TYPE = "hmi.input.CommandValveMp";
  */
 export const CommandValveMp = (props: ComponentProps<CommandValveMpProps>) => {
 	const tree = props.store.props;
+	const {interlocks} = props.props
+
+
+
+	const isInterlocked = (interlocks: boolean[]):boolean => {
+		return interlocks.includes(true,0)
+	}
 
 	const handleMainAutoManualSelection = (mode: "auto" | "manual"): void => {
 		updateAutoManSelection(mode);
@@ -46,44 +53,129 @@ export const CommandValveMp = (props: ComponentProps<CommandValveMpProps>) => {
 		tree.write("main.off", true);
 		tree.write("main.on", false);
 	}
+	const handleUslManualOn = () => {
+		updateUslManualOn();
+		tree.write("upperSeat.on", true);
+		tree.write("upperSeat.off", false);
+	}
+	const handleUslManualOff = () => {
+		updateUslManualOff();
+		tree.write("upperSeat.off", true);
+		tree.write("upperSeat.on", false);
+	}
+	const handleLslManualOn = () => {
+		updateLslManualOn();
+		tree.write("lowerSeat.on", true);
+		tree.write("lowerSeat.off", false);
+	}
+	const handleLslManualOff = () => {
+		updateLslManualOff();
+		tree.write("lowerSeat.off", true);
+		tree.write("lowerSeat.on", false);
+	}
 
 
 	const { reducer, state } = useValveMpCommandReducer();
-	const { main } = state;
-	const { updateAutoManSelection, updateMainManualOn, updateMainManualOff } =
+	const { main , upperSeat, lowerSeat} = state;
+	const { updateAutoManSelection,
+		updateMainManualOn,
+		updateMainManualOff,
+		updateUslManualOn,
+		updateUslManualOff,
+		updateLslManualOn,
+		updateLslManualOff,
+
+	 } =
 		reducer;
 	return (
 		<div className="hmi-component-command-valve-mp hmi-component-command-valve-mp__grid">
 			<label className="main-label">{main?.label}</label>
 			<div role="group" className="button-group outlined main-auto-manual">
 				<button
-					className="button outlined selected"
-					disabled={false}
+					className={`button outlined ${main?.auto ? "selected" : ""}`}
+					disabled={isInterlocked(interlocks?.main || [])}
 					onClick={() => handleMainAutoManualSelection("auto")}
-				>
+					>
 					Auto {/* <IconAuto /> */}
 				</button>
 				<button
-					className="button outlined"
-					disabled={false}
+					className={`button outlined ${main?.manual ? "selected" : ""}`}
+					disabled={
+						isInterlocked(interlocks?.main || [])
+					}
 					onClick={() => handleMainAutoManualSelection("manual")}
-				>
+					>
 					Manual
 					{/* <IconHandClick /> */}
 				</button>
 			</div>
 			<div role="group" className="button-group outlined main-on-off">
 				<button
-					className="button outlined"
-					disabled={false}
+					className={`button outlined ${main?.on ? "selected" : ""}`}
+					disabled={
+						isInterlocked(interlocks?.main || []) ||
+						main?.auto
+					}
 					onClick={handleMainManualOn}
-				>
+					>
 					On {/* <IconAuto /> */}
 				</button>
 				<button
-					className="button outlined"
-					disabled={false}
+					className={`button outlined ${main?.off ? "selected" : ""}`}
+					disabled={
+						isInterlocked(interlocks?.main || []) ||
+						main?.auto
+					}
 					onClick={handleMainManualOff}
+					>
+					Off
+					{/* <IconHandClick /> */}
+				</button>
+			</div>
+			<label className="upper-seat-label">{upperSeat?.label}</label>
+			<div role="group" className="button-group outlined upper-seat-on-off">
+				<button
+					className={`button outlined ${upperSeat?.on ? "selected" : ""}`}
+					disabled={
+						isInterlocked(interlocks?.upperSeat || []) ||
+						main?.auto
+					}
+					onClick={handleUslManualOn}
+					>
+					On {/* <IconAuto /> */}
+				</button>
+				<button
+					className={`button outlined ${upperSeat?.off ? "selected" : ""}`}
+					disabled={
+						isInterlocked(interlocks?.upperSeat || []) ||
+						main?.auto
+					}
+					onClick={handleUslManualOff}
+					>
+					Off
+					{/* <IconHandClick /> */}
+				</button>
+			</div>
+			<label className="lower-seat-label">{lowerSeat?.label}</label>
+			<div role="group" className="button-group outlined lower-seat-on-off">
+				<button
+					className={`button outlined ${lowerSeat?.on ? "selected" : ""}`}
+					disabled={
+						isInterlocked(interlocks?.lowerSeat || []) ||
+						main?.auto
+					}
+					onClick={handleLslManualOn}
+					>
+					On {/* <IconAuto /> */}
+				</button>
+				<button
+					className={`button outlined ${lowerSeat?.off ? "selected" : ""}`}
+					disabled={
+						isInterlocked(interlocks?.lowerSeat || []) ||
+						main?.auto
+					}
+					onClick={handleLslManualOff}
+					value={"true"}
 				>
 					Off
 					{/* <IconHandClick /> */}

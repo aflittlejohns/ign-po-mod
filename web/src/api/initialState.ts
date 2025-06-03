@@ -79,17 +79,17 @@ export const initialControlState = {
 		label: "Main",
 		auto: true,
 		manual: false,
-		off: false,
+		off: true,
 		on: false,
 	},
 	upperSeat: {
 		label: "Upper Seat",
-		off: false,
+		off: true,
 		on: false,
 	},
 	lowerSeat: {
 		label: "Lower Seat",
-		off: false,
+		off: true,
 		on: false,
 	},
 } as CommandValveMpProps;
