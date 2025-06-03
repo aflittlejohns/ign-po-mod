@@ -4,12 +4,14 @@ import { ComponentMeta, ComponentRegistry } from '@inductiveautomation/perspecti
 import { Valve, ValveMeta } from './components/Valve';
 import { ParameterListComponent, ParameterListComponentMeta} from './components/ParameterList'
 import { CommandValveMp, CommandValveMpMeta } from './components/CommandValveMp';
+import { StatusValveMp, StatusValveMpMeta } from './components/StatusValveMp';
 
 // Export components for external reference
 export {
 	Valve ,
 	ParameterListComponent,
-	CommandValveMp
+	CommandValveMp,
+	StatusValveMp
 	};
 
 // Import component styles
@@ -20,6 +22,7 @@ const components: Array<ComponentMeta> = [
 	new ValveMeta(),
 	new ParameterListComponentMeta(),
 	new CommandValveMpMeta(),
+	new StatusValveMpMeta(),
 
 ];
 
