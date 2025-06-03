@@ -157,14 +157,19 @@ function valveMpReducer(
 				if (action.mode === "auto") {
 					draft.main.auto = true;
 					draft.main.manual = false;
+
 				} else if (action.mode === "manual") {
 					draft.main.auto = false;
 					draft.main.manual = true;
+
 				}
+				console.log(`draft.main.auto ${draft.main.auto}`)
+				console.log(`draft.main.manual ${draft.main.manual}`)
+				return draft;
 			}
 			return draft;
 		case "UPDATE_MAIN_MAN_ON":
-			if (draft.main) {
+				if (draft.main) {
 				draft.main.on = true;
 				draft.main.off = false;
 			}

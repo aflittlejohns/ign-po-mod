@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 export const NoteIcon: React.FC<{fill?:string}> =({fill}) => (
 <svg xmlns="http://www.w3.org/2000/svg"

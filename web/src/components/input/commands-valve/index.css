@@ -1,0 +1,41 @@
+:root {
+	--_hmi-command-valve-mp__grid-template-rows: var(
+		--hmi-command-valve-mp__grid-template-rows,
+		repeat(3, 36px)
+	);
+	--_hmi-command-valve-mp__grid-template-columns: var(
+		--hmi-command-valve-mp__grid-template-columns,
+		repeat(9, 24px)
+	);
+}
+
+div.hmi-component-command-valve-mp__grid {
+	display: grid;
+	container-type: inline-size;
+	grid-template-rows: var(--_hmi-command-valve-mp__grid-template-rows);
+	grid-template-columns: var(--_hmi-command-valve-mp__grid-template-columns);
+}
+.hmi-component-command-valve-mp {
+	gap: 1cqmin;
+	align-items: center;
+	& .main-label {
+		grid-area: 1 / 1 / 2 / 4;
+	}
+	& .main-auto-manual {
+		grid-area: 1 / 3 / 2 / 7;
+		& button {
+			padding-inline: 2cqmin;
+			&.selected {
+				--_bg-color: var(--color-8);
+				--_border-color: var(--color-7);
+				--_text-color: var(--color-1);
+			}
+		}
+	}
+	& .main-on-off {
+		grid-area: 1 / 7 / 2 / 10;
+		& button {
+			padding-inline: 2cqmin;
+		}
+	}
+}

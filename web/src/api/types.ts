@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { ComponentProps } from "@inductiveautomation/perspective-client";
+import type { ComponentProps} from "@inductiveautomation/perspective-client";
 
 
 
@@ -343,13 +343,13 @@ export type CommandsValveMpCompoundRootProps = {
  * @Useage useValveReducer
  */
 export type ValveMpCommandAction =
-	| { type: "UPDATE_AUTO_MANUAL", mode:"auto"| "manual"}
-	| { type: "UPDATE_MAIN_MAN_ON"}
-	| { type: "UPDATE_MAIN_MAN_OFF"}
-	| { type: "UPDATE_USL_MAN_ON"}
-	| { type: "UPDATE_USL_MAN_OFF"}
-	| { type: "UPDATE_LSL_MAN_ON"}
-	| { type: "UPDATE_LSL_MAN_OFF"}
+	| { type: "UPDATE_AUTO_MANUAL", mode:"auto"| "manual" }
+	| { type: "UPDATE_MAIN_MAN_ON" }
+	| { type: "UPDATE_MAIN_MAN_OFF" }
+	| { type: "UPDATE_USL_MAN_ON" }
+	| { type: "UPDATE_USL_MAN_OFF" }
+	| { type: "UPDATE_LSL_MAN_ON" }
+	| { type: "UPDATE_LSL_MAN_OFF" }
 
 	;
 export type ValveMpCommandReducer = (
@@ -360,7 +360,7 @@ export type ValveMpCommandReducer = (
 export type UseValveMpCommandReducer = {
 	state: CommandValveMpProps;
 	reducer: {
-		updateAutoManSelection:(mode:"auto"| "manual") => void;
+		updateAutoManSelection:(mode:"auto"| "manual", ) => void;
 		updateMainManualOn: () => void;
 		updateMainManualOff: () => void;
 		updateUslManualOn: () => void;

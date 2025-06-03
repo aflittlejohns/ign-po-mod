@@ -26,10 +26,10 @@
 */
 /*** Base components (no dependencies)  */
 @import "./actions/button.css";
-/* @import "./actions/icon-button.css";
-@import "./actions/tab-buttons.css";
+ @import "./actions/icon-button.css";
+/*@import "./actions/tab-buttons.css";*/
 @import "./actions/toggle-button-group.css";
-@import "./data-display/avatar.css";
+/*@import "./data-display/avatar.css";
 @import "./data-display/badge.css";
 @import "./data-display/card.css";
 @import "./data-display/chip.css"; */
@@ -45,8 +45,8 @@
 @import "./text/typography.css";
 
 /*** Has dependencies */
-/* @import "./actions/button-group.css";
-@import "./data-display/accordion.css";
+ @import "./actions/button-group.css";
+/*@import "./data-display/accordion.css";
 @import "./data-display/list.css";
 @import "./feedback/alert.css";
 @import "./feedback/dialog.css";

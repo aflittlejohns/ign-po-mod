@@ -3,11 +3,13 @@ import { ComponentMeta, ComponentRegistry } from '@inductiveautomation/perspecti
 //import { Valve, ValveMeta } from "./components/Valve";
 import { Valve, ValveMeta } from './components/Valve';
 import { ParameterListComponent, ParameterListComponentMeta} from './components/ParameterList'
+import { CommandValveMp, CommandValveMpMeta } from './components/CommandValveMp';
 
 // Export components for external reference
 export {
 	Valve ,
 	ParameterListComponent,
+	CommandValveMp
 	};
 
 // Import component styles
@@ -17,6 +19,8 @@ import './index.css';
 const components: Array<ComponentMeta> = [
 	new ValveMeta(),
 	new ParameterListComponentMeta(),
+	new CommandValveMpMeta(),
+
 ];
 
 // Register each component with the Perspective ComponentRegistry

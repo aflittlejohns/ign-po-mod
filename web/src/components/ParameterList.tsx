@@ -49,7 +49,7 @@ const transformedProps = React.useMemo(() => {
 }, [props.props.parameters])
 
 
-		console.log(`transformedProps: label ${transformedProps[0].label.text}`);
+
 		return(
 			<div className="display-flex-column"
 			>
