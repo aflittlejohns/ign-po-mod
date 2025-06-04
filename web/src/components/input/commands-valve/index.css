@@ -17,6 +17,8 @@ div.hmi-component-command-valve-mp__grid {
 }
 .hmi-component-command-valve-mp {
 	gap: 1cqmin;
+	padding-block-start: 1cqb;
+	padding-inline-start: 2cqi;
 	align-items: center;
 	& .main-label {
 		grid-area: 1 / 1 / 2 / 4;

@@ -11,24 +11,36 @@ import type {
 export const COMPONENT_TYPE = "hmi.display.StatusValveMp";
 
 export const StatusValveMp = (props: ComponentProps<StatusProps>) => {
+	// const useProps = React.useMemo(() => {
+	// 	const useStatusProps = props.props || {}
+	// 	return useStatusProps
+	// }
+	// , [props.props])
 	const { statusItems } = props.props;
 
 	return (
 		<div className="hmi-component-status-valve-mp hmi-component-status-valve-mp__grid">
-			<ul>
+			<ul
+			className="list bordered dense">
 
 			{statusItems.map((item, index) => {
 
 				return (
-					<li className="border-top" key={index}>
+					<li key={index}>
 						<label className="checkbox" >
 							<div className="text">
-								<p>
+								<p className="x-small">
 								{item.label}
 								</p>
 								</div>
 							<div className="end">
-								<input name="checkbox" id={`checkbox-${index}`} type="checkbox" checked={item.status} />
+								<input
+								name="checkbox"
+								id={`checkbox-${index}`}
+								type="checkbox"
+								checked={item.status}
+								readOnly={true}
+								/>
 							</div>
 						</label>
 					</li>
@@ -61,10 +73,12 @@ export class StatusValveMpMeta implements ComponentMeta {
 	// Invoked when an update to the PropertyTree has occurred,
 	// effectively mapping the valveStatus of the tree to component props.
 	getPropsReducer(tree: PropertyTree): StatusProps {
+		console.log(`status ${tree.read(`status`)}`);
+
 		return {
-			statusItems: tree.read("statusItems", [
+			statusItems: tree.read("status", [
 				{
-					label: "label text",
+					label: `label text`,
 					status: false,
 				},
 			]),

@@ -1,41 +1,44 @@
-
-
-.hmi-valve-faceplate .hmi-valve-faceplate__status {
-	grid-column: 2 / span 2;
-	grid-row: 2/3;
-	display: grid;
-	grid-template-columns: minmax(60px,9fr) minmax(10px,1fr);
-	grid-auto-rows: minmax(20px,1fr);
-	align-items: center;
-	background-color: var(--hmi-fp-status-bg-color);
-	color: var(--hmi-fp-status-font-color);
-}
-.hmi-valve-faceplate__status__item{
-	display: grid;
-	grid-template-columns: subgrid;
-	grid-template-rows: minmax(16px,0.5cqh);
-	grid-column: 1 / 3;
-}
-.hmi-valve-faceplate__status__item-label{
-	grid-column: 1 / 2;
-	align-self: center;
+:root{
+	--_hmi-component-status__gap: var(--hmi-component-status__gap, 2cqi);
+	--_hmi-component-status__line-color: var(--hmi-component-status__line-color, var(--color-9));
+	--_hmi-component-status__label-width: var(--hmi-component-status__label-width, 25ch);
 }
 
-.hmi-valve-faceplate__status__item-status{
-	container-type: inline-size;
-	grid-column: 2 / 3;
-	width: 100cqmax;
-	height: 100cqmax;
-	border: 1px solid var(--hmi-po-border-color);
-	border-radius: 10cqmax;
-}
-.hmi-valve-faceplate__status__item-status--activated{
-	background-color: var(--hmi-po-activated-color);
-	border: 1px solid var(--hmi-po-border-color);
-	border-radius: 4px;
-}
-.hmi-valve-faceplate__status__item-status--deactivated{
-	background-color: var(--hmi-po-deactivated-color);
-	border: 1px solid var(--hmi-po-border-color);
-	border-radius: 4px;
+ .hmi-component-status-valve-mp {
+	display: flex;
+	flex-direction: column;
+	margin-top: 0.5rem;
+	& li {
+
+		/* border-top: 1px var(--_hmi-component-status__line-color) solid ; */
+		&::marker{
+			content: "";
+			display: none
+		}
+		/* &:last-child{
+			border-bottom: 1px var(--_hmi-component-status__line-color) solid;
+		} */
+	}
+
+	& label:where(.checkbox){
+		grid-auto-columns: var(--_hmi-component-status__label-width) 2ch;
+		gap: var(--_hmi-component-status__gap);
+		cursor:default;
+	}
+	& div.text{
+		justify-self: start;
+		& p {
+			cursor:default;
+		}
+	}
+	& div.end  {
+		display: grid;
+		place-items: center;
+		justify-self: end;
+		cursor:default;
+
+	}
+	& div.end input {
+		cursor:default;
+	}
 }

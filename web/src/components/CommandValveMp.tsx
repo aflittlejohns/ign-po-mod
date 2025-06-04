@@ -209,12 +209,12 @@ export class CommandValveMpMeta implements ComponentMeta {
 	// effectively mapping the valveStatus of the tree to component props.
 	getPropsReducer(tree: PropertyTree): CommandValveMpProps {
 		return {
-			security: {
-				enabled: tree.readBoolean("security.enabled", false),
-				accesslevel: tree.readNumber("security.accesslevel", 511),
-				userNames: tree.read("security.userNames", ["admin"]),
-				userRoles: tree.read("security.userRoles", ["Administrator"]),
-			},
+			// security: {
+			// 	enabled: tree.readBoolean("security.enabled", false),
+			// 	accesslevel: tree.readNumber("security.accesslevel", 511),
+			// 	userNames: tree.read("security.userNames", ["admin"]),
+			// 	userRoles: tree.read("security.userRoles", ["Administrator"]),
+			// },
 			interlocks: {
 				main: tree.readArray("interlocks.main"),
 				upperSeat: tree.readArray("interlocks.upperSeat"),
