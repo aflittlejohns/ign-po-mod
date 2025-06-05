@@ -9,10 +9,8 @@ import type {
 	PComponent,
 	SizeObject,
 } from "@inductiveautomation/perspective-client"; //'@inductiveautomation/perspective-client';
+// import { initialControlState } from "../api/initialState";
 import { useValveMpCommandReducer } from "../api/hooks";
-
-// import { valveProps } from "./process-objects/valve/initialState";
-// import { ValveFCCompound } from "./process-objects/valve/ValveFC";
 
 export const COMPONENT_TYPE = "hmi.input.CommandValveMp";
 
@@ -22,10 +20,26 @@ export const COMPONENT_TYPE = "hmi.input.CommandValveMp";
  * Provides a customizable valve with proper handling of designer/preview modes.
  */
 export const CommandValveMp = (props: ComponentProps<CommandValveMpProps>) => {
-	const tree = props.store.props;
-	const {interlocks} = props.props
+	const tree = props.store.props
+// 1. Create local state for command
+ const [localCommand, setLocalCommand] = React.useState(props.props.command);
+  // 2. Sync local state with props.props.command on mount (and when it changes)
+  React.useEffect(() => {
+    setLocalCommand(props.props.command);
+  }, [props.props.command]);
 
+	const { reducer } = useValveMpCommandReducer();
 
+	const { main , upperSeat, lowerSeat, interlocks} = localCommand;
+	const { updateAutoManSelection,
+		updateMainManualOn,
+		updateMainManualOff,
+		updateUslManualOn,
+		updateUslManualOff,
+		updateLslManualOn,
+		updateLslManualOff,
+	 } =
+		reducer;
 
 	const isInterlocked = (interlocks: boolean[]):boolean => {
 		return interlocks.includes(true,0)
@@ -34,59 +48,48 @@ export const CommandValveMp = (props: ComponentProps<CommandValveMpProps>) => {
 	const handleMainAutoManualSelection = (mode: "auto" | "manual"): void => {
 		updateAutoManSelection(mode);
 		if (mode === "manual") {
-			tree.write("main.auto", false);
-			tree.write("main.manual", true);
+			tree.write("command.main.auto", false);
+			tree.write("command.main.manual", true);
+
 		} else if (mode === "auto") {
 			handleMainManualOff(); // When in Auto switch to manualOff to true
-			tree.write("main.auto", true);
-			tree.write("main.manual", false);
+			tree.write("command.main.auto", true);
+			tree.write("command.main.manual", false);
 		}
 	};
 
 	const handleMainManualOn = () => {
 		updateMainManualOn();
-		tree.write("main.on", true);
-		tree.write("main.off", false);
+		tree.write("command.main.on", true);
+		tree.write("command.main.off", false);
 	}
 	const handleMainManualOff = () => {
 		updateMainManualOff();
-		tree.write("main.off", true);
-		tree.write("main.on", false);
+		tree.write("command.main.off", true);
+		tree.write("command.main.on", false);
 	}
 	const handleUslManualOn = () => {
 		updateUslManualOn();
-		tree.write("upperSeat.on", true);
-		tree.write("upperSeat.off", false);
+		tree.write("command.upperSeat.on", true);
+		tree.write("command.upperSeat.off", false);
 	}
 	const handleUslManualOff = () => {
 		updateUslManualOff();
-		tree.write("upperSeat.off", true);
-		tree.write("upperSeat.on", false);
+		tree.write("command.upperSeat.off", true);
+		tree.write("command.upperSeat.on", false);
 	}
 	const handleLslManualOn = () => {
 		updateLslManualOn();
-		tree.write("lowerSeat.on", true);
-		tree.write("lowerSeat.off", false);
+		tree.write("command.lowerSeat.on", true);
+		tree.write("command.lowerSeat.off", false);
 	}
 	const handleLslManualOff = () => {
 		updateLslManualOff();
-		tree.write("lowerSeat.off", true);
-		tree.write("lowerSeat.on", false);
+		tree.write("command.lowerSeat.off", true);
+		tree.write("command.lowerSeat.on", false);
 	}
 
 
-	const { reducer, state } = useValveMpCommandReducer();
-	const { main , upperSeat, lowerSeat} = state;
-	const { updateAutoManSelection,
-		updateMainManualOn,
-		updateMainManualOff,
-		updateUslManualOn,
-		updateUslManualOff,
-		updateLslManualOn,
-		updateLslManualOff,
-
-	 } =
-		reducer;
 	return (
 		<div className="hmi-component-command-valve-mp hmi-component-command-valve-mp__grid">
 			<label className="main-label">{main?.label}</label>
@@ -195,7 +198,7 @@ export class CommandValveMpMeta implements ComponentMeta {
 	 * @returns The React component class.
 	 */
 	getViewComponent(): PComponent {
-		return CommandValveMp;
+		return CommandValveMp as unknown as PComponent;
 	}
 
 	getDefaultSize(): SizeObject {
@@ -209,34 +212,37 @@ export class CommandValveMpMeta implements ComponentMeta {
 	// effectively mapping the valveStatus of the tree to component props.
 	getPropsReducer(tree: PropertyTree): CommandValveMpProps {
 		return {
-			// security: {
-			// 	enabled: tree.readBoolean("security.enabled", false),
-			// 	accesslevel: tree.readNumber("security.accesslevel", 511),
-			// 	userNames: tree.read("security.userNames", ["admin"]),
-			// 	userRoles: tree.read("security.userRoles", ["Administrator"]),
-			// },
-			interlocks: {
-				main: tree.readArray("interlocks.main"),
-				upperSeat: tree.readArray("interlocks.upperSeat"),
-				lowerSeat: tree.readArray("interlocks.lowerSeat"),
-			},
-			main: tree.read("main", {
-				label: "",
-				auto: true,
-				manual: false,
-				off: true,
-				on: false,
-			}),
-			upperSeat: tree.read("upperSeat", {
-				label: "",
-				off: true,
-				on: false,
-			}),
-			lowerSeat: tree.read("lowerSeat", {
-				label: "",
-				off: true,
-				on: false,
-			}),
+			command:{
+				security: {
+					enabled: tree.readBoolean("command.security.enabled", false),
+					accesslevel: tree.readNumber("command.security.accesslevel", 511),
+					userNames: tree.read("command.security.userNames", ["admin"]),
+					userRoles: tree.read("command.security.userRoles", ["Administrator"]),
+				},
+				interlocks: {
+					main: tree.readArray("command.interlocks.main"),
+					upperSeat: tree.readArray("command.interlocks.upperSeat"),
+					lowerSeat: tree.readArray("command.interlocks.lowerSeat"),
+				},
+				main: {
+					label: tree.readString("commands.main.label", ""),
+					auto: tree.readBoolean("command.main.auto", true),
+					manual: tree.readBoolean("command.main.manual", false),
+					off: tree.readBoolean("command.main.off",true),
+					on: tree.readBoolean("command.main.on",false),
+				},
+				upperSeat: {
+					label: tree.readString("commands.upperSeat.label", ""),
+					off: tree.readBoolean("command.upperSeat.off",true),
+					on: tree.readBoolean("command.upperSeat.on",false),
+				},
+				lowerSeat:{
+					label: tree.readString("commands.lowerSeat.label", ""),
+					off: tree.readBoolean("command.lowerSeat.off",true),
+					on: tree.readBoolean("command.lowerSeat.on",false),
+
+				},
+			}
 		};
 	}
 }

@@ -64,32 +64,34 @@ export const initialOffOnState = {
 	on: false,
 };
 export const initialControlState = {
-	security:{
-		enabled: false,
-		accesslevel: 0,
-		userNames: ["admin"],
-		userRoles: ["Administrator"],
-	},
-	interlocks: {
-		main: [],
-		upperSeat: [],
-		lowerSeat: []
-	},
-	main: {
-		label: "Main",
-		auto: true,
-		manual: false,
-		off: true,
-		on: false,
-	},
-	upperSeat: {
-		label: "Upper Seat",
-		off: true,
-		on: false,
-	},
-	lowerSeat: {
-		label: "Lower Seat",
-		off: true,
-		on: false,
+	command: {
+		security:{
+			enabled: false,
+			accesslevel: 0,
+			userNames: ["admin"],
+			userRoles: ["Administrator"],
+		},
+		interlocks: {
+			main: [],
+			upperSeat: [],
+			lowerSeat: []
+		},
+		main: {
+			label: "Main",
+			auto: true,
+			manual: false,
+			off: true,
+			on: false,
+		},
+		upperSeat: {
+			label: "Upper Seat",
+			off: true,
+			on: false,
+		},
+		lowerSeat: {
+			label: "Lower Seat",
+			off: true,
+			on: false,
+		},
 	},
 } as CommandValveMpProps;

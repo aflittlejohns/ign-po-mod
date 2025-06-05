@@ -1,7 +1,5 @@
 import type { ReactNode } from "react";
-import type { ComponentProps} from "@inductiveautomation/perspective-client";
-
-
+import type { ComponentProps } from "@inductiveautomation/perspective-client";
 
 export const VALVE_COMPONENT_TYPE = "hmi.process_objects.Valve";
 
@@ -9,7 +7,7 @@ export type ValveState = {
 	alarm: boolean;
 	actFB: boolean;
 	deActFB: boolean;
-	usl?:boolean;
+	usl?: boolean;
 	lsl?: boolean;
 	activatedConfig: number;
 	deactivatedConfig: number;
@@ -20,28 +18,27 @@ export type ValveState = {
 	locate: boolean;
 };
 
-
-
 export type ValveCompoundContextType = {
-	componentProps:ComponentProps<any,any>,
+	componentProps: ComponentProps<any, any>;
 	valveProps: ValveProps;
-	onActionPerformed: ()=> void
+	onActionPerformed: () => void;
 	children: ReactNode;
 };
 export type ValveCompoundRootProps = {
-	componentProps:ComponentProps<any,any>,
-	valveProps:ValveProps,
-	onActionPerformed: ()=> void
+	componentProps: ComponentProps<any, any>;
+	valveProps: ValveProps;
+	onActionPerformed: () => void;
 	children: ReactNode;
-}
+};
 /**
  * Define the shape of the ParameterAction type
  * @Useage useParameterReducer
  */
-export type ParameterAction =
-	| { type: "UPDATE_VALUE"; value: number , index: number}
-
-	;
+export type ParameterAction = {
+	type: "UPDATE_VALUE";
+	value: number;
+	index: number;
+};
 
 export type ParameterReducer = (
 	state: ParamItem | ParamItem[],
@@ -51,7 +48,7 @@ export type ParameterReducer = (
 export type UseParameterReducer = {
 	state: ParamItem[];
 	reducer: {
-		updateValue: (value:number, index: number) => void;
+		updateValue: (value: number, index: number) => void;
 		//add more handlers as needed
 	};
 };
@@ -62,10 +59,19 @@ export type ParamLabel = {
 	tooltipPosition?: string;
 	tooltipClassName?: string;
 	tooltipId?: string;
-}
+};
 export type ParamInput = {
 	type: string;
-	inputmode: 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search' | undefined;
+	inputmode:
+		| "none"
+		| "text"
+		| "tel"
+		| "url"
+		| "email"
+		| "numeric"
+		| "decimal"
+		| "search"
+		| undefined;
 	placeholder: string;
 	editable: boolean;
 	pattern: string;
@@ -76,17 +82,17 @@ export type ParamInput = {
 	// pattern: "^[0-9]*$" for integers
 	eu: string;
 	value: number;
-}
+};
 // type ParamsHeader = {
 // 	label: string
 // }
 export type ParamItem = {
 	label: ParamLabel;
 	input: ParamInput;
-}
+};
 export type ParametersListState = {
-	parameters: ParamItem[]
-}
+	parameters: ParamItem[];
+};
 /**
  * Define the shape of the ValveAction type
  * @Useage useValveReducer
@@ -102,8 +108,7 @@ export type ValveAction =
 	| { type: "UPDATE_ALARM" }
 	| { type: "UPDATE_MASKED" }
 	| { type: "UPDATE_CHANGING" }
-	| { type: "UPDATE_LOCATE" }
-	;
+	| { type: "UPDATE_LOCATE" };
 
 export type ValveReducer = (
 	state: ValveState,
@@ -113,8 +118,8 @@ export type ValveReducer = (
 export type UseValveReducer = {
 	state: ValveState;
 	reducer: {
-		updateActConfig: (value:number) => void;
-		updateDeActConfig: (value:number) => void;
+		updateActConfig: (value: number) => void;
+		updateDeActConfig: (value: number) => void;
 		updateAlarm: () => void;
 		updateActFB: () => void;
 		updateDeActFB: () => void;
@@ -137,7 +142,7 @@ export const ValveClassNameEnum = {
 	Masked: "Masked",
 	Changing: "Changing",
 	NoAlarmMask: "NoAlarmMask",
-	Locate: "Locate"
+	Locate: "Locate",
 };
 export type ValveClassNameEnum =
 	(typeof ValveClassNameEnum)[keyof typeof ValveClassNameEnum];
@@ -176,9 +181,10 @@ export const valveMpItemNameEnum = {
 	V1: "v1", // index 9
 	usl: "usl", // index 10 upper-seat-lift
 	lsl: "lsl", // index 11 lower-seat-lift
-	locate: "locate" // index 12 locate animation
+	locate: "locate", // index 12 locate animation
 };
-export type valveMpItemNameEnum = (typeof valveMpItemNameEnum)[keyof typeof valveMpItemNameEnum];
+export type valveMpItemNameEnum =
+	(typeof valveMpItemNameEnum)[keyof typeof valveMpItemNameEnum];
 
 export const ItemClickableNameEnum = {
 	V1b1: "v1b1", // index 0
@@ -242,21 +248,21 @@ export type ValveStateEnum =
 	(typeof ValveStateEnum)[keyof typeof ValveStateEnum];
 
 const itemIdPositions = [
-	'right',
-	'left',
-	'top-left',
-	'top-right',
-	'bottom-left',
-	'bottom-right'
+	"right",
+	"left",
+	"top-left",
+	"top-right",
+	"bottom-left",
+	"bottom-right",
 ];
 
-export type ItemIdPositionType = typeof itemIdPositions[number];
+export type ItemIdPositionType = (typeof itemIdPositions)[number];
 export type ProcessObject = {
-	status: ValveState
-}
+	status: ValveState;
+};
 export type ValveProps = {
-	processObject?:ProcessObject;
-	labelPosition?:ItemIdPositionType;
+	processObject?: ProcessObject;
+	labelPosition?: ItemIdPositionType;
 	showLabel?: boolean;
 	handleClick?: () => void;
 };
@@ -285,73 +291,74 @@ export type ItemData = {
 // 	className: string;
 // }
 export type itemNameProps = {
-			key: string,
-			name: [string,string],
-			value: string,
-			index: number,
-}
+	key: string;
+	name: [string, string];
+	value: string;
+	index: number;
+};
 export type CommandValveMpProps = {
-	security?:{
-		enabled: boolean;
-		accesslevel: number;
-		userNames: string[];
-		userRoles: string[];},
-	interlocks?:{
-		main: boolean[];
-		upperSeat: boolean[];
-		lowerSeat: boolean[];},
-	main?:{
-	label: string;
-	auto: boolean;
-	// onActionPerformed__auto: () => void;
-	manual: boolean;
-	// onActionPerformed__manual: () => void;
-	off: boolean;
-	// onActionPerformed__on: () => void;
-	on: boolean;
-	// onActionPerformed__off: () => void;},
-	},
-	upperSeat?:{
-	label: string;
-	off: boolean;
-	on: boolean;
-	// onActionPerformed__off: React.MouseEventHandler ;
-	// onActionPerformed__on: React.MouseEventHandler ;
-},
-	lowerSeat?:{
-	label: string;
-	off: boolean;
-	on: boolean;
-	// onActionPerformed__off: React.MouseEventHandler ;
-	// onActionPerformed__on: React.MouseEventHandler ;
-},
-}
-
+	command: {
+		security?: {
+			enabled: boolean;
+			accesslevel: number;
+			userNames: string[];
+			userRoles: string[];
+		};
+		interlocks?: {
+			main: boolean[];
+			upperSeat: boolean[];
+			lowerSeat: boolean[];
+		};
+		main?: {
+			label: string;
+			auto: boolean;
+			// onActionPerformed__auto: () => void;
+			manual: boolean;
+			// onActionPerformed__manual: () => void;
+			off: boolean;
+			// onActionPerformed__on: () => void;
+			on: boolean;
+			// onActionPerformed__off: () => void;},
+		};
+		upperSeat?: {
+			label: string;
+			off: boolean;
+			on: boolean;
+			// onActionPerformed__off: React.MouseEventHandler ;
+			// onActionPerformed__on: React.MouseEventHandler ;
+		};
+		lowerSeat?: {
+			label: string;
+			off: boolean;
+			on: boolean;
+			// onActionPerformed__off: React.MouseEventHandler ;
+			// onActionPerformed__on: React.MouseEventHandler ;
+		};
+	};
+};
 
 export type CommandsValveMpCompoundContextType = {
-	componentProps:ComponentProps<any,any>,
+	componentProps: ComponentProps<any, any>;
 	useReducer: UseValveMpCommandReducer;
 	children: ReactNode;
 };
 export type CommandsValveMpCompoundRootProps = {
-	componentProps:ComponentProps<any,any>,
+	componentProps: ComponentProps<any, any>;
 	command: CommandValveMpProps;
 	children: ReactNode;
-}
+};
 /**
  * Define the shape of the ValveAction type
  * @Useage useValveReducer
  */
 export type ValveMpCommandAction =
-	| { type: "UPDATE_AUTO_MANUAL", mode:"auto"| "manual" }
+	| { type: "UPDATE_AUTO_MANUAL"; mode: "auto" | "manual" }
 	| { type: "UPDATE_MAIN_MAN_ON" }
 	| { type: "UPDATE_MAIN_MAN_OFF" }
 	| { type: "UPDATE_USL_MAN_ON" }
 	| { type: "UPDATE_USL_MAN_OFF" }
 	| { type: "UPDATE_LSL_MAN_ON" }
-	| { type: "UPDATE_LSL_MAN_OFF" }
-
-	;
+	| { type: "UPDATE_LSL_MAN_OFF" };
 export type ValveMpCommandReducer = (
 	state: CommandValveMpProps,
 	action: ValveMpCommandAction
@@ -360,7 +367,7 @@ export type ValveMpCommandReducer = (
 export type UseValveMpCommandReducer = {
 	state: CommandValveMpProps;
 	reducer: {
-		updateAutoManSelection:(mode:"auto"| "manual", ) => void;
+		updateAutoManSelection: (mode: "auto" | "manual") => void;
 		updateMainManualOn: () => void;
 		updateMainManualOff: () => void;
 		updateUslManualOn: () => void;

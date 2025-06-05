@@ -153,55 +153,53 @@ function valveMpReducer(
 ): CommandValveMpProps {
 	switch (action.type) {
 		case "UPDATE_AUTO_MANUAL":
-			if (draft.main) {
+			if (draft.command?.main) {
 				if (action.mode === "auto") {
-					draft.main.auto = true;
-					draft.main.manual = false;
+					draft.command.main.auto = true;
+					draft.command.main.manual = false;
 
 				} else if (action.mode === "manual") {
-					draft.main.auto = false;
-					draft.main.manual = true;
+					draft.command.main.auto = false;
+					draft.command.main.manual = true;
 
 				}
-				console.log(`draft.main.auto ${draft.main.auto}`)
-				console.log(`draft.main.manual ${draft.main.manual}`)
 				return draft;
 			}
 			return draft;
 		case "UPDATE_MAIN_MAN_ON":
-				if (draft.main) {
-				draft.main.on = true;
-				draft.main.off = false;
+				if (draft.command?.main) {
+				draft.command.main.on = true;
+				draft.command.main.off = false;
 			}
 			return draft;
 		case "UPDATE_MAIN_MAN_OFF":
-			if (draft.main) {
-				draft.main.on = false;
-				draft.main.off = true;
+			if (draft.command?.main) {
+				draft.command.main.on = false;
+				draft.command.main.off = true;
 			}
 			return draft;
 		case "UPDATE_USL_MAN_ON":
-			if (draft.upperSeat) {
-				draft.upperSeat.on = true;
-				draft.upperSeat.off = false;
+			if (draft.command?.upperSeat) {
+				draft.command.upperSeat.on = true;
+				draft.command.upperSeat.off = false;
 			}
 			return draft;
 		case "UPDATE_USL_MAN_OFF":
-			if (draft.upperSeat) {
-				draft.upperSeat.on = false;
-				draft.upperSeat.off = true;
+			if (draft.command?.upperSeat) {
+				draft.command.upperSeat.on = false;
+				draft.command.upperSeat.off = true;
 			}
 			return draft;
 		case "UPDATE_LSL_MAN_ON":
-			if (draft.lowerSeat) {
-				draft.lowerSeat.on = true;
-				draft.lowerSeat.off = false;
+			if (draft.command?.lowerSeat) {
+				draft.command.lowerSeat.on = true;
+				draft.command.lowerSeat.off = false;
 			}
 			return draft;
 			case "UPDATE_LSL_MAN_OFF":
-				if (draft.lowerSeat) {
-					draft.lowerSeat.on = false;
-					draft.lowerSeat.off = true;
+				if (draft.command?.lowerSeat) {
+					draft.command.lowerSeat.on = false;
+					draft.command.lowerSeat.off = true;
 			}
 			return draft;
 
