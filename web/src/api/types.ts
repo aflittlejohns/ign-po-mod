@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { ComponentProps } from "@inductiveautomation/perspective-client";
+import type { ComponentProps, PlainObject } from "@inductiveautomation/perspective-client";
 
 export const VALVE_COMPONENT_TYPE = "hmi.process_objects.Valve";
 
@@ -297,7 +297,7 @@ export type itemNameProps = {
 	index: number;
 };
 export type CommandValveMpProps = {
-	command: {
+	command?: {
 		security?: {
 			enabled: boolean;
 			accesslevel: number;
@@ -335,6 +335,7 @@ export type CommandValveMpProps = {
 			// onActionPerformed__on: React.MouseEventHandler ;
 		};
 	};
+	writeData?: (path: string, newJson: PlainObject) => void
 };
 
 export type CommandsValveMpCompoundContextType = {

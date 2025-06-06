@@ -3,6 +3,7 @@
  */
 // initialState.ts
 
+
 import { CommandValveMpProps, ParamItem } from "./types";
 
 export const valveStatus = {
@@ -94,4 +95,5 @@ export const initialControlState = {
 			on: false,
 		},
 	},
+	writeData: ()=>{}
 } as CommandValveMpProps;

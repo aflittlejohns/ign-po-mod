@@ -1,6 +1,8 @@
 import { useImmerReducer } from "use-immer";
+
 import {
 	initialControlState,
+	// initialControlState,
 	parameterInitialState,
 	valveStatus,
 } from "./initialState";
@@ -155,19 +157,27 @@ function valveMpReducer(
 		case "UPDATE_AUTO_MANUAL":
 			if (draft.command?.main) {
 				if (action.mode === "auto") {
-					draft.command.main.auto = true;
-					draft.command.main.manual = false;
-
+					draft.command.main = {
+						label: draft.command.main.label,
+						auto: true,
+						manual: false,
+						off: draft.command.main.off,
+						on: draft.command.main.on,
+					};
 				} else if (action.mode === "manual") {
-					draft.command.main.auto = false;
-					draft.command.main.manual = true;
-
+					draft.command.main = {
+						label: draft.command.main.label,
+						auto: false,
+						manual: true,
+						off: draft.command.main.off,
+						on: draft.command.main.on,
+					};
 				}
 				return draft;
 			}
 			return draft;
 		case "UPDATE_MAIN_MAN_ON":
-				if (draft.command?.main) {
+			if (draft.command?.main) {
 				draft.command.main.on = true;
 				draft.command.main.off = false;
 			}
@@ -196,10 +206,10 @@ function valveMpReducer(
 				draft.command.lowerSeat.off = false;
 			}
 			return draft;
-			case "UPDATE_LSL_MAN_OFF":
-				if (draft.command?.lowerSeat) {
-					draft.command.lowerSeat.on = false;
-					draft.command.lowerSeat.off = true;
+		case "UPDATE_LSL_MAN_OFF":
+			if (draft.command?.lowerSeat) {
+				draft.command.lowerSeat.on = false;
+				draft.command.lowerSeat.off = true;
 			}
 			return draft;
 
@@ -209,10 +219,7 @@ function valveMpReducer(
 }
 
 export function useValveMpCommandReducer(): UseValveMpCommandReducer {
-	const [state, dispatch] = useImmerReducer(
-		valveMpReducer,
-		initialControlState
-	);
+	const [state, dispatch] = useImmerReducer(valveMpReducer, initialControlState);
 
 	function updateAutoManSelection(mode: "auto" | "manual") {
 		dispatch({ type: "UPDATE_AUTO_MANUAL", mode });
