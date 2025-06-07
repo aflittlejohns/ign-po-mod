@@ -24,220 +24,267 @@ export const COMPONENT_TYPE = "hmi.input.CommandValveMp";
 export const CommandValveMp = (props: ComponentProps<CommandValveMpProps>) => {
 	const { state, reducer } = useValveMpCommandReducer();
 	const { main, upperSeat, lowerSeat, interlocks } = state.command || {};
-
-	// function areCommandsEqual(a: any, b: any): boolean {
-	// 	// Compare all relevant leaf properties
-	// 	return (
-	// 		a.main.auto === b.main.auto &&
-	// 		a.main.manual === b.main.manual &&
-	// 		a.main.off === b.main.off &&
-	// 		a.main.on === b.main.on &&
-	// 		a.upperSeat.off === b.upperSeat.off &&
-	// 		a.upperSeat.on === b.upperSeat.on &&
-	// 		a.lowerSeat.off === b.lowerSeat.off &&
-	// 		a.lowerSeat.on === b.lowerSeat.on
-	// 		// Add more as needed
-	// 	);
-	// }
-
-		useEffect(() => {
-			if (!props.props.command) return;
-
-			// Write each property that is out of sync
-			if (main && main.auto !== props.props?.command?.main?.auto) {
-				props.store.props.write("command.main.auto", main.auto);
+	/**
+	 * Syncs specified keys from newValues to the property tree if they differ from oldValues.
+	 * @param prefix - The property path prefix (e.g., "command.main")
+	 * @param keys - The keys to check and sync
+	 * @param newValues - The new state values
+	 * @param oldValues - The old property tree values
+	 * @param writeFn - Function to write to the property tree
+	 */
+	function resolver<T extends Record<string, any>>(
+		prefix: string,
+		keys: Array<keyof T>,
+		newValues: T,
+		oldValues: T
+	): void {
+		if (!newValues || !oldValues) return;
+		keys.forEach((key) => {
+			console.log(`Prefix: "${prefix}.${String(key)}" oldValue: ${oldValues[key]} newValues: ${newValues[key]}`)
+			if (newValues[key] !== oldValues[key]) {
+				props.store.props.write(`${prefix}.${String(key)}`, newValues[key]);
 			}
-			if (main && main.manual !== props.props?.command?.main?.manual) {
-				props.store.props.write("command.main.manual", main.manual );
+		});
+	}
+	useEffect(() => {
+		//onMount update state from props
+		if (props.props.command) {
+			const { lowerSeat, upperSeat, main } = props.props.command;
+			if (state.command?.main && main) {
+				if (main.auto && !main.auto === state.command.main.auto) {
+					reducer.updateAutoManSelection("auto");
+				} else if (!main.manual === state.command.main.manual) {
+					reducer.updateAutoManSelection("manual");
+				}
+				if (main.off && !main.off === state.command.main.off) {
+					reducer.updateMainManualOff();
+				} else if (!main.on === state.command.main.on) {
+					reducer.updateMainManualOn();
+				}
 			}
-			if (main && main.off !== props.props?.command?.main?.off) {
-				props.store.props.write("command.main.off", main.off );
+			if (state.command?.lowerSeat && lowerSeat) {
+				if (lowerSeat.off && !lowerSeat.off === state.command.lowerSeat.off) {
+					reducer.updateLslManualOff();
+				} else if (!lowerSeat.on === state.command.lowerSeat.on) {
+					reducer.updateLslManualOn();
+				}
 			}
-			if (main && main.on !== props.props?.command?.main?.on) {
-				props.store.props.write("command.main.on", main.on );
+			if (state.command?.upperSeat && upperSeat) {
+				if (upperSeat.off && !upperSeat.off === state.command.upperSeat.off) {
+					reducer.updateUslManualOff();
+				} else if (!upperSeat.on === state.command.upperSeat.on) {
+					reducer.updateUslManualOn();
+				}
 			}
-			// Repeat for upperSeat and lowerSeat...
-			// (Add similar checks for upperSeat and lowerSeat properties)
-		}, [
-			main?.auto,
-			main?.manual,
-			main?.off,
-			main?.on,
-			upperSeat?.off,
-			upperSeat?.on,
-			lowerSeat?.off,
-			lowerSeat?.on,
-			props.props.command,
-		]);
+		}
+	}, []);
 
-		// ...rest of your component
+	// Keep props.props in-sync with react state
+	useEffect(() => {
+		console.log(props.store.props.diagnosticId)
+		try {
+			if (main && props.props.command?.main) {
+				resolver(
+					"command.main",
+					["auto", "manual", "off", "on"],
+					main,
+					props.props.command.main
+				);
+			}
+		} catch (e) {
+			console.log(e);
+		}
+		if (lowerSeat && props.props.command?.lowerSeat) {
+			resolver(
+				"command.lowerSeat",
+				["off", "on"],
+				lowerSeat,
+				props.props.command.lowerSeat
+			);
+		}
+		if (upperSeat && props.props.command?.upperSeat) {
+			resolver(
+				"command.upperSeat",
+				["off", "on"],
+				upperSeat,
+				props.props.command.upperSeat
+			);
+		}
+	}, [
+		state.command?.main,
+		props.props.command?.main,
+		state.command?.lowerSeat,
+		props.props.command?.lowerSeat,
+		state.command?.upperSeat,
+		props.props.command?.upperSeat,
+	]);
 
-		const isInterlocked = (interlocks: boolean[]): boolean => {
-			return interlocks.includes(true, 0);
-		};
+	// ...rest of your component
 
-		const handleMainAutoManualSelection = (mode: "auto" | "manual"): void => {
-			reducer.updateAutoManSelection(mode);
-		};
-
-		const handleMainManualOn = () => {
-			reducer.updateMainManualOn();
-		};
-		const handleMainManualOff = () => {
-			reducer.updateMainManualOff();
-		};
-		const handleUslManualOn = () => {
-			reducer.updateUslManualOn();
-		};
-		const handleUslManualOff = () => {
-			reducer.updateUslManualOff();
-		};
-		const handleLslManualOn = () => {
-			reducer.updateLslManualOn();
-		};
-		const handleLslManualOff = () => {
-			reducer.updateLslManualOff();
-		};
-
-		return (
-			<div className="hmi-component-command-valve-mp hmi-component-command-valve-mp__grid">
-				<label className="main-label">{main?.label}</label>
-				<div role="group" className="button-group outlined main-auto-manual">
-					<button
-						className={`button outlined ${main?.auto ? "selected" : ""}`}
-						disabled={isInterlocked(interlocks?.main || [])}
-						onClick={() => handleMainAutoManualSelection("auto")}
-					>
-						Auto {/* <IconAuto /> */}
-					</button>
-					<button
-						className={`button outlined ${main?.manual ? "selected" : ""}`}
-						disabled={isInterlocked(interlocks?.main || [])}
-						onClick={() => handleMainAutoManualSelection("manual")}
-					>
-						Manual
-						{/* <IconHandClick /> */}
-					</button>
-				</div>
-				<div role="group" className="button-group outlined main-on-off">
-					<button
-						className={`button outlined ${main?.on ? "selected" : ""}`}
-						disabled={isInterlocked(interlocks?.main || []) || main?.auto}
-						onClick={handleMainManualOn}
-					>
-						On {/* <IconAuto /> */}
-					</button>
-					<button
-						className={`button outlined ${main?.off ? "selected" : ""}`}
-						disabled={isInterlocked(interlocks?.main || []) || main?.auto}
-						onClick={handleMainManualOff}
-					>
-						Off
-						{/* <IconHandClick /> */}
-					</button>
-				</div>
-				<label className="upper-seat-label">{upperSeat?.label}</label>
-				<div role="group" className="button-group outlined upper-seat-on-off">
-					<button
-						className={`button outlined ${upperSeat?.on ? "selected" : ""}`}
-						disabled={isInterlocked(interlocks?.upperSeat || []) || main?.auto}
-						onClick={handleUslManualOn}
-					>
-						On {/* <IconAuto /> */}
-					</button>
-					<button
-						className={`button outlined ${upperSeat?.off ? "selected" : ""}`}
-						disabled={isInterlocked(interlocks?.upperSeat || []) || main?.auto}
-						onClick={handleUslManualOff}
-					>
-						Off
-						{/* <IconHandClick /> */}
-					</button>
-				</div>
-				<label className="lower-seat-label">{lowerSeat?.label}</label>
-				<div role="group" className="button-group outlined lower-seat-on-off">
-					<button
-						className={`button outlined ${lowerSeat?.on ? "selected" : ""}`}
-						disabled={isInterlocked(interlocks?.lowerSeat || []) || main?.auto}
-						onClick={handleLslManualOn}
-					>
-						On {/* <IconAuto /> */}
-					</button>
-					<button
-						className={`button outlined ${lowerSeat?.off ? "selected" : ""}`}
-						disabled={isInterlocked(interlocks?.lowerSeat || []) || main?.auto}
-						onClick={handleLslManualOff}
-						value={"true"}
-					>
-						Off
-						{/* <IconHandClick /> */}
-					</button>
-				</div>
-			</div>
-		);
+	const isInterlocked = (interlocks: boolean[]): boolean => {
+		return interlocks.includes(true, 0);
 	};
 
-	// This is the actual thing that gets registered with the component registry.
-	export class CommandValveMpMeta implements ComponentMeta {
-		getComponentType(): string {
-			return COMPONENT_TYPE;
-		}
+	const handleMainAutoManualSelection = (mode: "auto" | "manual"): void => {
+		reducer.updateAutoManSelection(mode);
+	};
 
-		/**
-		 * @returns The React component class.
-		 */
-		getViewComponent(): PComponent {
-			return CommandValveMp;
-		}
+	const handleMainManualOn = () => {
+		reducer.updateMainManualOn();
+	};
+	const handleMainManualOff = () => {
+		reducer.updateMainManualOff();
+	};
+	const handleUslManualOn = () => {
+		reducer.updateUslManualOn();
+	};
+	const handleUslManualOff = () => {
+		reducer.updateUslManualOff();
+	};
+	const handleLslManualOn = () => {
+		reducer.updateLslManualOn();
+	};
+	const handleLslManualOff = () => {
+		reducer.updateLslManualOff();
+	};
 
-		getDefaultSize(): SizeObject {
-			return {
-				width: 24,
-				height: 48,
-			};
-		}
+	return (
+		<div className="hmi-component-command-valve-mp hmi-component-command-valve-mp__grid">
+			<label className="main-label">{main?.label}</label>
+			<div role="group" className="button-group outlined main-auto-manual">
+				<button
+					className={`button outlined ${main?.auto ? "selected" : ""}`}
+					disabled={isInterlocked(interlocks?.main || [])}
+					onClick={() => handleMainAutoManualSelection("auto")}
+				>
+					Auto {/* <IconAuto /> */}
+				</button>
+				<button
+					className={`button outlined ${main?.manual ? "selected" : ""}`}
+					disabled={isInterlocked(interlocks?.main || [])}
+					onClick={() => handleMainAutoManualSelection("manual")}
+				>
+					Manual
+					{/* <IconHandClick /> */}
+				</button>
+			</div>
+			<div role="group" className="button-group outlined main-on-off">
+				<button
+					className={`button outlined ${main?.on ? "selected" : ""}`}
+					disabled={isInterlocked(interlocks?.main || []) || main?.auto}
+					onClick={handleMainManualOn}
+				>
+					On {/* <IconAuto /> */}
+				</button>
+				<button
+					className={`button outlined ${main?.off ? "selected" : ""}`}
+					disabled={isInterlocked(interlocks?.main || []) || main?.auto}
+					onClick={handleMainManualOff}
+				>
+					Off
+					{/* <IconHandClick /> */}
+				</button>
+			</div>
+			<label className="upper-seat-label">{upperSeat?.label}</label>
+			<div role="group" className="button-group outlined upper-seat-on-off">
+				<button
+					className={`button outlined ${upperSeat?.on ? "selected" : ""}`}
+					disabled={isInterlocked(interlocks?.upperSeat || []) || main?.auto}
+					onClick={handleUslManualOn}
+				>
+					On {/* <IconAuto /> */}
+				</button>
+				<button
+					className={`button outlined ${upperSeat?.off ? "selected" : ""}`}
+					disabled={isInterlocked(interlocks?.upperSeat || []) || main?.auto}
+					onClick={handleUslManualOff}
+				>
+					Off
+					{/* <IconHandClick /> */}
+				</button>
+			</div>
+			<label className="lower-seat-label">{lowerSeat?.label}</label>
+			<div role="group" className="button-group outlined lower-seat-on-off">
+				<button
+					className={`button outlined ${lowerSeat?.on ? "selected" : ""}`}
+					disabled={isInterlocked(interlocks?.lowerSeat || []) || main?.auto}
+					onClick={handleLslManualOn}
+				>
+					On {/* <IconAuto /> */}
+				</button>
+				<button
+					className={`button outlined ${lowerSeat?.off ? "selected" : ""}`}
+					disabled={isInterlocked(interlocks?.lowerSeat || []) || main?.auto}
+					onClick={handleLslManualOff}
+					value={"true"}
+				>
+					Off
+					{/* <IconHandClick /> */}
+				</button>
+			</div>
+		</div>
+	);
+};
 
-		// Invoked when an update to the PropertyTree has occurred,
-		// effectively mapping the valveStatus of the tree to component props.
-		getPropsReducer(tree: PropertyTree): CommandValveMpProps {
-			return {
-				command: {
-					security: {
-						enabled: tree.readBoolean("command.security.enabled", false),
-						accesslevel: tree.readNumber("command.security.accesslevel", 511),
-						userNames: tree.read("command.security.userNames", ["admin"]),
-						userRoles: tree.read("command.security.userRoles", [
-							"Administrator",
-						]),
-					},
-					interlocks: {
-						main: tree.readArray("command.interlocks.main"),
-						upperSeat: tree.readArray("command.interlocks.upperSeat"),
-						lowerSeat: tree.readArray("command.interlocks.lowerSeat"),
-					},
-					main: {
-						label: tree.readString("commands.main.label", ""),
-						auto: tree.readBoolean("command.main.auto", true),
-						manual: tree.readBoolean("command.main.manual", false),
-						off: tree.readBoolean("command.main.off", true),
-						on: tree.readBoolean("command.main.on", false),
-					},
-					upperSeat: {
-						label: tree.readString("commands.upperSeat.label", ""),
-						off: tree.readBoolean("command.upperSeat.off", true),
-						on: tree.readBoolean("command.upperSeat.on", false),
-					},
-					lowerSeat: {
-						label: tree.readString("commands.lowerSeat.label", ""),
-						off: tree.readBoolean("command.lowerSeat.off", true),
-						on: tree.readBoolean("command.lowerSeat.on", false),
-					},
-				},
-				writeData: (path: string, newJson: PlainObject) =>
-					tree.write(path, newJson),
-			};
-		}
+// This is the actual thing that gets registered with the component registry.
+export class CommandValveMpMeta implements ComponentMeta {
+	getComponentType(): string {
+		return COMPONENT_TYPE;
 	}
+
+	/**
+	 * @returns The React component class.
+	 */
+	getViewComponent(): PComponent {
+		return CommandValveMp;
+	}
+
+	getDefaultSize(): SizeObject {
+		return {
+			width: 24,
+			height: 48,
+		};
+	}
+
+	// Invoked when an update to the PropertyTree has occurred,
+	// effectively mapping the valveStatus of the tree to component props.
+	getPropsReducer(tree: PropertyTree): CommandValveMpProps {
+		return {
+			command: {
+				security: {
+					enabled: tree.readBoolean("command.security.enabled", false),
+					accesslevel: tree.readNumber("command.security.accesslevel", 511),
+					userNames: tree.read("command.security.userNames", ["admin"]),
+					userRoles: tree.read("command.security.userRoles", ["Administrator"]),
+				},
+				interlocks: {
+					main: tree.readArray("command.interlocks.main"),
+					upperSeat: tree.readArray("command.interlocks.upperSeat"),
+					lowerSeat: tree.readArray("command.interlocks.lowerSeat"),
+				},
+				main: {
+					label: tree.readString("commands.main.label", ""),
+					auto: tree.readBoolean("command.main.auto", true),
+					manual: tree.readBoolean("command.main.manual", false),
+					off: tree.readBoolean("command.main.off", true),
+					on: tree.readBoolean("command.main.on", false),
+				},
+				upperSeat: {
+					label: tree.readString("commands.upperSeat.label", ""),
+					off: tree.readBoolean("command.upperSeat.off", true),
+					on: tree.readBoolean("command.upperSeat.on", false),
+				},
+				lowerSeat: {
+					label: tree.readString("commands.lowerSeat.label", ""),
+					off: tree.readBoolean("command.lowerSeat.off", true),
+					on: tree.readBoolean("command.lowerSeat.on", false),
+				},
+			},
+			writeData: (path: string, newJson: PlainObject) =>
+				tree.write(path, newJson),
+		};
+	}
+}
 
 /**
  *
