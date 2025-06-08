@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import type { ComponentProps } from "@inductiveautomation/perspective-client";
 
 export const VALVE_COMPONENT_TYPE = "hmi.process_objects.Valve";
-
+export type ElementRef = React.RefObject<HTMLDivElement>;
 export type ValveState = {
 	alarm: boolean;
 	actFB: boolean;
@@ -27,6 +27,32 @@ export type ValveCompoundContextType = {
 export type ValveCompoundRootProps = {
 	componentProps: ComponentProps<any, any>;
 	valveProps: ValveProps;
+	onActionPerformed: () => void;
+	children: ReactNode;
+};
+export const PUMP_COMPONENT_TYPE = "hmi.process_objects.Pump";
+export type PumpState = {
+	alarm: boolean;
+	actFB: boolean;
+	deActFB: boolean;
+	activatedConfig: number;
+	deactivatedConfig: number;
+	itemName: string;
+	manual: boolean;
+	masked: boolean;
+	changing: boolean;
+	locate: boolean;
+};
+
+export type PumpCompoundContextType = {
+	componentProps: ComponentProps<any, any>;
+	pumpProps: PumpProps;
+	onActionPerformed: () => void;
+	children: ReactNode;
+};
+export type PumpCompoundRootProps = {
+	componentProps: ComponentProps<any, any>;
+	pumpProps: PumpProps;
 	onActionPerformed: () => void;
 	children: ReactNode;
 };
@@ -260,7 +286,16 @@ export type ItemIdPositionType = (typeof itemIdPositions)[number];
 export type ProcessObject = {
 	status: ValveState;
 };
+export type ProcessObjectPump = {
+	status: PumpState;
+};
 export type ValveProps = {
+	processObject?: ProcessObject;
+	labelPosition?: ItemIdPositionType;
+	showLabel?: boolean;
+	handleClick?: () => void;
+};
+export type PumpProps = {
 	processObject?: ProcessObject;
 	labelPosition?: ItemIdPositionType;
 	showLabel?: boolean;
