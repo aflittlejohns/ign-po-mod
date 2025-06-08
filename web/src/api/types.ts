@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { ComponentProps, PlainObject } from "@inductiveautomation/perspective-client";
+import type { ComponentProps } from "@inductiveautomation/perspective-client";
 
 export const VALVE_COMPONENT_TYPE = "hmi.process_objects.Valve";
 
@@ -298,12 +298,6 @@ export type itemNameProps = {
 };
 export type CommandValveMpProps = {
 	command?: {
-		security?: {
-			enabled: boolean;
-			accesslevel: number;
-			userNames: string[];
-			userRoles: string[];
-		};
 		interlocks?: {
 			main: boolean[];
 			upperSeat: boolean[];
@@ -311,31 +305,18 @@ export type CommandValveMpProps = {
 		};
 		main?: {
 			label: string;
-			auto: boolean;
-			// onActionPerformed__auto: () => void;
-			manual: boolean;
-			// onActionPerformed__manual: () => void;
-			off: boolean;
-			// onActionPerformed__on: () => void;
-			on: boolean;
-			// onActionPerformed__off: () => void;},
+			autoManual: boolean;
+			activation: boolean;
 		};
 		upperSeat?: {
 			label: string;
-			off: boolean;
-			on: boolean;
-			// onActionPerformed__off: React.MouseEventHandler ;
-			// onActionPerformed__on: React.MouseEventHandler ;
+			activation: boolean;
 		};
 		lowerSeat?: {
 			label: string;
-			off: boolean;
-			on: boolean;
-			// onActionPerformed__off: React.MouseEventHandler ;
-			// onActionPerformed__on: React.MouseEventHandler ;
+			activation: boolean;
 		};
 	};
-	writeData?: (path: string, newJson: PlainObject) => void
 };
 
 export type CommandsValveMpCompoundContextType = {

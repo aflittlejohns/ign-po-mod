@@ -4,33 +4,6 @@
     "command":{
       "type": "object",
       "properties": {
-        "security": {
-          "type": "object",
-          "properties": {
-            "enabled": {
-              "type": "boolean",
-              "default": false,
-              "description": "Command Operation Enabled if true"
-            },
-            "accesslevel": {
-              "type": "number",
-              "default": 511,
-              "description": "AccessLevels above this value are enabled"
-            },
-            "userNames": {
-              "type": "array",
-              "items": { "type": "string" },
-              "default": ["Admin"],
-              "description": "A list of users who may operate this component"
-            },
-            "userRoles": {
-              "type": "array",
-              "items": { "type": "string" },
-              "default": ["Administrators"],
-              "description": "A list of user roles which may operate this component"
-            }
-          }
-        },
         "interlocks": {
           "type": "object",
           "properties": {
@@ -59,25 +32,15 @@
               "default": "Main",
               "description": "description of main activator"
             },
-            "auto": {
-              "type": "boolean",
-              "default": true,
-              "description": "Item in Automatic"
-            },
-            "manual": {
+            "autoManual": {
               "type": "boolean",
               "default": false,
-              "description": "Item in Manual"
+              "description": "Item Auto or Manual selection  (false = Auto or true = Manual)"
             },
-            "off": {
+            "activation": {
               "type": "boolean",
               "default": false,
-              "description": "Item in Manual Off"
-            },
-            "on": {
-              "type": "boolean",
-              "default": false,
-              "description": "Item in Manual On"
+              "description": "Item Activation Requested when true"
             }
           }
         },
@@ -89,15 +52,10 @@
               "default": "UpperSeat",
               "description": "upper seat-lift manual control"
             },
-            "off": {
-              "type": "boolean",
-              "default": true,
-              "description": "upper seat manual off"
-            },
-            "on": {
+            "activation": {
               "type": "boolean",
               "default": false,
-              "description": "upper seat manual on"
+              "description": "Item Activation Requested when true"
             }
           }
         },
@@ -109,19 +67,13 @@
               "default": "LowerSeat",
               "description": "Lower Seat-lift manual control"
             },
-            "off": {
-              "type": "boolean",
-              "default": true,
-              "description": "lower seat-lift manual off"
-            },
-            "on": {
+            "activation": {
               "type": "boolean",
               "default": false,
-              "description": "lower seat-lift manual on"
+              "description": "Item Activation Requested when true"
             }
           }
         }
-
       }
     }
 	},
