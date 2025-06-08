@@ -13,7 +13,7 @@
   :where(html) {
     color-scheme: light dark;
 
-    --palette-hue: var(--oklch-teal);
+    --palette-hue: var(--oklch-pink);
     --palette-hue-rotate-by: 5;
     --palette-chroma: 0.89;
 

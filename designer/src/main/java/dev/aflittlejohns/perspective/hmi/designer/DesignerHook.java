@@ -15,6 +15,7 @@ import dev.aflittlejohns.perspective.hmi.common.Constants;
 import dev.aflittlejohns.perspective.hmi.common.components.level4.process_objects.Valve;
 import dev.aflittlejohns.perspective.hmi.common.components.level4.input.ParameterList;
 import dev.aflittlejohns.perspective.hmi.common.components.level4.input.CommandValveMp;
+import dev.aflittlejohns.perspective.hmi.common.components.level4.display.StatusValveMp;
 
 
 
@@ -54,6 +55,7 @@ public class DesignerHook extends AbstractDesignerModuleHook {
   ComponentUtilities.registerComponentWithIcon(registry, Valve.DESCRIPTOR, "/images/process-objects/valve-mp/valve-mp-icon.svg");
   ComponentUtilities.registerComponentWithIcon(registry, ParameterList.DESCRIPTOR, "/images/input/parameter-list/component.icon.svg");
   ComponentUtilities.registerComponentWithIcon(registry, CommandValveMp.DESCRIPTOR, "/images/input/command-valve-mp/component.icon.svg");
+  ComponentUtilities.registerComponentWithIcon(registry, StatusValveMp.DESCRIPTOR, "/images/display/status-valve-mp/component.icon.svg");
   }
 
  /**
@@ -72,6 +74,7 @@ public class DesignerHook extends AbstractDesignerModuleHook {
   registry.removeComponent(Valve.COMPONENT_ID);
   registry.removeComponent(ParameterList.COMPONENT_ID);
   registry.removeComponent(CommandValveMp.COMPONENT_ID);
+  registry.removeComponent(StatusValveMp.COMPONENT_ID);
  }
 }
 

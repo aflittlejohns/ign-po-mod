@@ -1,0 +1,44 @@
+:root{
+	--_hmi-component-status__gap: var(--hmi-component-status__gap, 2cqi);
+	--_hmi-component-status__line-color: var(--hmi-component-status__line-color, var(--color-9));
+	--_hmi-component-status__label-width: var(--hmi-component-status__label-width, 25ch);
+}
+
+ .hmi-component-status-valve-mp {
+	display: flex;
+	flex-direction: column;
+	margin-top: 0.5rem;
+	& li {
+
+		/* border-top: 1px var(--_hmi-component-status__line-color) solid ; */
+		&::marker{
+			content: "";
+			display: none
+		}
+		/* &:last-child{
+			border-bottom: 1px var(--_hmi-component-status__line-color) solid;
+		} */
+	}
+
+	& label:where(.checkbox){
+		grid-auto-columns: var(--_hmi-component-status__label-width) 2ch;
+		gap: var(--_hmi-component-status__gap);
+		cursor:default;
+	}
+	& div.text{
+		justify-self: start;
+		& p {
+			cursor:default;
+		}
+	}
+	& div.end  {
+		display: grid;
+		place-items: center;
+		justify-self: end;
+		cursor:default;
+
+	}
+	& div.end input {
+		cursor:default;
+	}
+}
