@@ -30,7 +30,20 @@ export const valveProps = {
 	labelPosition: "left",
 	showLabel: false,
 };
+export const pumpInitialStatus = {
+	alarm: false,
+	activation: false,
+	configuration: 7,
+	itemName: "itemName",
+	manual: false,
+	masked: false,
+	changing: false,
+	locate: false,
+}
 
+export const pumpInitialProps = {
+	status: pumpInitialStatus,
+}
 export const parameterInitialState = [
 	{
 		label: {

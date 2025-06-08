@@ -1,0 +1,78 @@
+{
+	"type": "object",
+	"properties": {
+    "processObject": {
+      "type": "object",
+      "properties":{
+        "status": {
+          "type": "object",
+          "properties": {
+            "itemName": {
+              "type": "string",
+              "default": "\"\"",
+              "description": "Name of the valve"
+            },
+            "configuration": {
+              "type": "number",
+              "default": 7,
+              "description": "Pump configuration number"
+            },
+            "alarm": {
+              "type": "boolean",
+              "default": false,
+              "description": "Alarm status"
+            },
+            "activation": {
+              "type": "boolean",
+              "default": false,
+              "description": "Activated feedback"
+            },
+            "manual": {
+              "type": "boolean",
+              "default": false,
+              "description": "Manual mode"
+            },
+            "masked": {
+              "type": "boolean",
+              "default": false,
+              "description": "Masked"
+            },
+            "changing": {
+              "type": "boolean",
+              "default": false,
+              "description": "Changing"
+            },
+            "locate": {
+              "type": "boolean",
+              "default": false,
+              "description": "Locate Item"
+            }
+          }
+        }
+      }
+    },
+    "showLabel": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show Item Name Popover"
+    },
+    "labelPosition": {
+      "type": "string",
+      "enum": ["left"
+      , "right"
+      , "top-left"
+      , "top-right"
+      , "bottom-left"
+      , "bottom-right"
+    ],
+      "default": "top-left",
+      "description": "Position of itemId label, relative to item location"
+    },
+		"style": {
+      "$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
+			"default": {
+        "classes": ""
+			}
+		}
+	}
+}

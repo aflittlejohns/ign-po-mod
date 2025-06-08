@@ -12,6 +12,7 @@ import com.inductiveautomation.perspective.gateway.api.PerspectiveContext;
 //import dev.kgamble.perspective.examples.common.Constants;
 import dev.aflittlejohns.perspective.hmi.common.Constants;
 import dev.aflittlejohns.perspective.hmi.common.components.level4.process_objects.Valve;;
+import dev.aflittlejohns.perspective.hmi.common.components.level4.process_objects.Pump;;
 import dev.aflittlejohns.perspective.hmi.common.components.level4.input.ParameterList;
 import dev.aflittlejohns.perspective.hmi.common.components.level4.input.CommandValveMp;
 import dev.aflittlejohns.perspective.hmi.common.components.level4.display.StatusValveMp;
@@ -54,6 +55,7 @@ public class GatewayHook extends AbstractGatewayModuleHook {
 		if (this.componentRegistry != null) {
 			// #TODO Task 3 Update component names
 			this.componentRegistry.registerComponent(Valve.DESCRIPTOR);
+			this.componentRegistry.registerComponent(Pump.DESCRIPTOR);
 			this.componentRegistry.registerComponent(ParameterList.DESCRIPTOR);
 			this.componentRegistry.registerComponent(CommandValveMp.DESCRIPTOR);
 			this.componentRegistry.registerComponent(StatusValveMp.DESCRIPTOR);
@@ -71,6 +73,7 @@ public class GatewayHook extends AbstractGatewayModuleHook {
 		if (this.componentRegistry != null) {
 			// #TODO Task 4 Update component names
 			this.componentRegistry.removeComponent(Valve.COMPONENT_ID);
+			this.componentRegistry.removeComponent(Pump.COMPONENT_ID);
 			this.componentRegistry.removeComponent(ParameterList.COMPONENT_ID);
 			this.componentRegistry.removeComponent(CommandValveMp.COMPONENT_ID);
 			this.componentRegistry.removeComponent(StatusValveMp.COMPONENT_ID);

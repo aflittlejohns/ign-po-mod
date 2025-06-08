@@ -2,6 +2,7 @@ import { getBoolAtIndex } from "../utils/numberUtil";
 import {
 	ItemIdPositionType,
 	ItemNameEnum,
+	pumpItemList,
 	valveMpItemNameEnum,
 	type ValveState,
 } from "../api/types";
@@ -193,9 +194,12 @@ export const getValveMpItemClassName = (
 	} else if (index === 12) {
 		if (valveStatus?.locate) {
 			className = className.replace("show item", "") + " show item";
-			if(getBoolAtIndex(ActivatedConfigValue, 8) ||
-			getBoolAtIndex(DeactivatedConfigValue, 8)){
-				className = className.replace("show large item", "") + " show large item";
+			if (
+				getBoolAtIndex(ActivatedConfigValue, 8) ||
+				getBoolAtIndex(DeactivatedConfigValue, 8)
+			) {
+				className =
+					className.replace("show large item", "") + " show large item";
 			}
 		} else {
 			className = className.replace("hide item", "") + " hide item";
@@ -254,38 +258,75 @@ export const valveMpItemNames = Object.entries(valveMpItemNameEnum).map(
 		};
 	}
 );
-export const getItemIdPositionClassName = (className: string, itemIdPosition: ItemIdPositionType):ItemIdPositionType => {
+export const getItemIdPositionClassName = (
+	className: string,
+	itemIdPosition: ItemIdPositionType
+): ItemIdPositionType => {
 	// Check className includes 'itemId popover', if not return className and warn
-	if (!className.includes('itemId popover')){
-		console.warn("Function getItemIdPositionClassName called when 'itemId popover' not in given className");
-		return className
+	if (!className.includes("itemId popover")) {
+		console.warn(
+			"Function getItemIdPositionClassName called when 'itemId popover' not in given className"
+		);
+		return className;
 	}
 	// Over write given className
 	className = "itemId popover";
 	switch (itemIdPosition) {
-	case "left":
-		className = className.replace("position-left", "") + " position-left";
-		break;
-	case "right":
-		className = className.replace("position-right", "") + " position-right";
-		break;
-	case "top-left":
-		className = className.replace("position-top-left", "") + " position-top-left";
-		break;
-	case "top-right":
-		className = className.replace("position-top-right", "") + " position-top-right";
-		break;
-	case "bottom-left":
-		className = className.replace("position-bottom-left", "") + " position-bottom-left";
-		break;
-	case "bottom-right":
-		className = className.replace("position-bottom-right", "") + " position-bottom-right";
-		break;
+		case "left":
+			className = className.replace("position-left", "") + " position-left";
+			break;
+		case "right":
+			className = className.replace("position-right", "") + " position-right";
+			break;
+		case "top-left":
+			className =
+				className.replace("position-top-left", "") + " position-top-left";
+			break;
+		case "top-right":
+			className =
+				className.replace("position-top-right", "") + " position-top-right";
+			break;
+		case "bottom-left":
+			className =
+				className.replace("position-bottom-left", "") + " position-bottom-left";
+			break;
+		case "bottom-right":
+			className =
+				className.replace("position-bottom-right", "") +
+				" position-bottom-right";
+			break;
 
-	default:
-		break;
-}
+		default:
+			break;
+	}
 
 	return className;
-}
+};
 
+
+export const pumpItemNames = pumpItemList.map(
+	(key, index) => {
+		// console.log(`In build ItemNames name ${key} index ${index}`);
+		return {
+			key: uuidv4(),
+			name: key,
+			index: index,
+		};
+	}
+);
+export const getPumpItemClassName = (
+	index: number,
+	activation: boolean,
+	configuration: number,
+): string => {
+	let className = "";
+	// Handle the fact that ActivatedConfig and DeactivatedConfig are optional and maybe undefined
+	if (index < 8) {
+		if (getBoolAtIndex(configuration, index)) {
+			className = "show item";
+		} else {
+			className = "hide item";
+		}
+	}
+	return className;
+};

@@ -33,10 +33,8 @@ export type ValveCompoundRootProps = {
 export const PUMP_COMPONENT_TYPE = "hmi.process_objects.Pump";
 export type PumpState = {
 	alarm: boolean;
-	actFB: boolean;
-	deActFB: boolean;
-	activatedConfig: number;
-	deactivatedConfig: number;
+	activation: boolean;
+	configuration: number;
 	itemName: string;
 	manual: boolean;
 	masked: boolean;
@@ -204,13 +202,14 @@ export const valveMpItemNameEnum = {
 	V2b3: "v2b3", // index 6
 	V2b4: "v2b4", // index 7
 	V2: "v2", // index 8
-	V1: "v1", // index 9
+	v1: "v1", // index 9
 	usl: "usl", // index 10 upper-seat-lift
 	lsl: "lsl", // index 11 lower-seat-lift
 	locate: "locate", // index 12 locate animation
 };
 export type valveMpItemNameEnum =
 	(typeof valveMpItemNameEnum)[keyof typeof valveMpItemNameEnum];
+
 
 export const ItemClickableNameEnum = {
 	V1b1: "v1b1", // index 0
@@ -286,7 +285,7 @@ export type ItemIdPositionType = (typeof itemIdPositions)[number];
 export type ProcessObject = {
 	status: ValveState;
 };
-export type ProcessObjectPump = {
+export type Pump = {
 	status: PumpState;
 };
 export type ValveProps = {
@@ -296,11 +295,22 @@ export type ValveProps = {
 	handleClick?: () => void;
 };
 export type PumpProps = {
-	processObject?: ProcessObject;
+	processObject?: Pump;
 	labelPosition?: ItemIdPositionType;
 	showLabel?: boolean;
 	handleClick?: () => void;
 };
+export const pumpItemList = [
+ "base-1",
+ "base-2",
+ "base-3",
+ "symbol-1",
+ "symbol-2",
+ "symbol-3",
+ "symbol-4",
+ "locate",
+]
+export type PumpItemList = (typeof pumpItemList)[number];
 
 export type ItemData = {
 	key: string;
