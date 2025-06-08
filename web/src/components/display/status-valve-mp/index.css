@@ -21,6 +21,7 @@
 	}
 
 	& label:where(.checkbox){
+		display: grid;
 		grid-auto-columns: var(--_hmi-component-status__label-width) 2ch;
 		gap: var(--_hmi-component-status__gap);
 		cursor:default;
