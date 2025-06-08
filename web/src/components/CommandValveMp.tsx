@@ -244,8 +244,8 @@ export class CommandValveMpMeta implements ComponentMeta {
 
 	getDefaultSize(): SizeObject {
 		return {
-			width: 24,
-			height: 48,
+			width: 280,
+			height:140,
 		};
 	}
 

@@ -1,11 +1,11 @@
 :root {
 	--_hmi-command-valve-mp__grid-template-rows: var(
 		--hmi-command-valve-mp__grid-template-rows,
-		repeat(3, 36px)
+		repeat(3, minmax(2rem,2.5rem))
 	);
 	--_hmi-command-valve-mp__grid-template-columns: var(
 		--hmi-command-valve-mp__grid-template-columns,
-		repeat(9, 24px)
+		repeat(9, min(1.5rem,1.75rem))
 	);
 }
 
@@ -16,9 +16,8 @@ div.hmi-component-command-valve-mp__grid {
 	grid-template-columns: var(--_hmi-command-valve-mp__grid-template-columns);
 }
 .hmi-component-command-valve-mp {
-	gap: 1cqmin;
-	padding-block-start: 1cqb;
-	padding-inline-start: 2cqi;
+	gap: 0.5rem;
+	view-transition-name: hmi-component-command-valve-mp;
 	align-items: center;
 	& .main-label {
 		grid-area: 1 / 1 / 2 / 4;
