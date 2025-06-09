@@ -18,10 +18,8 @@ import type {
 } from "@inductiveautomation/perspective-client"; //'@inductiveautomation/perspective-client';
 import { PumpCompound } from "../components/process-objects/pumps/PumpCompound";
 import { pumpInitialStatus } from "../api/initialState";
-// import { valveProps } from "./process-objects/valve/initialState";
-// import { ValveFCCompound } from "./process-objects/valve/ValveFC";
 
-export const COMPONENT_TYPE = "hmi.process_objects.Valve_mp";
+export const COMPONENT_TYPE = "hmi.process_objects.Pump";
 
 /**
  * Valve component class.

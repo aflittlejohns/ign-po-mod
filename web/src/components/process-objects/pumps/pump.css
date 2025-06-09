@@ -9,14 +9,35 @@
 	--hmi-po-alarm-start-color: var(--error);
 	--hmi-po-alarm-end-color: var(--neutral-20);
 	/* itemId Popover Positions */
-	--_itemid-popup-position-right:var(--itemid-popup-position-right, translate(35%,10%));
-	--_itemid-popup-position-left:var(--itemid-popup-position-left, translate(-100%,10%));
-	--_itemid-popup-position-top-right:var(--itemid-popup-position-top-right, translate(35%,-75%));
-	--_itemid-popup-position-top-left:var(--itemid-popup-position-top-left, translate(-100%,-75%));
-	--_itemid-popup-position-bottom-right:var(--itemid-popup-position-bottom-right, translate(35%,100%));
-	--_itemid-popup-position-bottom-left:var(--itemid-popup-position-bottom-left, translate(-100%,100%));
+	--_itemid-popup-position-right: var(
+		--itemid-popup-position-right,
+		translate(35%, 10%)
+	);
+	--_itemid-popup-position-left: var(
+		--itemid-popup-position-left,
+		translate(-100%, 10%)
+	);
+	--_itemid-popup-position-top-right: var(
+		--itemid-popup-position-top-right,
+		translate(35%, -75%)
+	);
+	--_itemid-popup-position-top-left: var(
+		--itemid-popup-position-top-left,
+		translate(-100%, -75%)
+	);
+	--_itemid-popup-position-bottom-right: var(
+		--itemid-popup-position-bottom-right,
+		translate(35%, 100%)
+	);
+	--_itemid-popup-position-bottom-left: var(
+		--itemid-popup-position-bottom-left,
+		translate(-100%, 100%)
+	);
 	/* Default itemId Popover Position */
-	--_itemid-popup-position:var(--_itemid-popup-position-bottom-left, translate(-100%,100%));
+	--_itemid-popup-position: var(
+		--_itemid-popup-position-bottom-left,
+		translate(-100%, 100%)
+	);
 
 	--_locate-item: var(--locate-item, purple);
 	--_locate-small-keyframe-height-step-0-100: var(
@@ -59,121 +80,135 @@
 
 div.hmi-component {
 	container-type: inline-size;
-	font-size: 14px;
-	aspect-ratio: 5/10;
 	overflow: hidden;
-}
-.hmi-component__column {
-	display: flex;
-	flex-direction: column;
-	align-self: center;
-}
-.hmi-component__row {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	flex: 1 1 100px;
-}
-.hmi-Component__wrapper {
-	display: flex;
-	position: relative;
-}
-.hmi-component-valve__mp {
-	display: grid;
-	height: 40cqmax;
-	width: 40cqmax;
-	container-type: inline-size;
-	grid-template-columns:
-		minmax(var(--_min-size-1), var(--_max-size-1)) minmax(
-			var(--_min-size-3),
-			var(--_max-size-3)
-		)
-		minmax(var(--_min-size-2), var(--_max-size-2)) minmax(
-			var(--_min-size-3),
-			var(--_max-size-3)
-		)
-		minmax(var(--_min-size-1), var(--_max-size-1));
-	grid-template-rows:
-		minmax(var(--_min-size-2), var(--_max-size-2)) minmax(
-			var(--_min-size-1),
-			var(--_max-size-1)
-		)
-		minmax(var(--_min-size-3), var(--_max-size-3))
-		minmax(var(--_min-size-2), var(--_max-size-2))
-		minmax(var(--_min-size-3), var(--_max-size-3)) minmax(
-			var(--_min-size-1),
-			var(--_max-size-1)
-		)
-		minmax(var(--_min-size-3), var(--_max-size-3))
-		minmax(var(--_min-size-2), var(--_max-size-2))
-		minmax(var(--_min-size-3), var(--_max-size-3)) minmax(
-			var(--_min-size-1),
-			var(--_max-size-1)
-		)
-		minmax(var(--_min-size-2), var(--_max-size-2));
-}
-.hmi-component-valve__mp .locate.large {
-	--_locate-top: var(--_locate-large-top);
+	&.hmi-component__column {
+		display: flex;
+		flex-direction: column;
+		align-self: center;
+	}
+	&.hmi-component__row {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		flex: 1 1 100px;
+	}
+	&.hmi-Component__wrapper {
+		display: flex;
+		position: relative;
+	}
+	&.pump {
+		width: 300px;
+		aspect-ratio: 1;
+	}
+	& .hmi-component-pump {
+		aspect-ratio: 1;
+		display: grid;
+		/* height: 40cqmax;
+		width: 40cqmax; */
+		/* container-type: inline-size; */
+		grid-template-columns: repeat(10, var(--_min-size-2));
+		grid-template-rows: repeat(10, var(--_min-size-2));
 
-	--_locate-keyframe-height-step-0-100: var(
-		--_locate-large-keyframe-height-step-0-100
-	);
-	--_locate-keyframe-height-step-50: var(
-		--_locate-large-keyframe-height-step-50
-	);
-}
+		& .locate.large {
+			--_locate-top: var(--_locate-large-top);
 
-.hmi-component-valve__mp .locate {
-	position: absolute;
-	top: var(--_locate-top);
-	left: 50%;
-	transform: translate(-50%, -50%);
-	background-color: var(--_locate-item);
-	z-index: 20;
-	opacity: 0.5;
-	border: solid var(--neutral-50);
-	border-radius: 0%;
-	animation-name: locate;
-	animation-duration: 1s;
-	animation-iteration-count: infinite;
-}
+			--_locate-keyframe-height-step-0-100: var(
+				--_locate-large-keyframe-height-step-0-100
+			);
+			--_locate-keyframe-height-step-50: var(
+				--_locate-large-keyframe-height-step-50
+			);
+		}
+		/* child elements of hmi-component-pump */
+		&.locate {
+			position: absolute;
+			top: var(--_locate-top);
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: var(--_locate-item);
+			z-index: 20;
+			opacity: 0.5;
+			border: solid var(--neutral-50);
+			border-radius: 0%;
+			animation-name: locate;
+			animation-duration: 1s;
+			animation-iteration-count: infinite;
+		}
+		& .base-1 {
+			grid-area: 1/1/-1/-1;
+			border-width: 2cqi;
+			border: solid var(--hmi-po-border-color);
+			border-radius: 100cqi;
+		}
+		& .base-2 {
+			grid-area: 1/6/6/-1;
+			outline: 1px solid red;
+			background: linear-gradient(
+				45deg,
+				transparent 49%,
+				var(--hmi-po-border-color) 50%,
+				transparent 51%
+			);
+			background-size: 200% 200%; /* Makes the gradient larger or smaller */
+			background-position: 84% 84%; /* Moves the gradient within the cell */
+		}
+		& .base-3 {
+			grid-area: -1/6/6/-1;
+			outline: 1px solid red;
+			background: linear-gradient(
+				135deg,
+				transparent 49%,
+				var(--hmi-po-border-color) 50%,
+				transparent 51%
+			);
+			background-size: 200% 200%; /* Makes the gradient larger or smaller */
+			background-position: 25% 75%; /* Moves the gradient within the cell */
+		}
+		& .symbol-1.centrifugal {
+			grid-area: 5/1/7/-1;
+			background: linear-gradient(
+				0deg,
+				transparent 49%,
+				var(--hmi-po-border-color) 50%,
+				transparent 51%
+			);
+			background-size: 800% 800%; /* Makes the gradient larger or smaller */
+			background-position: 0% 50%; /* Moves the gradient within the cell */
+		}
+		& .symbol-1.diaphragm {
+			/* diaphragm */
+			grid-area: 1/3/-1/6;
+			background: var(--hmi-po-border-color);
+			--mask: radial-gradient(
+					175px at 200% 50%,
+					#0000 calc(99% - 2px),
+					#000 calc(101% - 2px) 101%,
+					#0000 101%
+				)
+				content-box border-box 50% 50% / 100% 100%;
 
-.hmi-component-valve.wrapper {
-	grid-area: 4 / 3 / 11 / 6;
-	justify-self: center;
-	align-self: center;
-}
-.hmi-component-valve.wrapper .label {
-	font-size: 10cqi;
-	font-weight: bold;
-	border-radius: 12cqi;
-	background-color: var(--neutral-50);
-	padding: 2cqi;
-}
+			-webkit-mask: var(--mask);
+			mask: var(--mask);
+		}
+		& .symbol-1.gear {
+			/* gear */
+			grid-area: 5/4/9/8;
+			border-color: var(--hmi-po-border-color);
+			border-radius: 50%;
+			border-width: 2px;
+			background-color: var(--containerRoot);
+		}
+		& .symbol-2.gear {
+			/* gear */
+			grid-area: 3/4/7/8;
+			border-color: var(--hmi-po-border-color);
+			border-radius: 50%;
+			border-width: 2px;
+			z-index: 1;
+			background-color: var(--containerRoot);
 
-.hmi-component-valve__mp .usl {
-	grid-area: 1/2/2/5;
-	background-color: var(--hmi-po-activated-color);
-	border: solid var(--hmi-po-border-color);
-	border-width: 5cqi;
-	border-radius: 5cqi;
-	stroke-width: 5cqi;
-}
-.hmi-component-valve__mp .lsl {
-	grid-area: 11/2/12/5;
-	background-color: var(--hmi-po-activated-color);
-	border: solid var(--hmi-po-border-color);
-	border-width: 5cqi;
-	border-radius: 5cqi;
-	stroke-width: 5cqi;
-}
-
-.hmi-component-valve__mp .v1 {
-	grid-area: 1/1/7/6;
-	border: solid var(--hmi-po-border-color);
-	border-width: 5cqi;
-	border-radius: 5cqi;
-	stroke-width: 5cqi;
+		}
+	}
 }
 
 .hmi-component-valve__mp .v2 {
@@ -300,7 +335,6 @@ div.hmi-component {
 	}
 }
 
-
 :where(.itemId.popover) {
 	position: absolute;
 	visibility: visible;
@@ -334,11 +368,21 @@ div.hmi-component {
 /* NDJH ValveTemplate - End
  */
 
-
 .wavy-line {
-  --mask:
-    radial-gradient(14.31px at 50% calc(100% + 8px),#0000 calc(99% - 3px),#000 calc(101% - 3px) 99%,#0000 101%) calc(50% - 20px) calc(50% - 6.5px + .5px)/40px 13px repeat-x,
-    radial-gradient(14.31px at 50% -8px,#0000 calc(99% - 3px),#000 calc(101% - 3px) 99%,#0000 101%) 50% calc(50% + 6.5px)/40px 13px repeat-x;
-  -webkit-mask: var(--mask);
-          mask: var(--mask);
+	--mask: radial-gradient(
+				14.31px at 50% calc(100% + 8px),
+				#0000 calc(99% - 3px),
+				#000 calc(101% - 3px) 99%,
+				#0000 101%
+			)
+			calc(50% - 20px) calc(50% - 6.5px + 0.5px) / 40px 13px repeat-x,
+		radial-gradient(
+				14.31px at 50% -8px,
+				#0000 calc(99% - 3px),
+				#000 calc(101% - 3px) 99%,
+				#0000 101%
+			)
+			50% calc(50% + 6.5px) / 40px 13px repeat-x;
+	-webkit-mask: var(--mask);
+	mask: var(--mask);
 }
