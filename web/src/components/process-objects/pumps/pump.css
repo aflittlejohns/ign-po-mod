@@ -103,9 +103,7 @@ div.hmi-component {
 	& .hmi-component-pump {
 		aspect-ratio: 1;
 		display: grid;
-		/* height: 40cqmax;
-		width: 40cqmax; */
-		/* container-type: inline-size; */
+		container-type: inline-size;
 		grid-template-columns: repeat(10, var(--_min-size-2));
 		grid-template-rows: repeat(10, var(--_min-size-2));
 
@@ -206,89 +204,138 @@ div.hmi-component {
 			border-width: 2px;
 			z-index: 1;
 			background-color: var(--containerRoot);
+		}
+		& .symbol-1.positive-displacment {
+			/* positive displacement */
+			grid-area: 5/5/7/7;
+			border: 2cqi solid var(--hmi-po-border-color);
+		}
+		& .symbol-1.liquid-ring {
+			/* liquid ring */
+			grid-area: 3/2/5/8;
+			background: var(--hmi-po-border-color);
+			--mask: radial-gradient(
+					35cqi at 50% -85%,
+					#0000 calc(99% - 1cqi),
+					#000 calc(101% - 1cqi) 101%,
+					#0000 101%
+				)
+				content-box border-box 50% 50% / 100% 100%;
 
+			-webkit-mask: var(--mask);
+			mask: var(--mask);
+		}
+		& .symbol-2.liquid-ring {
+			/* liquid ring */
+			grid-area: 9/2/7/8;
+			background: var(--hmi-po-border-color);
+			--mask: radial-gradient(
+					35cqi at 50% 190%,
+					#0000 calc(99% - 1cqi),
+					#000 calc(101% - 1cqi) 101%,
+					#0000 101%
+				)
+				content-box border-box 50% 50% / 100% 100%;
+
+			-webkit-mask: var(--mask);
+			mask: var(--mask);
+		}
+		& .symbol-1.cavity {
+			/* cavity */
+			grid-area: 5/2/7/8;
+			background: var(--hmi-po-border-color);
+			--mask: radial-gradient(
+						7.1cqi at 50% calc(100% + 4cqi),
+						#0000 calc(99% - 1.5cqi),
+						#000 calc(101% - 1.5cqi) 99%,
+						#0000 101%
+					)
+					calc(50% - 10cqi) calc(50% - 4cqi) / 20cqi 8cqi repeat-x,
+				radial-gradient(
+						7.1cqi at 50% -4cqi,
+						#0000 calc(99% - 1.5cqi),
+						#000 calc(101% - 1.5cqi) 99%,
+						#0000 101%
+					)
+					50% calc(50% + 4cqi) / 20cqi 8cqi repeat-x;
+			-webkit-mask: var(--mask);
+			mask: var(--mask);
+		}
+		& .symbol-1.screw {
+			/* screw */
+			grid-area: 4/2/6/8;
+			background: var(--hmi-po-border-color);
+			--mask: radial-gradient(
+						7.1cqi at 50% calc(100% + 4cqi),
+						#0000 calc(99% - 1.5cqi),
+						#000 calc(101% - 1.5cqi) 99%,
+						#0000 101%
+					)
+					calc(50% - 10cqi) calc(50% - 4cqi) / 20cqi 8cqi repeat-x,
+				radial-gradient(
+						7.1cqi at 50% -4cqi,
+						#0000 calc(99% - 1.5cqi),
+						#000 calc(101% - 1.5cqi) 99%,
+						#0000 101%
+					)
+					50% calc(50% + 4cqi) / 20cqi 8cqi repeat-x;
+			-webkit-mask: var(--mask);
+			mask: var(--mask);
+		}
+		& .symbol-2.screw {
+			/* screw */
+			grid-area: 6/2/8/8;
+			background: var(--hmi-po-border-color);
+			--mask: radial-gradient(
+						7.1cqi at 50% calc(100% + 4cqi),
+						#0000 calc(99% - 1.5cqi),
+						#000 calc(101% - 1.5cqi) 99%,
+						#0000 101%
+					)
+					calc(50% - 10cqi) calc(50% - 4cqi) / 20cqi 8cqi repeat-x,
+				radial-gradient(
+						7.1cqi at 50% -4cqi,
+						#0000 calc(99% - 1.5cqi),
+						#000 calc(101% - 1.5cqi) 99%,
+						#0000 101%
+					)
+					50% calc(50% + 4cqi) / 20cqi 8cqi repeat-x;
+			-webkit-mask: var(--mask);
+			mask: var(--mask);
 		}
 	}
 }
 
-.hmi-component-valve__mp .v2 {
-	grid-area: 6/1/12/6;
 
-	border-top: solid transparent;
-	border-bottom: solid var(--hmi-po-border-color);
-	border-inline: solid var(--hmi-po-border-color);
-	border-width: 5cqi;
-	border-radius: 5cqi;
-}
-.hmi-component-valve__mp .v1b1 {
-	grid-area: 1/3/5/4;
-	background-color: var(--hmi-po-segment-color);
-	z-index: 1;
-}
-.hmi-component-valve__mp .v1b2 {
-	grid-area: 3/3/4/6;
-	background-color: var(--hmi-po-segment-color);
-	z-index: 1;
-}
-.hmi-component-valve__mp .v1b3 {
-	grid-area: 4/3/7/4;
-	background-color: var(--hmi-po-segment-color);
-	z-index: 1;
-}
-.hmi-component-valve__mp .v1b4 {
-	grid-area: 3/1/4/4;
-	background-color: var(--hmi-po-segment-color);
-	z-index: 1;
-}
-.hmi-component-valve__mp .v2b1 {
-	grid-area: 7/3/9/4;
-	background-color: var(--hmi-po-segment-color);
-	z-index: 1;
-}
-.hmi-component-valve__mp .v2b2 {
-	grid-area: 9/3/10/6;
-	background-color: var(--hmi-po-segment-color);
-	z-index: 1;
-}
-.hmi-component-valve__mp .v2b3 {
-	grid-area: 8/3/12/4;
-	background-color: var(--hmi-po-segment-color);
-	z-index: 1;
-}
-.hmi-component-valve__mp .v2b4 {
-	grid-area: 9/1/10/4;
-	background-color: var(--hmi-po-segment-color);
-	z-index: 1;
-}
 
-.hmi-component-valve__mp [class*="Activated"] {
+.hmi-component-pump [class*="Activated"] {
 	background-color: var(--hmi-po-activated-color);
 	fill: var(--hmi-po-activated-color);
 }
 
-.hmi-component-valve__mp [class*="Changing"] {
+.hmi-component-pump [class*="Changing"] {
 	background-color: var(--hmi-po-changing-color);
 	fill: var(--hmi-po-changing-color);
 }
 
-.hmi-component-valve__mp [class*="Deactivated"] {
+.hmi-component-pump [class*="Deactivated"] {
 	background-color: var(--hmi-po-deactivated-color);
 	fill: var(--hmi-po-deactivated-color);
 }
 
-.hmi-component-valve__mp [class*="Manual"] {
+.hmi-component-pump [class*="Manual"] {
 	background-color: var(--hmi-po-manual-color);
 	fill: var(--hmi-po-deactivated-color);
 }
 
-.hmi-component-valve__mp [class*="NoAlarmMask"] {
+.hmi-component-pump [class*="NoAlarmMask"] {
 	stroke: var(--hmi-po-no-alarm-mask-color);
 	stroke-width: 2.1cqi;
 }
-.hmi-component-valve__mp [class*="show"] {
+.hmi-component-pump [class*="show"] {
 	visibility: visible;
 }
-.hmi-component-valve__mp [class*="hide"] {
+.hmi-component-pump [class*="hide"] {
 	visibility: hidden;
 }
 
@@ -316,9 +363,7 @@ div.hmi-component {
 	animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.hmi-component-valve__mp .v2.AlarmState {
-	border-top: transparent;
-}
+
 
 @keyframes locate {
 	0% {
@@ -368,21 +413,4 @@ div.hmi-component {
 /* NDJH ValveTemplate - End
  */
 
-.wavy-line {
-	--mask: radial-gradient(
-				14.31px at 50% calc(100% + 8px),
-				#0000 calc(99% - 3px),
-				#000 calc(101% - 3px) 99%,
-				#0000 101%
-			)
-			calc(50% - 20px) calc(50% - 6.5px + 0.5px) / 40px 13px repeat-x,
-		radial-gradient(
-				14.31px at 50% -8px,
-				#0000 calc(99% - 3px),
-				#000 calc(101% - 3px) 99%,
-				#0000 101%
-			)
-			50% calc(50% + 6.5px) / 40px 13px repeat-x;
-	-webkit-mask: var(--mask);
-	mask: var(--mask);
-}
+
