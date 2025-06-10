@@ -86,8 +86,8 @@ export class PumpMeta implements ComponentMeta {
 
 	getDefaultSize(): SizeObject {
 		return {
-			width: 24,
-			height: 48,
+			width: 36,
+			height: 36,
 		};
 	}
 

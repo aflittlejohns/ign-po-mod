@@ -53,11 +53,13 @@ const pump = () => {
 	if (!status?.locate) {
 		componentItemNames = componentItemNames.slice(0, -1);
 	}
-	const isCoordChild:boolean = componentProps.store.isCoordContainerChild
+	const isCoordChild:boolean = componentProps.store.isCoordContainerChild;
+	console.log(`isCoordChild ${isCoordChild}`);
+
 	const flexRowWrapper = !isCoordChild ? "hmi-component__row" : "display-none";
 	const flexColWrapper = !isCoordChild ? "hmi-component__column" : "display-none";
-	const componentClassName = !isCoordChild ? "hmi-component hmi-component-pump" : "display-none";
-	const emitClassNames = !isCoordChild ? `hmi-component ${flexColWrapper} ` : `${componentClassName}`;
+	const componentClassName = "hmi-component hmi-component-pump";
+	const emitClassNames = !isCoordChild ? `hmi-component ${flexColWrapper} ` : "hmi-component hmi-component-pump";
 	return (
 
 		<div
