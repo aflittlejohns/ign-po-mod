@@ -8,6 +8,10 @@
 	--hmi-po-no-alarm-mask-color: var(--neutral-30);
 	--hmi-po-alarm-start-color: var(--error);
 	--hmi-po-alarm-end-color: var(--neutral-20);
+	--_pump-border-width: var(--pump-border-width, 5cqi);
+	--_pump-border-width-sm: var(--pump-border-width-sm, 2.5cqi);
+
+	--_pump-size: var(--pump-size, 100cqmin);
 	/* itemId Popover Positions */
 	--_itemid-popup-position-right: var(
 		--itemid-popup-position-right,
@@ -39,34 +43,19 @@
 		translate(-100%, 100%)
 	);
 
-	--_locate-item: var(--locate-item, purple);
-	--_locate-small-keyframe-height-step-0-100: var(
-		--locate-small-keyframe-height-step-0-100,
-		50%
-	);
-	--_locate-small-keyframe-height-step-50: var(
-		--locate-small-keyframe-height-step-50,
-		25%
-	);
-	--_locate-large-keyframe-height-step-0-100: var(
-		--locate-large-keyframe-height-step-0-100,
+	--_locate-item-color: var(--locate-item-color, purple);
+
+	--_locate-pump-keyframe-height-step-0-100: var(
+		--locate-pump-keyframe-height-step-0-100,
 		100%
 	);
-	--_locate-large-keyframe-height-step-50: var(
-		--locate-large-keyframe-height-step-50,
+	--_locate-pump-keyframe-height-step-50: var(
+		--locate-pump-keyframe-height-step-50,
 		50%
 	);
-	--_locate-top: var(--locate-small-top, 27.5%);
-	--_locate-large-top: var(--locate-large-top, 50%);
+	--_locate-top: var(--locate-pump-top, 50%);
+
 	/* Default locate keyframe heights */
-	--_locate-keyframe-height-step-0-100: var(
-		--_locate-small-keyframe-height-step-0-100,
-		25%
-	);
-	--_locate-keyframe-height-step-50: var(
-		--_locate-small-keyframe-height-step-50,
-		50%
-	);
 	--_min-size-1: var(--min-size-1, 1fr);
 	--_min-size-2: var(--min-size-2, 2fr);
 	--_min-size-3: var(--min-size-3, 3fr);
@@ -77,8 +66,16 @@
 /* NDJH ValveTemplate - Start
 */
 /* hmi symbolComponent Wrappers */
+/**
+For the hmi-component to be responsive in a ia_container--root
+add the container-type: inline-size declaration.
+*/
 
-div.hmi-component {
+.ia_container--root.flex-container.responsive-container:has(.hmi-component) {
+	container-type: inline-size;
+}
+
+.hmi-component {
 	container-type: inline-size;
 	overflow: hidden;
 	&.hmi-component__column {
@@ -97,37 +94,30 @@ div.hmi-component {
 		position: relative;
 	}
 	&.pump {
-		width: 300px;
+		position: relative;
+		width: var(--_pump-size);
 		aspect-ratio: 1;
 	}
 	& .hmi-component-pump {
+		width: var(--_pump-size);
 		aspect-ratio: 1;
 		display: grid;
 		container-type: inline-size;
-		grid-template-columns: repeat(10, var(--_min-size-2));
-		grid-template-rows: repeat(10, var(--_min-size-2));
+		grid-template-columns: repeat(10, 10cqmin);
+		grid-template-rows: repeat(10, 10cqmin);
 
-		& .locate.large {
-			--_locate-top: var(--_locate-large-top);
-
-			--_locate-keyframe-height-step-0-100: var(
-				--_locate-large-keyframe-height-step-0-100
-			);
-			--_locate-keyframe-height-step-50: var(
-				--_locate-large-keyframe-height-step-50
-			);
-		}
 		/* child elements of hmi-component-pump */
-		&.locate {
+		& .locate {
+			--_locate-top: var(--_locate-large-top);
 			position: absolute;
 			top: var(--_locate-top);
 			left: 50%;
 			transform: translate(-50%, -50%);
-			background-color: var(--_locate-item);
+			background-color: var(--_locate-item-color);
 			z-index: 20;
 			opacity: 0.5;
 			border: solid var(--neutral-50);
-			border-radius: 0%;
+			border-radius: 50%;
 			animation-name: locate;
 			animation-duration: 1s;
 			animation-iteration-count: infinite;
@@ -135,40 +125,38 @@ div.hmi-component {
 		& .base-1 {
 			grid-area: 1/1/-1/-1;
 			border-width: 2cqi;
-			border: solid var(--hmi-po-border-color);
+			border: var(--_pump-border-width) solid var(--hmi-po-border-color);
 			border-radius: 100cqi;
 		}
 		& .base-2 {
 			grid-area: 1/6/6/-1;
-			outline: 1px solid red;
 			background: linear-gradient(
 				45deg,
-				transparent 49%,
+				transparent 47%,
 				var(--hmi-po-border-color) 50%,
-				transparent 51%
+				transparent 53%
 			);
 			background-size: 200% 200%; /* Makes the gradient larger or smaller */
-			background-position: 84% 84%; /* Moves the gradient within the cell */
+			background-position: 92% 84%; /* Moves the gradient within the cell */
 		}
 		& .base-3 {
 			grid-area: -1/6/6/-1;
-			outline: 1px solid red;
 			background: linear-gradient(
 				135deg,
-				transparent 49%,
+				transparent 47%,
 				var(--hmi-po-border-color) 50%,
-				transparent 51%
+				transparent 53%
 			);
 			background-size: 200% 200%; /* Makes the gradient larger or smaller */
-			background-position: 25% 75%; /* Moves the gradient within the cell */
+			background-position: 32% 75%; /* Moves the gradient within the cell */
 		}
 		& .symbol-1.centrifugal {
 			grid-area: 5/1/7/-1;
 			background: linear-gradient(
 				0deg,
-				transparent 49%,
+				transparent 47%,
 				var(--hmi-po-border-color) 50%,
-				transparent 51%
+				transparent 53%
 			);
 			background-size: 800% 800%; /* Makes the gradient larger or smaller */
 			background-position: 0% 50%; /* Moves the gradient within the cell */
@@ -178,9 +166,9 @@ div.hmi-component {
 			grid-area: 1/3/-1/6;
 			background: var(--hmi-po-border-color);
 			--mask: radial-gradient(
-					175px at 200% 50%,
-					#0000 calc(99% - 2px),
-					#000 calc(101% - 2px) 101%,
+					55cqmin at 200% 50%,
+					#0000 calc(99% - 4cqmin),
+					#000 calc(101% - 1cqmin) 101%,
 					#0000 101%
 				)
 				content-box border-box 50% 50% / 100% 100%;
@@ -193,7 +181,7 @@ div.hmi-component {
 			grid-area: 5/4/9/8;
 			border-color: var(--hmi-po-border-color);
 			border-radius: 50%;
-			border-width: 2px;
+			border-width: var(--_pump-border-width-sm);
 			background-color: var(--containerRoot);
 		}
 		& .symbol-2.gear {
@@ -201,23 +189,23 @@ div.hmi-component {
 			grid-area: 3/4/7/8;
 			border-color: var(--hmi-po-border-color);
 			border-radius: 50%;
-			border-width: 2px;
+			border-width: var(--_pump-border-width-sm);
 			z-index: 1;
 			background-color: var(--containerRoot);
 		}
 		& .symbol-1.positive-displacment {
 			/* positive displacement */
 			grid-area: 5/5/7/7;
-			border: 2cqi solid var(--hmi-po-border-color);
+			border: var(--_pump-border-width-sm) solid var(--hmi-po-border-color);
 		}
 		& .symbol-1.liquid-ring {
 			/* liquid ring */
 			grid-area: 3/2/5/8;
 			background: var(--hmi-po-border-color);
 			--mask: radial-gradient(
-					35cqi at 50% -85%,
-					#0000 calc(99% - 1cqi),
-					#000 calc(101% - 1cqi) 101%,
+					36cqi at 50% -85%,
+					#0000 calc(99% - 5cqmin),
+					#000 calc(101% - 1cqmin) 101%,
 					#0000 101%
 				)
 				content-box border-box 50% 50% / 100% 100%;
@@ -230,8 +218,8 @@ div.hmi-component {
 			grid-area: 9/2/7/8;
 			background: var(--hmi-po-border-color);
 			--mask: radial-gradient(
-					35cqi at 50% 190%,
-					#0000 calc(99% - 1cqi),
+					36cqi at 50% 190%,
+					#0000 calc(99% - 5cqi),
 					#000 calc(101% - 1cqi) 101%,
 					#0000 101%
 				)
@@ -240,98 +228,94 @@ div.hmi-component {
 			-webkit-mask: var(--mask);
 			mask: var(--mask);
 		}
-		& .symbol-1.cavity {
+		& .symbol-1.progressive-cavity {
 			/* cavity */
 			grid-area: 5/2/7/8;
 			background: var(--hmi-po-border-color);
 			--mask: radial-gradient(
-						7.1cqi at 50% calc(100% + 4cqi),
-						#0000 calc(99% - 1.5cqi),
-						#000 calc(101% - 1.5cqi) 99%,
+						6.9cqi at 50% calc(50% + 4cqi),
+						#0000 calc(99% - 2cqi),
+						#000 calc(101% - 2cqi) 102%,
 						#0000 101%
 					)
-					calc(50% - 10cqi) calc(50% - 4cqi) / 20cqi 8cqi repeat-x,
+					11% calc(50% - 4cqi) / 24cqi 8cqi repeat-x,
 				radial-gradient(
-						7.1cqi at 50% -4cqi,
-						#0000 calc(99% - 1.5cqi),
-						#000 calc(101% - 1.5cqi) 99%,
+						6.9cqi at 50% calc(50% - 4cqi),
+						#0000 calc(99% - 2cqi),
+						#000 calc(101% - 2cqi) 102%,
 						#0000 101%
 					)
-					50% calc(50% + 4cqi) / 20cqi 8cqi repeat-x;
+					44% calc(50% + 4cqi) / 24cqi 8cqi repeat-x;
 			-webkit-mask: var(--mask);
 			mask: var(--mask);
 		}
-		& .symbol-1.screw {
+		& .symbol-1.positive-screw {
 			/* screw */
 			grid-area: 4/2/6/8;
 			background: var(--hmi-po-border-color);
 			--mask: radial-gradient(
-						7.1cqi at 50% calc(100% + 4cqi),
-						#0000 calc(99% - 1.5cqi),
-						#000 calc(101% - 1.5cqi) 99%,
+						6.9cqi at 50% calc(50% + 4cqi),
+						#0000 calc(99% - 2cqi),
+						#000 calc(101% - 2cqi) 102%,
 						#0000 101%
 					)
-					calc(50% - 10cqi) calc(50% - 4cqi) / 20cqi 8cqi repeat-x,
+					11% calc(50% - 4cqi) / 24cqi 8cqi repeat-x,
 				radial-gradient(
-						7.1cqi at 50% -4cqi,
-						#0000 calc(99% - 1.5cqi),
-						#000 calc(101% - 1.5cqi) 99%,
+						6.9cqi at 50% calc(50% - 4cqi),
+						#0000 calc(99% - 2cqi),
+						#000 calc(101% - 2cqi) 102%,
 						#0000 101%
 					)
-					50% calc(50% + 4cqi) / 20cqi 8cqi repeat-x;
+					44% calc(50% + 4cqi) / 24cqi 8cqi repeat-x;
 			-webkit-mask: var(--mask);
 			mask: var(--mask);
 		}
-		& .symbol-2.screw {
+		& .symbol-2.positive-screw {
 			/* screw */
 			grid-area: 6/2/8/8;
 			background: var(--hmi-po-border-color);
 			--mask: radial-gradient(
-						7.1cqi at 50% calc(100% + 4cqi),
-						#0000 calc(99% - 1.5cqi),
-						#000 calc(101% - 1.5cqi) 99%,
+						6.9cqi at 50% calc(50% + 4cqi),
+						#0000 calc(99% - 2cqi),
+						#000 calc(101% - 2cqi) 102%,
 						#0000 101%
 					)
-					calc(50% - 10cqi) calc(50% - 4cqi) / 20cqi 8cqi repeat-x,
+					11% calc(50% - 4cqi) / 24cqi 8cqi repeat-x,
 				radial-gradient(
-						7.1cqi at 50% -4cqi,
-						#0000 calc(99% - 1.5cqi),
-						#000 calc(101% - 1.5cqi) 99%,
+						6.9cqi at 50% calc(50% - 4cqi),
+						#0000 calc(99% - 2cqi),
+						#000 calc(101% - 2cqi) 102%,
 						#0000 101%
 					)
-					50% calc(50% + 4cqi) / 20cqi 8cqi repeat-x;
+					44% calc(50% + 4cqi) / 24cqi 8cqi repeat-x;
 			-webkit-mask: var(--mask);
 			mask: var(--mask);
 		}
 	}
 }
 
-
-
-.hmi-component-pump [class*="Activated"] {
-	background-color: var(--hmi-po-activated-color);
-	fill: var(--hmi-po-activated-color);
+div.hmi-component .hmi-component-pump {
+	& [class*="Activated"] {
+		background-color: var(--hmi-po-activated-color);
+		fill: var(--hmi-po-activated-color);
+	}
+	& [class*="Changing"] {
+		background-color: var(--hmi-po-changing-color);
+		fill: var(--hmi-po-changing-color);
+	}
+	& [class*="Deactivated"] {
+		background-color: var(--hmi-po-deactivated-color);
+		fill: var(--hmi-po-deactivated-color);
+	}
+	& [class*="Manual"] {
+		background-color: var(--hmi-po-manual-color);
+		fill: var(--hmi-po-deactivated-color);
+	}
+	& [class*="NoAlarmMask"] {
+		border: 10cqi dashed var(--hmi-po-no-alarm-mask-color);
+	}
 }
 
-.hmi-component-pump [class*="Changing"] {
-	background-color: var(--hmi-po-changing-color);
-	fill: var(--hmi-po-changing-color);
-}
-
-.hmi-component-pump [class*="Deactivated"] {
-	background-color: var(--hmi-po-deactivated-color);
-	fill: var(--hmi-po-deactivated-color);
-}
-
-.hmi-component-pump [class*="Manual"] {
-	background-color: var(--hmi-po-manual-color);
-	fill: var(--hmi-po-deactivated-color);
-}
-
-.hmi-component-pump [class*="NoAlarmMask"] {
-	stroke: var(--hmi-po-no-alarm-mask-color);
-	stroke-width: 2.1cqi;
-}
 .hmi-component-pump [class*="show"] {
 	visibility: visible;
 }
@@ -363,20 +347,18 @@ div.hmi-component {
 	animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-
-
 @keyframes locate {
 	0% {
 		width: 100%;
-		height: var(--_locate-keyframe-height-step-0-100);
+		height: var(--_locate-pump-keyframe-height-step-0-100);
 	}
 	50% {
 		width: 50%;
-		height: var(--_locate-keyframe-height-step-50);
+		height: var(--_locate-pump-keyframe-height-step-50);
 	}
 	100% {
 		width: 100%;
-		height: var(--_locate-keyframe-height-step-0-100);
+		height: var(--_locate-pump-keyframe-height-step-0-100);
 	}
 }
 
@@ -412,5 +394,3 @@ div.hmi-component {
 }
 /* NDJH ValveTemplate - End
  */
-
-

@@ -1,6 +1,20 @@
 {
 	"type": "object",
 	"properties": {
+    "pumpType":{
+      "type": "string",
+      "enum": [
+        "centrifugal",
+        "diaphragm",
+        "gear",
+        "liquid-ring",
+        "positive-displacment",
+        "positive-screw",
+        "progressive-cavity"
+      ],
+      "default":"centrifugal",
+      "description": "Pump symbol selection"
+    },
     "processObject": {
       "type": "object",
       "properties":{
@@ -10,7 +24,7 @@
             "itemName": {
               "type": "string",
               "default": "\"\"",
-              "description": "Name of the valve"
+              "description": "Item Indentifier"
             },
             "configuration": {
               "type": "number",
@@ -22,10 +36,15 @@
               "default": false,
               "description": "Alarm status"
             },
-            "activation": {
+            "actFB": {
               "type": "boolean",
               "default": false,
               "description": "Activated feedback"
+            },
+            "deActFB": {
+              "type": "boolean",
+              "default": false,
+              "description": "Deactivate feedback"
             },
             "manual": {
               "type": "boolean",

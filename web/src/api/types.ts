@@ -33,7 +33,8 @@ export type ValveCompoundRootProps = {
 export const PUMP_COMPONENT_TYPE = "hmi.process_objects.Pump";
 export type PumpState = {
 	alarm: boolean;
-	activation: boolean;
+	actFB: boolean;
+	deActFB: boolean;
 	configuration: number;
 	itemName: string;
 	manual: boolean;
@@ -294,21 +295,27 @@ export type ValveProps = {
 	showLabel?: boolean;
 	handleClick?: () => void;
 };
+const pumpTypes= [
+	"centrifugal",
+	"diaphragm",
+	"gear",
+	"liquid-ring",
+	"positive-displacment",
+	"positive-screw",
+	"progressive-cavity",
+]
+export type PumpType = (typeof pumpTypes)[number];
 export type PumpProps = {
+	pumpType?: PumpType;
 	processObject?: Pump;
 	labelPosition?: ItemIdPositionType;
 	showLabel?: boolean;
 	handleClick?: () => void;
 };
 export const pumpItemList = [
- "base-1",
- "base-2",
- "base-3",
- "symbol-1",
- "symbol-2",
- "symbol-3",
- "symbol-4",
- "locate",
+	"symbol-1",
+	"symbol-2",
+ 	"locate",
 ]
 export type PumpItemList = (typeof pumpItemList)[number];
 

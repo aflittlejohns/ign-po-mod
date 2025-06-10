@@ -32,7 +32,8 @@ export const valveProps = {
 };
 export const pumpInitialStatus = {
 	alarm: false,
-	activation: false,
+	actFB: false,
+	deActFB: false,
 	configuration: 7,
 	itemName: "itemName",
 	manual: false,

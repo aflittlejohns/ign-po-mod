@@ -12,8 +12,10 @@ import Item from "../valve/item";
 import {
 	getItemIdPositionClassName,
 	getPumpItemClassName,
+	getPumpStatusClassNames,
 	pumpItemNames,
 } from "../../../api/utils";
+import { pumpInitialProps } from "../../../api/initialState";
 
 export const COMPONENT_TYPE = PUMP_COMPONENT_TYPE;
 
@@ -43,40 +45,54 @@ const pump = () => {
 		usePumpContext("Valve");
 	const elRef: ElementRef = React.useRef<HTMLDivElement>(null);
 	const { emit } = componentProps;
-	const { processObject } = pumpProps;
-	const { status } = processObject || {};
+	const { processObject, pumpType } = pumpProps;
+	const { status } = processObject || pumpInitialProps;
 
 	// if not locate, trim last item from valveMpItemNames
 	let componentItemNames = pumpItemNames;
 	if (!status?.locate) {
 		componentItemNames = componentItemNames.slice(0, -1);
 	}
-
+	const isCoordChild:boolean = componentProps.store.isCoordContainerChild
+	const flexRowWrapper = !isCoordChild ? "hmi-component__row" : "display-none";
+	const flexColWrapper = !isCoordChild ? "hmi-component__column" : "display-none";
+	const componentClassName = !isCoordChild ? "hmi-component hmi-component-pump" : "display-none";
+	const emitClassNames = !isCoordChild ? `hmi-component ${flexColWrapper} ` : `${componentClassName}`;
 	return (
-		<div className="hmi-component pump">
-			<div
+
+		<div
 				ref={elRef}
 				{...emit({
-					classes: [`hmi-component hmi-component-pump `],
+					classes: [`${emitClassNames}`],
 				})}
 				data-component={COMPONENT_TYPE}
 				onClick={onActionPerformed}
 			>
+				<div className={`${flexRowWrapper}`}>
+				<div className={`${componentClassName}`}>
+			<Item itemClassName={`${getPumpStatusClassNames("base-1 show",status)}`}/>
+			{/* <Item itemClassName={`${getPumpStatusClassNames("base-2 show item",status)}`}/> */}
+			{/* <Item itemClassName={`${getPumpStatusClassNames("base-3 show item",status)}`}/> */}
+			<Item itemClassName={"base-2 show item"}/>
+			<Item itemClassName={"base-3 show item"}/>
+
 				{componentItemNames.map(({ name, index, key }) => (
 					<Item
-						itemClassName={
-							name +
-							" " +
-							getPumpItemClassName(
-								index,
-								status?.activation || false,
-								status?.configuration || 7
-							)
-						}
-						key={key}
+					itemClassName={
+						name +
+						" " +
+						getPumpItemClassName(
+							index,
+							status,
+							pumpType || "centrifugal",
+						)
+					}
+					key={key}
 					/>
 				))}
 			</div>
+				<Item itemClassName={`locate ${status.locate ? "show item" : "hide item"}`}/>
+		</div>
 		</div>
 	);
 };

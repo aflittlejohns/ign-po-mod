@@ -96,10 +96,12 @@ export class PumpMeta implements ComponentMeta {
 	getPropsReducer(tree: PropertyTree): PumpProps {
 
 		return {
+			pumpType: tree.readString("pumpType", "centrifugal"),
 			processObject: {
 				status: {
 					alarm: tree.readBoolean("processObject.status.alarm", false),
-					activation: tree.readBoolean("processObject.status.activation", false),
+					actFB: tree.readBoolean("processObject.status.actFB", false),
+					deActFB: tree.readBoolean("processObject.status.deActFB", false),
 					configuration: tree.readNumber(
 						"processObject.status.configuration",
 						7

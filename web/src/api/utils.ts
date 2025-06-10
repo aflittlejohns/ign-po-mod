@@ -4,6 +4,8 @@ import {
 	ItemNameEnum,
 	pumpItemList,
 	valveMpItemNameEnum,
+	type PumpState,
+	type PumpType,
 	type ValveState,
 } from "../api/types";
 import { v4 as uuidv4 } from "uuid";
@@ -314,19 +316,99 @@ export const pumpItemNames = pumpItemList.map(
 		};
 	}
 );
+const getPumpConfiguration = (pumpType: PumpType):number =>{
+	switch (pumpType){
+		case "centrifugal":
+			return 1
+		case "diaphragm":
+			return 1
+		case "positive-displacment":
+			return 1
+		case "progressive-cavity":
+			return 1
+		case "gear":
+			return 3
+		case "liquid-ring":
+			return 3
+		case "positive-screw":
+			return 3
+		default:
+			throw Error(`In getPumpConfiguration() pump type: ${pumpType} not found`)
+	}
+
+
+}
 export const getPumpItemClassName = (
 	index: number,
-	activation: boolean,
-	configuration: number,
-): string => {
+	status: PumpState,
+	pumpType: PumpType
+	): string => {
+	const configuration = getPumpConfiguration(pumpType)
 	let className = "";
 	// Handle the fact that ActivatedConfig and DeactivatedConfig are optional and maybe undefined
-	if (index < 8) {
+	if (index < 2) {
 		if (getBoolAtIndex(configuration, index)) {
-			className = "show item";
+			className = `show item ${pumpType}`;
 		} else {
 			className = "hide item";
 		}
 	}
+	// Additions to the className
+
+	if (className.includes("show") && !className.includes("item")) {
+		console.log("index", index, className);
+		if (status?.alarm) {
+			className = className.replace("AlarmState", "") + " AlarmState";
+		}
+		if (status?.changing) {
+			className = className.replace("Changing", "") + " Changing";
+		}
+		if (status?.manual) {
+			className = className.replace("Manual", "") + " Manual";
+		}
+		if (status?.masked && !status.alarm) {
+			className = className.replace("NoAlarmMask", "") + " NoAlarmMask";
+		}
+		if (status?.masked) {
+			className = className.replace("Masked", "") + " Masked";
+		}
+		if (status?.actFB) {
+			className = className.replace("Activated", "") + " Activated";
+		}
+		if (status?.deActFB) {
+			className = className.replace("Deactivated", "") + " Deactivated";
+		}
+	}
 	return className;
 };
+
+export const getPumpStatusClassNames = (className: string, status: PumpState) => {
+	// Additions to the className
+	console.log(`status: ${JSON.stringify(status,null, 2)}`);
+
+
+	if (className.includes("show") && !className.includes("item")) {
+		if (status?.alarm) {
+			className = className.replace("AlarmState", "") + " AlarmState";
+		}
+		if (status?.changing) {
+			className = className.replace("Changing", "") + " Changing";
+		}
+		if (status?.manual) {
+			className = className.replace("Manual", "") + " Manual";
+		}
+		if (status?.masked && !status.alarm) {
+			className = className.replace("NoAlarmMask", "") + " NoAlarmMask";
+		}
+		if (status?.masked) {
+			className = className.replace("Masked", "") + " Masked";
+		}
+		if (status?.actFB) {
+			className = className.replace("Activated", "") + " Activated";
+		}
+		if (status?.deActFB) {
+			className = className.replace("Deactivated", "") + " Deactivated";
+		}
+	}
+	return className;
+}
