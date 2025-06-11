@@ -2,55 +2,50 @@
 import * as React from "react";
 
 import {
-	PUMP_COMPONENT_TYPE,
 	type ElementRef,
-	type PumpCompoundContextType,
-	type PumpCompoundRootProps,
 } from "../../../api/types";
 import { useCreateContext } from "../../../utils/createContext";
 import Item from "../valve/item";
 import {
 	getItemIdPositionClassName,
-	getPumpItemClassName,
-	getPumpStatusClassNames,
-	pumpItemNames,
 } from "../../../api/utils";
-import { pumpInitialProps } from "../../../api/initialState";
+import { getHxItemClassName, getHxModeClassNames, hxItemNames } from "../../../ar-utils/processObjects/heatExchangers/hx-utils";
+import { HX_COMPONENT_TYPE, HxModes, type HxCompoundContextType } from "../../../ar-types/processObjects/heatExchangers/hx-types";
 
-export const COMPONENT_TYPE = PUMP_COMPONENT_TYPE;
+export const COMPONENT_TYPE = HX_COMPONENT_TYPE;
 
-export const [PumpContextProvider, usePumpContext] =
-	useCreateContext<PumpCompoundContextType>("PumpCompound");
+export const [HxContextProvider, useHxContext] =
+	useCreateContext<HxCompoundContextType>("PumpCompound");
 
 const Root = ({
 	componentProps,
-	pumpProps,
+	itemProps,
 	onActionPerformed,
 	children,
-}: PumpCompoundRootProps) => {
+}: HxCompoundContextType) => {
 	return (
-		<PumpContextProvider
+		<HxContextProvider
 			{...{
-				pumpProps,
+				itemProps,
 				componentProps,
 				onActionPerformed,
 			}}
 		>
 			{children}
-		</PumpContextProvider>
+		</HxContextProvider>
 	);
 };
-const pump = () => {
-	const { pumpProps, onActionPerformed, componentProps } =
-		usePumpContext("Valve");
+const plate = () => {
+	const { itemProps, onActionPerformed, componentProps } =
+		useHxContext("Plate");
 	const elRef: ElementRef = React.useRef<HTMLDivElement>(null);
 	const { emit } = componentProps;
-	const { processObject, pumpType } = pumpProps;
-	const { status } = processObject || pumpInitialProps;
+	const { type,locate, mode } = itemProps;
+
 
 	// if not locate, trim last item from valveMpItemNames
-	let componentItemNames = pumpItemNames;
-	if (!status?.locate) {
+	let componentItemNames = hxItemNames;
+	if (!locate) {
 		componentItemNames = componentItemNames.slice(0, -1);
 	}
 	const isCoordChild:boolean = componentProps.store.isCoordContainerChild;
@@ -58,8 +53,8 @@ const pump = () => {
 
 	const flexRowWrapper = !isCoordChild ? "hmi-component__row" : "display-none";
 	const flexColWrapper = !isCoordChild ? "hmi-component__column" : "display-none";
-	const componentClassName = "hmi-component hmi-component-pump";
-	const emitClassNames = !isCoordChild ? `hmi-component ${flexColWrapper} ` : "hmi-component hmi-component-pump";
+	const componentClassName = "hmi-component hmi-component-plate-hx";
+	const emitClassNames = !isCoordChild ? `hmi-component ${flexColWrapper} ` : "hmi-component hmi-component-plate-hx";
 	return (
 
 		<div
@@ -72,7 +67,7 @@ const pump = () => {
 			>
 				<div className={`${flexRowWrapper}`}>
 				<div className={`${componentClassName}`}>
-			<Item itemClassName={`${getPumpStatusClassNames("base-1 show",status)}`}/>
+			<Item itemClassName={`${getHxModeClassNames("base-1 show", HxModes.heating )}`}/>
 			{/* <Item itemClassName={`${getPumpStatusClassNames("base-2 show item",status)}`}/> */}
 			{/* <Item itemClassName={`${getPumpStatusClassNames("base-3 show item",status)}`}/> */}
 			<Item itemClassName={"base-2 show item"}/>
@@ -83,26 +78,26 @@ const pump = () => {
 					itemClassName={
 						name +
 						" " +
-						getPumpItemClassName(
+						getHxItemClassName(
 							index,
-							pumpType || "centrifugal",
-							status,
+							type || "plate",
+							mode || HxModes.heating,
 						)
 					}
 					key={key}
 					/>
 				))}
 			</div>
-				<Item itemClassName={`locate ${status.locate ? "show item" : "hide item"}`}/>
+				<Item itemClassName={`locate ${locate ? "show item" : "hide item"}`}/>
 		</div>
 		</div>
 	);
 };
 
 const popover = ({ anchorEl }: { anchorEl: HTMLDivElement | null }) => {
-	const { pumpProps, componentProps } = usePumpContext("Popover");
-	const { showLabel, labelPosition, processObject } = pumpProps;
-	const { status } = processObject || {};
+	const { itemProps, componentProps } = useHxContext("Popover");
+	const { showLabel, labelPosition, itemName} = itemProps;
+
 	if (!showLabel) return null;
 	const { position } = componentProps;
 	let className = "itemId popover position-left";
@@ -117,13 +112,13 @@ const popover = ({ anchorEl }: { anchorEl: HTMLDivElement | null }) => {
 				left: position.x,
 			}}
 		>
-			<div style={{ padding: 8 }}>{status?.itemName}</div>
+			<div style={{ padding: 8 }}>{itemName}</div>
 		</div>
 	);
 };
 
-export const PumpCompound = {
+export const HeatExchangerCompound = {
 	Root,
-	pump,
+	plate,
 	popover,
 };

@@ -14,6 +14,7 @@ import dev.aflittlejohns.perspective.hmi.common.Constants;
 
 import dev.aflittlejohns.perspective.hmi.common.components.level4.process_objects.Valve;
 import dev.aflittlejohns.perspective.hmi.common.components.level4.process_objects.Pump;
+import dev.aflittlejohns.perspective.hmi.common.components.level4.process_objects.HeatExchanger;
 import dev.aflittlejohns.perspective.hmi.common.components.level4.input.ParameterList;
 import dev.aflittlejohns.perspective.hmi.common.components.level4.input.CommandValveMp;
 import dev.aflittlejohns.perspective.hmi.common.components.level4.display.StatusValveMp;
@@ -55,6 +56,7 @@ public class DesignerHook extends AbstractDesignerModuleHook {
   // Each component must be registered, with an optional icon, to the component registry.
   ComponentUtilities.registerComponentWithIcon(registry, Valve.DESCRIPTOR, "/images/process-objects/valve-mp/valve-mp-icon.svg");
   ComponentUtilities.registerComponentWithIcon(registry, Pump.DESCRIPTOR, "/images/process-objects/pump/base-icon.svg");
+  ComponentUtilities.registerComponentWithIcon(registry, HeatExchanger.DESCRIPTOR, "/images/process-objects/heat-exchanger/base-icon.svg");
   ComponentUtilities.registerComponentWithIcon(registry, ParameterList.DESCRIPTOR, "/images/input/parameter-list/component.icon.svg");
   ComponentUtilities.registerComponentWithIcon(registry, CommandValveMp.DESCRIPTOR, "/images/input/command-valve-mp/component.icon.svg");
   ComponentUtilities.registerComponentWithIcon(registry, StatusValveMp.DESCRIPTOR, "/images/display/status-valve-mp/component.icon.svg");
@@ -75,6 +77,7 @@ public class DesignerHook extends AbstractDesignerModuleHook {
  private void removeComponents() {
   registry.removeComponent(Valve.COMPONENT_ID);
   registry.removeComponent(Pump.COMPONENT_ID);
+  registry.removeComponent(HeatExchanger.COMPONENT_ID);
   registry.removeComponent(ParameterList.COMPONENT_ID);
   registry.removeComponent(CommandValveMp.COMPONENT_ID);
   registry.removeComponent(StatusValveMp.COMPONENT_ID);

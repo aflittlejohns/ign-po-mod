@@ -340,8 +340,8 @@ const getPumpConfiguration = (pumpType: PumpType):number =>{
 }
 export const getPumpItemClassName = (
 	index: number,
-	status: PumpState,
-	pumpType: PumpType
+	pumpType: PumpType,
+	status?: PumpState,
 	): string => {
 	const configuration = getPumpConfiguration(pumpType)
 	let className = "";
@@ -353,38 +353,12 @@ export const getPumpItemClassName = (
 			className = "hide item";
 		}
 	}
-	// Additions to the className
-
-	if (className.includes("show") && !className.includes("item")) {
-		console.log("index", index, className);
-		if (status?.alarm) {
-			className = className.replace("AlarmState", "") + " AlarmState";
-		}
-		if (status?.changing) {
-			className = className.replace("Changing", "") + " Changing";
-		}
-		if (status?.manual) {
-			className = className.replace("Manual", "") + " Manual";
-		}
-		if (status?.masked && !status.alarm) {
-			className = className.replace("NoAlarmMask", "") + " NoAlarmMask";
-		}
-		if (status?.masked) {
-			className = className.replace("Masked", "") + " Masked";
-		}
-		if (status?.actFB) {
-			className = className.replace("Activated", "") + " Activated";
-		}
-		if (status?.deActFB) {
-			className = className.replace("Deactivated", "") + " Deactivated";
-		}
-	}
 	return className;
 };
 
 export const getPumpStatusClassNames = (className: string, status: PumpState) => {
 	// Additions to the className
-	console.log(`status: ${JSON.stringify(status,null, 2)}`);
+	// console.log(`status: ${JSON.stringify(status,null, 2)}`);
 
 
 	if (className.includes("show") && !className.includes("item")) {
