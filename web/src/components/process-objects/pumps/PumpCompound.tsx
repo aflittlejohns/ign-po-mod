@@ -59,10 +59,10 @@ const pump = () => {
 	const isCoordChild:boolean = componentProps.store.isCoordContainerChild;
 	console.log(`isCoordChild ${isCoordChild}`);
 
-	const flexRowWrapper = !isCoordChild ? "hmi-component__row" : "display-none";
-	const flexColWrapper = !isCoordChild ? "hmi-component__column" : "display-none";
-	const componentClassName = "hmi-component hmi-component-pump";
-	const emitClassNames = !isCoordChild ? `hmi-component ${flexColWrapper} ` : "hmi-component hmi-component-pump";
+	const flexRowWrapper = !isCoordChild ? "hmi-component__row" : "hide";
+	const flexColWrapper = !isCoordChild ? "hmi-component__column" : "hide";
+	const componentClassName = "hmi-component pump";
+	const emitClassNames = !isCoordChild ? `hmi-component ${flexColWrapper} ` : "hmi-component ";
 
 	return (
 

@@ -1,7 +1,5 @@
 @layer hmi-components{
 :where(.valve__mp) {
-	--_size-5: var(--hmi-size-5, 5cqmin);
-	--_size-2: var(--hmi-size-2, 2cqmin);
 	display: grid;
 	aspect-ratio: 5/10;
 	grid-template-columns:

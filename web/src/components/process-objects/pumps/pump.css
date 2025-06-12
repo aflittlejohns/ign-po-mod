@@ -93,11 +93,7 @@ add the container-type: inline-size declaration.
 		display: flex;
 		position: relative;
 	}
-	&.pump {
-		position: relative;
-		width: var(--_pump-size);
-		aspect-ratio: 1;
-	}
+
 	& .hmi-component-pump {
 		width: var(--_pump-size);
 		aspect-ratio: 1;

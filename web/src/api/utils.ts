@@ -363,25 +363,25 @@ export const getPumpStatusClassNames = (className: string, status: PumpState) =>
 
 	if (className.includes("show") && !className.includes("item")) {
 		if (status?.alarm) {
-			className = className.replace("AlarmState", "") + " AlarmState";
+			className = className.replace("alarm", "") + " alarm";
 		}
 		if (status?.changing) {
-			className = className.replace("Changing", "") + " Changing";
+			className = className.replace("changing", "") + " changing";
 		}
 		if (status?.manual) {
-			className = className.replace("Manual", "") + " Manual";
+			className = className.replace("manual", "") + " manual";
 		}
 		if (status?.masked && !status.alarm) {
-			className = className.replace("NoAlarmMask", "") + " NoAlarmMask";
+			className = className.replace("no-alarm-mask", "") + " no-alarm-mask";
 		}
 		if (status?.masked) {
-			className = className.replace("Masked", "") + " Masked";
+			className = className.replace("masked", "") + " masked";
 		}
 		if (status?.actFB) {
-			className = className.replace("Activated", "") + " Activated";
+			className = className.replace("activated", "") + " activated";
 		}
 		if (status?.deActFB) {
-			className = className.replace("Deactivated", "") + " Deactivated";
+			className = className.replace("deactivated", "") + " deactivated";
 		}
 	}
 	return className;

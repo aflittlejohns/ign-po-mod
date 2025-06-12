@@ -41,5 +41,11 @@
 	--_max-size-2: var(--max-size-2, 2fr);
 	--_max-size-3: var(--max-size-3, 3fr);
 
+	/* General container item sizes */
+	--_size-100: var(--hmi-size-100, 100cqmin);
+	--_size-10: var(--hmi-size-10, 10cqmin);
+	--_size-5: var(--hmi-size-5, 5cqmin);
+	--_size-2: var(--hmi-size-2, 2cqmin);
+	--_size-sm: var(--hmi-size-sm, 2.5cqmin);
 }
 }
