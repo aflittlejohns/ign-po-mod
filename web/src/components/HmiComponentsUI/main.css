@@ -1,0 +1,5 @@
+@Layer hmi-theme, hmi , hmi-components;
+@import './theme.css';
+@import './animation.css';
+@import './hmi.css';
+@import './components/valve_mp.css';

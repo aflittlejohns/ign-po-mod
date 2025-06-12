@@ -170,7 +170,7 @@ div.hmi-component {
 
 .hmi-component-valve__mp .v1 {
 	grid-area: 1/1/7/6;
-	border: solid var(--hmi-po-border-color);
+	border: solid var(--_border-color);
 	border-width: 5cqi;
 	border-radius: 5cqi;
 	stroke-width: 5cqi;

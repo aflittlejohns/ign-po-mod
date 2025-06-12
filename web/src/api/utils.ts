@@ -101,25 +101,25 @@ export const getItemClassName = (
 	if (className.includes("show") && !className.includes("item")) {
 		// console.log("index", index, className);
 		if (valveStatus?.alarm) {
-			className = className.replace("AlarmState", "") + " AlarmState";
+			className = className.replace("alarm", "") + " alarm";
 		}
 		if (valveStatus?.changing) {
-			className = className.replace("Changing", "") + " Changing";
+			className = className.replace("changing", "") + " changing";
 		}
 		if (valveStatus?.manual) {
-			className = className.replace("Manual", "") + " Manual";
+			className = className.replace("manual", "") + " manual";
 		}
 		if (valveStatus?.masked && !valveStatus.alarm) {
-			className = className.replace("NoAlarmMask", "") + " NoAlarmMask";
+			className = className.replace("no-alarm-mask", "") + " no-alarm-mask";
 		}
 		if (valveStatus?.masked) {
-			className = className.replace("Masked", "") + " Masked";
+			className = className.replace("masked", "") + " masked";
 		}
 		if (valveStatus?.actFB) {
-			className = className.replace("Activated", "") + " Activated";
+			className = className.replace("activated", "") + " activated";
 		}
 		if (valveStatus?.deActFB) {
-			className = className.replace("Deactivated", "") + " Deactivated";
+			className = className.replace("deactivated", "") + " deactivated";
 		}
 		if (valveStatus?.locate) {
 			className = className.replace("circle", "") + " circle";
@@ -172,9 +172,9 @@ export const getValveMpItemClassName = (
 		) {
 			className = "show item";
 			if (valveStatus?.usl) {
-				className = className.replace("Activated", "") + " Activated";
+				className = className.replace("activated", "") + " activated";
 			} else {
-				className = className.replace("Deactivated", "") + " Deactivated";
+				className = className.replace("deactivated", "") + " deactivated";
 			}
 		} else {
 			className = "hide item";
@@ -186,16 +186,16 @@ export const getValveMpItemClassName = (
 		) {
 			className = "show item";
 			if (valveStatus?.lsl) {
-				className = className.replace("Activated", "") + " Activated";
+				className = className.replace("activated", "") + " activated";
 			} else {
-				className = className.replace("Deactivated", "") + " Deactivated";
+				className = className.replace("deactivated", "") + " deactivated";
 			}
 		} else {
 			className = "hide item";
 		}
 	} else if (index === 12) {
 		if (valveStatus?.locate) {
-			className = className.replace("show item", "") + " show item";
+			className = className.replace("show small item", "") + " show small item";
 			if (
 				getBoolAtIndex(ActivatedConfigValue, 8) ||
 				getBoolAtIndex(DeactivatedConfigValue, 8)
@@ -212,25 +212,25 @@ export const getValveMpItemClassName = (
 	if (className.includes("show") && !className.includes("item")) {
 		// console.log("index", index, className);
 		if (valveStatus?.alarm) {
-			className = className.replace("AlarmState", "") + " AlarmState";
+			className = className.replace("alarm", "") + " alarm";
 		}
 		if (valveStatus?.changing) {
-			className = className.replace("Changing", "") + " Changing";
+			className = className.replace("changing", "") + " changing";
 		}
 		if (valveStatus?.manual) {
-			className = className.replace("Manual", "") + " Manual";
+			className = className.replace("manual", "") + " manual";
 		}
 		if (valveStatus?.masked && !valveStatus.alarm) {
-			className = className.replace("NoAlarmMask", "") + " NoAlarmMask";
+			className = className.replace("no-alarm-mask", "") + " no-alarm-mask";
 		}
 		if (valveStatus?.masked) {
-			className = className.replace("Masked", "") + " Masked";
+			className = className.replace("masked", "") + " masked";
 		}
 		if (valveStatus?.actFB) {
-			className = className.replace("Activated", "") + " Activated";
+			className = className.replace("activated", "") + " activated";
 		}
 		if (valveStatus?.deActFB) {
-			className = className.replace("Deactivated", "") + " Deactivated";
+			className = className.replace("deactivated", "") + " deactivated";
 		}
 	}
 	// console.log("index", index, className);

@@ -63,7 +63,7 @@ const valve = () => {
 				onClick={onActionPerformed}
 			>
 				<div className="hmi-component__row">
-					<div className="hmi-component-valve__mp">
+					<div className="valve__mp">
 						{componentItemNames.map(
 							({ value, index, key }) => (
 								// console.log(
@@ -88,7 +88,7 @@ const valve = () => {
 			<div
 			ref={valveRef}
 			{...emit({
-				classes: [`hmi-component hmi-component-valve__mp `],
+				classes: [`hmi-component valve__mp `],
 			})}
 			data-component={COMPONENT_TYPE}
 			onClick={onActionPerformed}

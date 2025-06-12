@@ -49,10 +49,13 @@ const pump = () => {
 	const { status } = processObject || pumpInitialProps;
 
 	// if not locate, trim last item from valveMpItemNames
-	let componentItemNames = pumpItemNames;
+	const componentItemNames = React.useMemo(() => {
 	if (!status?.locate) {
-		componentItemNames = componentItemNames.slice(0, -1);
+		return pumpItemNames.slice(0, -1);
 	}
+	return pumpItemNames;
+},[status?.locate]);
+
 	const isCoordChild:boolean = componentProps.store.isCoordContainerChild;
 	console.log(`isCoordChild ${isCoordChild}`);
 
@@ -60,6 +63,7 @@ const pump = () => {
 	const flexColWrapper = !isCoordChild ? "hmi-component__column" : "display-none";
 	const componentClassName = "hmi-component hmi-component-pump";
 	const emitClassNames = !isCoordChild ? `hmi-component ${flexColWrapper} ` : "hmi-component hmi-component-pump";
+
 	return (
 
 		<div
