@@ -195,13 +195,13 @@ export const getValveMpItemClassName = (
 		}
 	} else if (index === 12) {
 		if (valveStatus?.locate) {
-			className = className.replace("show small item", "") + " show small item";
+			className = className.replace("small", "") + " small";
 			if (
 				getBoolAtIndex(ActivatedConfigValue, 8) ||
 				getBoolAtIndex(DeactivatedConfigValue, 8)
 			) {
 				className =
-					className.replace("show large item", "") + " show large item";
+					className.replace("large", "") + " large";
 			}
 		} else {
 			className = className.replace("hide item", "") + " hide item";

@@ -32,6 +32,16 @@
 		animation-name: locate;
 		animation-duration: 1s;
 		animation-iteration-count: infinite;
+
+
+	/* Adjust animation position and hieght for
+	two and three port valves  */
+
+		&.small{
+			--_locate-top: 27.5%;
+			--_locate-keyframe-height-step-50: 25%;
+			--_locate-keyframe-height-step-0-100: 50%;
+		}
 		}
 		& .activated {
 			background-color: var(--_activated-color);
@@ -69,6 +79,7 @@
 			visibility: hidden;
 		}
 	}
+
 :where(.itemId.popover) {
 	position: absolute;
 	visibility: visible;
