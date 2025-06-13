@@ -1,14 +1,16 @@
 @Layer hmi{
-
+:where(.valve__mp .alarm){
+	--_alarm-size: var(--_size-10);
+}
 @keyframes alarm-state-anim {
 	0% {
 		border-color: var(--_alarm-start-color);
-		border-width: var(--_size-2);
+		border-width: var(--_alarm-size, var(--_size-5));
 
 	}
 	100% {
 		border-color: var(--_alarm-end-color);
-		border-width: var(--_size-5);
+		border-width: var(--_alarm-size, var(--_size-5));
 	}
 }
 

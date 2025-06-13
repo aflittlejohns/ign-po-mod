@@ -2,5 +2,7 @@
 @import './theme.css';
 @import './animation.css';
 @import './hmi.css';
+@import './display/status.css';
+@import './input/parameter-list.css';
 @import './components/valve_mp.css';
 @import './components/pump.css';

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { ComponentProps } from "@inductiveautomation/perspective-client";
 
-export const VALVE_COMPONENT_TYPE = "hmi.process_objects.Valve";
+
 export type ElementRef = React.RefObject<HTMLDivElement>;
 export type ValveState = {
 	alarm: boolean;
@@ -30,7 +30,7 @@ export type ValveCompoundRootProps = {
 	onActionPerformed: () => void;
 	children: ReactNode;
 };
-export const PUMP_COMPONENT_TYPE = "hmi.process_objects.Pump";
+
 export type PumpState = {
 	alarm: boolean;
 	actFB: boolean;

@@ -1,16 +1,21 @@
 @Layer hmi-theme{
 
 :root{
+	/* Typography */
+	/* lenght of text strings */
+	--_text-ch-2: var(--text-ch-2, 2ch);
+	--_text-ch-25: var(--text-ch-2, 25ch);
+
 	/* HMI Component Theme Colors */
 	--_border-color: var(--border-color, var(--gray-5));
 	--_segment-color: var(--segment-color, var(--gray-5)); /* a segment is an internal element, not effected by states except positional feedback */
-	--_activated-color: var(--activated-color, var(--gray-7)); /* indicates item is activated */
-	--_deactivated-color: var(--deactivated-color, var(--gray-2)); /* indicates item is deactivated */
+	--_activated-color: var(--activated-color, var(--gray-3)); /* indicates item is activated */
+	--_deactivated-color: var(--deactivated-color, var(--gray-1)); /* indicates item is deactivated */
 	--_manual-color: var(--manual-color, var(--blue)); /* indicates item is in manual mode */
 	--_changing-color: oklch(from var(--color-2) l 0.2 var(--oklch-yellow)); /* indicates item is in manual mode */
 	--_no-alarm-mask-color: var(--no-alarm-mask-color, var(--orange)); /* indicates an item's alarm state is masked */
-	--_no-alarm-start-color: var(--no-alarm-start-color, var(--red)); /* indicates alarm state animation start color */
-	--_no-alarm-end-color: var(--no-alarm-end-color, var(--grey-2)); /* indicates alarm state animation end color */
+	--_alarm-start-color: var(--alarm-start-color, var(--gray-2)); /* indicates alarm state animation start color */
+	--_alarm-end-color: var(--alarm-end-color, var(--red)); /* indicates alarm state animation end color */
 /* Item Id Label Position */
 	--_itemid-popup-position-right:var(--itemid-popup-position-right, translate(35%,10%));
 	--_itemid-popup-position-left:var(--itemid-popup-position-left, translate(-100%,10%));
@@ -47,5 +52,8 @@
 	--_size-5: var(--hmi-size-5, 5cqmin);
 	--_size-2: var(--hmi-size-2, 2cqmin);
 	--_size-sm: var(--hmi-size-sm, 2.5cqmin);
+
+
+	--_alarm-size: var(--_size-10);
 }
 }

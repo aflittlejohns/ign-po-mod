@@ -71,7 +71,7 @@ For the hmi-component to be responsive in a ia_container--root
 add the container-type: inline-size declaration.
 */
 
-.ia_container--root.flex-container.responsive-container:has(.hmi-component) {
+.flex-container.responsive-container:has(.hmi-component) {
 	container-type: inline-size;
 }
 

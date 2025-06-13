@@ -2,7 +2,6 @@
 import * as React from "react";
 
 import {
-	PUMP_COMPONENT_TYPE,
 	type ElementRef,
 	type PumpCompoundContextType,
 	type PumpCompoundRootProps,
@@ -16,6 +15,13 @@ import {
 	pumpItemNames,
 } from "../../../api/utils";
 import { pumpInitialProps } from "../../../api/initialState";
+import {
+	HMI_COMPONENT_CLASS,
+	IA_SYMBOL_COMPONENT_COLUMN,
+	IA_SYMBOL_COMPONENT_ROW,
+	IA_SYMBOL_COMPONENT_WRAPPER,
+	PUMP_COMPONENT_TYPE,
+} from "../../../constants";
 
 export const COMPONENT_TYPE = PUMP_COMPONENT_TYPE;
 
@@ -50,55 +56,55 @@ const pump = () => {
 
 	// if not locate, trim last item from valveMpItemNames
 	const componentItemNames = React.useMemo(() => {
-	if (!status?.locate) {
-		return pumpItemNames.slice(0, -1);
-	}
-	return pumpItemNames;
-},[status?.locate]);
+		if (!status?.locate) {
+			return pumpItemNames.slice(0, -1);
+		}
+		return pumpItemNames;
+	}, [status?.locate]);
 
-	const isCoordChild:boolean = componentProps.store.isCoordContainerChild;
-	console.log(`isCoordChild ${isCoordChild}`);
-
-	const flexRowWrapper = !isCoordChild ? "hmi-component__row" : "hide";
-	const flexColWrapper = !isCoordChild ? "hmi-component__column" : "hide";
-	const componentClassName = "hmi-component pump";
-	const emitClassNames = !isCoordChild ? `hmi-component ${flexColWrapper} ` : "hmi-component ";
+	const componentClassName = "pump";
 
 	return (
-
 		<div
-				ref={elRef}
-				{...emit({
-					classes: [`${emitClassNames}`],
-				})}
-				data-component={COMPONENT_TYPE}
-				onClick={onActionPerformed}
-			>
-				<div className={`${flexRowWrapper}`}>
-				<div className={`${componentClassName}`}>
-			<Item itemClassName={`${getPumpStatusClassNames("base-1 show",status)}`}/>
-			{/* <Item itemClassName={`${getPumpStatusClassNames("base-2 show item",status)}`}/> */}
-			{/* <Item itemClassName={`${getPumpStatusClassNames("base-3 show item",status)}`}/> */}
-			<Item itemClassName={"base-2 show item"}/>
-			<Item itemClassName={"base-3 show item"}/>
+			ref={elRef}
+			{...emit({
+				classes: [`${IA_SYMBOL_COMPONENT_COLUMN}`],
+			})}
+			data-component={COMPONENT_TYPE}
+			onClick={onActionPerformed}
+		>
+			<div className={`${IA_SYMBOL_COMPONENT_ROW}`}>
+				<div className={`${IA_SYMBOL_COMPONENT_WRAPPER}`}>
+					<div className={`${HMI_COMPONENT_CLASS} ${componentClassName}`}>
+						<Item
+							itemClassName={`${getPumpStatusClassNames(
+								"base-1 show",
+								status
+							)}`}
+						/>
+						{/* <Item itemClassName={`${getPumpStatusClassNames("base-2 show item",status)}`}/> */}
+						{/* <Item itemClassName={`${getPumpStatusClassNames("base-3 show item",status)}`}/> */}
+						<Item itemClassName={"base-2 show item"} />
+						<Item itemClassName={"base-3 show item"} />
 
-				{componentItemNames.map(({ name, index, key }) => (
+						{componentItemNames.map(({ name, index, key }) => (
+							<Item
+								itemClassName={
+									name +
+									" " +
+									getPumpItemClassName(index, pumpType || "centrifugal", status)
+								}
+								key={key}
+							/>
+						))}
+					</div>
 					<Item
-					itemClassName={
-						name +
-						" " +
-						getPumpItemClassName(
-							index,
-							pumpType || "centrifugal",
-							status,
-						)
-					}
-					key={key}
+						itemClassName={`locate ${
+							status.locate ? "show item" : "hide item"
+						}`}
 					/>
-				))}
+				</div>
 			</div>
-				<Item itemClassName={`locate ${status.locate ? "show item" : "hide item"}`}/>
-		</div>
 		</div>
 	);
 };

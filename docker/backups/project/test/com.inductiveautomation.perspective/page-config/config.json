@@ -1,0 +1,15 @@
+{
+  "pages": {
+    "/": {
+      "title": "",
+      "viewPath": "View"
+    },
+    "/params": {
+      "title": "",
+      "viewPath": "faceplate-components/parameters"
+    }
+  },
+  "sharedDocks": {
+    "cornerPriority": "top-bottom"
+  }
+}

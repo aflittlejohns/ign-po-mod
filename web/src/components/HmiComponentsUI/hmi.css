@@ -1,21 +1,13 @@
 @Layer hmi {
-	:where(.hmi-component__column) {
-	display: flex;
-	flex-direction: column;
-	align-self: center;
+:where(.flex-container.responsive-container>:has([data-component^=hmi])) {
+	container-type: inline-size;
 }
-:where(.hmi-component__row) {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	flex: 1 1 auto;
-}
-:where(.hmi-Component__wrapper) {
-	display: flex;
-	position: relative;
+:where(.ia_symbolComponent__wrapper:has(.hmi-component)){
+	container-type: inline-size;
+
 }
  :where(.hmi-component) {
-	container-type: inline-size;
+	/* container-type: inline-size; */
 	font-size: var(--font-size-sm , 14px);
 	overflow: hidden;
 
