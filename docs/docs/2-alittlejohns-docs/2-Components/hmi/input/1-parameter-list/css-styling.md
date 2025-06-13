@@ -9,7 +9,14 @@ title: CSS Styling
 
 /* Parameterlist .label */
 
-:where(.field){
+/* Override Perspective reset */
+
+/* Parameterlist .label */
+
+:where(.parameter-list){ /* make label text on top border visible */
+		padding-block: 0.5lh;
+}
+:where(.field) {
 	.label,.eu {
 		margin-inline-start: var(--field-border-width);
 	}
@@ -26,6 +33,9 @@ title: CSS Styling
 			margin-block-start: -2.2rem;
 			}
 
+	}
+	& input {
+		padding: revert;
 	}
 }
 ```

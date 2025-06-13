@@ -4,9 +4,8 @@
       "title": "",
       "viewPath": "View"
     },
-    "/params": {
-      "title": "",
-      "viewPath": "faceplate-components/parameters"
+    "/flex": {
+      "viewPath": "flex"
     }
   },
   "sharedDocks": {

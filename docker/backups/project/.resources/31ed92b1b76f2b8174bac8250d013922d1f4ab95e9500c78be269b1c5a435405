@@ -3,6 +3,9 @@
     "/": {
       "title": "",
       "viewPath": "View"
+    },
+    "/flex": {
+      "viewPath": "flex"
     }
   },
   "sharedDocks": {

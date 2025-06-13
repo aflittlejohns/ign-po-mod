@@ -148,44 +148,10 @@
           "name": "parameter-list"
         },
         "position": {
-          "height": 44,
-          "width": 326,
-          "x": 103,
-          "y": 127
-        },
-        "props": {
-          "parameters": [
-            {
-              "input": {
-                "decimalPlaces": 0,
-                "editable": false,
-                "eu": "",
-                "inputmode": "numeric",
-                "max": 100,
-                "min": 0,
-                "pattern": "^\\d+(\\.\\d{1,2})?$",
-                "placeholder": "enter parameter value",
-                "type": "text",
-                "value": 20
-              },
-              "label": {
-                "className": "",
-                "text": "text",
-                "tooltipText": ""
-              }
-            }
-          ]
-        },
-        "type": "hmi.input.ParameterList"
-      },
-      {
-        "meta": {
-          "name": "parameter-list_0"
-        },
-        "position": {
-          "height": 38,
-          "width": 364,
-          "y": 6
+          "height": 154,
+          "width": 343,
+          "x": 54,
+          "y": 15
         },
         "props": {
           "parameters": [
@@ -207,8 +173,51 @@
                 "text": "text",
                 "tooltipText": ""
               }
+            },
+            {
+              "input": {
+                "decimalPlaces": 0,
+                "editable": false,
+                "eu": "",
+                "inputmode": "numeric",
+                "max": 100,
+                "min": 0,
+                "pattern": "^\\d+(\\.\\d{1,2})?$",
+                "placeholder": "enter parameter value",
+                "type": "text",
+                "value": 0
+              },
+              "label": {
+                "className": "",
+                "text": "text",
+                "tooltipText": ""
+              }
+            },
+            {
+              "input": {
+                "decimalPlaces": 0,
+                "editable": false,
+                "eu": "",
+                "inputmode": "numeric",
+                "max": 100,
+                "min": 0,
+                "pattern": "^\\d+(\\.\\d{1,2})?$",
+                "placeholder": "enter parameter value",
+                "type": "text",
+                "value": 0
+              },
+              "label": {
+                "className": "",
+                "text": "text",
+                "tooltipText": ""
+              }
             }
-          ]
+          ],
+          "style": {
+            "display": "flex",
+            "paddingTop": "0.5rem",
+            "textBox": "normal"
+          }
         },
         "type": "hmi.input.ParameterList"
       }

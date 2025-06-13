@@ -4,7 +4,10 @@
 
 /* Parameterlist .label */
 
-:where(.field){
+:where(.parameter-list){ /* make label text on top border visible */
+		padding-block: 0.5lh;
+}
+:where(.field) {
 	.label,.eu {
 		margin-inline-start: var(--field-border-width);
 	}
@@ -23,7 +26,10 @@
 			
 	}
 	& input {
-		padding: revert;
+		padding: revert;		
+	}
+	&.small{
+		padding-block: 0.25lh;
 	}
 }
 

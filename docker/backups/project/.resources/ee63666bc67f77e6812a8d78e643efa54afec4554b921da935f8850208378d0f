@@ -1,0 +1,48 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "parameter-list"
+        },
+        "position": {
+          "basis": "55px"
+        },
+        "props": {
+          "parameters": [
+            {
+              "input": {
+                "decimalPlaces": 0,
+                "editable": false,
+                "eu": "",
+                "inputmode": "numeric",
+                "max": 100,
+                "min": 0,
+                "pattern": "^\\d+(\\.\\d{1,2})?$",
+                "placeholder": "enter parameter value",
+                "type": "text",
+                "value": 0
+              },
+              "label": {
+                "className": "",
+                "text": "text",
+                "tooltipText": ""
+              }
+            }
+          ]
+        },
+        "type": "hmi.input.ParameterList"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}
