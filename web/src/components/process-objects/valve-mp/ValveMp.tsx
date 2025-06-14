@@ -3,7 +3,7 @@ import type {
 	ValveCompoundContextType,
 	ValveCompoundRootProps,
 } from "../../../api/types";
-import { useValveReducer } from "../../../api/hooks";
+// import { useValveReducer } from "../../../api/hooks";
 import {
 	getItemIdPositionClassName,
 	getValveMpItemClassName,
@@ -41,7 +41,7 @@ const Root = ({
 				valveProps,
 				componentProps,
 				onActionPerformed,
-				useValveReducer,
+				// useValveReducer,
 			}}
 		>
 			{children}
@@ -91,28 +91,7 @@ const valve = () => {
 				</div>
 			</div>
 		);
-// 	} else {
-// 		return (
-// 			<div
-// 				ref={valveRef}
-// 				{...emit({
-// 					classes: [`hmi-component valve__mp `],
-// 				})}
-// 				data-component={COMPONENT_TYPE}
-// 				onClick={onActionPerformed}
-// 			>
-// 				{componentItemNames.map(({ value, index, key }) => (
-// 					// console.log(
-// 					// 	`re-rendered ,key ${key} value ${value} index ${index}`
-// 					// ),
-// 					<Item
-// 						itemClassName={value + " " + getValveMpItemClassName(index, status)}
-// 						key={key}
-// 					/>
-// 				))}
-// 			</div>
-// 		);
-// 	}
+
  };
 
 const popover = ({ anchorEl }: { anchorEl: HTMLDivElement | null }) => {

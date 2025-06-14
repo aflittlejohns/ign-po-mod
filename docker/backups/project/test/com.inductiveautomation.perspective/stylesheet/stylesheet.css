@@ -5,7 +5,9 @@
 /* Parameterlist .label */
 
 :where(.parameter-list){ /* make label text on top border visible */
-		padding-block: 0.5lh;
+		padding-block-start: 0.5lh;
+		padding-block-end: 0.2lh;
+		margin-top: revert-layer;
 }
 :where(.field) {
 	.label,.eu {
@@ -29,8 +31,15 @@
 		padding: revert-layer;		
 	}
 	&.small{
-		padding-block: revert-layer;
+		padding: revert-layer;
+		padding-block-start: 0.5lh;
+		padding-block-end: 0.2lh;
 	}
 }
-
+:where([class*=hmi-component]){
+	padding: revert-layer;
+	& *{ /* allow all child elements of hmi-components to have padding */
+		padding: revert-layer;
+	}
+}
 

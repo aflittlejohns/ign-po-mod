@@ -300,7 +300,8 @@
           }
         },
         "props": {
-          "processObject": {}
+          "processObject": {},
+          "pumpType": "diaphragm"
         },
         "type": "hmi.process_objects.Pump"
       }

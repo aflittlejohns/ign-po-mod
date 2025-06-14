@@ -1,4 +1,6 @@
-:root {
+@layer hmi-components{
+
+:where(.hmi-component-command-valve-mp ){
 	--_hmi-command-valve-mp__grid-template-rows: var(
 		--hmi-command-valve-mp__grid-template-rows,
 		repeat(3, minmax(2rem,2.5rem))
@@ -7,15 +9,10 @@
 		--hmi-command-valve-mp__grid-template-columns,
 		repeat(9, min(1.5rem,1.75rem))
 	);
-}
-
-div.hmi-component-command-valve-mp__grid {
 	display: grid;
 	container-type: inline-size;
 	grid-template-rows: var(--_hmi-command-valve-mp__grid-template-rows);
 	grid-template-columns: var(--_hmi-command-valve-mp__grid-template-columns);
-}
-.hmi-component-command-valve-mp {
 	gap: 0.5rem;
 	view-transition-name: hmi-component-command-valve-mp;
 	align-items: center;
@@ -82,3 +79,5 @@ div.hmi-component-command-valve-mp__grid {
 
 	}
 }
+}
+

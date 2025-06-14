@@ -4,7 +4,7 @@ import type { ComponentProps } from "@inductiveautomation/perspective-client";
 
 export type ElementRef = React.RefObject<HTMLDivElement>;
 export type ValveState = {
-	alarm: boolean;
+	alarm?: boolean;
 	actFB: boolean;
 	deActFB: boolean;
 	usl?: boolean;
@@ -212,58 +212,6 @@ export type valveMpItemNameEnum =
 	(typeof valveMpItemNameEnum)[keyof typeof valveMpItemNameEnum];
 
 
-export const ItemClickableNameEnum = {
-	V1b1: "v1b1", // index 0
-	V1b2: "v1b2", // index 1
-	V1b3: "v1b3", // index 2
-	V1b4: "v1b4", // index 3
-	V2b1: "v2b1", // index 4
-	V2b2: "v2b2", // index 5
-	V2b3: "v2b3", // index 6
-	V2b4: "v2b4", // index 7
-	V3b1: "v3b1", // index 8
-	V3b2: "v3b2", // index 9
-	V3b3: "v3b3", // index 10
-	V3b4: "v3b4", // index 11
-	V2: "v2", // index 12
-	V3: "v3", // index 13
-	V1: "v1", // index 14
-};
-export type ItemClickableNameEnum =
-	(typeof ItemClickableNameEnum)[keyof typeof ItemClickableNameEnum];
-export const valveMpItemClickableNameEnum = {
-	V1b1: "v1b1", // index 0
-	V1b2: "v1b2", // index 1
-	V1b3: "v1b3", // index 2
-	V1b4: "v1b4", // index 3
-	V2b1: "v2b1", // index 4
-	V2b2: "v2b2", // index 5
-	V2b3: "v2b3", // index 6
-	V2b4: "v2b4", // index 7
-	V2: "v2", // index 8
-	V1: "v1", // index 9
-};
-export type valveMpItemClickableNameEnum =
-	(typeof valveMpItemClickableNameEnum)[keyof typeof valveMpItemClickableNameEnum];
-
-export const ItemPositionEnum = {
-	v1b1: "v1b1",
-	v1b2: "v1b2",
-	v1b3: "v1b3",
-	v1b4: "v1b4",
-	v2b1: "v2b1",
-	V2b2: "v2b2",
-	v2b3: "v2b3",
-	v2b4: "v2b4",
-	v3b1: "v3b1",
-	v3b2: "v3b2",
-	v3b3: "v3b3",
-	v3b4: "v3b4",
-	v2: "v2",
-	v3: "v3",
-};
-export type ItemPositionEnum =
-	(typeof ItemPositionEnum)[keyof typeof ItemPositionEnum];
 
 const ValveStateEnum = {
 	alarm: "alarm",
@@ -324,24 +272,7 @@ export type ItemData = {
 	value: string;
 	props: ValveState;
 };
-/**
- * draggable component types
- */
-// export type DraggableItem = {
-// 	id: UniqueIdentifier;
-// 	left: number;
-// 	top: number;
-// }
 
-// export type DraggableProps = {
-// 	id: UniqueIdentifier,
-// 	onClose: (id: UniqueIdentifier)=> void,
-// 	element?: keyof HTMLElement,
-// 	left: number;
-// 	top : number;
-// 	children: React.ReactNode;
-// 	className: string;
-// }
 export type itemNameProps = {
 	key: string;
 	name: [string, string];

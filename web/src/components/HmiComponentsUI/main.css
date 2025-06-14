@@ -4,5 +4,6 @@
 @import './hmi.css';
 @import './display/status.css';
 @import './input/parameter-list.css';
+@import './input/command-valve-mp.css';
 @import './components/valve_mp.css';
 @import './components/pump.css';
