@@ -1,0 +1,118 @@
+{
+  "custom": {},
+  "params": {
+    "tagpath": "[default]V401"
+  },
+  "propConfig": {
+    "params.tagpath": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 600,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Swiper"
+        },
+        "position": {
+          "basis": "400px"
+        },
+        "propConfig": {
+          "props.instances[0].viewParams.tagpath": {
+            "binding": {
+              "config": {
+                "path": "view.params.tagpath"
+              },
+              "type": "property"
+            }
+          },
+          "props.instances[1].viewParams.tagpath": {
+            "binding": {
+              "config": {
+                "path": "view.params.tagpath"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "instanceCommon": {
+            "viewPath": ""
+          },
+          "instances": [
+            {
+              "slideStyle": {
+                "classes": ""
+              },
+              "useDefaultHeight": false,
+              "useDefaultMinHeight": false,
+              "useDefaultMinWidth": false,
+              "useDefaultWidth": false,
+              "viewParams": {},
+              "viewPath": "faceplate-components/status",
+              "viewStyle": {
+                "classes": ""
+              }
+            },
+            {
+              "slideStyle": {
+                "classes": ""
+              },
+              "useDefaultHeight": false,
+              "useDefaultMinHeight": false,
+              "useDefaultMinWidth": false,
+              "useDefaultWidth": false,
+              "viewParams": {},
+              "viewPath": "faceplate-components/parameter-list",
+              "viewStyle": {
+                "classes": ""
+              }
+            }
+          ]
+        },
+        "type": "embr.periscope.embedding.swiper"
+      },
+      {
+        "meta": {
+          "name": "command"
+        },
+        "position": {
+          "basis": "20px",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.params.tagpath": {
+            "binding": {
+              "config": {
+                "path": "view.params.tagpath"
+              },
+              "type": "property"
+            },
+            "persistent": true
+          }
+        },
+        "props": {
+          "params": {
+            "tagpath": "[default]V401"
+          },
+          "path": "faceplate-components/command"
+        },
+        "type": "ia.display.view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

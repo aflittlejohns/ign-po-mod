@@ -1,0 +1,86 @@
+{
+  "custom": {
+    "value": {
+      "interlocks": {
+        "lower-seat-lift": [
+          false
+        ],
+        "main": [
+          false
+        ],
+        "upper-seat-lift": [
+          false
+        ]
+      },
+      "lowerSeat": {
+        "activation": false
+      },
+      "main": {
+        "activation": true,
+        "autoManual": true
+      },
+      "upperSeat": {
+        "activation": false
+      }
+    }
+  },
+  "params": {
+    "tagpath": "[default]V401"
+  },
+  "propConfig": {
+    "custom.value": {
+      "binding": {
+        "config": {
+          "bidirectional": true,
+          "fallbackDelay": 2.5,
+          "mode": "indirect",
+          "references": {
+            "tagpath": "{view.params.tagpath}"
+          },
+          "tagPath": "{tagpath}/command"
+        },
+        "type": "tag"
+      },
+      "persistent": true
+    },
+    "params.tagpath": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Multi-port valve command"
+        },
+        "position": {
+          "basis": "140px",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.command": {
+            "binding": {
+              "config": {
+                "path": "view.custom.value"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "type": "hmi.input.CommandValveMp"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "alignItems": "center",
+      "direction": "column",
+      "justify": "center",
+      "wrap": "wrap"
+    },
+    "type": "ia.container.flex"
+  }
+}

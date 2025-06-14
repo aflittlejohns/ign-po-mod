@@ -35,6 +35,16 @@
           ]
         },
         "type": "hmi.input.ParameterList"
+      },
+      {
+        "meta": {
+          "name": "Multi-port valve status display"
+        },
+        "position": {
+          "basis": "24px",
+          "grow": 1
+        },
+        "type": "hmi.display.StatusValveMp"
       }
     ],
     "meta": {

@@ -1,10 +1,11 @@
 @layer hmi-components{
 :where([data-component*=Status]){
-	width: 80cqi;
+	width: 100cqi;
 }
- :where(.status) {
+:where(.status) {
 	display: flex;
 	flex-direction: column;
+	width: 100cqi;
 	margin-top: 0.5rem;
 	& li {
 		&::marker{
@@ -15,7 +16,9 @@
 
 	& label:where(.checkbox){
 		display: grid;
-		grid-auto-columns: var(--_text-ch-25) var(--_text-ch-2);
+		grid-auto-columns:
+			calc(var(--_size-100) - (3ch + (var(--_size-2)*2)))
+			3ch;
 		gap: var(--_size-2);
 		cursor:default;
 	}

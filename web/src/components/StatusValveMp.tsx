@@ -76,7 +76,7 @@ export class StatusValveMpMeta implements ComponentMeta {
 	getDefaultSize(): SizeObject {
 		return {
 			width: 240,
-			height: 24,
+			height: 32,
 		};
 	}
 

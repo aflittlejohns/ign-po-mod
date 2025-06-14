@@ -63,7 +63,7 @@
           "component": {
             "onActionPerformed": {
               "config": {
-                "script": "\tsystem.perspective.openPopup(self.meta.name,\n\t\u0027ValveFaceplate\u0027,\n\ttitle\u003dself.meta.name,\n\tviewportBound\u003dtrue\t\n\t)"
+                "script": "\tx \u003d\tself.position.x\n\ty \u003d self.position.y\n\tposition\u003d{\n\t\u0027left\u0027: x, \u0027top\u0027: y,\n\t\u0027height\u0027: \u0027600px\u0027\n\t}\n\t\n\tsystem.perspective.openPopup(self.meta.name,\n\t\u0027faceplates/faceplate-valve-mp\u0027,\n\ttitle\u003dself.meta.name,\n\tposition\u003dposition,\n\tviewportBound\u003dTrue\t\n\t)"
               },
               "scope": "G",
               "type": "script"
@@ -104,7 +104,7 @@
           "component": {
             "onActionPerformed": {
               "config": {
-                "script": "\tsystem.perspective.openPopup(self.meta.name,\n\t\"ValveFaceplate\",\n\ttitle\u003dself.meta.name,\n\tviewportBound\u003dtrue\t\n\t)"
+                "script": "\tx \u003d\tself.position.x\n\ty \u003d self.position.y\n\tposition\u003d{\n\t\u0027left\u0027: x, \u0027top\u0027: y,\n\t\u0027height\u0027: \u0027600px\u0027\n\t}\n\t\n\tsystem.perspective.openPopup(self.meta.name,\n\t\u0027faceplates/faceplate-valve-mp\u0027,\n\ttitle\u003dself.meta.name,\n\tposition\u003dposition,\n\tviewportBound\u003dTrue\t\n\t)"
               },
               "scope": "G",
               "type": "script"
@@ -220,6 +220,90 @@
           }
         },
         "type": "hmi.input.ParameterList"
+      },
+      {
+        "meta": {
+          "name": "parameter-list_0"
+        },
+        "position": {
+          "height": 800,
+          "width": 190,
+          "x": 404,
+          "y": 75
+        },
+        "props": {
+          "path": "faceplate-components/parameter-list"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Multi-port valve status display"
+        },
+        "position": {
+          "height": 32,
+          "width": 241,
+          "x": 179,
+          "y": 471
+        },
+        "type": "hmi.display.StatusValveMp"
+      },
+      {
+        "meta": {
+          "name": "process-pump"
+        },
+        "position": {
+          "height": 36,
+          "width": 36,
+          "x": 260,
+          "y": 305
+        },
+        "propConfig": {
+          "props.processObject.status": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "direct",
+                "publishInitial": false,
+                "tagPath": "[default]V402/status"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "processObject": {}
+        },
+        "type": "hmi.process_objects.Pump"
+      },
+      {
+        "meta": {
+          "name": "process-pump_0"
+        },
+        "position": {
+          "height": 36,
+          "width": 36,
+          "x": 223,
+          "y": 406
+        },
+        "propConfig": {
+          "props.processObject.status": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "direct",
+                "publishInitial": false,
+                "tagPath": "[default]Pump 1/status"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "processObject": {},
+          "pumpType": "diaphragm"
+        },
+        "type": "hmi.process_objects.Pump"
       }
     ],
     "meta": {

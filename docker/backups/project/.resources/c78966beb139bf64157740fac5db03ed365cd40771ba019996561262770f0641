@@ -5,6 +5,7 @@
       "viewPath": "View"
     },
     "/flex": {
+      "title": "",
       "viewPath": "flex"
     }
   },
