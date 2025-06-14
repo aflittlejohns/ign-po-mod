@@ -6,6 +6,7 @@ import {
 	valveMpItemNameEnum,
 	type PumpState,
 	type PumpType,
+	type StatusLike,
 	type ValveState,
 } from "../api/types";
 import { v4 as uuidv4 } from "uuid";
@@ -52,12 +53,7 @@ export const getValveMpItemClassName = (
 			className = "hide";
 		}
 	} else if (index === 10) {
-		// console.log(
-		// 	`index ${index} deact config ${DeactivatedConfigValue} bit is ${getBoolAtIndex(
-		// 		DeactivatedConfigValue,
-		// 		10
-		// 	)}`
-		// );
+
 
 		if (
 			getBoolAtIndex(ActivatedConfigValue, 10) ||
@@ -127,6 +123,150 @@ export const getValveMpItemClassName = (
 		}
 	}
 	// console.log("index", index, className);
+
+	return className; // default return value if no other condition is met
+};
+/**
+ * Function getClassNameWithStatus.
+ * This is a utility function which generates css classNames for each
+ * element in a hmi-component symbol.
+ * In the DOM tree base elements will have a class such as "base-1 to n"
+ * with dynamicItems having a class such as "dynamic-1 to n"
+ * @param index: number : Array index starting at zero
+ * @param status: S : A StatusLike object
+ * @param type: string:
+ * @param baseElements: number :
+ * @param baseConfig: number :
+ * @param dynamicItems: number :
+ * @param dynamicConfig: number :
+ *
+ */
+export const getClassNameWithStatus = <S extends StatusLike>(
+	index: number,
+	status?: S,
+	type?: string,
+	baseElements?: number,
+	baseConfig?: number,
+	dynamicItems?: number,
+	dynamicConfig?: number,
+): string => {
+	let className = "";
+	// Handle the fact that ActivatedConfig and DeactivatedConfig are optional and maybe undefined
+	const ActivatedConfigValue = status?.activatedConfig ?? 0;
+	const DeactivatedConfigValue = status?.deactivatedConfig ?? 0;
+// Base Elements
+	if(baseElements && baseConfig){
+		if (index < baseElements){
+			let itemString = (index > 0) ? "" : "item"
+			if(getBoolAtIndex(baseConfig, index)){
+				className=`show ${itemString} ${type}`
+			}else{
+				className=`hide ${itemString}`
+			}
+		}
+		// Dynamic Items
+			if(dynamicItems && dynamicConfig){
+				let dynamIndex=index-baseElements;
+				if (index >= baseElements && index < (baseElements + dynamicItems)){
+					if(getBoolAtIndex(dynamicConfig, dynamIndex)){
+						className=`show item`
+					}else{
+						className=`hide item`
+					}
+				}
+			}
+	}
+
+	if (index < 8) {
+		if (
+			(getBoolAtIndex(ActivatedConfigValue, index) && status?.actFB) ||
+			(getBoolAtIndex(DeactivatedConfigValue, index) && status?.deActFB)
+		) {
+			className = "show item";
+		} else {
+			className = "hide item";
+		}
+	} else if (index === 9) {
+		className = "show";
+	} else if (index === 8) {
+		if (
+			getBoolAtIndex(ActivatedConfigValue, index) ||
+			getBoolAtIndex(DeactivatedConfigValue, index)
+		) {
+			className = "show";
+		} else {
+			className = "hide";
+		}
+	} else if (index === 10) {
+
+
+		if (
+			getBoolAtIndex(ActivatedConfigValue, 10) ||
+			getBoolAtIndex(DeactivatedConfigValue, 10)
+		) {
+			className = "show item";
+			if (status?.usl) {
+				className = className.replace("activated", "") + " activated";
+			} else {
+				className = className.replace("deactivated", "") + " deactivated";
+			}
+		} else {
+			className = "hide item";
+		}
+	} else if (index === 11) {
+		if (
+			getBoolAtIndex(ActivatedConfigValue, 11) ||
+			getBoolAtIndex(DeactivatedConfigValue, 11)
+		) {
+			className = "show item";
+			if (status?.lsl) {
+				className = className.replace("activated", "") + " activated";
+			} else {
+				className = className.replace("deactivated", "") + " deactivated";
+			}
+		} else {
+			className = "hide item";
+		}
+	} else if (index === 12) {
+		if (status?.locate) {
+			className = className.replace("small", "") + " small";
+			if (
+				getBoolAtIndex(ActivatedConfigValue, 8) ||
+				getBoolAtIndex(DeactivatedConfigValue, 8)
+			) {
+				className =
+					className.replace("large", "") + " large";
+			}
+		} else {
+			className = className.replace("hide item", "") + " hide item";
+		}
+	}
+	// Additions to the className
+
+	if (className.includes("show") && !className.includes("item")) {
+		// console.log("index", index, className);
+		if (status?.alarm) {
+			className = className.replace("alarm", "") + " alarm";
+		}
+		if (status?.changing) {
+			className = className.replace("changing", "") + " changing";
+		}
+		if (status?.manual) {
+			className = className.replace("manual", "") + " manual";
+		}
+		if (status?.masked && !status.alarm) {
+			className = className.replace("no-alarm-mask", "") + " no-alarm-mask";
+		}
+		if (status?.masked) {
+			className = className.replace("masked", "") + " masked";
+		}
+		if (status?.actFB) {
+			className = className.replace("activated", "") + " activated";
+		}
+		if (status?.deActFB) {
+			className = className.replace("deactivated", "") + " deactivated";
+		}
+	}
 
 	return className; // default return value if no other condition is met
 };

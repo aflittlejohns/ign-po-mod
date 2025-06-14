@@ -17,6 +17,20 @@ export type ValveState = {
 	changing: boolean;
 	locate: boolean;
 };
+export type StatusLike = {
+	configuration?:number
+    activatedConfig?: number;
+    deactivatedConfig?: number;
+    actFB?: boolean;
+    deActFB?: boolean;
+    usl?: boolean;
+    lsl?: boolean;
+    locate?: boolean;
+    alarm?: boolean;
+    changing?: boolean;
+    manual?: boolean;
+    masked?: boolean;
+};
 
 export type ValveCompoundContextType = {
 	componentProps: ComponentProps<any, any>;
