@@ -83,8 +83,8 @@ export class HeatExchangerMeta implements ComponentMeta {
 
 	getDefaultSize(): SizeObject {
 		return {
-			width: 36,
-			height: 60,
+			width: 120,
+			height: 240,
 		};
 	}
 

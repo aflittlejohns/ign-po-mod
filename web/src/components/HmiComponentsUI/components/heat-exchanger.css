@@ -1,0 +1,6 @@
+@layer hmi-components;
+:where(.heat-exchanger){
+	display: grid;
+	grid-template-columns:repeat(10, var(--_size-10));
+	grid-template-rows:repeat(20, var(--_size-10));
+}

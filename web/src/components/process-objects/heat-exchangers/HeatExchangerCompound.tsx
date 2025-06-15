@@ -58,11 +58,13 @@ const plate = () => {
 	// if not locate, trim last item from valveMpItemNames
 	// let componentItemNames = hxItemNames;
 	let componentItemNames = buildComponentElements(3, 0);
-	console.log(`componentItemNames: ${JSON.stringify(componentItemNames,null,2)}`);
 
 	if (!locate) {
+		console.log(`locate is: ${locate}`);
+
 		componentItemNames = componentItemNames.slice(0, -1);
 	}
+	console.log(`componentItemNames: ${JSON.stringify(componentItemNames,null,2)}`);
 
 	const componentClassName = "heat-exchanger";
 	return (
@@ -85,6 +87,7 @@ const plate = () => {
 				{componentItemNames.map(({ name, index, key }) => (
 					<Item
 					itemClassName={
+						name + " " +
 						getClassNameWithStatus(index,undefined,
 							hxElements,
 							"heat-exchanger",

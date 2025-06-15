@@ -1,0 +1,25 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "heat-exchanger"
+        },
+        "position": {
+          "height": 240,
+          "width": 120,
+          "x": 64,
+          "y": 46
+        },
+        "type": "hmi.process_objects.HeatExchanger"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}
