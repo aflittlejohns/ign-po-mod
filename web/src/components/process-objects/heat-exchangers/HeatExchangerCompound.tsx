@@ -7,12 +7,18 @@ import {
 import { useCreateContext } from "../../../utils/createContext";
 import Item from "../valve/item";
 import {
+	getClassNameWithStatus,
 	getItemIdPositionClassName,
 } from "../../../api/utils";
-import { buildComponentElements, getHxItemClassName, getHxModeClassNames,
+import { buildComponentElements,
+	// getHxItemClassName,
+	// getHxModeClassNames,
 	//  hxItemNames
 	} from "../../../ar-utils/processObjects/heatExchangers/hx-utils";
-import { HX_COMPONENT_TYPE, HxModes, type HxCompoundContextType } from "../../../ar-types/processObjects/heatExchangers/hx-types";
+import {
+	// HxModes,
+	type HxCompoundContextType } from "../../../ar-types/processObjects/heatExchangers/hx-types";
+import { HMI_COMPONENT_CLASS, HX_COMPONENT_TYPE, hxElements, IA_SYMBOL_COMPONENT_COLUMN, IA_SYMBOL_COMPONENT_ROW, IA_SYMBOL_COMPONENT_WRAPPER } from "../../../constants";
 
 export const COMPONENT_TYPE = HX_COMPONENT_TYPE;
 
@@ -42,55 +48,62 @@ const plate = () => {
 		useHxContext("Plate");
 	const elRef: ElementRef = React.useRef<HTMLDivElement>(null);
 	const { emit } = componentProps;
-	const { type,locate, mode } = itemProps;
+	const {
+		// type,
+		locate,
+		// mode
+	} = itemProps;
 
 
 	// if not locate, trim last item from valveMpItemNames
 	// let componentItemNames = hxItemNames;
 	let componentItemNames = buildComponentElements(3, 0);
+	console.log(`componentItemNames: ${JSON.stringify(componentItemNames,null,2)}`);
+
 	if (!locate) {
 		componentItemNames = componentItemNames.slice(0, -1);
 	}
-	const isCoordChild:boolean = componentProps.store.isCoordContainerChild;
-	console.log(`isCoordChild ${isCoordChild}`);
 
-	const flexRowWrapper = !isCoordChild ? "hmi-component__row" : "display-none";
-	const flexColWrapper = !isCoordChild ? "hmi-component__column" : "display-none";
-	const componentClassName = "hmi-component hmi-component-plate-hx";
-	const emitClassNames = !isCoordChild ? `hmi-component ${flexColWrapper} ` : "hmi-component hmi-component-plate-hx";
+	const componentClassName = "heat-exchanger";
 	return (
 
 		<div
 				ref={elRef}
 				{...emit({
-					classes: [`${emitClassNames}`],
+					classes: [`${IA_SYMBOL_COMPONENT_COLUMN}`],
 				})}
 				data-component={COMPONENT_TYPE}
 				onClick={onActionPerformed}
 			>
-				<div className={`${flexRowWrapper}`}>
-				<div className={`${componentClassName}`}>
-			<Item itemClassName={`${getHxModeClassNames("base-1 show", HxModes.heating )}`}/>
-			{/* <Item itemClassName={`${getPumpStatusClassNames("base-2 show item",status)}`}/> */}
-			{/* <Item itemClassName={`${getPumpStatusClassNames("base-3 show item",status)}`}/> */}
-			<Item itemClassName={"base-2 show item"}/>
-			<Item itemClassName={"base-3 show item"}/>
+				<div className={`${IA_SYMBOL_COMPONENT_ROW}`}>
+					<div className={`${IA_SYMBOL_COMPONENT_WRAPPER}`}>
+						<div className={`${HMI_COMPONENT_CLASS } ${componentClassName}`}>
+
+			{/* <Item itemClassName={`${getHxModeClassNames("base-1 show", HxModes.heating )}`}/> */}
+
 
 				{componentItemNames.map(({ name, index, key }) => (
 					<Item
 					itemClassName={
-						name +
-						" " +
-						getHxItemClassName(
-							index,
-							type || "plate",
-							mode || HxModes.heating,
+						getClassNameWithStatus(index,undefined,
+							hxElements,
+							"heat-exchanger",
+							3,3,
+							0,0
 						)
+						// name +
+						// " " +
+						// getHxItemClassName(
+						// 	index,
+						// 	type || "plate",
+						// 	mode || HxModes.heating,
+						// )
 					}
 					key={key}
 					/>
 				))}
 			</div>
+		</div>
 		</div>
 		</div>
 	);

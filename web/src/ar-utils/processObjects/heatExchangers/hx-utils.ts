@@ -82,7 +82,7 @@ export const buildComponentElements = (
 	let item = {
 		key: uuidv4(),
 		name: "locate",
-		index: baseElements+dynamicElements+1
+		index: baseElements+dynamicElements
 	};
 	// locate always last element
 	value.push(item)

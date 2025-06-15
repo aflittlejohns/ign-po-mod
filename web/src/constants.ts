@@ -1,3 +1,7 @@
+import type { ElementVariantList } from "./api/utils";
+import { HxModes } from "./ar-types/processObjects/heatExchangers/hx-types";
+import { getHxModeClassNames } from "./ar-utils/processObjects/heatExchangers/hx-utils";
+
 /**
  * HMI Component Module Constants
  */
@@ -12,3 +16,14 @@ export const PUMP_COMPONENT_TYPE = "hmi.process_objects.Pump";
 export const STATUS_COMPONENT_TYPE = "hmi.display.StatusValveMp";
 export const PARAMETER_LIST_COMPONENT_TYPE = "hmi.input.ParameterList";
 export const COMMAND_VALVE_MP_COMPONENT_TYPE = "hmi.input.CommandValveMp";
+export const HX_COMPONENT_TYPE = "hmi.process_objects.HeatExchanger";
+
+
+// Component Element Construction
+
+export const hxElements: ElementVariantList = [
+{ baseClass: getHxModeClassNames("plate",HxModes.heating) },
+{ statusKey: {actFB: {trueString:"activated"}} },
+{ statusKey: {deActFB: {trueString:"deactivated"}} },
+{ statusKey: {alarm: {trueString:"alarm"}} },
+]

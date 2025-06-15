@@ -143,16 +143,17 @@ export const getValveMpItemClassName = (
 	}
  ]
  */
-type ElementVariant = {
+export type ElementVariant = {
 	statusKey?: HmiStatus;
 	additionalClass?: string;
+	baseClass?: string;
 };
-type ElementVariantList = ElementVariant[];
-type boolString = {
-	trueString: string;
-	falseString: string;
+export type ElementVariantList = ElementVariant[];
+export type boolString = {
+	trueString?: string;
+	falseString?: string;
 }
-type HmiStatus = {
+export type HmiStatus = {
 	alarm?: boolString;
 	actFB?: boolString;
 	deActFB?: boolString;
@@ -169,6 +170,7 @@ export const getClassNameWithStatus = <S extends StatusLike>(
 	index: number,
 	status?: S,
 	elementVariants?: ElementVariantList,
+	baseClassName?: string,
 	baseElements?: number,
 	baseConfig?: number,
 	dynamicItems?: number,
@@ -199,7 +201,7 @@ if (elementVariants && elementVariants[index]?.statusKey && status) {
 	// Base Elements
 	if (baseElements && baseConfig) {
 		if (index < baseElements) {
-			let itemString = index > 0 ? "" : "item";
+			let itemString = index > 0 ? "item" :`${baseClassName}`;
 			if (getBoolAtIndex(baseConfig, index)) {
 				className = `show ${itemString} ${additionalClass}`;
 			} else {
