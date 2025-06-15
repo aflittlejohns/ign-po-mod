@@ -1,7 +1,7 @@
 import { getBoolAtIndex } from "../utils/numberUtil";
 import {
 	ItemIdPositionType,
-	ItemNameEnum,
+	// ItemNameEnum,
 	pumpItemList,
 	valveMpItemNameEnum,
 	type PumpState,
@@ -53,8 +53,6 @@ export const getValveMpItemClassName = (
 			className = "hide";
 		}
 	} else if (index === 10) {
-
-
 		if (
 			getBoolAtIndex(ActivatedConfigValue, 10) ||
 			getBoolAtIndex(DeactivatedConfigValue, 10)
@@ -89,8 +87,7 @@ export const getValveMpItemClassName = (
 				getBoolAtIndex(ActivatedConfigValue, 8) ||
 				getBoolAtIndex(DeactivatedConfigValue, 8)
 			) {
-				className =
-					className.replace("large", "") + " large";
+				className = className.replace("large", "") + " large";
 			}
 		} else {
 			className = className.replace("hide item", "") + " hide item";
@@ -139,149 +136,101 @@ export const getValveMpItemClassName = (
  * @param baseConfig: number :
  * @param dynamicItems: number :
  * @param dynamicConfig: number :
- *
+ *elementVariants = [
+ 	{
+ 	statusKey: string,
+ 	additionalClass: string
+	}
+ ]
  */
+type ElementVariant = {
+	statusKey?: HmiStatus;
+	additionalClass?: string;
+};
+type ElementVariantList = ElementVariant[];
+type boolString = {
+	trueString: string;
+	falseString: string;
+}
+type HmiStatus = {
+	alarm?: boolString;
+	actFB?: boolString;
+	deActFB?: boolString;
+	manual?: boolString;
+	masked?: boolString;
+	changing?: boolString;
+	locate?: boolString;
+	activated?: boolString;
+	usl?: boolString;
+	lsl?: boolString;
+}
+
 export const getClassNameWithStatus = <S extends StatusLike>(
 	index: number,
 	status?: S,
-	type?: string,
+	elementVariants?: ElementVariantList,
 	baseElements?: number,
 	baseConfig?: number,
 	dynamicItems?: number,
-	dynamicConfig?: number,
+	dynamicConfig?: number
 ): string => {
 	let className = "";
-	// Handle the fact that ActivatedConfig and DeactivatedConfig are optional and maybe undefined
-	const ActivatedConfigValue = status?.activatedConfig ?? 0;
-	const DeactivatedConfigValue = status?.deactivatedConfig ?? 0;
-// Base Elements
-	if(baseElements && baseConfig){
-		if (index < baseElements){
-			let itemString = (index > 0) ? "" : "item"
-			if(getBoolAtIndex(baseConfig, index)){
-				className=`show ${itemString} ${type}`
-			}else{
-				className=`hide ${itemString}`
+	let additionalClass = "";
+
+
+if (elementVariants && elementVariants[index]?.statusKey && status) {
+  const statusKeyObj = elementVariants[index].statusKey;
+  // Get keys from statusKeyObj that are also in status
+  const matchingKeys = Object.keys(statusKeyObj).filter(
+    (key) => key in status
+  ) as (keyof typeof statusKeyObj & keyof typeof status)[];
+
+  for (const key of matchingKeys) {
+    // Now you can safely access both statusKeyObj[key] and status[key]
+    const keyStatusValue = statusKeyObj[key];
+    const statusValue = status[key];
+    if (statusValue){
+		additionalClass += ` ${keyStatusValue?.trueString ? keyStatusValue.trueString : ""}`
+	}else{
+		additionalClass += ` ${keyStatusValue?.falseString ? keyStatusValue.falseString : ""}`
+	}
+  }
+}
+	// Base Elements
+	if (baseElements && baseConfig) {
+		if (index < baseElements) {
+			let itemString = index > 0 ? "" : "item";
+			if (getBoolAtIndex(baseConfig, index)) {
+				className = `show ${itemString} ${additionalClass}`;
+			} else {
+				className = `hide ${itemString}`;
 			}
 		}
 		// Dynamic Items
-			if(dynamicItems && dynamicConfig){
-				let dynamIndex=index-baseElements;
-				if (index >= baseElements && index < (baseElements + dynamicItems)){
-					if(getBoolAtIndex(dynamicConfig, dynamIndex)){
-						className=`show item`
-					}else{
-						className=`hide item`
-					}
+		if (dynamicItems && dynamicConfig) {
+			let dynamIndex = index - baseElements;
+			if (index >= baseElements && index < baseElements + dynamicItems) {
+				if (getBoolAtIndex(dynamicConfig, dynamIndex)) {
+					className = `show item`;
+				} else {
+					className = `hide item`;
 				}
 			}
-	}
-
-	if (index < 8) {
-		if (
-			(getBoolAtIndex(ActivatedConfigValue, index) && status?.actFB) ||
-			(getBoolAtIndex(DeactivatedConfigValue, index) && status?.deActFB)
-		) {
-			className = "show item";
-		} else {
-			className = "hide item";
-		}
-	} else if (index === 9) {
-		className = "show";
-	} else if (index === 8) {
-		if (
-			getBoolAtIndex(ActivatedConfigValue, index) ||
-			getBoolAtIndex(DeactivatedConfigValue, index)
-		) {
-			className = "show";
-		} else {
-			className = "hide";
-		}
-	} else if (index === 10) {
-
-
-		if (
-			getBoolAtIndex(ActivatedConfigValue, 10) ||
-			getBoolAtIndex(DeactivatedConfigValue, 10)
-		) {
-			className = "show item";
-			if (status?.usl) {
-				className = className.replace("activated", "") + " activated";
-			} else {
-				className = className.replace("deactivated", "") + " deactivated";
-			}
-		} else {
-			className = "hide item";
-		}
-	} else if (index === 11) {
-		if (
-			getBoolAtIndex(ActivatedConfigValue, 11) ||
-			getBoolAtIndex(DeactivatedConfigValue, 11)
-		) {
-			className = "show item";
-			if (status?.lsl) {
-				className = className.replace("activated", "") + " activated";
-			} else {
-				className = className.replace("deactivated", "") + " deactivated";
-			}
-		} else {
-			className = "hide item";
-		}
-	} else if (index === 12) {
-		if (status?.locate) {
-			className = className.replace("small", "") + " small";
-			if (
-				getBoolAtIndex(ActivatedConfigValue, 8) ||
-				getBoolAtIndex(DeactivatedConfigValue, 8)
-			) {
-				className =
-					className.replace("large", "") + " large";
-			}
-		} else {
-			className = className.replace("hide item", "") + " hide item";
 		}
 	}
-	// Additions to the className
-
-	if (className.includes("show") && !className.includes("item")) {
-		// console.log("index", index, className);
-		if (status?.alarm) {
-			className = className.replace("alarm", "") + " alarm";
-		}
-		if (status?.changing) {
-			className = className.replace("changing", "") + " changing";
-		}
-		if (status?.manual) {
-			className = className.replace("manual", "") + " manual";
-		}
-		if (status?.masked && !status.alarm) {
-			className = className.replace("no-alarm-mask", "") + " no-alarm-mask";
-		}
-		if (status?.masked) {
-			className = className.replace("masked", "") + " masked";
-		}
-		if (status?.actFB) {
-			className = className.replace("activated", "") + " activated";
-		}
-		if (status?.deActFB) {
-			className = className.replace("deactivated", "") + " deactivated";
-		}
-	}
-
-	return className; // default return value if no other condition is met
+	return className
 };
 /**
  * @returns Array of itemName(s) for each visual element of a valve component
  */
-export const itemNames = Object.entries(ItemNameEnum).map((key, index) => {
-	// console.log(`In build ItemNames name ${key} index ${index}`);
-	return {
-		key: uuidv4(),
-		name: key,
-		value: key[1],
-		index: index,
-	};
-});
+// export const itemNames = Object.entries(ItemNameEnum).map((key, index) => {
+// 	return {
+// 		key: uuidv4(),
+// 		name: key,
+// 		value: key[1],
+// 		index: index,
+// 	};
+// });
 export const valveMpItemNames = Object.entries(valveMpItemNameEnum).map(
 	(key, index) => {
 		// console.log(`In build ItemNames name ${key} index ${index}`);
@@ -293,6 +242,9 @@ export const valveMpItemNames = Object.entries(valveMpItemNameEnum).map(
 		};
 	}
 );
+
+
+
 export const getItemIdPositionClassName = (
 	className: string,
 	itemIdPosition: ItemIdPositionType
@@ -338,45 +290,40 @@ export const getItemIdPositionClassName = (
 	return className;
 };
 
-
-export const pumpItemNames = pumpItemList.map(
-	(key, index) => {
-		// console.log(`In build ItemNames name ${key} index ${index}`);
-		return {
-			key: uuidv4(),
-			name: key,
-			index: index,
-		};
-	}
-);
-const getPumpConfiguration = (pumpType: PumpType):number =>{
-	switch (pumpType){
+export const pumpItemNames = pumpItemList.map((key, index) => {
+	// console.log(`In build ItemNames name ${key} index ${index}`);
+	return {
+		key: uuidv4(),
+		name: key,
+		index: index,
+	};
+});
+const getPumpConfiguration = (pumpType: PumpType): number => {
+	switch (pumpType) {
 		case "centrifugal":
-			return 1
+			return 1;
 		case "diaphragm":
-			return 1
+			return 1;
 		case "positive-displacment":
-			return 1
+			return 1;
 		case "progressive-cavity":
-			return 1
+			return 1;
 		case "gear":
-			return 3
+			return 3;
 		case "liquid-ring":
-			return 3
+			return 3;
 		case "positive-screw":
-			return 3
+			return 3;
 		default:
-			throw Error(`In getPumpConfiguration() pump type: ${pumpType} not found`)
+			throw Error(`In getPumpConfiguration() pump type: ${pumpType} not found`);
 	}
-
-
-}
+};
 export const getPumpItemClassName = (
 	index: number,
 	pumpType: PumpType,
-	status?: PumpState,
-	): string => {
-	const configuration = getPumpConfiguration(pumpType)
+	status?: PumpState
+): string => {
+	const configuration = getPumpConfiguration(pumpType);
 	let className = "";
 	// Handle the fact that ActivatedConfig and DeactivatedConfig are optional and maybe undefined
 	if (index < 2) {
@@ -389,10 +336,12 @@ export const getPumpItemClassName = (
 	return className;
 };
 
-export const getPumpStatusClassNames = (className: string, status: PumpState) => {
+export const getPumpStatusClassNames = (
+	className: string,
+	status: PumpState
+) => {
 	// Additions to the className
 	// console.log(`status: ${JSON.stringify(status,null, 2)}`);
-
 
 	if (className.includes("show") && !className.includes("item")) {
 		if (status?.alarm) {
@@ -418,4 +367,4 @@ export const getPumpStatusClassNames = (className: string, status: PumpState) =>
 		}
 	}
 	return className;
-}
+};

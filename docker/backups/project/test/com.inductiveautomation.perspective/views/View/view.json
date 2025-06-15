@@ -304,6 +304,18 @@
           "pumpType": "diaphragm"
         },
         "type": "hmi.process_objects.Pump"
+      },
+      {
+        "meta": {
+          "name": "heat-exchanger"
+        },
+        "position": {
+          "height": 60,
+          "width": 36,
+          "x": 424,
+          "y": 248
+        },
+        "type": "hmi.process_objects.HeatExchanger"
       }
     ],
     "meta": {

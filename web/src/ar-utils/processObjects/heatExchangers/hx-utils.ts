@@ -65,3 +65,26 @@ export const getHxModeClassNames = (className: string, mode: HxModes[keyof HxMod
 			}
 	return className;
 };
+
+export const buildComponentElements = (
+	baseElements: number,
+	dynamicElements: number
+) => {
+	let value=[];
+	for (let i=0; i< baseElements+dynamicElements; i++){
+		let item = {
+			key: uuidv4(),
+			name: i < baseElements ? `base-${i+1}` : `dynamic-${i+(1-dynamicElements)}`,
+			index: i
+		};
+		value.push(item);
+	}
+	let item = {
+		key: uuidv4(),
+		name: "locate",
+		index: baseElements+dynamicElements+1
+	};
+	// locate always last element
+	value.push(item)
+	return value
+}

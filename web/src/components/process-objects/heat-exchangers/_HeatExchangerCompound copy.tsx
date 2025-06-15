@@ -9,9 +9,7 @@ import Item from "../valve/item";
 import {
 	getItemIdPositionClassName,
 } from "../../../api/utils";
-import { buildComponentElements, getHxItemClassName, getHxModeClassNames,
-	//  hxItemNames
-	} from "../../../ar-utils/processObjects/heatExchangers/hx-utils";
+import { getHxItemClassName, getHxModeClassNames, hxItemNames } from "../../../ar-utils/processObjects/heatExchangers/hx-utils";
 import { HX_COMPONENT_TYPE, HxModes, type HxCompoundContextType } from "../../../ar-types/processObjects/heatExchangers/hx-types";
 
 export const COMPONENT_TYPE = HX_COMPONENT_TYPE;
@@ -46,8 +44,7 @@ const plate = () => {
 
 
 	// if not locate, trim last item from valveMpItemNames
-	// let componentItemNames = hxItemNames;
-	let componentItemNames = buildComponentElements(3, 0);
+	let componentItemNames = hxItemNames;
 	if (!locate) {
 		componentItemNames = componentItemNames.slice(0, -1);
 	}
@@ -91,6 +88,7 @@ const plate = () => {
 					/>
 				))}
 			</div>
+				<Item itemClassName={`locate ${locate ? "show item" : "hide item"}`}/>
 		</div>
 		</div>
 	);

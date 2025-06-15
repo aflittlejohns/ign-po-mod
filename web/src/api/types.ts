@@ -185,28 +185,28 @@ export const ValveClassNameEnum = {
 };
 export type ValveClassNameEnum =
 	(typeof ValveClassNameEnum)[keyof typeof ValveClassNameEnum];
-export const ItemNameEnum = {
-	V1b1: "v1b1", // index 0
-	V1b2: "v1b2", // index 1
-	V1b3: "v1b3", // index 2
-	V1b4: "v1b4", // index 3
-	V2b1: "v2b1", // index 4
-	V2b2: "v2b2", // index 5
-	V2b3: "v2b3", // index 6
-	V2b4: "v2b4", // index 7
-	V3b1: "v3b1", // index 8
-	V3b2: "v3b2", // index 9
-	V3b3: "v3b3", // index 10
-	V3b4: "v3b4", // index 11
-	V2: "v2", // index 12
-	V3: "v3", // index 13
-	V1: "v1", // index 14
-	V2f1: "v2f1", // index 15
-	V2f2: "v2f2", // index 16
-	V3f1: "v3f1", // index 17
-	V3f2: "v3f2", // index 18
-};
-export type ItemNameEnum = (typeof ItemNameEnum)[keyof typeof ItemNameEnum];
+// export const ItemNameEnum = {
+// 	V1b1: "v1b1", // index 0
+// 	V1b2: "v1b2", // index 1
+// 	V1b3: "v1b3", // index 2
+// 	V1b4: "v1b4", // index 3
+// 	V2b1: "v2b1", // index 4
+// 	V2b2: "v2b2", // index 5
+// 	V2b3: "v2b3", // index 6
+// 	V2b4: "v2b4", // index 7
+// 	V3b1: "v3b1", // index 8
+// 	V3b2: "v3b2", // index 9
+// 	V3b3: "v3b3", // index 10
+// 	V3b4: "v3b4", // index 11
+// 	V2: "v2", // index 12
+// 	V3: "v3", // index 13
+// 	V1: "v1", // index 14
+// 	V2f1: "v2f1", // index 15
+// 	V2f2: "v2f2", // index 16
+// 	V3f1: "v3f1", // index 17
+// 	V3f2: "v3f2", // index 18
+// };
+// export type ItemNameEnum = (typeof ItemNameEnum)[keyof typeof ItemNameEnum];
 export const valveMpItemNameEnum = {
 	V1b1: "v1b1", // index 0
 	V1b2: "v1b2", // index 1
@@ -356,3 +356,20 @@ export type UseValveMpCommandReducer = {
 		//add more handlers as needed
 	};
 };
+export const hxItemNameEnum = {
+	b1: "base-1", // index 0
+	b2: "base-2", // index 1
+	b3: "base-3", // index 2
+	b4: "base-4", // index 3
+	V2b1: "v2b1", // index 4
+	V2b2: "v2b2", // index 5
+	V2b3: "v2b3", // index 6
+	V2b4: "v2b4", // index 7
+	V2: "v2", // index 8
+	v1: "v1", // index 9
+	usl: "usl", // index 10 upper-seat-lift
+	lsl: "lsl", // index 11 lower-seat-lift
+	locate: "locate", // index 12 locate animation
+};
+export type HxItemNameEnum =
+	(typeof hxItemNameEnum)[keyof typeof hxItemNameEnum];
