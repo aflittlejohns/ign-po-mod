@@ -10,7 +10,7 @@ export const HX_COMPONENT_TYPE = "hmi.process_objects.HeatExchanger";
 
 const HeatExchangerTypes = [
 	"plate",
-	"tubelar",
+	"tubular",
 ];
 export type HeatExchangerTypes = (typeof HeatExchangerTypes)[number];
 export enum HxModes {

@@ -92,7 +92,7 @@ export class HeatExchangerMeta implements ComponentMeta {
 	// effectively mapping the valveStatus of the tree to component props.
 	getPropsReducer(tree: PropertyTree): HxProps {
 		return {
-			type: tree.readString("pumpType", "plate"),
+			type: tree.readString("type", "plate"),
 			mode: tree.readString("mode", "heating"),
 			itemName: tree.readString("itemName", ""),
 			locate: tree.readBoolean("locate", false),

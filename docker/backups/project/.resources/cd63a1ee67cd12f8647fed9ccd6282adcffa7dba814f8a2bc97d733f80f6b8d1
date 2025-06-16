@@ -9,10 +9,13 @@
           "name": "heat-exchanger"
         },
         "position": {
-          "height": 137,
-          "width": 69,
-          "x": 218,
-          "y": 439
+          "height": 498,
+          "width": 244,
+          "x": 43,
+          "y": 78
+        },
+        "props": {
+          "type": "tubular"
         },
         "type": "hmi.process_objects.HeatExchanger"
       },

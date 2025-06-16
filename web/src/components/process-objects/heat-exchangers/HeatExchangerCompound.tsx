@@ -48,7 +48,7 @@ const getBaseItemCount = (type: HeatExchangerTypes[keyof HeatExchangerTypes]) =>
 		case "plate":
 			return 18;
 		case "tubular":
-			return 18;
+			return 15;
 		default:
 			return 0;
 	}
@@ -106,7 +106,7 @@ const plate = () => {
 	console.log(
 		`componentItemNames: ${JSON.stringify(componentItemNames, null, 2)}`
 	);
-	const componentClassName = "heat-exchanger";
+	const componentClassName = `heat-exchanger ${type ?? ""}`;
 	return (
 		<div
 			ref={elRef}
@@ -139,13 +139,6 @@ const plate = () => {
 										DYNAMIC_ITEM_COUNT, //dynamicItems
 										DYNAMIC_ITEM_CONFIG //dynamicConfig
 									)
-									// name +
-									// " " +
-									// getHxItemClassName(
-									// 	index,
-									// 	type || "plate",
-									// 	mode || HxModes.heating,
-									// )
 								}
 								key={key}
 							/>
