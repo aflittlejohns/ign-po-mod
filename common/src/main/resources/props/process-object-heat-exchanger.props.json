@@ -20,7 +20,7 @@
     , "heating"
     , "alarm"
   ],
-    "default": "plate",
+    "default": "heating",
     "description": "Type of Heat Exchanger"
   },
     "locate": {

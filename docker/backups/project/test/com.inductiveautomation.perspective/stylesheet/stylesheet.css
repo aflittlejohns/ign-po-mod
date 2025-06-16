@@ -38,6 +38,7 @@
 }
 :where([class*=hmi-component]){
 	padding: revert-layer;
+	
 	& *{ /* allow all child elements of hmi-components to have padding */
 		padding: revert-layer;
 	}
