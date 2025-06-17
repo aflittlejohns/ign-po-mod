@@ -1,0 +1,42 @@
+@layer hmi-components{
+:where([data-component*=Status]){
+	width: 100cqi;
+}
+:where(.status) {
+	display: flex;
+	flex-direction: column;
+	width: 100cqi;
+	margin-top: 0.5rem;
+	& li {
+		&::marker{
+			content: "";
+			display: none
+		}
+	}
+
+	& label:where(.checkbox){
+		display: grid;
+		grid-auto-columns:
+			calc(var(--_size-100) - (3ch + (var(--_size-2)*2)))
+			3ch;
+		gap: var(--_size-2);
+		cursor:default;
+	}
+	& div.text{
+		justify-self: start;
+		& p {
+			cursor:default;
+		}
+	}
+	& div.end  {
+		display: grid;
+		place-items: center;
+		justify-self: end;
+		cursor:default;
+
+	}
+	& div.end input {
+		cursor:default;
+	}
+}
+}

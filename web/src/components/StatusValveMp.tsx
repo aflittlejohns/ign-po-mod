@@ -7,46 +7,56 @@ import type {
 	SizeObject,
 	PropertyTree,
 } from "@inductiveautomation/perspective-client"; //'@inductiveautomation/perspective-client';
+import {
+	HMI_COMPONENT_CLASS,
+	IA_SYMBOL_COMPONENT_COLUMN,
+	IA_SYMBOL_COMPONENT_ROW,
+	IA_SYMBOL_COMPONENT_WRAPPER,
+	STATUS_COMPONENT_TYPE,
+} from "../constants";
 
-export const COMPONENT_TYPE = "hmi.display.StatusValveMp";
+export const COMPONENT_TYPE = STATUS_COMPONENT_TYPE;
 
 export const StatusValveMp = (props: ComponentProps<StatusProps>) => {
-	// const useProps = React.useMemo(() => {
-	// 	const useStatusProps = props.props || {}
-	// 	return useStatusProps
-	// }
-	// , [props.props])
+	const { emit } = props;
 	const { statusItems } = props.props;
+	const componentClassName = "status";
 
 	return (
-		<div className="hmi-component-status-valve-mp hmi-component-status-valve-mp__grid">
-			<ul
-			className="list bordered dense">
-
-			{statusItems.map((item, index) => {
-
-				return (
-					<li key={index}>
-						<label className="checkbox" >
-							<div className="text">
-								<p className="x-small">
-								{item.label}
-								</p>
-								</div>
-							<div className="end">
-								<input
-								name="checkbox"
-								id={`checkbox-${index}`}
-								type="checkbox"
-								checked={item.status}
-								readOnly={true}
-								/>
-							</div>
-						</label>
-					</li>
-				);
+		<div
+			{...emit({
+				classes: [`${IA_SYMBOL_COMPONENT_COLUMN}`],
 			})}
-			</ul>
+			data-component={COMPONENT_TYPE}
+		>
+			<div className={`${IA_SYMBOL_COMPONENT_ROW}`}>
+				<div className={`${IA_SYMBOL_COMPONENT_WRAPPER}`}>
+					<div className={`${HMI_COMPONENT_CLASS} ${componentClassName}`}>
+						<ul className="list bordered dense">
+							{statusItems.map((item, index) => {
+								return (
+									<li key={index}>
+										<label className="checkbox">
+											<div className="text">
+												<p className="x-small">{item.label}</p>
+											</div>
+											<div className="end">
+												<input
+													name="checkbox"
+													id={`checkbox-${index}`}
+													type="checkbox"
+													checked={item.status}
+													readOnly={true}
+												/>
+											</div>
+										</label>
+									</li>
+								);
+							})}
+						</ul>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 };
@@ -65,8 +75,8 @@ export class StatusValveMpMeta implements ComponentMeta {
 
 	getDefaultSize(): SizeObject {
 		return {
-			width: 24,
-			height: 48,
+			width: 240,
+			height: 32,
 		};
 	}
 

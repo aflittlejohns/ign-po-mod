@@ -1,8 +1,5 @@
 
-@import './components/process-objects/valve/css/item.css';
-@import './components/process-objects/valve-mp/valve-mp.css';
-@import './components/display/status-valve-mp/index.css';
-@import './components/input/commands-valve/index.css';
-@import './components/input/parameter-list/index.css';
+
 @import './components/OpenPropsUI/main.css';
+@import './components/HmiComponentsUI/main.css';
 

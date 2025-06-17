@@ -1,0 +1,58 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "parameter-list"
+        },
+        "position": {
+          "basis": "55px"
+        },
+        "props": {
+          "parameters": [
+            {
+              "input": {
+                "decimalPlaces": 0,
+                "editable": false,
+                "eu": "",
+                "inputmode": "numeric",
+                "max": 100,
+                "min": 0,
+                "pattern": "^\\d+(\\.\\d{1,2})?$",
+                "placeholder": "enter parameter value",
+                "type": "text",
+                "value": 0
+              },
+              "label": {
+                "className": "",
+                "text": "text",
+                "tooltipText": ""
+              }
+            }
+          ]
+        },
+        "type": "hmi.input.ParameterList"
+      },
+      {
+        "meta": {
+          "name": "Multi-port valve status display"
+        },
+        "position": {
+          "basis": "24px",
+          "grow": 1
+        },
+        "type": "hmi.display.StatusValveMp"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
 import type { ComponentProps } from "@inductiveautomation/perspective-client";
 
-export const VALVE_COMPONENT_TYPE = "hmi.process_objects.Valve";
 
+export type ElementRef = React.RefObject<HTMLDivElement>;
 export type ValveState = {
-	alarm: boolean;
+	alarm?: boolean;
 	actFB: boolean;
 	deActFB: boolean;
 	usl?: boolean;
@@ -17,6 +17,20 @@ export type ValveState = {
 	changing: boolean;
 	locate: boolean;
 };
+export type StatusLike = {
+	configuration?:number
+    activatedConfig?: number;
+    deactivatedConfig?: number;
+    actFB?: boolean;
+    deActFB?: boolean;
+    usl?: boolean;
+    lsl?: boolean;
+    locate?: boolean;
+    alarm?: boolean;
+    changing?: boolean;
+    manual?: boolean;
+    masked?: boolean;
+};
 
 export type ValveCompoundContextType = {
 	componentProps: ComponentProps<any, any>;
@@ -27,6 +41,31 @@ export type ValveCompoundContextType = {
 export type ValveCompoundRootProps = {
 	componentProps: ComponentProps<any, any>;
 	valveProps: ValveProps;
+	onActionPerformed: () => void;
+	children: ReactNode;
+};
+
+export type PumpState = {
+	alarm: boolean;
+	actFB: boolean;
+	deActFB: boolean;
+	configuration: number;
+	itemName: string;
+	manual: boolean;
+	masked: boolean;
+	changing: boolean;
+	locate: boolean;
+};
+
+export type PumpCompoundContextType = {
+	componentProps: ComponentProps<any, any>;
+	pumpProps: PumpProps;
+	onActionPerformed: () => void;
+	children: ReactNode;
+};
+export type PumpCompoundRootProps = {
+	componentProps: ComponentProps<any, any>;
+	pumpProps: PumpProps;
 	onActionPerformed: () => void;
 	children: ReactNode;
 };
@@ -146,28 +185,28 @@ export const ValveClassNameEnum = {
 };
 export type ValveClassNameEnum =
 	(typeof ValveClassNameEnum)[keyof typeof ValveClassNameEnum];
-export const ItemNameEnum = {
-	V1b1: "v1b1", // index 0
-	V1b2: "v1b2", // index 1
-	V1b3: "v1b3", // index 2
-	V1b4: "v1b4", // index 3
-	V2b1: "v2b1", // index 4
-	V2b2: "v2b2", // index 5
-	V2b3: "v2b3", // index 6
-	V2b4: "v2b4", // index 7
-	V3b1: "v3b1", // index 8
-	V3b2: "v3b2", // index 9
-	V3b3: "v3b3", // index 10
-	V3b4: "v3b4", // index 11
-	V2: "v2", // index 12
-	V3: "v3", // index 13
-	V1: "v1", // index 14
-	V2f1: "v2f1", // index 15
-	V2f2: "v2f2", // index 16
-	V3f1: "v3f1", // index 17
-	V3f2: "v3f2", // index 18
-};
-export type ItemNameEnum = (typeof ItemNameEnum)[keyof typeof ItemNameEnum];
+// export const ItemNameEnum = {
+// 	V1b1: "v1b1", // index 0
+// 	V1b2: "v1b2", // index 1
+// 	V1b3: "v1b3", // index 2
+// 	V1b4: "v1b4", // index 3
+// 	V2b1: "v2b1", // index 4
+// 	V2b2: "v2b2", // index 5
+// 	V2b3: "v2b3", // index 6
+// 	V2b4: "v2b4", // index 7
+// 	V3b1: "v3b1", // index 8
+// 	V3b2: "v3b2", // index 9
+// 	V3b3: "v3b3", // index 10
+// 	V3b4: "v3b4", // index 11
+// 	V2: "v2", // index 12
+// 	V3: "v3", // index 13
+// 	V1: "v1", // index 14
+// 	V2f1: "v2f1", // index 15
+// 	V2f2: "v2f2", // index 16
+// 	V3f1: "v3f1", // index 17
+// 	V3f2: "v3f2", // index 18
+// };
+// export type ItemNameEnum = (typeof ItemNameEnum)[keyof typeof ItemNameEnum];
 export const valveMpItemNameEnum = {
 	V1b1: "v1b1", // index 0
 	V1b2: "v1b2", // index 1
@@ -178,7 +217,7 @@ export const valveMpItemNameEnum = {
 	V2b3: "v2b3", // index 6
 	V2b4: "v2b4", // index 7
 	V2: "v2", // index 8
-	V1: "v1", // index 9
+	v1: "v1", // index 9
 	usl: "usl", // index 10 upper-seat-lift
 	lsl: "lsl", // index 11 lower-seat-lift
 	locate: "locate", // index 12 locate animation
@@ -186,58 +225,7 @@ export const valveMpItemNameEnum = {
 export type valveMpItemNameEnum =
 	(typeof valveMpItemNameEnum)[keyof typeof valveMpItemNameEnum];
 
-export const ItemClickableNameEnum = {
-	V1b1: "v1b1", // index 0
-	V1b2: "v1b2", // index 1
-	V1b3: "v1b3", // index 2
-	V1b4: "v1b4", // index 3
-	V2b1: "v2b1", // index 4
-	V2b2: "v2b2", // index 5
-	V2b3: "v2b3", // index 6
-	V2b4: "v2b4", // index 7
-	V3b1: "v3b1", // index 8
-	V3b2: "v3b2", // index 9
-	V3b3: "v3b3", // index 10
-	V3b4: "v3b4", // index 11
-	V2: "v2", // index 12
-	V3: "v3", // index 13
-	V1: "v1", // index 14
-};
-export type ItemClickableNameEnum =
-	(typeof ItemClickableNameEnum)[keyof typeof ItemClickableNameEnum];
-export const valveMpItemClickableNameEnum = {
-	V1b1: "v1b1", // index 0
-	V1b2: "v1b2", // index 1
-	V1b3: "v1b3", // index 2
-	V1b4: "v1b4", // index 3
-	V2b1: "v2b1", // index 4
-	V2b2: "v2b2", // index 5
-	V2b3: "v2b3", // index 6
-	V2b4: "v2b4", // index 7
-	V2: "v2", // index 8
-	V1: "v1", // index 9
-};
-export type valveMpItemClickableNameEnum =
-	(typeof valveMpItemClickableNameEnum)[keyof typeof valveMpItemClickableNameEnum];
 
-export const ItemPositionEnum = {
-	v1b1: "v1b1",
-	v1b2: "v1b2",
-	v1b3: "v1b3",
-	v1b4: "v1b4",
-	v2b1: "v2b1",
-	V2b2: "v2b2",
-	v2b3: "v2b3",
-	v2b4: "v2b4",
-	v3b1: "v3b1",
-	v3b2: "v3b2",
-	v3b3: "v3b3",
-	v3b4: "v3b4",
-	v2: "v2",
-	v3: "v3",
-};
-export type ItemPositionEnum =
-	(typeof ItemPositionEnum)[keyof typeof ItemPositionEnum];
 
 const ValveStateEnum = {
 	alarm: "alarm",
@@ -260,36 +248,45 @@ export type ItemIdPositionType = (typeof itemIdPositions)[number];
 export type ProcessObject = {
 	status: ValveState;
 };
+export type Pump = {
+	status: PumpState;
+};
 export type ValveProps = {
 	processObject?: ProcessObject;
 	labelPosition?: ItemIdPositionType;
 	showLabel?: boolean;
 	handleClick?: () => void;
 };
+const pumpTypes= [
+	"centrifugal",
+	"diaphragm",
+	"gear",
+	"liquid-ring",
+	"positive-displacment",
+	"positive-screw",
+	"progressive-cavity",
+]
+export type PumpType = (typeof pumpTypes)[number];
+export type PumpProps = {
+	pumpType?: PumpType;
+	processObject?: Pump;
+	labelPosition?: ItemIdPositionType;
+	showLabel?: boolean;
+	handleClick?: () => void;
+};
+export const pumpItemList = [
+	"symbol-1",
+	"symbol-2",
+ 	"locate",
+]
+export type PumpItemList = (typeof pumpItemList)[number];
 
 export type ItemData = {
 	key: string;
 	value: string;
 	props: ValveState;
 };
-/**
- * draggable component types
- */
-// export type DraggableItem = {
-// 	id: UniqueIdentifier;
-// 	left: number;
-// 	top: number;
-// }
 
-// export type DraggableProps = {
-// 	id: UniqueIdentifier,
-// 	onClose: (id: UniqueIdentifier)=> void,
-// 	element?: keyof HTMLElement,
-// 	left: number;
-// 	top : number;
-// 	children: React.ReactNode;
-// 	className: string;
-// }
 export type itemNameProps = {
 	key: string;
 	name: [string, string];
@@ -359,3 +356,20 @@ export type UseValveMpCommandReducer = {
 		//add more handlers as needed
 	};
 };
+export const hxItemNameEnum = {
+	b1: "base-1", // index 0
+	b2: "base-2", // index 1
+	b3: "base-3", // index 2
+	b4: "base-4", // index 3
+	V2b1: "v2b1", // index 4
+	V2b2: "v2b2", // index 5
+	V2b3: "v2b3", // index 6
+	V2b4: "v2b4", // index 7
+	V2: "v2", // index 8
+	v1: "v1", // index 9
+	usl: "usl", // index 10 upper-seat-lift
+	lsl: "lsl", // index 11 lower-seat-lift
+	locate: "locate", // index 12 locate animation
+};
+export type HxItemNameEnum =
+	(typeof hxItemNameEnum)[keyof typeof hxItemNameEnum];

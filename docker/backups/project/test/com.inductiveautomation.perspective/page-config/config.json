@@ -1,0 +1,18 @@
+{
+  "pages": {
+    "/": {
+      "title": "",
+      "viewPath": "View"
+    },
+    "/flex": {
+      "title": "",
+      "viewPath": "flex"
+    },
+    "/hx": {
+      "viewPath": "hx"
+    }
+  },
+  "sharedDocks": {
+    "cornerPriority": "top-bottom"
+  }
+}

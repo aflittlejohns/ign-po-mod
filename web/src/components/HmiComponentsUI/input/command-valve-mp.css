@@ -1,0 +1,83 @@
+@layer hmi-components{
+
+:where(.hmi-component-command-valve-mp ){
+	--_hmi-command-valve-mp__grid-template-rows: var(
+		--hmi-command-valve-mp__grid-template-rows,
+		repeat(3, minmax(2rem,2.5rem))
+	);
+	--_hmi-command-valve-mp__grid-template-columns: var(
+		--hmi-command-valve-mp__grid-template-columns,
+		repeat(9, min(1.5rem,1.75rem))
+	);
+	display: grid;
+	container-type: inline-size;
+	grid-template-rows: var(--_hmi-command-valve-mp__grid-template-rows);
+	grid-template-columns: var(--_hmi-command-valve-mp__grid-template-columns);
+	gap: 0.5rem;
+	view-transition-name: hmi-component-command-valve-mp;
+	align-items: center;
+	& .main-label {
+		grid-area: 1 / 1 / 2 / 4;
+		color: var(--color-9);
+
+	}
+	& .main-auto-manual {
+		grid-area: 1 / 3 / 2 / 7;
+		& button {
+			padding-inline: 2cqmin;
+			&.selected {
+				--_bg-color: var(--color-8);
+				--_border-color: var(--color-7);
+				--_text-color: var(--color-1);
+			}
+		}
+	}
+	& .main-on-off {
+		grid-area: 1 / 7 / 2 / 10;
+		padding-inline-start: 2cqmin;
+		& button {
+			padding-inline: 2cqmin;
+			&.selected {
+				--_bg-color: var(--color-8);
+				--_border-color: var(--color-7);
+				--_text-color: var(--color-1);
+			}
+		}
+	}
+	& .upper-seat-label{
+		grid-area: 2/ 1 / 3/ 6;
+		color: var(--color-9);
+	}
+	& .upper-seat-on-off{
+		grid-area: 2/ 7 / 3/ 10;
+		padding-inline-start: 2cqmin;
+		& button {
+			padding-inline: 2cqmin;
+			&.selected {
+				--_bg-color: var(--color-8);
+				--_border-color: var(--color-7);
+				--_text-color: var(--color-1);
+			}
+		}
+
+	}
+	& .lower-seat-label{
+		grid-area: 3/ 1 / 4/ 6;
+		color: var(--color-9);
+	}
+	& .lower-seat-on-off{
+		grid-area: 3/ 7 / 4/ 10;
+		padding-inline-start: 2cqmin;
+		& button {
+			padding-inline: 2cqmin;
+			&.selected {
+				--_bg-color: var(--color-8);
+				--_border-color: var(--color-7);
+				--_text-color: var(--color-1);
+			}
+		}
+
+	}
+}
+}
+

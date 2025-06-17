@@ -1,0 +1,102 @@
+@layer hmi-theme {
+	:root {
+		/* Typography */
+		/* lenght of text strings */
+		--_text-ch-2: var(--text-ch-2, 2ch);
+		--_text-ch-25: var(--text-ch-2, 25ch);
+
+		/* HMI Component Theme Colors */
+		--_border-color: var(--border-color, var(--gray-5));
+		--_segment-color: var(
+			--segment-color,
+			var(--gray-5)
+		); /* a segment is an internal element, not effected by states except positional feedback */
+		--_activated-color: var(
+			--activated-color,
+			var(--gray-3)
+		); /* indicates item is activated */
+		--_deactivated-color: var(
+			--deactivated-color,
+			var(--gray-1)
+		); /* indicates item is deactivated */
+		--_manual-color: var(
+			--manual-color,
+			var(--blue)
+		); /* indicates item is in manual mode */
+		--_changing-color: oklch(
+			from var(--color-2) l 0.2 var(--oklch-yellow)
+		); /* indicates item is in manual mode */
+		--_no-alarm-mask-color: var(
+			--no-alarm-mask-color,
+			var(--orange)
+		); /* indicates an item's alarm state is masked */
+		--_alarm-start-color: var(
+			--alarm-start-color,
+			var(--gray-2)
+		); /* indicates alarm state animation start color */
+		--_alarm-end-color: var(
+			--alarm-end-color,
+			var(--red)
+		); /* indicates alarm state animation end color */
+		--_error: var(--hmi-error-color, var(--error, red));
+		--_heating: var(--hmi-heating-color, var(--heating, orange));
+		--_cooling: var(--hmi-cooling-color, var(--cooling, blue));
+		/* Item Id Label Position */
+		--_itemid-popup-position-right: var(
+			--itemid-popup-position-right,
+			translate(35%, 10%)
+		);
+		--_itemid-popup-position-left: var(
+			--itemid-popup-position-left,
+			translate(-100%, 10%)
+		);
+		--_itemid-popup-position-top-right: var(
+			--itemid-popup-position-top-right,
+			translate(35%, -75%)
+		);
+		--_itemid-popup-position-top-left: var(
+			--itemid-popup-position-top-left,
+			translate(-100%, -75%)
+		);
+		--_itemid-popup-position-bottom-right: var(
+			--itemid-popup-position-bottom-right,
+			translate(35%, 100%)
+		);
+		--_itemid-popup-position-bottom-left: var(
+			--itemid-popup-position-bottom-left,
+			translate(-100%, 100%)
+		);
+		/* locate animation */
+		--_locate-color: var(--locate-color, var(--color-5));
+
+		--_locate-keyframe-height-step-0-100: var(
+			--locate-keyframe-height-step-0-100,
+			100%
+		);
+		--_locate--keyframe-height-step-50: var(
+			--locate-keyframe-height-step-50,
+			50%
+		);
+		--_locate-top: var(--locate-top, 50%);
+
+		/* Grid - row and column sizes */
+		--_min-size-1: var(--min-size-1, 1fr);
+		--_min-size-2: var(--min-size-2, 2fr);
+		--_min-size-3: var(--min-size-3, 3fr);
+		--_max-size-1: var(--max-size-1, 1fr);
+		--_max-size-2: var(--max-size-2, 2fr);
+		--_max-size-3: var(--max-size-3, 3fr);
+
+		/* General container item sizes */
+		--_size-100: var(--hmi-size-100, 100cqmin);
+		--_size-20: var(--hmi-size-20, 20cqmin);
+		--_size-10: var(--hmi-size-10, 10cqmin);
+		--_size-5: var(--hmi-size-5, 5cqmin);
+		--_size-2: var(--hmi-size-2, 2cqmin);
+		--_size-1: var(--hmi-size-1, 1cqmin);
+		--_size-05: var(--hmi-size-01, 0.1cqmin);
+		--_size-sm: var(--hmi-size-sm, 2.5cqmin);
+
+		--_alarm-size: var(--_size-10);
+	}
+}
