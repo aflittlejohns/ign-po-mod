@@ -6,18 +6,11 @@ title: Valve Component CSS
 ```css
 @Layer hmi-components
 ```
-## Valve specific css variables
 
-```css
---_size-5:var(--size-5, 5cqmin);
---_size-2:var(--size-2, 2cqmin);
-```
 ## Valve specific css rules
 
 ```css
 :where(.valve_mp){
-	--_size-5:var(--size-5, 5cqmin);
-	--_size-2:var(--size-2, 2cqmin);
 	display: grid;
 	aspect-ratio: 5/10;
 	grid-template-columns:

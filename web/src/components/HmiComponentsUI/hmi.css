@@ -80,10 +80,10 @@
 :where(.itemId.popover) {
 	position: absolute;
 	visibility: visible;
-	background: #fff;
-	border: 1px solid #ccc;
-	border-radius: 20%;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+	background: var(--surface-default);
+	border: 1px solid var(--_border-color);
+	border-radius: var(--radius-2);
+	box-shadow: var(--shadow-5);
 	z-index: 1000;
 
 	&.position-left {

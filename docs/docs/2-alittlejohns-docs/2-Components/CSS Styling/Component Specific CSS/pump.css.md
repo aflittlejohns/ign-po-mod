@@ -1,4 +1,15 @@
-@layer hmi-components{
+---
+title: Pump Component CSS
+---
+## Layer Name
+
+```css
+@Layer hmi-components
+```
+
+## Pump specific css rules
+
+```css
 :where(.pump) {
 
 	display: grid;
@@ -176,4 +187,5 @@
 		}
 	}
 
-}
+
+```

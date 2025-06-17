@@ -7,51 +7,55 @@ title: HMI Component CSS rules
 ### Layer name
 
 ```css
-@layer hmi;
+@layer hmi
 ```
 
-### Wrapper classes when the parent is a flexbox
 
-```css
-:where(.hmi-component__column) {
-	display: flex;
-	flex-direction: column;
-	align-self: center;
-}
-:where(.hmi-component__row) {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	flex: 1 1 auto;
-}
-where(.hmi-Component__wrapper) {
-	display: flex;
-	position: relative;
-}
-```
 
 ### HMI Component default rules
 
 ```css
- :where(.hmi-component) {
-		container-type: inline-size;
-		font-size: var(--font-size-sm , 14px);
-		overflow: hidden;
+:where(.flex-container.responsive-container>:has([data-component^=hmi])) {
+	container-type: inline-size;
+}
+:where(.ia_symbolComponent__wrapper:has(.hmi-component)){
+	container-type: inline-size;
 
-		& .locate {
-		position: absolute;
-		top: var(--_locate-top);
-		left: 50%;
-		transform: translate(-50%, -50%);
-		background-color: var(--_locate-color);
-		z-index: 20;
-		opacity: 0.5;
-		border: solid var(--_border-color);
-		border-radius: 0%;
-		animation-name: locate;
-		animation-duration: 1s;
-		animation-iteration-count: infinite;
+}
+ :where(.hmi-component) {
+	/* container-type: inline-size; */
+	font-size: var(--font-size-sm , 14px);
+	overflow: hidden;
+
+	& .locate {
+	position: absolute;
+	top: var(--_locate-top);
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: var(--_locate-color);
+	z-index: 20;
+	opacity: 0.5;
+	border: solid var(--_border-color);
+	border-radius: 0%;
+	animation-name: locate;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	}
+	&[data-component="hmi.process_objects.Pump"] .locate {
+		border-radius: 50%;
+
+}
+
+
+	/* Adjust animation position and hieght for
+	two and three port valves  */
+
+		&.small{
+			--_locate-top: 27.5%;
+			--_locate-keyframe-height-step-50: 25%;
+			--_locate-keyframe-height-step-0-100: 50%;
 		}
+
 		& .activated {
 			background-color: var(--_activated-color);
 			fill: var(--_activated-color);
@@ -97,10 +101,10 @@ where(.hmi-Component__wrapper) {
 :where(.itemId.popover) {
 	position: absolute;
 	visibility: visible;
-	background: #fff;
-	border: 1px solid #ccc;
-	border-radius: 20%;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+	background: var(--surface-default);
+	border: 1px solid var(--_border-color);
+	border-radius: var(--radius-2);
+	box-shadow: var(--shadow-5);
 	z-index: 1000;
 
 	&.position-left {
