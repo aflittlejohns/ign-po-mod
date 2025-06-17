@@ -24,8 +24,8 @@ public class Valve {
 
 	// Path to the thumbnail image for the component palette
 	private static final String THUMBNAIL_PATH = "/images/process-objects/valve-mp/thumbnail/valveImage.png"; // TODO: Change this to a valve image
-	private static final int THUMBNAIL_WIDTH = 35;
-	private static final int THUMBNAIL_HEIGHT = 70;
+	private static final int THUMBNAIL_WIDTH = 28;
+	private static final int THUMBNAIL_HEIGHT = 48;
 
 	// Path to the JSON schema defining the component's properties
 	private static final String PROPS_SCHEMA_PATH = "/props/process-object-valve.props.json";
