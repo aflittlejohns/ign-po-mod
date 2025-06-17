@@ -87,7 +87,7 @@
 								"type": "number"
 							},
 							"max": {
-                "default": "^\\d+(\\.\\d{1,2})?$",
+                "default": 100,
 								"type": "number"
 							},
 							"decimalPlaces": {
@@ -124,7 +124,7 @@
 							},
 							"value": {
                 "description": "Value of parameter",
-                "default": null,
+                "default": 0.0,
                 "type": "number"
 							}
 						},

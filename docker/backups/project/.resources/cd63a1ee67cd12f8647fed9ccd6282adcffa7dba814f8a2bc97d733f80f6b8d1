@@ -1,0 +1,43 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "heat-exchanger"
+        },
+        "position": {
+          "height": 498,
+          "width": 244,
+          "x": 43,
+          "y": 78
+        },
+        "props": {
+          "type": "tubular"
+        },
+        "type": "hmi.process_objects.HeatExchanger"
+      },
+      {
+        "meta": {
+          "name": "heat-exchanger_0"
+        },
+        "position": {
+          "height": 296,
+          "width": 147,
+          "x": 404,
+          "y": 181
+        },
+        "props": {
+          "type": "tubular"
+        },
+        "type": "hmi.process_objects.HeatExchanger"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

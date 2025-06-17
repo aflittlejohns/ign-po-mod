@@ -1,0 +1,326 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "root Pipes Drawing"
+        },
+        "position": {
+          "height": 16,
+          "width": 173,
+          "x": 93,
+          "y": 89
+        },
+        "props": {
+          "elements": [
+            {
+              "name": "defs",
+              "type": "defs"
+            },
+            {
+              "elements": [
+                {
+                  "mask": "url(#D-0-mask-0_0-4)",
+                  "name": "line",
+                  "stroke": {
+                    "width": "4"
+                  },
+                  "style": {
+                    "classes": "ia_pipeSegment--pid"
+                  },
+                  "type": "line",
+                  "x1": "258",
+                  "x2": "101",
+                  "y1": "97",
+                  "y2": "97"
+                }
+              ],
+              "fill": {
+                "paint": "#000000"
+              },
+              "name": "group",
+              "stroke": {
+                "paint": "#000000"
+              },
+              "style": {
+                "classes": "ia_pipe ia_pipe--pid ia_pipeIsolate"
+              },
+              "type": "group"
+            }
+          ],
+          "style": {
+            "classes": "ia_piping"
+          },
+          "viewBox": "93 89 173 16"
+        },
+        "type": "ia.shapes.svg"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tx \u003d\tself.position.x\n\ty \u003d self.position.y\n\tposition\u003d{\n\t\u0027left\u0027: x, \u0027top\u0027: y,\n\t\u0027height\u0027: \u0027600px\u0027\n\t}\n\t\n\tsystem.perspective.openPopup(self.meta.name,\n\t\u0027faceplates/faceplate-valve-mp\u0027,\n\ttitle\u003dself.meta.name,\n\tposition\u003dposition,\n\tviewportBound\u003dTrue\t\n\t)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "position": {
+          "height": 48,
+          "width": 24,
+          "x": 156,
+          "y": 218
+        },
+        "propConfig": {
+          "meta.name": {
+            "binding": {
+              "config": {
+                "path": "this.props.processObject.status.itemName"
+              },
+              "type": "property"
+            }
+          },
+          "props.processObject": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "direct",
+                "publishInitial": false,
+                "tagPath": "[default]V401"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "type": "hmi.process_objects.Valve_mp"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tx \u003d\tself.position.x\n\ty \u003d self.position.y\n\tposition\u003d{\n\t\u0027left\u0027: x, \u0027top\u0027: y,\n\t\u0027height\u0027: \u0027600px\u0027\n\t}\n\t\n\tsystem.perspective.openPopup(self.meta.name,\n\t\u0027faceplates/faceplate-valve-mp\u0027,\n\ttitle\u003dself.meta.name,\n\tposition\u003dposition,\n\tviewportBound\u003dTrue\t\n\t)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "position": {
+          "height": 48,
+          "width": 24,
+          "x": 94,
+          "y": 354
+        },
+        "propConfig": {
+          "meta.name": {
+            "binding": {
+              "config": {
+                "path": "this.props.processObject.status.itemName"
+              },
+              "type": "property"
+            }
+          },
+          "props.processObject": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "direct",
+                "publishInitial": false,
+                "tagPath": "[default]V402"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "showLabel": true
+        },
+        "type": "hmi.process_objects.Valve_mp"
+      },
+      {
+        "meta": {
+          "name": "parameter-list"
+        },
+        "position": {
+          "height": 154,
+          "width": 343,
+          "x": 54,
+          "y": 15
+        },
+        "props": {
+          "parameters": [
+            {
+              "input": {
+                "decimalPlaces": 0,
+                "editable": false,
+                "eu": "",
+                "inputmode": "numeric",
+                "max": 100,
+                "min": 0,
+                "pattern": "^\\d+(\\.\\d{1,2})?$",
+                "placeholder": "enter parameter value",
+                "type": "text",
+                "value": 0
+              },
+              "label": {
+                "className": "",
+                "text": "text",
+                "tooltipText": ""
+              }
+            },
+            {
+              "input": {
+                "decimalPlaces": 0,
+                "editable": false,
+                "eu": "",
+                "inputmode": "numeric",
+                "max": 100,
+                "min": 0,
+                "pattern": "^\\d+(\\.\\d{1,2})?$",
+                "placeholder": "enter parameter value",
+                "type": "text",
+                "value": 0
+              },
+              "label": {
+                "className": "",
+                "text": "text",
+                "tooltipText": ""
+              }
+            },
+            {
+              "input": {
+                "decimalPlaces": 0,
+                "editable": false,
+                "eu": "",
+                "inputmode": "numeric",
+                "max": 100,
+                "min": 0,
+                "pattern": "^\\d+(\\.\\d{1,2})?$",
+                "placeholder": "enter parameter value",
+                "type": "text",
+                "value": 0
+              },
+              "label": {
+                "className": "",
+                "text": "text",
+                "tooltipText": ""
+              }
+            }
+          ],
+          "style": {
+            "display": "flex",
+            "paddingTop": "0.5rem",
+            "textBox": "normal"
+          }
+        },
+        "type": "hmi.input.ParameterList"
+      },
+      {
+        "meta": {
+          "name": "parameter-list_0"
+        },
+        "position": {
+          "height": 800,
+          "width": 190,
+          "x": 404,
+          "y": 75
+        },
+        "props": {
+          "path": "faceplate-components/parameter-list"
+        },
+        "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "Multi-port valve status display"
+        },
+        "position": {
+          "height": 32,
+          "width": 241,
+          "x": 179,
+          "y": 471
+        },
+        "type": "hmi.display.StatusValveMp"
+      },
+      {
+        "meta": {
+          "name": "process-pump"
+        },
+        "position": {
+          "height": 36,
+          "width": 36,
+          "x": 260,
+          "y": 305
+        },
+        "propConfig": {
+          "props.processObject.status": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "direct",
+                "publishInitial": false,
+                "tagPath": "[default]V402/status"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "processObject": {}
+        },
+        "type": "hmi.process_objects.Pump"
+      },
+      {
+        "meta": {
+          "name": "process-pump_0"
+        },
+        "position": {
+          "height": 36,
+          "width": 36,
+          "x": 223,
+          "y": 406
+        },
+        "propConfig": {
+          "props.processObject.status": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "direct",
+                "publishInitial": false,
+                "tagPath": "[default]Pump 1/status"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "processObject": {},
+          "pumpType": "diaphragm"
+        },
+        "type": "hmi.process_objects.Pump"
+      },
+      {
+        "meta": {
+          "name": "heat-exchanger"
+        },
+        "position": {
+          "height": 60,
+          "width": 36,
+          "x": 424,
+          "y": 248
+        },
+        "type": "hmi.process_objects.HeatExchanger"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

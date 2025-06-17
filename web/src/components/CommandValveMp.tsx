@@ -12,8 +12,15 @@ import type {
 // import { initialControlState } from "../api/initialState";
 import { useEffect } from "react";
 import { useValveMpCommandReducer } from "../api/hooks";
+import {
+	HMI_COMPONENT_CLASS,
+	IA_SYMBOL_COMPONENT_COLUMN,
+	IA_SYMBOL_COMPONENT_ROW,
+	IA_SYMBOL_COMPONENT_WRAPPER,
+	COMMAND_VALVE_MP_COMPONENT_TYPE,
+} from "../constants";
 
-export const COMPONENT_TYPE = "hmi.input.CommandValveMp";
+export const COMPONENT_TYPE = COMMAND_VALVE_MP_COMPONENT_TYPE;
 
 const areEqual = (
 	prevProps: ComponentProps<CommandValveMpProps>,
@@ -32,7 +39,7 @@ const areEqual = (
 export const CommandValveMp = React.memo(
 	(props: ComponentProps<CommandValveMpProps>) => {
 		const { state, reducer } = useValveMpCommandReducer();
-		// const tree = props.store.props
+		const { emit } = props;
 
 		useEffect(() => {
 			// Subscribe to changes on the "command" property
@@ -44,7 +51,9 @@ export const CommandValveMp = React.memo(
 				// Update main state if needed
 				if (state.command?.main && main) {
 					if (main.autoManual !== state.command.main.autoManual) {
-						reducer.updateAutoManSelection(!main.autoManual ? "auto" : "manual");
+						reducer.updateAutoManSelection(
+							!main.autoManual ? "auto" : "manual"
+						);
 					}
 					if (main.activation !== state.command.main.activation) {
 						if (!main.activation) {
@@ -75,7 +84,6 @@ export const CommandValveMp = React.memo(
 						}
 					}
 				}
-				console.log("command changed:", command);
 			});
 
 			// Cleanup subscription on unmount
@@ -85,9 +93,6 @@ export const CommandValveMp = React.memo(
 				}
 			};
 		}, [props.store.props]);
-
-		console.log(`props.store.addressPath ${props.store.addressPath}`);
-		console.log(`props.store.isDirty ${props.store.props.isDirty()}`);
 
 		const { main, upperSeat, lowerSeat, interlocks } = state.command || {};
 
@@ -128,100 +133,132 @@ export const CommandValveMp = React.memo(
 			reducer.updateLslManualOff();
 			props.store.props?.write("command.lowerSeat.activation", false);
 		};
-
+		const componentClassName = "command-valve-mp hmi-command-valve-mp__grid";
 		return (
-			<div className="hmi-component-command-valve-mp hmi-component-command-valve-mp__grid">
-				<label className="main-label">{main?.label}</label>
-				<div role="group" className="button-group outlined main-auto-manual">
-					<button
-						className={`button outlined ${!main?.autoManual ? "selected" : ""}`}
-						disabled={isInterlocked(interlocks?.main || [])}
-						onClick={() => handleMainAutoManualSelection("auto")}
-					>
-						Auto {/* <IconAuto /> */}
-					</button>
-					<button
-						className={`button outlined ${main?.autoManual ? "selected" : ""}`}
-						disabled={isInterlocked(interlocks?.main || [])}
-						onClick={() => handleMainAutoManualSelection("manual")}
-					>
-						Manual
-						{/* <IconHandClick /> */}
-					</button>
-				</div>
-				<div role="group" className="button-group outlined main-on-off">
-					<button
-						className={`button outlined ${main?.activation ? "selected" : ""}`}
-						disabled={
-							isInterlocked(interlocks?.main || []) || !main?.autoManual
-						}
-						onClick={handleMainManualOn}
-					>
-						On {/* <IconAuto /> */}
-					</button>
-					<button
-						className={`button outlined ${!main?.activation ? "selected" : ""}`}
-						disabled={
-							isInterlocked(interlocks?.main || []) || !main?.autoManual
-						}
-						onClick={handleMainManualOff}
-					>
-						Off
-						{/* <IconHandClick /> */}
-					</button>
-				</div>
-				<label className="upper-seat-label">{upperSeat?.label}</label>
-				<div role="group" className="button-group outlined upper-seat-on-off">
-					<button
-						className={`button outlined ${
-							upperSeat?.activation ? "selected" : ""
-						}`}
-						disabled={
-							isInterlocked(interlocks?.upperSeat || []) || !main?.autoManual
-						}
-						onClick={handleUslManualOn}
-					>
-						On {/* <IconAuto /> */}
-					</button>
-					<button
-						className={`button outlined ${
-							!upperSeat?.activation ? "selected" : ""
-						}`}
-						disabled={
-							isInterlocked(interlocks?.upperSeat || []) || !main?.autoManual
-						}
-						onClick={handleUslManualOff}
-					>
-						Off
-						{/* <IconHandClick /> */}
-					</button>
-				</div>
-				<label className="lower-seat-label">{lowerSeat?.label}</label>
-				<div role="group" className="button-group outlined lower-seat-on-off">
-					<button
-						className={`button outlined ${
-							lowerSeat?.activation ? "selected" : ""
-						}`}
-						disabled={
-							isInterlocked(interlocks?.lowerSeat || []) || !main?.autoManual
-						}
-						onClick={handleLslManualOn}
-					>
-						On {/* <IconAuto /> */}
-					</button>
-					<button
-						className={`button outlined ${
-							!lowerSeat?.activation ? "selected" : ""
-						}`}
-						disabled={
-							isInterlocked(interlocks?.lowerSeat || []) || !main?.autoManual
-						}
-						onClick={handleLslManualOff}
-						value={"true"}
-					>
-						Off
-						{/* <IconHandClick /> */}
-					</button>
+			<div
+				{...emit({
+					classes: [`${IA_SYMBOL_COMPONENT_COLUMN}`],
+				})}
+				data-component={COMPONENT_TYPE}
+			>
+				<div className={`${IA_SYMBOL_COMPONENT_ROW}`}>
+					<div className={`${IA_SYMBOL_COMPONENT_WRAPPER}`}>
+						<div className={`${HMI_COMPONENT_CLASS}-${componentClassName}`}>
+							<label className="main-label">{main?.label}</label>
+							<div
+								role="group"
+								className="button-group outlined main-auto-manual"
+							>
+								<button
+									className={`button outlined ${
+										!main?.autoManual ? "selected" : ""
+									}`}
+									disabled={isInterlocked(interlocks?.main || [])}
+									onClick={() => handleMainAutoManualSelection("auto")}
+								>
+									Auto {/* <IconAuto /> */}
+								</button>
+								<button
+									className={`button outlined ${
+										main?.autoManual ? "selected" : ""
+									}`}
+									disabled={isInterlocked(interlocks?.main || [])}
+									onClick={() => handleMainAutoManualSelection("manual")}
+								>
+									Manual
+									{/* <IconHandClick /> */}
+								</button>
+							</div>
+							<div role="group" className="button-group outlined main-on-off">
+								<button
+									className={`button outlined ${
+										main?.activation ? "selected" : ""
+									}`}
+									disabled={
+										isInterlocked(interlocks?.main || []) || !main?.autoManual
+									}
+									onClick={handleMainManualOn}
+								>
+									On {/* <IconAuto /> */}
+								</button>
+								<button
+									className={`button outlined ${
+										!main?.activation ? "selected" : ""
+									}`}
+									disabled={
+										isInterlocked(interlocks?.main || []) || !main?.autoManual
+									}
+									onClick={handleMainManualOff}
+								>
+									Off
+									{/* <IconHandClick /> */}
+								</button>
+							</div>
+							<label className="upper-seat-label">{upperSeat?.label}</label>
+							<div
+								role="group"
+								className="button-group outlined upper-seat-on-off"
+							>
+								<button
+									className={`button outlined ${
+										upperSeat?.activation ? "selected" : ""
+									}`}
+									disabled={
+										isInterlocked(interlocks?.upperSeat || []) ||
+										!main?.autoManual
+									}
+									onClick={handleUslManualOn}
+								>
+									On {/* <IconAuto /> */}
+								</button>
+								<button
+									className={`button outlined ${
+										!upperSeat?.activation ? "selected" : ""
+									}`}
+									disabled={
+										isInterlocked(interlocks?.upperSeat || []) ||
+										!main?.autoManual
+									}
+									onClick={handleUslManualOff}
+								>
+									Off
+									{/* <IconHandClick /> */}
+								</button>
+							</div>
+							<label className="lower-seat-label">{lowerSeat?.label}</label>
+							<div
+								role="group"
+								className="button-group outlined lower-seat-on-off"
+							>
+								<button
+									className={`button outlined ${
+										lowerSeat?.activation ? "selected" : ""
+									}`}
+									disabled={
+										isInterlocked(interlocks?.lowerSeat || []) ||
+										!main?.autoManual
+									}
+									onClick={handleLslManualOn}
+								>
+									On {/* <IconAuto /> */}
+								</button>
+								<button
+									className={`button outlined ${
+										!lowerSeat?.activation ? "selected" : ""
+									}`}
+									disabled={
+										isInterlocked(interlocks?.lowerSeat || []) ||
+										!main?.autoManual
+									}
+									onClick={handleLslManualOff}
+									value={"true"}
+								>
+									Off
+									{/* <IconHandClick /> */}
+								</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		);
@@ -245,7 +282,7 @@ export class CommandValveMpMeta implements ComponentMeta {
 	getDefaultSize(): SizeObject {
 		return {
 			width: 280,
-			height:140,
+			height: 140,
 		};
 	}
 

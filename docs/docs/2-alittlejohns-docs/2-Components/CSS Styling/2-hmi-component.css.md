@@ -1,0 +1,131 @@
+---
+title: HMI Component CSS rules
+---
+
+## Parent Rules
+
+### Layer name
+
+```css
+@layer hmi
+```
+
+
+
+### HMI Component default rules
+
+```css
+:where(.flex-container.responsive-container>:has([data-component^=hmi])) {
+	container-type: inline-size;
+}
+:where(.ia_symbolComponent__wrapper:has(.hmi-component)){
+	container-type: inline-size;
+
+}
+ :where(.hmi-component) {
+	/* container-type: inline-size; */
+	font-size: var(--font-size-sm , 14px);
+	overflow: hidden;
+
+	& .locate {
+	position: absolute;
+	top: var(--_locate-top);
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: var(--_locate-color);
+	z-index: 20;
+	opacity: 0.5;
+	border: solid var(--_border-color);
+	border-radius: 0%;
+	animation-name: locate;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	}
+	&[data-component="hmi.process_objects.Pump"] .locate {
+		border-radius: 50%;
+
+}
+
+
+	/* Adjust animation position and hieght for
+	two and three port valves  */
+
+		&.small{
+			--_locate-top: 27.5%;
+			--_locate-keyframe-height-step-50: 25%;
+			--_locate-keyframe-height-step-0-100: 50%;
+		}
+
+		& .activated {
+			background-color: var(--_activated-color);
+			fill: var(--_activated-color);
+		}
+		& .changing {
+			background-color: var(--_changing-color);
+			fill: var(--_changing-color);
+		}
+		& .deactivated {
+			background-color: var(--_deactivated-color);
+			fill: var(--_deactivated-color);
+		}
+		& .manual {
+			background-color: var(--_manual-color);
+			fill: var(--_manual-color);
+		}
+		& .no-alarm-mask {
+			background-color: var(--_no-alarm-mask-color);
+			fill: var(--_no-alarm-mask-color);
+		}
+		& .alarm {
+			animation-name: alarm-state-anim;
+			animation-delay: 0s;
+			animation-direction: reverse;
+			animation-duration: 0.75s;
+			animation-fill-mode: both;
+			animation-iteration-count: infinite;
+			animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+		}
+		& .show {
+			visibility: visible;
+		}
+		& .hide {
+			visibility: hidden;
+		}
+	}
+
+```
+
+### Item Id Label
+
+```css
+:where(.itemId.popover) {
+	position: absolute;
+	visibility: visible;
+	background: var(--surface-default);
+	border: 1px solid var(--_border-color);
+	border-radius: var(--radius-2);
+	box-shadow: var(--shadow-5);
+	z-index: 1000;
+
+	&.position-left {
+		--_itemid-popup-position: var(--_itemid-popup-position-left);
+	}
+	&.position-right {
+		--_itemid-popup-position: var(--_itemid-popup-position-right);
+	}
+	&.position-top-left {
+		--_itemid-popup-position: var(--_itemid-popup-position-top-left);
+	}
+	&.position-top-right {
+		--_itemid-popup-position: var(--_itemid-popup-position-top-right);
+	}
+	&.position-bottom-left {
+		--_itemid-popup-position: var(--_itemid-popup-position-bottom-left);
+	}
+	&.position-bottom-right {
+		--_itemid-popup-position: var(--_itemid-popup-position-bottom-right);
+	}
+
+	transform: var(--_itemid-popup-position);
+}
+```

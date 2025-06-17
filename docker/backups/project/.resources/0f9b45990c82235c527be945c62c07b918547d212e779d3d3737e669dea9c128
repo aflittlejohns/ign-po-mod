@@ -1,0 +1,239 @@
+{
+  "dataTypes": {
+    "Int1": [
+      "ia.display.cylindrical-tank",
+      "ia.chart.gauge",
+      "ia.display.label",
+      "ia.display.led-display",
+      "ia.display.progress",
+      "ia.chart.simple-gauge",
+      "ia.input.slider",
+      "ia.display.thermometer",
+      "ia.input.oneshotbutton"
+    ],
+    "Int2": [
+      "ia.display.cylindrical-tank",
+      "ia.chart.gauge",
+      "ia.display.label",
+      "ia.display.led-display",
+      "ia.display.progress",
+      "ia.chart.simple-gauge",
+      "ia.input.slider",
+      "ia.display.thermometer",
+      "ia.input.oneshotbutton"
+    ],
+    "Int4": [
+      "ia.display.cylindrical-tank",
+      "ia.chart.gauge",
+      "ia.display.label",
+      "ia.display.led-display",
+      "ia.display.progress",
+      "ia.chart.simple-gauge",
+      "ia.input.slider",
+      "ia.display.thermometer",
+      "ia.input.oneshotbutton"
+    ],
+    "Int8": [
+      "ia.display.cylindrical-tank",
+      "ia.chart.gauge",
+      "ia.display.label",
+      "ia.display.led-display",
+      "ia.display.progress",
+      "ia.chart.simple-gauge",
+      "ia.input.slider",
+      "ia.display.thermometer",
+      "ia.input.oneshotbutton"
+    ],
+    "Float4": [
+      "ia.display.cylindrical-tank",
+      "ia.chart.gauge",
+      "ia.display.label",
+      "ia.display.led-display",
+      "ia.display.progress",
+      "ia.chart.simple-gauge",
+      "ia.input.slider",
+      "ia.display.thermometer"
+    ],
+    "Float8": [
+      "ia.display.cylindrical-tank",
+      "ia.chart.gauge",
+      "ia.display.label",
+      "ia.display.led-display",
+      "ia.display.progress",
+      "ia.chart.simple-gauge",
+      "ia.input.slider",
+      "ia.display.thermometer"
+    ],
+    "Boolean": [
+      "ia.input.checkbox",
+      "ia.input.toggle-switch"
+    ],
+    "String": [
+      "ia.display.label",
+      "ia.display.markdown"
+    ],
+    "DataSet": [
+      "ia.display.table"
+    ]
+  },
+  "bindings": {
+    "ia.input.oneshotbutton": [
+      {
+        "tagProperty": "value",
+        "propertyPath": "props.value",
+        "bidirectional": true,
+        "coalesce": false
+      }
+    ],
+    "ia.display.table": [
+      {
+        "tagProperty": "value",
+        "propertyPath": "props.data",
+        "bidirectional": false,
+        "coalesce": false
+      }
+    ],
+    "ia.display.markdown": [
+      {
+        "tagProperty": "value",
+        "propertyPath": "props.source",
+        "bidirectional": false,
+        "coalesce": false
+      }
+    ],
+    "ia.chart.simple-gauge": [
+      {
+        "tagProperty": "value",
+        "propertyPath": "props.value",
+        "bidirectional": false,
+        "coalesce": false
+      }
+    ],
+    "ia.display.progress": [
+      {
+        "tagProperty": "value",
+        "propertyPath": "props.value",
+        "bidirectional": false,
+        "coalesce": false
+      }
+    ],
+    "ia.input.numeric-entry-field": [
+      {
+        "tagProperty": "value",
+        "propertyPath": "props.value",
+        "bidirectional": true,
+        "coalesce": false
+      }
+    ],
+    "ia.input.password-field": [
+      {
+        "tagProperty": "value",
+        "propertyPath": "props.text",
+        "bidirectional": true,
+        "coalesce": false
+      }
+    ],
+    "ia.input.toggle-switch": [
+      {
+        "tagProperty": "value",
+        "propertyPath": "props.selected",
+        "bidirectional": true,
+        "coalesce": false
+      }
+    ],
+    "ia.display.label": [
+      {
+        "tagProperty": "value",
+        "propertyPath": "props.text",
+        "bidirectional": false,
+        "coalesce": false
+      }
+    ],
+    "ia.input.checkbox": [
+      {
+        "tagProperty": "value",
+        "propertyPath": "props.selected",
+        "bidirectional": true,
+        "coalesce": false
+      }
+    ],
+    "ia.display.cylindrical-tank": [
+      {
+        "tagProperty": "value",
+        "propertyPath": "props.value",
+        "bidirectional": false,
+        "coalesce": false
+      }
+    ],
+    "ia.input.text-area": [
+      {
+        "tagProperty": "value",
+        "propertyPath": "props.text",
+        "bidirectional": true,
+        "coalesce": false
+      }
+    ],
+    "ia.display.led-display": [
+      {
+        "tagProperty": "value",
+        "propertyPath": "props.value",
+        "bidirectional": false,
+        "coalesce": false
+      }
+    ],
+    "ia.input.barcodescannerinput": [
+      {
+        "tagProperty": "value",
+        "propertyPath": "props.data",
+        "bidirectional": true,
+        "coalesce": false
+      }
+    ],
+    "ia.chart.gauge": [
+      {
+        "tagProperty": "value",
+        "propertyPath": "props.value",
+        "bidirectional": false,
+        "coalesce": false
+      }
+    ],
+    "ia.display.thermometer": [
+      {
+        "tagProperty": "value",
+        "propertyPath": "props.value",
+        "bidirectional": false,
+        "coalesce": false
+      }
+    ],
+    "hmi.process_objects.Valve_mp": [
+      {
+        "tagProperty": "status",
+        "propertyPath": "props.status",
+        "bidirectional": false,
+        "coalesce": false
+      },
+      {
+        "tagProperty": "status.itemName",
+        "propertyPath": "meta.name",
+        "bidirectional": false,
+        "coalesce": false
+      }
+    ],
+    "ia.input.slider": [
+      {
+        "tagProperty": "value",
+        "propertyPath": "props.value",
+        "bidirectional": true,
+        "coalesce": false
+      }
+    ],
+    "ia.input.text-field": [
+      {
+        "tagProperty": "value",
+        "propertyPath": "props.text",
+        "bidirectional": true,
+        "coalesce": false
+      }
+    ]
+  }
+}

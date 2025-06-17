@@ -89,8 +89,8 @@ export class ValveMeta implements ComponentMeta {
 
 	getDefaultSize(): SizeObject {
 		return {
-			width: 24,
-			height: 48,
+			width: 20,
+			height: 40,
 		};
 	}
 
