@@ -49,7 +49,6 @@ export type PumpState = {
 	alarm: boolean;
 	actFB: boolean;
 	deActFB: boolean;
-	configuration: number;
 	itemName: string;
 	manual: boolean;
 	masked: boolean;
@@ -262,7 +261,7 @@ const pumpTypes= [
 	"diaphragm",
 	"gear",
 	"liquid-ring",
-	"positive-displacment",
+	"positive-displacement",
 	"positive-screw",
 	"progressive-cavity",
 ]

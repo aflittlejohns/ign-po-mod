@@ -1,0 +1,229 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "height": 400,
+      "width": 300
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "parameter-list"
+        },
+        "position": {
+          "basis": "399px"
+        },
+        "props": {
+          "parameters": [
+            {
+              "input": {
+                "editable": false,
+                "eu": "",
+                "inputmode": "numeric",
+                "max": 100,
+                "min": 0,
+                "pattern": "^\\d+(\\.\\d{1,2})?$",
+                "placeholder": "enter parameter value",
+                "type": "text",
+                "value": 0
+              },
+              "label": {
+                "text": "ParameterDescription"
+              }
+            },
+            {
+              "input": {
+                "editable": false,
+                "eu": "",
+                "inputmode": "numeric",
+                "max": 100,
+                "min": 0,
+                "pattern": "^\\d+(\\.\\d{1,2})?$",
+                "placeholder": "enter parameter value",
+                "type": "text",
+                "value": 0
+              },
+              "label": {
+                "text": "ParameterDescription"
+              }
+            },
+            {
+              "input": {
+                "editable": false,
+                "eu": "",
+                "inputmode": "numeric",
+                "max": 100,
+                "min": 0,
+                "pattern": "^\\d+(\\.\\d{1,2})?$",
+                "placeholder": "enter parameter value",
+                "type": "text",
+                "value": 0
+              },
+              "label": {
+                "text": "ParameterDescription"
+              }
+            },
+            {
+              "input": {
+                "editable": false,
+                "eu": "",
+                "inputmode": "numeric",
+                "max": 100,
+                "min": 0,
+                "pattern": "^\\d+(\\.\\d{1,2})?$",
+                "placeholder": "enter parameter value",
+                "type": "text",
+                "value": 0
+              },
+              "label": {
+                "text": "ParameterDescription"
+              }
+            },
+            {
+              "input": {
+                "editable": false,
+                "eu": "",
+                "inputmode": "numeric",
+                "max": 100,
+                "min": 0,
+                "pattern": "^\\d+(\\.\\d{1,2})?$",
+                "placeholder": "enter parameter value",
+                "type": "text",
+                "value": 0
+              },
+              "label": {
+                "text": "ParameterDescription"
+              }
+            },
+            {
+              "input": {
+                "editable": false,
+                "eu": "",
+                "inputmode": "numeric",
+                "max": 100,
+                "min": 0,
+                "pattern": "^\\d+(\\.\\d{1,2})?$",
+                "placeholder": "enter parameter value",
+                "type": "text",
+                "value": 0
+              },
+              "label": {
+                "text": "ParameterDescription"
+              }
+            },
+            {
+              "input": {
+                "editable": false,
+                "eu": "",
+                "inputmode": "numeric",
+                "max": 100,
+                "min": 0,
+                "pattern": "^\\d+(\\.\\d{1,2})?$",
+                "placeholder": "enter parameter value",
+                "type": "text",
+                "value": 0
+              },
+              "label": {
+                "text": "ParameterDescription"
+              }
+            },
+            {
+              "input": {
+                "editable": false,
+                "eu": "",
+                "inputmode": "numeric",
+                "max": 100,
+                "min": 0,
+                "pattern": "^\\d+(\\.\\d{1,2})?$",
+                "placeholder": "enter parameter value",
+                "type": "text",
+                "value": 0
+              },
+              "label": {
+                "text": "ParameterDescription"
+              }
+            },
+            {
+              "input": {
+                "editable": false,
+                "eu": "",
+                "inputmode": "numeric",
+                "max": 100,
+                "min": 0,
+                "pattern": "^\\d+(\\.\\d{1,2})?$",
+                "placeholder": "enter parameter value",
+                "type": "text",
+                "value": 0
+              },
+              "label": {
+                "text": "ParameterDescription"
+              }
+            },
+            {
+              "input": {
+                "editable": false,
+                "eu": "",
+                "inputmode": "numeric",
+                "max": 100,
+                "min": 0,
+                "pattern": "^\\d+(\\.\\d{1,2})?$",
+                "placeholder": "enter parameter value",
+                "type": "text",
+                "value": 0
+              },
+              "label": {
+                "text": "ParameterDescription"
+              }
+            },
+            {
+              "input": {
+                "editable": false,
+                "eu": "",
+                "inputmode": "numeric",
+                "max": 100,
+                "min": 0,
+                "pattern": "^\\d+(\\.\\d{1,2})?$",
+                "placeholder": "enter parameter value",
+                "type": "text",
+                "value": 0
+              },
+              "label": {
+                "text": "ParameterDescription"
+              }
+            },
+            {
+              "input": {
+                "editable": false,
+                "eu": "",
+                "inputmode": "numeric",
+                "max": 100,
+                "min": 0,
+                "pattern": "^\\d+(\\.\\d{1,2})?$",
+                "placeholder": "enter parameter value",
+                "type": "text",
+                "value": 0
+              },
+              "label": {
+                "text": "ParameterDescription"
+              }
+            }
+          ]
+        },
+        "type": "hmi.input.ParameterList"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column",
+      "style": {
+        "overflow-y": "auto"
+      }
+    },
+    "type": "ia.container.flex"
+  }
+}

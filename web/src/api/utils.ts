@@ -306,7 +306,7 @@ const getPumpConfiguration = (pumpType: PumpType): number => {
 			return 1;
 		case "diaphragm":
 			return 1;
-		case "positive-displacment":
+		case "positive-displacement":
 			return 1;
 		case "progressive-cavity":
 			return 1;

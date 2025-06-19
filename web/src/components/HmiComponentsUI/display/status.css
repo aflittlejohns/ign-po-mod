@@ -6,6 +6,8 @@
 	display: flex;
 	flex-direction: column;
 	width: 100cqi;
+	height: 100cqh;
+	overflow-y: auto;
 	margin-top: 0.5rem;
 	& li {
 		&::marker{
@@ -17,8 +19,8 @@
 	& label:where(.checkbox){
 		display: grid;
 		grid-auto-columns:
-			calc(var(--_size-100) - (3ch + (var(--_size-2)*2)))
-			3ch;
+			calc(var(--_size-100) - (5ch + (var(--_size-2)*2)))
+			4ch;
 		gap: var(--_size-2);
 		cursor:default;
 	}

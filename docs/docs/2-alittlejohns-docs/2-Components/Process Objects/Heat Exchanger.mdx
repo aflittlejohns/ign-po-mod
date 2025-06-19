@@ -1,0 +1,34 @@
+---
+title: Heat Exchanger
+---
+
+import Gif from "@site/static/img/hmi-components-heat-exchanger.gif";
+import Icon from "@site/static/img/heat-exchanger-icon.svg";
+
+<img src={Gif} />
+
+#### Component Palette Icon:
+
+<Icon title="Component Palette Icon" className="component-palette-icon" /><br />
+
+A component that looks like a heat exchanger symbol. Full menu of [style options](https://www.docs.inductiveautomation.com/docs/8.1/appendix/reference-pages/style-reference) is available for text, background, margin and padding, border, shape and miscellaneous. You can also specify a [style class](https://www.docs.inductiveautomation.com/docs/8.1/ignition-modules/perspective/styles/style-classes).
+
+## Properties
+
+Most Properties have binding options. For more information on Bindings, see [Types of Bindings in Perspective.](https://www.docs.inductiveautomation.com/docs/8.1/ignition-modules/perspective/working-with-perspective-components/bindings-in-perspective) This section only documents the Props Category of properties. The other Categories are described on the [Perspective Component Properties](https://www.docs.inductiveautomation.com/docs/8.1/ignition-modules/perspective/working-with-perspective-components/perspective-component-properties) page.
+
+| Name          | Description                                                                                                                                                                                                                                | Property Type  |
+| :------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------- |
+| type          | Options for the appearance of the component.<br />Options are:<br /> - `plate` <br /> - `tubular`                                                                                                                                          |  string  |
+| itemName      | Item identifier                                                                                                                                                                                                                            |  string  |
+| mode          | Options for the appearance of the component.<br />Dependant on mode of equipment. Options are:<br /> - `alarm` - i.e user attention required <br /> - `cooling` - Equipment in cooling mode <br /> - `heating` - Equipment in heating mode |  string  |
+| locate        | Enable locate animation                                                                                                                                                                                                                    |  boolean |
+| showLabel     | Show item identifier                                                                                                                                                                                                                       |  boolean |
+| labelPosition | Options for the location of the item identifier label.<br />Options are:<br /> - `left` <br /> - `right` <br /> - `top-left` <br /> - `top-right` <br /> - `bottom-left` <br /> - `bottom-right`                                           |  string  |
+
+## Component Events
+
+The component supports the "Action Performed Event".
+
+Further information regarding the Action Performed Event can be found a the [Perspective Event](https://www.docs.inductiveautomation.com/docs/8.1/appendix/reference-pages/perspective-event-types-reference) Types Reference page.
+The [Component Events and Actions](https://www.docs.inductiveautomation.com/docs/8.1/ignition-modules/perspective/working-with-perspective-components/component-events-and-actions) page shows how to configure events and actions on a Perspective component. Component scripting is handled separately and can be accessed from the Component menubar or by right clicking on the component.

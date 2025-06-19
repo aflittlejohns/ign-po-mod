@@ -1,146 +1,154 @@
 {
+	"$schema": "http://json-schema.org/draft-07/schema#",
 	"type": "object",
+	"$defs": {
+		"label": {
+			"type": ["string", "object"],
+			"description": " Parameter Label attributes",
+			"properties": {
+				"text": {
+					"type": "string",
+					"description": " Parameter Description",
+					"default": "ParameterDescription"
+				},
+				"className": {
+					"type": "string",
+					"description": "A className for addition css styling [optional]"
+				},
+				"tooltipText": {
+					"type": "string",
+					"description": "tooltip text"
+				},
+				"tooltipPosition": {
+					"type": "string"
+				},
+				"tooltipClassName": {
+					"type": "string"
+				},
+				"tooltipId": {
+					"type": "string"
+				}
+			},
+			"required": ["text"],
+			"additionalProperties": false
+		},
+		"input": {
+			"type": "object",
+			"properties": {
+				"type": {
+					"type": "string",
+					"description": "HTML input element types, for numbers use text type with inputmode numeric",
+					"default": "text",
+					"enum": [
+						"button",
+						"text",
+						"checkbox",
+						"radio",
+						"date",
+						"datetime-local",
+						"time",
+						"week"
+					]
+				},
+				"inputmode": {
+					"description": "HTML input element inputmode, for numbers use text type with inputmode numeric",
+					"default": "numeric",
+					"type": "string",
+					"enum": ["numeric", "text", "none"]
+				},
+				"placeholder": {
+					"description": "If field is empty, suggest something to enter",
+					"default": "enter parameter value",
+					"type": "string",
+					"suggestions": ["enter number", "enter text"]
+				},
+				"editable": {
+					"description": "enabled when true",
+					"default": false,
+					"type": "boolean"
+				},
+				"pattern": {
+					"description": "If field is empty, suggest something to enter",
+					"default": "^\\d+(\\.\\d{1,2})?$",
+					"type": "string",
+					"suggestions": ["[0-9]*", "^\\d+(\\.\\d{1,2})?$"]
+				},
+				"min": {
+					"description": "Minimum value, for input validation",
+					"default": 0,
+					"type": "number"
+				},
+				"max": {
+					"default": 100,
+					"type": "number"
+				},
+				"decimalPlaces": {
+					"type": "number"
+				},
+				"eu": {
+					"description": "Engineering Unit of parameter",
+					"default": "",
+					"type": "string",
+					"suggestions": [
+						"\u00B0C",
+						"\u00B0F",
+						"kg",
+						"g",
+						"mg",
+						"\u00B5g",
+						"L",
+						"mL",
+						"\u00B5L",
+						"m\u00B3",
+						"cm\u00B3",
+						"s",
+						"min",
+						"h",
+						"Pa",
+						"bar",
+						"%",
+						"\u00B5S",
+						"mS",
+						"ppm",
+						"ppb"
+					]
+				},
+				"value": {
+					"description": "Value of parameter",
+					"default": 0.0,
+					"type": "number"
+				}
+			},
+			"required": ["editable", "value"],
+			"additionalProperties": false
+		},
+		"parameter": {
+			"type": "object",
+			"properties": {
+				"label": {
+					"$ref": "#/$defs/label"
+				},
+				"input": {
+					"$ref": "#/$defs/input"
+				}
+			},
+			"required": ["label", "input"],
+			"additionalProperties": false
+		}
+	},
 	"properties": {
 		"parameters": {
 			"type": "array",
 			"description": "A list of parameters",
-			"default": [],
 			"items": {
-				"type": "object",
-				"properties": {
-					"label": {
-						"type": "object",
-						"properties": {
-							"text": {
-								"description": "Parameter Description",
-								"type": "string",
-
-								"default": "text"
-							},
-							"className": {
-								"type": "string",
-								"description": "A className for addition css styling [optional]",
-								"default": ""
-							},
-							"tooltipText": {
-								"type": "string",
-								"description": "tooltip text",
-								"default": ""
-							},
-							"tooltipPosition": {
-								"type": "string"
-							},
-							"tooltipClassName": {
-								"type": "string"
-							},
-							"tooltipId": {
-								"type": "string"
-							}
-						},
-						"required": ["text"],
-						"additionalProperties": false
-					},
-					"input": {
-						"type": "object",
-						"properties": {
-							"type": {
-								"type": "string",
-								"description": "HTML input element types, for numbers use text type with inputmode numeric",
-								"default": "text",
-								"enum": [
-									"button",
-									"text",
-									"checkbox",
-									"radio",
-									"date",
-									"datetime-local",
-									"time",
-									"week"
-								]
-							},
-							"inputmode": {
-								"description": "HTML input element inputmode, for numbers use text type with inputmode numeric",
-								"default": "numeric",
-								"type": "string",
-								"enum": ["numeric", "text", "none"]
-							},
-							"placeholder": {
-								"description": "If field is empty, suggest something to enter",
-								"default": "enter parameter value",
-								"type": "string",
-								"suggestion": ["enter number", "enter text"]
-							},
-							"editable": {
-								"description": "enabled when true",
-								"default": false,
-								"type": "boolean"
-							},
-							"pattern": {
-								"description": "If field is empty, suggest something to enter",
-								"default": "^\\d+(\\.\\d{1,2})?$",
-								"type": "string",
-								"suggestions": ["[0-9]*", "^\\d+(\\.\\d{1,2})?$"]
-							},
-							"min": {
-								"description": "Minimum value, for input validation",
-                "default": 0,
-								"type": "number"
-							},
-							"max": {
-                "default": 100,
-								"type": "number"
-							},
-							"decimalPlaces": {
-                "default": 0,
-                "type": "number"
-							},
-							"eu": {
-                "description": "Engineering Unit of parameter",
-                "default": "",
-								"type": "string",
-								"suggestions": [
-                  "\u00B0C",
-									"\u00B0F",
-									"kg",
-									"g",
-									"mg",
-									"\u00B5g",
-									"L",
-									"mL",
-									"\u00B5L",
-									"m\u00B3",
-									"cm\u00B3",
-									"s",
-									"min",
-									"h",
-									"Pa",
-									"bar",
-									"%",
-									"\u00B5S",
-									"mS",
-									"ppm",
-									"ppb"
-								]
-							},
-							"value": {
-                "description": "Value of parameter",
-                "default": 0.0,
-                "type": "number"
-							}
-						},
-						"required": ["editable", "value"],
-						"additionalProperties": false
-					}
-				},
-				"required": ["label", "input"],
-				"additionalProperties": false
+				"$ref": "#/$defs/parameter"
 			}
-		},
-		"style": {
-			"$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
-			"default": {
-				"classes": ""
-			}
+		}
+	},
+	"style": {
+		"$ref": "urn:ignition-schema:schemas/style-properties.schema.json",
+		"default": {
+			"classes": ""
 		}
 	}
 }

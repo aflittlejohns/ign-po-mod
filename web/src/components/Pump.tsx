@@ -102,10 +102,6 @@ export class PumpMeta implements ComponentMeta {
 					alarm: tree.readBoolean("processObject.status.alarm", false),
 					actFB: tree.readBoolean("processObject.status.actFB", false),
 					deActFB: tree.readBoolean("processObject.status.deActFB", false),
-					configuration: tree.readNumber(
-						"processObject.status.configuration",
-						7
-					),
 					itemName: tree.readString("processObject.status.itemName", ""),
 					manual: tree.readBoolean("processObject.status.manual", false),
 					masked: tree.readBoolean("processObject.status.masked", false),

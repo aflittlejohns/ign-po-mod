@@ -1,0 +1,83 @@
+---
+title: Multi-port Process Valve
+---
+
+import Gif from "@site/static/img/valve.gif";
+import Icon from "@site/static/img/valve-icon.svg";
+
+
+<img src={Gif} />
+
+#### Component Palette Icon:
+
+<Icon title="Component Palette Icon" className="component-palette-icon" />
+<br />
+
+:::tip
+The Multi-port process valve component appearance is configurable by providing a configuration value for the de-activated and activated position
+states.
+:::
+A component that looks like a multi-port process valve symbol. Full menu of [style options](https://www.docs.inductiveautomation.com/docs/8.1/appendix/reference-pages/style-reference) is available for text, background, margin and padding, border, shape and miscellaneous. You can also specify a [style class](https://www.docs.inductiveautomation.com/docs/8.1/ignition-modules/perspective/styles/style-classes).
+
+## De-coding the configuration value
+
+The valve component concise of two parts which we shall call v1 and v2.
+
+v1 represents the top part, and v2 the bottom part.
+
+v1 is always displayed, and is used to represent two and three port valves.
+v2 is selectable, and together with v1, is used to represent multi-port and multi-port mix-proof process valves.
+
+The visulisation of each dynamic valve component element depends on the boolean state of it's associated bit of the active or deactivate configuration value.
+
+Therefore, the configuration value is the sum of all true bit weightings required for each position state visulisation.
+
+### Element Bit Positions
+
+![Valve Bit Positions](@site/static/img/valve-config.svg)
+
+
+## Properties
+
+Most Properties have binding options. For more information on Bindings, see [Types of Bindings in Perspective.](https://www.docs.inductiveautomation.com/docs/8.1/ignition-modules/perspective/working-with-perspective-components/bindings-in-perspective) This section only documents the Props Category of properties. The other Categories are described on the [Perspective Component Properties](https://www.docs.inductiveautomation.com/docs/8.1/ignition-modules/perspective/working-with-perspective-components/perspective-component-properties) page.
+
+| Name                 | Description                                                                                                                                                                                      | Property Type  |
+| :------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------- |
+| processObject        | The root of all processOject properties                                                                                                                                                          | object  |
+| showLabel            | Show item identifier                                                                                                                                                                             |  boolean |
+| labelPosition        | Options for the location of the item identifier label.<br />Options are:<br /> - `left` <br /> - `right` <br /> - `top-left` <br /> - `top-right` <br /> - `bottom-left` <br /> - `bottom-right` |  string <br /> dropdown|
+### Tag Drop
+:::tip Tag Drop
+For user convenience a tag of data type `process-object-valve-mp` may be dragged and dropped on to the `processOject` property
+:::
+
+### processObject Properties
+
+`status`
+
+| Name                 | Description                                                                                                                                                                                      | Property Type  |
+| :------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------- |
+| status             | Status properties of the valve processOject. Child of the processObject property                                                                                                                 |  object  |
+
+### status Properties
+
+| Name                 | Description                                                                                                                                                                                      | Property Type  |
+| :------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------- |
+|  itemName          | Item identifier                                                                                                                                                                                  |  string  |
+|  activatedConfig   | Defines appearence of valve component in the activated state                                                                                                                                     |  number  |
+|  deactivatedConfig | Defines appearence of valve component in the de-activated state                                                                                                                                  |  number  |
+|  alarm             | Enable indication of alarm state                                                                                                                                                                 |  boolean |
+|  actFB             | Enable indication of actFB state                                                                                                                                                                 |  boolean |
+|  deActFB           | Enable indication of deActFB state                                                                                                                                                               |  boolean |
+|  usl               | Enable indication of upper-seat lift activated state                                                                                                                                             |  boolean |
+|  lsl               | Enable indication of lower-seat lift activated state                                                                                                                                             |  boolean |
+|  manual            | Enable indication of manual state                                                                                                                                                                |  boolean |
+|  masked            | Enable indication of masked state                                                                                                                                                                |  boolean |
+|  changing          | Enable indication of changing state                                                                                                                                                              |  boolean |
+|  locate            | Enable locate animation                                                                                                                                                                          |  boolean |
+
+## Component Events
+The component supports the "Action Performed Event".
+
+Further information regarding the Action Performed Event can be found a the [Perspective Event](https://www.docs.inductiveautomation.com/docs/8.1/appendix/reference-pages/perspective-event-types-reference) Types Reference page.
+The [Component Events and Actions](https://www.docs.inductiveautomation.com/docs/8.1/ignition-modules/perspective/working-with-perspective-components/component-events-and-actions) page shows how to configure events and actions on a Perspective component. Component scripting is handled separately and can be accessed from the Component menubar or by right clicking on the component.

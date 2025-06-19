@@ -1,0 +1,42 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "multi-port-process-valve"
+        },
+        "position": {
+          "height": 149,
+          "width": 77,
+          "x": 57,
+          "y": 130
+        },
+        "propConfig": {
+          "props.processObject": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "direct",
+                "publishInitial": false,
+                "tagPath": "[default]V404"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "labelPosition": "top-right",
+          "showLabel": true
+        },
+        "type": "hmi.process_objects.Valve_mp"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

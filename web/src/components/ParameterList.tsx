@@ -9,7 +9,6 @@ import type {
 
 // import { useCreateContext } from "src/utils/createContext";
 import { ParametersListState, ParamItem } from "../api/types";
-import { parameterInitialState } from "../api/initialState";
 import {
 	PARAMETER_LIST_COMPONENT_TYPE,
 	HMI_COMPONENT_CLASS,
@@ -71,6 +70,8 @@ export const ParameterListComponent = (
 										pattern={input.pattern || "[0-9]*"}
 										placeholder={input.placeholder}
 										disabled={!input.editable}
+										min={input.min}
+										max={input.max}
 										value={input.value}
 										onChange={(e) => {
 											props.store.props.write(
@@ -104,7 +105,30 @@ export class ParameterListComponentMeta implements ComponentMeta {
 
 	getPropsReducer(tree: PropertyTree): ParametersListState {
 		return {
-			parameters: tree.read("parameters", parameterInitialState),
+			parameters: tree.read("parameters", [
+				{
+					label: {
+						text: "label",
+						className: "",
+						tooltipText: "",
+						tooltipPosition: "",
+						tooltipClassName: "",
+						tooltipId: "",
+					},
+					input: {
+						type: "text",
+						inputmode: "numeric",
+						placeholder: "Enter a number",
+						editable: true,
+						pattern: "^[0-9]*[.,]?[0-9]*$",
+						min: 0,
+						max: 100,
+						decimalPlaces: 2,
+						eu: "\u00B5C",
+						value: 0,
+					},
+				},
+			]),
 		};
 	}
 

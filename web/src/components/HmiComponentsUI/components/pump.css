@@ -65,7 +65,7 @@
 			border-color: var(--_border-color);
 			border-radius: 50%;
 			border-width: calc(var(--_size-2)+(var(--_size-01)*5));
-			background-color: var(--containerRoot);
+			background-color: var(--_border-color);
 		}
 		& .symbol-2.gear {
 			/* gear */
@@ -74,12 +74,12 @@
 			border-radius: 50%;
 			border-width: calc(var(--_size-2)+(var(--_size-01)*5));
 			z-index: 1;
-			background-color: var(--grey-1);
+			background-color: var(--_border-color);
 		}
-		& .symbol-1.positive-displacment {
+		& .symbol-1.positive-displacement {
 			/* positive displacement */
 			grid-area: 5/5/7/7;
-			border:  calc(var(--_size-2)+(var(--_size-01)*5)) solid var(--_border-color);
+			border:  var(--_size-10) solid var(--_border-color);
 		}
 		& .symbol-1.liquid-ring {
 			/* liquid ring */

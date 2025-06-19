@@ -1,0 +1,62 @@
+---
+title: Process Pump
+---
+
+import Gif from "@site/static/img/pump.gif";
+import Icon from "@site/static/img/pump-icon.svg";
+
+<img src={Gif} />
+
+#### Component Palette Icon:
+
+<Icon title="Component Palette Icon" className="component-palette-icon" />
+<br />
+<br />
+
+:::tip
+The process pump component type is configurable via the pumpType property.
+:::
+A component that looks like a process pump symbol. Full menu of [style options](https://www.docs.inductiveautomation.com/docs/8.1/appendix/reference-pages/style-reference) is available for text, background, margin and padding, border, shape and miscellaneous. You can also specify a [style class](https://www.docs.inductiveautomation.com/docs/8.1/ignition-modules/perspective/styles/style-classes).
+
+## Properties
+
+Most Properties have binding options. For more information on Bindings, see [Types of Bindings in Perspective.](https://www.docs.inductiveautomation.com/docs/8.1/ignition-modules/perspective/working-with-perspective-components/bindings-in-perspective) This section only documents the Props Category of properties. The other Categories are described on the [Perspective Component Properties](https://www.docs.inductiveautomation.com/docs/8.1/ignition-modules/perspective/working-with-perspective-components/perspective-component-properties) page.
+
+| Name                 | Description                                                                                                                                                                                      | Property Type  |
+| :------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------- |
+| pumpType        |  The type of pump to be depicted. Values can be selected via a dropdown.<br />Options are:<br /> - `centrifugal` <br /> - `diaphragm` <br /> - `gear` <br /> - `liquid-ring` <br /> - `positive-displacement` <br /> - `positive-cavity` <br /> - `positive-screw` |  string <br /> dropdown|
+| processObject        | The root of all processOject properties                                                                                                                                                          | object  |
+| showLabel            | Show item identifier                                                                                                                                                                             |  boolean |
+| labelPosition        | Options for the location of the item identifier label.<br />Options are:<br /> - `left` <br /> - `right` <br /> - `top-left` <br /> - `top-right` <br /> - `bottom-left` <br /> - `bottom-right` |  string <br /> dropdown|
+
+### Tag Drop
+:::tip Tag Drop
+For user convenience a tag of data type `process-object-pump` may be dragged and dropped on to the `processOject` property
+:::
+
+### processObject Properties
+
+`status`
+
+| Name                 | Description                                                                                                                                                                                      | Property Type  |
+| :------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------- |
+| status             | Status properties of the valve processOject. Child of the processObject property                                                                                                                 |  object  |
+
+### status Properties
+
+| Name                 | Description                                                                                                                                                                                      | Property Type  |
+| :------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------- |
+|  itemName          | Item identifier                                                                                                                                                                                  |  string  |
+|  alarm             | Enable indication of alarm state                                                                                                                                                                 |  boolean |
+|  actFB             | Enable indication of actFB state                                                                                                                                                                 |  boolean |
+|  deActFB           | Enable indication of deActFB state                                                                                                                                                               |  boolean |
+|  manual            | Enable indication of manual state                                                                                                                                                                |  boolean |
+|  masked            | Enable indication of masked state                                                                                                                                                                |  boolean |
+|  changing          | Enable indication of changing state                                                                                                                                                              |  boolean |
+|  locate            | Enable locate animation                                                                                                                                                                          |  boolean |
+
+## Component Events
+The component supports the "Action Performed Event".
+
+Further information regarding the Action Performed Event can be found a the [Perspective Event](https://www.docs.inductiveautomation.com/docs/8.1/appendix/reference-pages/perspective-event-types-reference) Types Reference page.
+The [Component Events and Actions](https://www.docs.inductiveautomation.com/docs/8.1/ignition-modules/perspective/working-with-perspective-components/component-events-and-actions) page shows how to configure events and actions on a Perspective component. Component scripting is handled separately and can be accessed from the Component menubar or by right clicking on the component.

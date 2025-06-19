@@ -94,7 +94,7 @@
 		--_size-5: var(--hmi-size-5, 5cqmin);
 		--_size-2: var(--hmi-size-2, 2cqmin);
 		--_size-1: var(--hmi-size-1, 1cqmin);
-		--_size-05: var(--hmi-size-01, 0.1cqmin);
+		--_size-01: var(--hmi-size-01, 0.1cqmin);
 		--_size-sm: var(--hmi-size-sm, 2.5cqmin);
 
 		--_alarm-size: var(--_size-10);

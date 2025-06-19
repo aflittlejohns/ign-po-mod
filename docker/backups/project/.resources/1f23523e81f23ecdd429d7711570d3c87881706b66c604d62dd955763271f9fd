@@ -1,0 +1,41 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Multi-port valve status display"
+        },
+        "position": {
+          "height": 139,
+          "width": 238,
+          "x": 36,
+          "y": 40
+        },
+        "props": {
+          "status": [
+            {
+              "label": "Activated",
+              "status": false
+            },
+            {
+              "label": "De-activated",
+              "status": false
+            },
+            {
+              "label": "Interlocked",
+              "status": false
+            }
+          ]
+        },
+        "type": "hmi.display.StatusValveMp"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

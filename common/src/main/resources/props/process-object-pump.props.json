@@ -8,7 +8,7 @@
         "diaphragm",
         "gear",
         "liquid-ring",
-        "positive-displacment",
+        "positive-displacement",
         "positive-screw",
         "progressive-cavity"
       ],
@@ -25,11 +25,6 @@
               "type": "string",
               "default": "\"\"",
               "description": "Item Indentifier"
-            },
-            "configuration": {
-              "type": "number",
-              "default": 7,
-              "description": "Pump configuration number"
             },
             "alarm": {
               "type": "boolean",

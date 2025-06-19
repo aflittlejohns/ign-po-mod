@@ -65,6 +65,11 @@ const config: Config = {
 					beforeDefaultRemarkPlugins: [],
 					beforeDefaultRehypePlugins: [],
 				},
+				theme:{
+					customCss:[
+						'./src/css/custom.css'
+					],
+				}
 			},
 		],
 	],

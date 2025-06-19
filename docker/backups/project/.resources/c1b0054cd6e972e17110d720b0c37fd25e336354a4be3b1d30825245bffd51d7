@@ -1,0 +1,38 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "dropConfig": {
+      "udts": [
+        {
+          "action": "path",
+          "param": "",
+          "type": ""
+        }
+      ]
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "process-pump"
+        },
+        "position": {
+          "height": 117,
+          "width": 116,
+          "x": 121,
+          "y": 138
+        },
+        "props": {
+          "pumpType": "progressive-cavity"
+        },
+        "type": "hmi.process_objects.Pump"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

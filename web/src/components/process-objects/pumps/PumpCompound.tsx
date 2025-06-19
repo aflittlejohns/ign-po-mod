@@ -82,8 +82,6 @@ const pump = () => {
 								status
 							)}`}
 						/>
-						{/* <Item itemClassName={`${getPumpStatusClassNames("base-2 show item",status)}`}/> */}
-						{/* <Item itemClassName={`${getPumpStatusClassNames("base-3 show item",status)}`}/> */}
 						<Item itemClassName={"base-2 show item"} />
 						<Item itemClassName={"base-3 show item"} />
 
@@ -98,11 +96,6 @@ const pump = () => {
 							/>
 						))}
 					</div>
-					<Item
-						itemClassName={`locate ${
-							status.locate ? "show item" : "hide item"
-						}`}
-					/>
 				</div>
 			</div>
 		</div>
