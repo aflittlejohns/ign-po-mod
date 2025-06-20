@@ -5,9 +5,9 @@ import Link from "@docusaurus/Link";
 
 const FeatureList = [
 	{
-		title: "Easy to Use",
+		title: "How To Build Custom Components",
 		Svg: require("@site/static/img/Logo-Ignition-Check.svg").default,
-		Icon: require("@site/static/img/door-enter.svg").default,
+		Icon: require("@site/static/img/web-exit.svg").default,
 		description: (
 			<>
 				Guide which demonstrates how to create
@@ -18,7 +18,7 @@ const FeatureList = [
 		link: "https://keith-gamble.github.io/example-perspective-component-module/",
 	},
 	{
-		title: "Focus on What Matters",
+		title: "The HMI Components Module",
 		Svg: require("@site/static/img/Logo-Ignition-Check.svg").default,
 		Icon: require("@site/static/img/door-enter.svg").default,
 		description: (
@@ -30,7 +30,7 @@ const FeatureList = [
 		link: "/docs/alittlejohns-docs/",
 	},
 	{
-		title: "Powered by React",
+		title: "Patterns and workflows",
 		Svg: require("@site/static/img/Logo-Ignition-Check.svg").default,
 		Icon: require("@site/static/img/door-enter.svg").default,
 		description: (

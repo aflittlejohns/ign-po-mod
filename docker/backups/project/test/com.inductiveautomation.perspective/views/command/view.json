@@ -1,0 +1,34 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Multi-port valve command"
+        },
+        "position": {
+          "height": 140,
+          "width": 280,
+          "x": 35,
+          "y": 57
+        },
+        "props": {
+          "command": {
+            "available": {
+              "lowerSeat": true,
+              "main": true,
+              "upperSeat": true
+            }
+          }
+        },
+        "type": "hmi.input.CommandValveMp"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

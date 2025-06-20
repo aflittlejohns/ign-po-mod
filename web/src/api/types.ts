@@ -131,46 +131,6 @@ export type ParamItem = {
 export type ParametersListState = {
 	parameters: ParamItem[];
 };
-/**
- * Define the shape of the ValveAction type
- * @Useage useValveReducer
- */
-export type ValveAction =
-	| { type: "UPDATE_ACT_CONFIG"; value: number }
-	| { type: "UPDATE_DEACT_CONFIG"; value: number }
-	| { type: "UPDATE_ACT_FB" }
-	| { type: "UPDATE_DE_ACT_FB" }
-	| { type: "UPDATE_USL" }
-	| { type: "UPDATE_LSL" }
-	| { type: "UPDATE_MANUAL" }
-	| { type: "UPDATE_ALARM" }
-	| { type: "UPDATE_MASKED" }
-	| { type: "UPDATE_CHANGING" }
-	| { type: "UPDATE_LOCATE" };
-
-export type ValveReducer = (
-	state: ValveState,
-	action: ValveAction
-) => ValveState;
-
-export type UseValveReducer = {
-	state: ValveState;
-	reducer: {
-		updateActConfig: (value: number) => void;
-		updateDeActConfig: (value: number) => void;
-		updateAlarm: () => void;
-		updateActFB: () => void;
-		updateDeActFB: () => void;
-		updateUsl: () => void;
-		updateLsl: () => void;
-		updateManual: () => void;
-		updateMasked: () => void;
-		updateChanging: () => void;
-		updateLocate: () => void;
-
-		//add more handlers as needed
-	};
-};
 
 export const ValveClassNameEnum = {
 	AlarmState: "AlarmState",
@@ -184,28 +144,7 @@ export const ValveClassNameEnum = {
 };
 export type ValveClassNameEnum =
 	(typeof ValveClassNameEnum)[keyof typeof ValveClassNameEnum];
-// export const ItemNameEnum = {
-// 	V1b1: "v1b1", // index 0
-// 	V1b2: "v1b2", // index 1
-// 	V1b3: "v1b3", // index 2
-// 	V1b4: "v1b4", // index 3
-// 	V2b1: "v2b1", // index 4
-// 	V2b2: "v2b2", // index 5
-// 	V2b3: "v2b3", // index 6
-// 	V2b4: "v2b4", // index 7
-// 	V3b1: "v3b1", // index 8
-// 	V3b2: "v3b2", // index 9
-// 	V3b3: "v3b3", // index 10
-// 	V3b4: "v3b4", // index 11
-// 	V2: "v2", // index 12
-// 	V3: "v3", // index 13
-// 	V1: "v1", // index 14
-// 	V2f1: "v2f1", // index 15
-// 	V2f2: "v2f2", // index 16
-// 	V3f1: "v3f1", // index 17
-// 	V3f2: "v3f2", // index 18
-// };
-// export type ItemNameEnum = (typeof ItemNameEnum)[keyof typeof ItemNameEnum];
+
 export const valveMpItemNameEnum = {
 	V1b1: "v1b1", // index 0
 	V1b2: "v1b2", // index 1
@@ -294,10 +233,10 @@ export type itemNameProps = {
 };
 export type CommandValveMpProps = {
 	command?: {
-		interlocks?: {
-			main: boolean[];
-			upperSeat: boolean[];
-			lowerSeat: boolean[];
+		available?: {
+			main: boolean;
+			upperSeat?: boolean;
+			lowerSeat?: boolean;
 		};
 		main?: {
 			label: string;
@@ -331,6 +270,9 @@ export type CommandsValveMpCompoundRootProps = {
  */
 export type ValveMpCommandAction =
 	| { type: "UPDATE_AUTO_MANUAL"; mode: "auto" | "manual" }
+	| { type: "UPDATE_MAIN_AVAIL"; value: boolean }
+	| { type: "UPDATE_UPPERSEAT_AVAIL"; value: boolean }
+	| { type: "UPDATE_LOWERSEAT_AVAIL"; value: boolean }
 	| { type: "UPDATE_MAIN_MAN_ON" }
 	| { type: "UPDATE_MAIN_MAN_OFF" }
 	| { type: "UPDATE_USL_MAN_ON" }
@@ -346,6 +288,9 @@ export type UseValveMpCommandReducer = {
 	state: CommandValveMpProps;
 	reducer: {
 		updateAutoManSelection: (mode: "auto" | "manual") => void;
+		updateMainAvailable: (value: boolean) => void;
+		updateUpperSeatAvailable: (value: boolean) => void;
+		updateLowerSeatAvailable: (value: boolean) => void;
 		updateMainManualOn: () => void;
 		updateMainManualOff: () => void;
 		updateUslManualOn: () => void;

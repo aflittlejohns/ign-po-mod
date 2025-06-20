@@ -6,7 +6,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
 	title: "Ignition Perspective HMI Components Module",
-	tagline: "A module of HMI components for the Dairy Industry",
+	tagline: "HMI components for the Dairy Industry",
 	favicon: "img/favicon.ico",
 
 	// Set the production url of your site here

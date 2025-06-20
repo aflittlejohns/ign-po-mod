@@ -4,6 +4,10 @@
       "title": "",
       "viewPath": "View"
     },
+    "/command": {
+      "title": "",
+      "viewPath": "command"
+    },
     "/flex": {
       "title": "",
       "viewPath": "flex"

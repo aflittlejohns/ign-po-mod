@@ -4,23 +4,23 @@
     "command":{
       "type": "object",
       "properties": {
-        "interlocks": {
+        "available": {
           "type": "object",
           "properties": {
             "main": {
               "type": "boolean",
               "default": false,
-              "description": "Command Operation of main Interlocked"
+              "description": "Command Operation of main Available"
             },
             "upperSeat": {
               "type": "boolean",
               "default": false,
-              "description": "Command Operation of upperSeat Interlocked"
+              "description": "Command Operation of upperSeat Available"
             },
             "lowerSeat": {
               "type": "boolean",
               "default": false,
-              "description": "Command Operation of lowerSeat Interlocked"
+              "description": "Command Operation of lowerSeat Available"
             }
           }
         },

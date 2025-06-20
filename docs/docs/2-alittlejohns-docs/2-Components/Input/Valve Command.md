@@ -2,8 +2,8 @@
 title: Valve Command
 ---
 
-import Gif from "@site/static/img/parameter-list.gif";
-import Icon from "@site/static/img/parameter-list.svg";
+import Gif from "@site/static/img/command-valve-mp.gif";
+import Icon from "@site/static/img/command-valve-mp.svg";
 
 <img src={Gif} />
 
@@ -13,7 +13,7 @@ import Icon from "@site/static/img/parameter-list.svg";
 <br />
 <br />
 
-A component for parameter visualisation and authorised parameter entry. The appearence may be appropriately styled. Full menu of [style options](https://www.docs.inductiveautomation.com/docs/8.1/appendix/reference-pages/style-reference) is available for text, background, margin and padding, border, shape and miscellaneous. You can also specify a [style class](https://www.docs.inductiveautomation.com/docs/8.1/ignition-modules/perspective/styles/style-classes).
+A faceplate component for aauthorised user multi-port valve control. The appearence may be appropriately styled. Full menu of [style options](https://www.docs.inductiveautomation.com/docs/8.1/appendix/reference-pages/style-reference) is available for text, background, margin and padding, border, shape and miscellaneous. You can also specify a [style class](https://www.docs.inductiveautomation.com/docs/8.1/ignition-modules/perspective/styles/style-classes).
 
 ## Properties
 

@@ -41,7 +41,6 @@ const Root = ({
 				valveProps,
 				componentProps,
 				onActionPerformed,
-				// useValveReducer,
 			}}
 		>
 			{children}

@@ -80,10 +80,10 @@ export const initialOffOnState = {
 };
 export const initialControlState = {
 	command: {
-		interlocks: {
-			main: [],
-			upperSeat: [],
-			lowerSeat: []
+		available: {
+			main: false,
+			upperSeat: false,
+			lowerSeat: false
 		},
 		main: {
 			label: "Main",

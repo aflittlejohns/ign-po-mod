@@ -22,13 +22,13 @@ import {
 
 export const COMPONENT_TYPE = COMMAND_VALVE_MP_COMPONENT_TYPE;
 
-const areEqual = (
-	prevProps: ComponentProps<CommandValveMpProps>,
-	nextProps: ComponentProps<CommandValveMpProps>
-) => {
-	// return true if props are equal, false if re-render is needed
-	return prevProps.props === nextProps.props;
-};
+// const areEqual = (
+// 	prevProps: ComponentProps<CommandValveMpProps>,
+// 	nextProps: ComponentProps<CommandValveMpProps>
+// ) => {
+// 	// return true if props are equal, false if re-render is needed
+// 	return prevProps.props === nextProps.props;
+// };
 
 /**
  * Valve component class.
@@ -36,7 +36,7 @@ const areEqual = (
  * Provides a customizable valve with proper handling of designer/preview modes.
 
  */
-export const CommandValveMp = React.memo(
+export const CommandValveMp =
 	(props: ComponentProps<CommandValveMpProps>) => {
 		const { state, reducer } = useValveMpCommandReducer();
 		const { emit } = props;
@@ -46,9 +46,28 @@ export const CommandValveMp = React.memo(
 			const unsubscribe = props.store.props.subscribe((tree: PropertyTree) => {
 				// This function is called whenever "command" changes
 				const command = tree.read("command");
-				const { main, upperSeat, lowerSeat } = command;
+				const { main, upperSeat, lowerSeat , available} = command;
 				// You can update local state or perform other actions here
-				// Update main state if needed
+				// Update available state if needed
+				if (state.command?.available && available) {
+					if (available.main !== state.command.available.main) {
+						reducer.updateMainAvailable(
+							available.main ? true : false
+						);
+					}
+					if (available.upperSeat !== state.command.available.upperSeat) {
+						reducer.updateUpperSeatAvailable(
+							available.upperSeat ? true : false
+						);
+					}
+					if (available.lowerSeat !== state.command.available.lowerSeat) {
+						reducer.updateLowerSeatAvailable(
+							available.lowerSeat ? true : false
+						);
+					}
+
+
+				}
 				if (state.command?.main && main) {
 					if (main.autoManual !== state.command.main.autoManual) {
 						reducer.updateAutoManSelection(
@@ -93,12 +112,15 @@ export const CommandValveMp = React.memo(
 				}
 			};
 		}, [props.store.props]);
+		const { main, upperSeat, lowerSeat, available } = state.command ?? {};
 
-		const { main, upperSeat, lowerSeat, interlocks } = state.command || {};
-
-		const isInterlocked = (interlocks: boolean[]): boolean => {
-			return interlocks.includes(true, 0);
-		};
+		// const isInterlocked = (interlocks: boolean[]): boolean => {
+			// 	return interlocks.includes(true, 0);
+			// };
+		console.log(`Command Props: ${JSON.stringify(state.command,null,2)}`)
+		console.log(`Main Avail: ${JSON.stringify(available?.main,null,2)}`)
+		console.log(`Command Props: ${JSON.stringify(available?.upperSeat,null,2)}`)
+		console.log(`Command Props: ${JSON.stringify(available?.lowerSeat,null,2)}`)
 
 		const handleMainAutoManualSelection = (mode: "auto" | "manual"): void => {
 			reducer.updateAutoManSelection(mode);
@@ -133,7 +155,7 @@ export const CommandValveMp = React.memo(
 			reducer.updateLslManualOff();
 			props.store.props?.write("command.lowerSeat.activation", false);
 		};
-		const componentClassName = "command-valve-mp hmi-command-valve-mp__grid";
+		const componentClassName = "command-valve-mp";
 		return (
 			<div
 				{...emit({
@@ -143,7 +165,7 @@ export const CommandValveMp = React.memo(
 			>
 				<div className={`${IA_SYMBOL_COMPONENT_ROW}`}>
 					<div className={`${IA_SYMBOL_COMPONENT_WRAPPER}`}>
-						<div className={`${HMI_COMPONENT_CLASS}-${componentClassName}`}>
+						<div className={`${HMI_COMPONENT_CLASS} ${componentClassName}`}>
 							<label className="main-label">{main?.label}</label>
 							<div
 								role="group"
@@ -153,7 +175,7 @@ export const CommandValveMp = React.memo(
 									className={`button outlined ${
 										!main?.autoManual ? "selected" : ""
 									}`}
-									disabled={isInterlocked(interlocks?.main || [])}
+									disabled={!available?.main}
 									onClick={() => handleMainAutoManualSelection("auto")}
 								>
 									Auto {/* <IconAuto /> */}
@@ -162,7 +184,7 @@ export const CommandValveMp = React.memo(
 									className={`button outlined ${
 										main?.autoManual ? "selected" : ""
 									}`}
-									disabled={isInterlocked(interlocks?.main || [])}
+									disabled={!available?.main}
 									onClick={() => handleMainAutoManualSelection("manual")}
 								>
 									Manual
@@ -175,7 +197,7 @@ export const CommandValveMp = React.memo(
 										main?.activation ? "selected" : ""
 									}`}
 									disabled={
-										isInterlocked(interlocks?.main || []) || !main?.autoManual
+										!available?.main || !main?.autoManual
 									}
 									onClick={handleMainManualOn}
 								>
@@ -186,7 +208,7 @@ export const CommandValveMp = React.memo(
 										!main?.activation ? "selected" : ""
 									}`}
 									disabled={
-										isInterlocked(interlocks?.main || []) || !main?.autoManual
+										!available?.main || !main?.autoManual
 									}
 									onClick={handleMainManualOff}
 								>
@@ -204,7 +226,7 @@ export const CommandValveMp = React.memo(
 										upperSeat?.activation ? "selected" : ""
 									}`}
 									disabled={
-										isInterlocked(interlocks?.upperSeat || []) ||
+										!available?.upperSeat ||
 										!main?.autoManual
 									}
 									onClick={handleUslManualOn}
@@ -216,7 +238,7 @@ export const CommandValveMp = React.memo(
 										!upperSeat?.activation ? "selected" : ""
 									}`}
 									disabled={
-										isInterlocked(interlocks?.upperSeat || []) ||
+										!available?.upperSeat ||
 										!main?.autoManual
 									}
 									onClick={handleUslManualOff}
@@ -235,7 +257,7 @@ export const CommandValveMp = React.memo(
 										lowerSeat?.activation ? "selected" : ""
 									}`}
 									disabled={
-										isInterlocked(interlocks?.lowerSeat || []) ||
+										!available?.lowerSeat ||
 										!main?.autoManual
 									}
 									onClick={handleLslManualOn}
@@ -247,7 +269,7 @@ export const CommandValveMp = React.memo(
 										!lowerSeat?.activation ? "selected" : ""
 									}`}
 									disabled={
-										isInterlocked(interlocks?.lowerSeat || []) ||
+										!available?.lowerSeat ||
 										!main?.autoManual
 									}
 									onClick={handleLslManualOff}
@@ -262,9 +284,8 @@ export const CommandValveMp = React.memo(
 				</div>
 			</div>
 		);
-	},
-	areEqual
-);
+	}
+
 
 // This is the actual thing that gets registered with the component registry.
 export class CommandValveMpMeta implements ComponentMeta {
@@ -291,10 +312,10 @@ export class CommandValveMpMeta implements ComponentMeta {
 	getPropsReducer(tree: PropertyTree): CommandValveMpProps {
 		return {
 			command: {
-				interlocks: {
-					main: tree.readArray("command.interlocks.main"),
-					upperSeat: tree.readArray("command.interlocks.upperSeat"),
-					lowerSeat: tree.readArray("command.interlocks.lowerSeat"),
+				available: {
+					main: tree.readBoolean("command.available.main",),
+					upperSeat: tree.readBoolean("command.available.upperSeat"),
+					lowerSeat: tree.readBoolean("command.available.lowerSeat"),
 				},
 				main: {
 					label: tree.readString("commands.main.label", ""),

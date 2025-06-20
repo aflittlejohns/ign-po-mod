@@ -97,6 +97,12 @@ function valveMpReducer(
 				draft.command.lowerSeat.activation = false;
 			}
 			return draft;
+		case "UPDATE_MAIN_AVAIL":
+			if (draft.command?.available) {
+				if(action.value)
+				draft.command.available.main = action.value;
+			}
+			return draft;
 
 		default: // #TODO Add more reducer case statements
 			return draft;
@@ -109,6 +115,15 @@ export function useValveMpCommandReducer(): UseValveMpCommandReducer {
 		initialControlState
 	);
 
+	function updateMainAvailable(value: boolean) {
+		dispatch({ type: "UPDATE_MAIN_AVAIL", value });
+	}
+	function updateUpperSeatAvailable(value: boolean) {
+		dispatch({ type: "UPDATE_UPPERSEAT_AVAIL", value });
+	}
+	function updateLowerSeatAvailable(value: boolean) {
+		dispatch({ type: "UPDATE_LOWERSEAT_AVAIL", value });
+	}
 	function updateAutoManSelection(mode: "auto" | "manual") {
 		dispatch({ type: "UPDATE_AUTO_MANUAL", mode });
 	}
@@ -135,6 +150,9 @@ export function useValveMpCommandReducer(): UseValveMpCommandReducer {
 		state,
 		reducer: {
 			updateAutoManSelection,
+			updateMainAvailable,
+			updateUpperSeatAvailable,
+			updateLowerSeatAvailable,
 			updateMainManualOn,
 			updateMainManualOff,
 			updateUslManualOn,
