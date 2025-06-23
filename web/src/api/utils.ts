@@ -1,4 +1,4 @@
-import { getBoolAtIndex } from "../utils/numberUtil";
+import { convertTPValveConfigToHmiValveConfig, getBoolAtIndex } from "../utils/numberUtil";
 import {
 	ItemIdPositionType,
 	// ItemNameEnum,
@@ -28,9 +28,10 @@ export const getValveMpItemClassName = (
 ): string => {
 	let className = "";
 	// Handle the fact that ActivatedConfig and DeactivatedConfig are optional and maybe undefined
-	const ActivatedConfigValue = valveStatus?.activatedConfig ?? 0;
-	const DeactivatedConfigValue = valveStatus?.deactivatedConfig ?? 0;
-	// console.log(valveStatus);
+	const ActivatedConfigValue = convertTPValveConfigToHmiValveConfig(valveStatus?.activatedConfig ?? 0);
+	const DeactivatedConfigValue = convertTPValveConfigToHmiValveConfig(valveStatus?.deactivatedConfig ?? 0);
+
+	console.log(`DeactivatedConfigValue: ${DeactivatedConfigValue}`);
 
 	if (index < 8) {
 		if (

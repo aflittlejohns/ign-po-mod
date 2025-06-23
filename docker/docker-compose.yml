@@ -7,7 +7,7 @@ services:
       ACCEPT_IGNITION_EULA: Y
       GATEWAY_ADMIN_USERNAME: ${GATEWAY_USERNAME:-admin}
       GATEWAY_ADMIN_PASSWORD: ${GATEWAY_PASSWORD:-password}
-      GATEWAY_MODULES_ENABLED: perspective
+      GATEWAY_MODULES_ENABLED: opc-ua,perspective,siemens-drivers,sql-bridge,web-developer,tag-historian
       DISABLE_QUICKSTART: true
     volumes:
       - ../build/Hmi-Components.unsigned.modl:/usr/local/bin/ignition/user-lib/modules/Hmi-Components.unsigned.modl

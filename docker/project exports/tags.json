@@ -12,41 +12,35 @@
           "tagType": "UdtInstance",
           "tags": [
             {
-              "name": "security",
-              "tagType": "Folder",
-              "tags": [
-                {
-                  "name": "accesslevel",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "user-names",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "enabled",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "user-roles",
-                  "tagType": "AtomicTag"
-                }
-              ]
-            },
-            {
               "name": "interlocks",
               "tagType": "Folder",
               "tags": [
-                {
-                  "name": "lower-seat-lift",
-                  "tagType": "AtomicTag"
-                },
                 {
                   "name": "main",
                   "tagType": "AtomicTag"
                 },
                 {
+                  "name": "lower-seat-lift",
+                  "tagType": "AtomicTag"
+                },
+                {
                   "name": "upper-seat-lift",
+                  "tagType": "AtomicTag"
+                }
+              ]
+            },
+            {
+              "name": "lowerSeat",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "value": false,
+                  "name": "on",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "value": true,
+                  "name": "off",
                   "tagType": "AtomicTag"
                 }
               ]
@@ -61,6 +55,11 @@
                   "tagType": "AtomicTag"
                 },
                 {
+                  "value": true,
+                  "name": "manual",
+                  "tagType": "AtomicTag"
+                },
+                {
                   "value": false,
                   "name": "on",
                   "tagType": "AtomicTag"
@@ -69,26 +68,27 @@
                   "value": false,
                   "name": "auto",
                   "tagType": "AtomicTag"
-                },
-                {
-                  "value": true,
-                  "name": "manual",
-                  "tagType": "AtomicTag"
                 }
               ]
             },
             {
-              "name": "lowerSeat",
+              "name": "security",
               "tagType": "Folder",
               "tags": [
                 {
-                  "value": true,
-                  "name": "off",
+                  "name": "enabled",
                   "tagType": "AtomicTag"
                 },
                 {
-                  "value": false,
-                  "name": "on",
+                  "name": "user-names",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "accesslevel",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "user-roles",
                   "tagType": "AtomicTag"
                 }
               ]
@@ -116,20 +116,7 @@
           "tagType": "UdtInstance",
           "tags": [
             {
-              "name": "usl",
-              "tagType": "AtomicTag"
-            },
-            {
               "name": "manual",
-              "tagType": "AtomicTag"
-            },
-            {
-              "value": false,
-              "name": "actFB",
-              "tagType": "AtomicTag"
-            },
-            {
-              "name": "lsl",
               "tagType": "AtomicTag"
             },
             {
@@ -138,21 +125,12 @@
               "tagType": "AtomicTag"
             },
             {
-              "name": "itemName",
-              "tagType": "AtomicTag"
-            },
-            {
-              "value": false,
-              "name": "locate",
-              "tagType": "AtomicTag"
-            },
-            {
-              "name": "deactivatedConfig",
-              "tagType": "AtomicTag"
-            },
-            {
               "value": false,
               "name": "changing",
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "lsl",
               "tagType": "AtomicTag"
             },
             {
@@ -161,12 +139,34 @@
               "tagType": "AtomicTag"
             },
             {
+              "name": "usl",
+              "tagType": "AtomicTag"
+            },
+            {
               "name": "activatedConfig",
               "tagType": "AtomicTag"
             },
             {
               "value": false,
+              "name": "locate",
+              "tagType": "AtomicTag"
+            },
+            {
+              "value": false,
               "name": "masked",
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "itemName",
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "deactivatedConfig",
+              "tagType": "AtomicTag"
+            },
+            {
+              "value": false,
+              "name": "actFB",
               "tagType": "AtomicTag"
             }
           ]
@@ -175,40 +175,6 @@
           "name": "command",
           "tagType": "UdtInstance",
           "tags": [
-            {
-              "name": "interlocks",
-              "tagType": "Folder",
-              "tags": [
-                {
-                  "name": "upper-seat-lift",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "main",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "lower-seat-lift",
-                  "tagType": "AtomicTag"
-                }
-              ]
-            },
-            {
-              "name": "main",
-              "tagType": "Folder",
-              "tags": [
-                {
-                  "value": true,
-                  "name": "autoManual",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "value": true,
-                  "name": "activation",
-                  "tagType": "AtomicTag"
-                }
-              ]
-            },
             {
               "name": "lowerSeat",
               "tagType": "Folder",
@@ -230,8 +196,81 @@
                   "tagType": "AtomicTag"
                 }
               ]
+            },
+            {
+              "name": "interlocks",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "upper-seat-lift",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "lower-seat-lift",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "main",
+                  "tagType": "AtomicTag"
+                }
+              ]
+            },
+            {
+              "name": "main",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "value": true,
+                  "name": "activation",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "value": true,
+                  "name": "autoManual",
+                  "tagType": "AtomicTag"
+                }
+              ]
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "IOI_G1_V402_Par",
+      "typeId": "_STD_Valve_Par",
+      "tagType": "UdtInstance",
+      "tags": [
+        {
+          "name": "ThreePos",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "MixedSeatFB",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "SMP",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "MainOpCount",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "ReducedPar",
+          "tagType": "AtomicTag"
+        },
+        {
+          "opcItemPath": {
+            "bindType": "parameter",
+            "binding": "ns\u003d1;s\u003d[{deviceName}]{accessArea}{dbNumber}{comma}X{byteOffset + 2}.2"
+          },
+          "name": "AirToClose",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "DenyOnOffDelays",
+          "tagType": "AtomicTag"
         }
       ]
     },
@@ -245,7 +284,7 @@
           "tagType": "UdtInstance",
           "tags": [
             {
-              "name": "lsl",
+              "name": "manual",
               "tagType": "AtomicTag"
             },
             {
@@ -253,11 +292,11 @@
               "tagType": "AtomicTag"
             },
             {
-              "name": "actFB",
+              "name": "lsl",
               "tagType": "AtomicTag"
             },
             {
-              "name": "manual",
+              "name": "alarm",
               "tagType": "AtomicTag"
             },
             {
@@ -265,11 +304,11 @@
               "tagType": "AtomicTag"
             },
             {
-              "name": "deActFB",
+              "name": "deactivatedConfig",
               "tagType": "AtomicTag"
             },
             {
-              "name": "deactivatedConfig",
+              "name": "itemName",
               "tagType": "AtomicTag"
             },
             {
@@ -277,7 +316,11 @@
               "tagType": "AtomicTag"
             },
             {
-              "name": "itemName",
+              "name": "actFB",
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "deActFB",
               "tagType": "AtomicTag"
             },
             {
@@ -286,10 +329,6 @@
             },
             {
               "name": "changing",
-              "tagType": "AtomicTag"
-            },
-            {
-              "name": "alarm",
               "tagType": "AtomicTag"
             }
           ]
@@ -309,9 +348,13 @@
               ]
             },
             {
-              "name": "upperSeat",
+              "name": "main",
               "tagType": "Folder",
               "tags": [
+                {
+                  "name": "autoManual",
+                  "tagType": "AtomicTag"
+                },
                 {
                   "name": "activation",
                   "tagType": "AtomicTag"
@@ -337,15 +380,11 @@
               ]
             },
             {
-              "name": "main",
+              "name": "upperSeat",
               "tagType": "Folder",
               "tags": [
                 {
                   "name": "activation",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "autoManual",
                   "tagType": "AtomicTag"
                 }
               ]
@@ -356,6 +395,24 @@
           "name": "command-plc",
           "tagType": "UdtInstance",
           "tags": [
+            {
+              "name": "interlocks",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "upper-seat-lift",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "main",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "lower-seat-lift",
+                  "tagType": "AtomicTag"
+                }
+              ]
+            },
             {
               "name": "security",
               "tagType": "Folder",
@@ -369,54 +426,11 @@
                   "tagType": "AtomicTag"
                 },
                 {
-                  "name": "enabled",
-                  "tagType": "AtomicTag"
-                },
-                {
                   "name": "user-names",
                   "tagType": "AtomicTag"
-                }
-              ]
-            },
-            {
-              "name": "main",
-              "tagType": "Folder",
-              "tags": [
-                {
-                  "value": true,
-                  "name": "manual",
-                  "tagType": "AtomicTag"
                 },
                 {
-                  "name": "auto",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "value": true,
-                  "name": "on",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "value": true,
-                  "name": "off",
-                  "tagType": "AtomicTag"
-                }
-              ]
-            },
-            {
-              "name": "interlocks",
-              "tagType": "Folder",
-              "tags": [
-                {
-                  "name": "lower-seat-lift",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "upper-seat-lift",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "main",
+                  "name": "enabled",
                   "tagType": "AtomicTag"
                 }
               ]
@@ -443,7 +457,32 @@
               "tags": [
                 {
                   "value": true,
+                  "name": "on",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "value": true,
                   "name": "off",
+                  "tagType": "AtomicTag"
+                }
+              ]
+            },
+            {
+              "name": "main",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "value": true,
+                  "name": "off",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "auto",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "value": true,
+                  "name": "manual",
                   "tagType": "AtomicTag"
                 },
                 {
@@ -467,15 +506,7 @@
           "tagType": "UdtInstance",
           "tags": [
             {
-              "name": "itemName",
-              "tagType": "AtomicTag"
-            },
-            {
-              "name": "changing",
-              "tagType": "AtomicTag"
-            },
-            {
-              "name": "deactivatedConfig",
+              "name": "lsl",
               "tagType": "AtomicTag"
             },
             {
@@ -487,23 +518,7 @@
               "tagType": "AtomicTag"
             },
             {
-              "name": "deActFB",
-              "tagType": "AtomicTag"
-            },
-            {
-              "name": "actFB",
-              "tagType": "AtomicTag"
-            },
-            {
-              "name": "alarm",
-              "tagType": "AtomicTag"
-            },
-            {
-              "name": "masked",
-              "tagType": "AtomicTag"
-            },
-            {
-              "name": "lsl",
+              "name": "manual",
               "tagType": "AtomicTag"
             },
             {
@@ -511,15 +526,53 @@
               "tagType": "AtomicTag"
             },
             {
-              "name": "manual",
+              "name": "changing",
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "deActFB",
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "alarm",
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "deactivatedConfig",
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "itemName",
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "masked",
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "actFB",
               "tagType": "AtomicTag"
             }
           ]
         },
         {
-          "name": "command-plc",
+          "name": "command",
           "tagType": "UdtInstance",
           "tags": [
+            {
+              "name": "main",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "autoManual",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "activation",
+                  "tagType": "AtomicTag"
+                }
+              ]
+            },
             {
               "name": "interlocks",
               "tagType": "Folder",
@@ -529,15 +582,41 @@
                   "tagType": "AtomicTag"
                 },
                 {
-                  "name": "upper-seat-lift",
+                  "name": "lower-seat-lift",
                   "tagType": "AtomicTag"
                 },
                 {
-                  "name": "lower-seat-lift",
+                  "name": "upper-seat-lift",
                   "tagType": "AtomicTag"
                 }
               ]
             },
+            {
+              "name": "upperSeat",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "activation",
+                  "tagType": "AtomicTag"
+                }
+              ]
+            },
+            {
+              "name": "lowerSeat",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "activation",
+                  "tagType": "AtomicTag"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "command-plc",
+          "tagType": "UdtInstance",
+          "tags": [
             {
               "name": "security",
               "tagType": "Folder",
@@ -561,33 +640,19 @@
               ]
             },
             {
-              "name": "upperSeat",
+              "name": "interlocks",
               "tagType": "Folder",
               "tags": [
                 {
-                  "value": true,
-                  "name": "on",
+                  "name": "lower-seat-lift",
                   "tagType": "AtomicTag"
                 },
                 {
-                  "value": false,
-                  "name": "off",
-                  "tagType": "AtomicTag"
-                }
-              ]
-            },
-            {
-              "name": "lowerSeat",
-              "tagType": "Folder",
-              "tags": [
-                {
-                  "value": true,
-                  "name": "off",
+                  "name": "main",
                   "tagType": "AtomicTag"
                 },
                 {
-                  "value": true,
-                  "name": "on",
+                  "name": "upper-seat-lift",
                   "tagType": "AtomicTag"
                 }
               ]
@@ -607,50 +672,12 @@
                   "tagType": "AtomicTag"
                 },
                 {
-                  "value": true,
-                  "name": "off",
-                  "tagType": "AtomicTag"
-                },
-                {
                   "name": "auto",
                   "tagType": "AtomicTag"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "command",
-          "tagType": "UdtInstance",
-          "tags": [
-            {
-              "name": "interlocks",
-              "tagType": "Folder",
-              "tags": [
-                {
-                  "name": "lower-seat-lift",
-                  "tagType": "AtomicTag"
                 },
                 {
-                  "name": "upper-seat-lift",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "main",
-                  "tagType": "AtomicTag"
-                }
-              ]
-            },
-            {
-              "name": "main",
-              "tagType": "Folder",
-              "tags": [
-                {
-                  "name": "activation",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "autoManual",
+                  "value": true,
+                  "name": "off",
                   "tagType": "AtomicTag"
                 }
               ]
@@ -660,7 +687,13 @@
               "tagType": "Folder",
               "tags": [
                 {
-                  "name": "activation",
+                  "value": true,
+                  "name": "off",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "value": true,
+                  "name": "on",
                   "tagType": "AtomicTag"
                 }
               ]
@@ -670,7 +703,13 @@
               "tagType": "Folder",
               "tags": [
                 {
-                  "name": "activation",
+                  "value": true,
+                  "name": "on",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "value": false,
+                  "name": "off",
                   "tagType": "AtomicTag"
                 }
               ]
@@ -685,9 +724,127 @@
       "tagType": "UdtInstance",
       "tags": [
         {
+          "name": "command",
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "lowerSeat",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "activation",
+                  "tagType": "AtomicTag"
+                }
+              ]
+            },
+            {
+              "name": "main",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "autoManual",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "activation",
+                  "tagType": "AtomicTag"
+                }
+              ]
+            },
+            {
+              "name": "interlocks",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "lower-seat-lift",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "upper-seat-lift",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "main",
+                  "tagType": "AtomicTag"
+                }
+              ]
+            },
+            {
+              "name": "upperSeat",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "activation",
+                  "tagType": "AtomicTag"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "name": "command-plc",
           "tagType": "UdtInstance",
           "tags": [
+            {
+              "name": "interlocks",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "name": "upper-seat-lift",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "main",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "lower-seat-lift",
+                  "tagType": "AtomicTag"
+                }
+              ]
+            },
+            {
+              "name": "main",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "value": true,
+                  "name": "off",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "value": false,
+                  "name": "on",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "value": true,
+                  "name": "manual",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "value": false,
+                  "name": "auto",
+                  "tagType": "AtomicTag"
+                }
+              ]
+            },
+            {
+              "name": "lowerSeat",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "value": false,
+                  "name": "off",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "value": true,
+                  "name": "on",
+                  "tagType": "AtomicTag"
+                }
+              ]
+            },
             {
               "name": "security",
               "tagType": "Folder",
@@ -711,32 +868,6 @@
               ]
             },
             {
-              "name": "main",
-              "tagType": "Folder",
-              "tags": [
-                {
-                  "value": true,
-                  "name": "off",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "value": false,
-                  "name": "on",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "value": false,
-                  "name": "auto",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "value": true,
-                  "name": "manual",
-                  "tagType": "AtomicTag"
-                }
-              ]
-            },
-            {
               "name": "upperSeat",
               "tagType": "Folder",
               "tags": [
@@ -748,40 +879,6 @@
                 {
                   "value": false,
                   "name": "off",
-                  "tagType": "AtomicTag"
-                }
-              ]
-            },
-            {
-              "name": "lowerSeat",
-              "tagType": "Folder",
-              "tags": [
-                {
-                  "value": false,
-                  "name": "off",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "value": true,
-                  "name": "on",
-                  "tagType": "AtomicTag"
-                }
-              ]
-            },
-            {
-              "name": "interlocks",
-              "tagType": "Folder",
-              "tags": [
-                {
-                  "name": "main",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "lower-seat-lift",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "upper-seat-lift",
                   "tagType": "AtomicTag"
                 }
               ]
@@ -797,35 +894,7 @@
               "tagType": "AtomicTag"
             },
             {
-              "name": "lsl",
-              "tagType": "AtomicTag"
-            },
-            {
-              "name": "changing",
-              "tagType": "AtomicTag"
-            },
-            {
-              "name": "itemName",
-              "tagType": "AtomicTag"
-            },
-            {
-              "name": "deActFB",
-              "tagType": "AtomicTag"
-            },
-            {
-              "name": "usl",
-              "tagType": "AtomicTag"
-            },
-            {
-              "name": "deactivatedConfig",
-              "tagType": "AtomicTag"
-            },
-            {
               "name": "activatedConfig",
-              "tagType": "AtomicTag"
-            },
-            {
-              "name": "locate",
               "tagType": "AtomicTag"
             },
             {
@@ -833,47 +902,341 @@
               "tagType": "AtomicTag"
             },
             {
-              "name": "actFB",
+              "name": "changing",
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "lsl",
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "locate",
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "usl",
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "deActFB",
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "itemName",
               "tagType": "AtomicTag"
             },
             {
               "name": "masked",
               "tagType": "AtomicTag"
+            },
+            {
+              "name": "deactivatedConfig",
+              "tagType": "AtomicTag"
+            },
+            {
+              "name": "actFB",
+              "tagType": "AtomicTag"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "IOI_G1_V402_C",
+      "typeId": "_STD_Valve_Ctrl",
+      "tagType": "UdtInstance",
+      "tags": [
+        {
+          "name": "Spare_1_6",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "Spare_0_4",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "ManMain1",
+          "tagType": "AtomicTag"
+        },
+        {
+          "opcItemPath": "ns\u003d1;s\u003d[Flex A Alsafe]DB430,X3.4",
+          "name": "ManMain2UpperSeat",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "Spare_0_5",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "Spare_0_1",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "Spare_0_6",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "SimMode",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "Spare_0_2",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "AlarmSupressMode",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "Spare_0_3",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "Spare_1_7",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "Reserved",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "ManMode",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "ManLowerSeat",
+          "tagType": "AtomicTag"
+        },
+        {
+          "name": "Spare_0_0",
+          "tagType": "AtomicTag"
+        }
+      ]
+    },
+    {
+      "name": "_types_",
+      "tagType": "Folder",
+      "tags": [
+        {
+          "name": "_STD_Valve_Ctrl",
+          "parameters": {
+            "offsetByte": {
+              "dataType": "Integer",
+              "value": 2
+            },
+            "comma": {
+              "dataType": "String",
+              "value": ","
+            },
+            "accessArea": {
+              "dataType": "String",
+              "value": "DB"
+            },
+            "dbNumber": {
+              "dataType": "Integer",
+              "value": 430
+            },
+            "deviceName": {
+              "dataType": "String",
+              "value": "Flex A Alsafe"
+            }
+          },
+          "tagType": "UdtType",
+          "tags": [
+            {
+              "valueSource": "memory",
+              "opcItemPath": "",
+              "dataType": "Boolean",
+              "name": "Spare_0_3",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "opcItemPath": {
+                "bindType": "parameter",
+                "binding": "ns\u003d1;s\u003d[{deviceName}]{accessArea}{dbNumber}{comma}X{offsetByte + 1}.2"
+              },
+              "valueSource": "opc",
+              "dataType": "Boolean",
+              "name": "ManMode",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "opcItemPath": {
+                "bindType": "parameter",
+                "binding": "ns\u003d1;s\u003d[{deviceName}]{accessArea}{dbNumber}{comma}X{offsetByte + 0}.1"
+              },
+              "valueSource": "memory",
+              "dataType": "Boolean",
+              "name": "Spare_0_1",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "opcItemPath": {
+                "bindType": "parameter",
+                "binding": "ns\u003d1;s\u003d[{deviceName}]{accessArea}{dbNumber}{comma}X{offsetByte + 0}.2"
+              },
+              "valueSource": "memory",
+              "dataType": "Boolean",
+              "name": "Spare_0_2",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "valueSource": "memory",
+              "opcItemPath": "",
+              "dataType": "Boolean",
+              "name": "Spare_1_7",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "valueSource": "memory",
+              "opcItemPath": "",
+              "dataType": "Boolean",
+              "name": "Spare_0_5",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "opcItemPath": {
+                "bindType": "parameter",
+                "binding": "ns\u003d1;s\u003d[{deviceName}]{accessArea}{dbNumber}{comma}X{offsetByte + 1}.1"
+              },
+              "valueSource": "opc",
+              "dataType": "Boolean",
+              "name": "AlarmSupressMode",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "opcItemPath": {
+                "bindType": "parameter",
+                "binding": "ns\u003d1;s\u003d[{deviceName}]{accessArea}{dbNumber}{comma}X{offsetByte + 1}.5"
+              },
+              "valueSource": "opc",
+              "dataType": "Boolean",
+              "name": "ManLowerSeat",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "opcItemPath": {
+                "bindType": "parameter",
+                "binding": "ns\u003d1;s\u003d[{deviceName}]{accessArea}{dbNumber}{comma}X{offsetByte + 1}.0"
+              },
+              "valueSource": "opc",
+              "dataType": "Boolean",
+              "name": "SimMode",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "valueSource": "memory",
+              "opcItemPath": "",
+              "dataType": "Boolean",
+              "name": "Spare_0_6",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "valueSource": "memory",
+              "opcItemPath": "",
+              "dataType": "Boolean",
+              "name": "Spare_0_4",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "opcItemPath": {
+                "bindType": "parameter",
+                "binding": "ns\u003d1;s\u003d[{deviceName}]{accessArea}{dbNumber}{comma}X{offsetByte + 1}.3"
+              },
+              "valueSource": "opc",
+              "dataType": "Boolean",
+              "name": "ManMain1",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "opcItemPath": {
+                "bindType": "parameter",
+                "binding": "ns\u003d1;s\u003d[{deviceName}]{accessArea}{dbNumber}{comma}X{offsetByte + 1}.7"
+              },
+              "valueSource": "opc",
+              "dataType": "Boolean",
+              "name": "Reserved",
+              "tooltip": "This bit must alway be zero due to Rockwells way of handling double int\u0027s",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "opcItemPath": {
+                "bindType": "parameter",
+                "binding": "ns\u003d1;s\u003d[{deviceName}]{accessArea}{dbNumber}{comma}X{offsetByte + 1}.4"
+              },
+              "valueSource": "opc",
+              "dataType": "Boolean",
+              "name": "ManMain2UpperSeat",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "opcItemPath": {
+                "bindType": "parameter",
+                "binding": "ns\u003d1;s\u003d[{deviceName}]{accessArea}{dbNumber}{comma}X{offsetByte + 0}.0"
+              },
+              "valueSource": "memory",
+              "dataType": "Boolean",
+              "name": "Spare_0_0",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "valueSource": "memory",
+              "opcItemPath": "",
+              "dataType": "Boolean",
+              "name": "Spare_1_6",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
             }
           ]
         },
         {
-          "name": "command",
-          "tagType": "UdtInstance",
+          "name": "hmi-valve-mp__command-hmi-interface",
+          "tagType": "UdtType",
           "tags": [
-            {
-              "name": "main",
-              "tagType": "Folder",
-              "tags": [
-                {
-                  "name": "autoManual",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "activation",
-                  "tagType": "AtomicTag"
-                }
-              ]
-            },
             {
               "name": "interlocks",
               "tagType": "Folder",
               "tags": [
                 {
-                  "name": "main",
-                  "tagType": "AtomicTag"
-                },
-                {
+                  "valueSource": "memory",
+                  "dataType": "BooleanArray",
                   "name": "upper-seat-lift",
+                  "value": [
+                    false
+                  ],
                   "tagType": "AtomicTag"
                 },
                 {
+                  "valueSource": "memory",
+                  "dataType": "BooleanArray",
                   "name": "lower-seat-lift",
+                  "value": [
+                    false
+                  ],
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "valueSource": "memory",
+                  "dataType": "BooleanArray",
+                  "name": "main",
+                  "value": [
+                    false
+                  ],
                   "tagType": "AtomicTag"
                 }
               ]
@@ -883,7 +1246,30 @@
               "tagType": "Folder",
               "tags": [
                 {
+                  "valueSource": "memory",
+                  "dataType": "Boolean",
                   "name": "activation",
+                  "value": false,
+                  "tagType": "AtomicTag"
+                }
+              ]
+            },
+            {
+              "name": "main",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "valueSource": "memory",
+                  "dataType": "Boolean",
+                  "name": "activation",
+                  "value": false,
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "valueSource": "memory",
+                  "dataType": "Boolean",
+                  "name": "autoManual",
+                  "value": false,
                   "tagType": "AtomicTag"
                 }
               ]
@@ -893,19 +1279,222 @@
               "tagType": "Folder",
               "tags": [
                 {
+                  "valueSource": "memory",
+                  "dataType": "Boolean",
                   "name": "activation",
+                  "value": false,
                   "tagType": "AtomicTag"
                 }
               ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "name": "_types_",
-      "tagType": "Folder",
-      "tags": [
+        },
+        {
+          "name": "hmi-valve-mp__status",
+          "tagType": "UdtType",
+          "tags": [
+            {
+              "valueSource": "memory",
+              "dataType": "Boolean",
+              "name": "changing",
+              "tooltip": "Item state in transition",
+              "value": false,
+              "tagType": "AtomicTag"
+            },
+            {
+              "valueSource": "memory",
+              "dataType": "Boolean",
+              "name": "alarm",
+              "value": false,
+              "tagType": "AtomicTag"
+            },
+            {
+              "valueSource": "memory",
+              "dataType": "Boolean",
+              "name": "actFB",
+              "tooltip": "Activated Feedback",
+              "value": false,
+              "tagType": "AtomicTag"
+            },
+            {
+              "valueSource": "memory",
+              "engHigh": 32767.0,
+              "name": "deactivatedConfig",
+              "value": 4095,
+              "tagType": "AtomicTag"
+            },
+            {
+              "valueSource": "memory",
+              "dataType": "Boolean",
+              "name": "lsl",
+              "tooltip": "Lower Seat Lift Activated",
+              "value": false,
+              "tagType": "AtomicTag"
+            },
+            {
+              "valueSource": "memory",
+              "dataType": "Boolean",
+              "name": "masked",
+              "tooltip": "Item Feedback Masked, Note; inhibits item fault, however this doesn\u0027t mean the ACTUAL item state feedback is ignored.",
+              "value": false,
+              "tagType": "AtomicTag"
+            },
+            {
+              "value": {
+                "bindType": "parameter",
+                "binding": "{RootInstanceName}"
+              },
+              "valueSource": "memory",
+              "dataType": "String",
+              "name": "itemName",
+              "tagType": "AtomicTag"
+            },
+            {
+              "valueSource": "memory",
+              "dataType": "Boolean",
+              "name": "manual",
+              "tooltip": "Item in Manual, i.e NOT in Auto",
+              "value": false,
+              "tagType": "AtomicTag"
+            },
+            {
+              "valueSource": "memory",
+              "dataType": "Boolean",
+              "name": "usl",
+              "tooltip": "Upper Seat Lift Activated",
+              "value": false,
+              "tagType": "AtomicTag"
+            },
+            {
+              "valueSource": "memory",
+              "dataType": "Boolean",
+              "name": "deActFB",
+              "tooltip": "Deactivated Feedback",
+              "value": true,
+              "tagType": "AtomicTag"
+            },
+            {
+              "valueSource": "memory",
+              "engHigh": 32767.0,
+              "name": "activatedConfig",
+              "value": 511,
+              "tagType": "AtomicTag"
+            },
+            {
+              "valueSource": "memory",
+              "dataType": "Boolean",
+              "name": "locate",
+              "tooltip": "Item location functions activated when true",
+              "value": false,
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "_STD_Valve_Par",
+          "parameters": {
+            "byteOffset": {
+              "dataType": "Integer",
+              "value": 42
+            },
+            "comma": {
+              "dataType": "String",
+              "value": ","
+            },
+            "accessArea": {
+              "dataType": "String",
+              "value": "DB"
+            },
+            "dbNumber": {
+              "dataType": "Integer",
+              "value": 403
+            },
+            "deviceName": {
+              "dataType": "String",
+              "value": "Flex A Alsafe"
+            }
+          },
+          "tagType": "UdtType",
+          "tags": [
+            {
+              "opcItemPath": {
+                "bindType": "parameter",
+                "binding": "ns\u003d1;s\u003d[{deviceName}]{accessArea}{dbNumber}{comma}X{byteOffset + 2}.1"
+              },
+              "valueSource": "opc",
+              "dataType": "Boolean",
+              "name": "ThreePos",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "opcItemPath": {
+                "bindType": "parameter",
+                "binding": "ns\u003d1;s\u003d[{deviceName}]{accessArea}{dbNumber}{comma}X{byteOffset + 2}.2"
+              },
+              "valueSource": "opc",
+              "dataType": "Boolean",
+              "name": "AirToClose",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "opcItemPath": {
+                "bindType": "parameter",
+                "binding": "ns\u003d1;s\u003d[{deviceName}]{accessArea}{dbNumber}{comma}X{byteOffset + 1}.0"
+              },
+              "valueSource": "opc",
+              "dataType": "Boolean",
+              "name": "ReducedPar",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "opcItemPath": {
+                "bindType": "parameter",
+                "binding": "ns\u003d1;s\u003d[{deviceName}]{accessArea}{dbNumber}{comma}X{byteOffset+ 1}.1"
+              },
+              "valueSource": "opc",
+              "dataType": "Boolean",
+              "name": "DenyOnOffDelays",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "opcItemPath": {
+                "bindType": "parameter",
+                "binding": "ns\u003d1;s\u003d[{deviceName}]{accessArea}{dbNumber}{comma}X{byteOffset + 2}.3"
+              },
+              "valueSource": "opc",
+              "dataType": "Boolean",
+              "name": "MixedSeatFB",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "opcItemPath": {
+                "bindType": "parameter",
+                "binding": "ns\u003d1;s\u003d[{deviceName}]{accessArea}{dbNumber}{comma}X{byteOffset + 2}.0"
+              },
+              "valueSource": "opc",
+              "dataType": "Boolean",
+              "name": "SMP",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            },
+            {
+              "opcItemPath": {
+                "bindType": "parameter",
+                "binding": "ns\u003d1;s\u003d[{deviceName}]{accessArea}{dbNumber}{comma}I{byteOffset + 4}"
+              },
+              "valueSource": "opc",
+              "documentation": "Enter comment here",
+              "name": "MainOpCount",
+              "tagType": "AtomicTag",
+              "opcServer": "Ignition OPC UA Server"
+            }
+          ]
+        },
         {
           "name": "hmi-valve-status",
           "tagType": "UdtType",
@@ -1017,16 +1606,6 @@
               "tagType": "UdtInstance",
               "tags": [
                 {
-                  "name": "upperSeat",
-                  "tagType": "Folder",
-                  "tags": [
-                    {
-                      "name": "activation",
-                      "tagType": "AtomicTag"
-                    }
-                  ]
-                },
-                {
                   "name": "lowerSeat",
                   "tagType": "Folder",
                   "tags": [
@@ -1045,11 +1624,21 @@
                       "tagType": "AtomicTag"
                     },
                     {
-                      "name": "main",
+                      "name": "upper-seat-lift",
                       "tagType": "AtomicTag"
                     },
                     {
-                      "name": "upper-seat-lift",
+                      "name": "main",
+                      "tagType": "AtomicTag"
+                    }
+                  ]
+                },
+                {
+                  "name": "upperSeat",
+                  "tagType": "Folder",
+                  "tags": [
+                    {
+                      "name": "activation",
                       "tagType": "AtomicTag"
                     }
                   ]
@@ -1059,69 +1648,14 @@
                   "tagType": "Folder",
                   "tags": [
                     {
-                      "name": "activation",
+                      "name": "autoManual",
                       "tagType": "AtomicTag"
                     },
                     {
-                      "name": "autoManual",
+                      "name": "activation",
                       "tagType": "AtomicTag"
                     }
                   ]
-                }
-              ]
-            },
-            {
-              "name": "status",
-              "typeId": "hmi-valve-mp__status",
-              "tagType": "UdtInstance",
-              "tags": [
-                {
-                  "name": "usl",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "activatedConfig",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "locate",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "alarm",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "changing",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "itemName",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "deActFB",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "masked",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "deactivatedConfig",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "manual",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "actFB",
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "name": "lsl",
-                  "tagType": "AtomicTag"
                 }
               ]
             },
@@ -1131,15 +1665,23 @@
               "tagType": "UdtInstance",
               "tags": [
                 {
-                  "name": "upperSeat",
+                  "name": "main",
                   "tagType": "Folder",
                   "tags": [
+                    {
+                      "name": "auto",
+                      "tagType": "AtomicTag"
+                    },
                     {
                       "name": "on",
                       "tagType": "AtomicTag"
                     },
                     {
                       "name": "off",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "name": "manual",
                       "tagType": "AtomicTag"
                     }
                   ]
@@ -1150,46 +1692,6 @@
                   "tags": [
                     {
                       "name": "on",
-                      "tagType": "AtomicTag"
-                    },
-                    {
-                      "name": "off",
-                      "tagType": "AtomicTag"
-                    }
-                  ]
-                },
-                {
-                  "name": "interlocks",
-                  "tagType": "Folder",
-                  "tags": [
-                    {
-                      "name": "lower-seat-lift",
-                      "tagType": "AtomicTag"
-                    },
-                    {
-                      "name": "upper-seat-lift",
-                      "tagType": "AtomicTag"
-                    },
-                    {
-                      "name": "main",
-                      "tagType": "AtomicTag"
-                    }
-                  ]
-                },
-                {
-                  "name": "main",
-                  "tagType": "Folder",
-                  "tags": [
-                    {
-                      "name": "manual",
-                      "tagType": "AtomicTag"
-                    },
-                    {
-                      "name": "on",
-                      "tagType": "AtomicTag"
-                    },
-                    {
-                      "name": "auto",
                       "tagType": "AtomicTag"
                     },
                     {
@@ -1203,11 +1705,7 @@
                   "tagType": "Folder",
                   "tags": [
                     {
-                      "name": "accesslevel",
-                      "tagType": "AtomicTag"
-                    },
-                    {
-                      "name": "user-names",
+                      "name": "enabled",
                       "tagType": "AtomicTag"
                     },
                     {
@@ -1215,43 +1713,123 @@
                       "tagType": "AtomicTag"
                     },
                     {
-                      "name": "enabled",
+                      "name": "user-names",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "name": "accesslevel",
                       "tagType": "AtomicTag"
                     }
                   ]
+                },
+                {
+                  "name": "upperSeat",
+                  "tagType": "Folder",
+                  "tags": [
+                    {
+                      "name": "off",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "name": "on",
+                      "tagType": "AtomicTag"
+                    }
+                  ]
+                },
+                {
+                  "name": "interlocks",
+                  "tagType": "Folder",
+                  "tags": [
+                    {
+                      "name": "upper-seat-lift",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "name": "lower-seat-lift",
+                      "tagType": "AtomicTag"
+                    },
+                    {
+                      "name": "main",
+                      "tagType": "AtomicTag"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "status",
+              "typeId": "hmi-valve-mp__status",
+              "tagType": "UdtInstance",
+              "tags": [
+                {
+                  "name": "changing",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "usl",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "actFB",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "manual",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "activatedConfig",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "deactivatedConfig",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "itemName",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "alarm",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "masked",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "lsl",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "locate",
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "name": "deActFB",
+                  "tagType": "AtomicTag"
                 }
               ]
             }
           ]
         },
         {
-          "name": "hmi-valve-mp__command-hmi-interface",
+          "name": "hmi-valve-mp__command",
           "tagType": "UdtType",
           "tags": [
-            {
-              "name": "main",
-              "tagType": "Folder",
-              "tags": [
-                {
-                  "valueSource": "memory",
-                  "dataType": "Boolean",
-                  "name": "activation",
-                  "value": false,
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "valueSource": "memory",
-                  "dataType": "Boolean",
-                  "name": "autoManual",
-                  "value": false,
-                  "tagType": "AtomicTag"
-                }
-              ]
-            },
             {
               "name": "interlocks",
               "tagType": "Folder",
               "tags": [
+                {
+                  "valueSource": "memory",
+                  "dataType": "BooleanArray",
+                  "name": "upper-seat-lift",
+                  "value": [
+                    false
+                  ],
+                  "tagType": "AtomicTag"
+                },
                 {
                   "valueSource": "memory",
                   "dataType": "BooleanArray",
@@ -1269,50 +1847,9 @@
                     false
                   ],
                   "tagType": "AtomicTag"
-                },
-                {
-                  "valueSource": "memory",
-                  "dataType": "BooleanArray",
-                  "name": "upper-seat-lift",
-                  "value": [
-                    false
-                  ],
-                  "tagType": "AtomicTag"
                 }
               ]
             },
-            {
-              "name": "upperSeat",
-              "tagType": "Folder",
-              "tags": [
-                {
-                  "valueSource": "memory",
-                  "dataType": "Boolean",
-                  "name": "activation",
-                  "value": false,
-                  "tagType": "AtomicTag"
-                }
-              ]
-            },
-            {
-              "name": "lowerSeat",
-              "tagType": "Folder",
-              "tags": [
-                {
-                  "valueSource": "memory",
-                  "dataType": "Boolean",
-                  "name": "activation",
-                  "value": false,
-                  "tagType": "AtomicTag"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "name": "hmi-valve-mp__command",
-          "tagType": "UdtType",
-          "tags": [
             {
               "name": "lowerSeat",
               "tagType": "Folder",
@@ -1334,80 +1871,23 @@
               ]
             },
             {
-              "name": "interlocks",
+              "name": "main",
               "tagType": "Folder",
               "tags": [
                 {
                   "valueSource": "memory",
-                  "dataType": "BooleanArray",
-                  "name": "main",
-                  "value": [
-                    false
-                  ],
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "valueSource": "memory",
-                  "dataType": "BooleanArray",
-                  "name": "lower-seat-lift",
-                  "value": [
-                    false
-                  ],
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "valueSource": "memory",
-                  "dataType": "BooleanArray",
-                  "name": "upper-seat-lift",
-                  "value": [
-                    false
-                  ],
-                  "tagType": "AtomicTag"
-                }
-              ]
-            },
-            {
-              "name": "security",
-              "tagType": "Folder",
-              "tags": [
-                {
-                  "valueSource": "memory",
-                  "name": "accesslevel",
-                  "value": 500,
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "valueSource": "memory",
-                  "dataType": "StringArray",
-                  "name": "user-names",
-                  "value": [
-                    "admin"
-                  ],
+                  "dataType": "Boolean",
+                  "name": "auto",
+                  "value": true,
                   "tagType": "AtomicTag"
                 },
                 {
                   "valueSource": "memory",
                   "dataType": "Boolean",
-                  "name": "enabled",
-                  "tooltip": "Security write access enabled",
+                  "name": "on",
                   "value": false,
                   "tagType": "AtomicTag"
                 },
-                {
-                  "valueSource": "memory",
-                  "dataType": "StringArray",
-                  "name": "user-roles",
-                  "value": [
-                    "adminAdministators"
-                  ],
-                  "tagType": "AtomicTag"
-                }
-              ]
-            },
-            {
-              "name": "main",
-              "tagType": "Folder",
-              "tags": [
                 {
                   "valueSource": "memory",
                   "dataType": "Boolean",
@@ -1421,20 +1901,6 @@
                   "name": "off",
                   "value": true,
                   "tagType": "AtomicTag"
-                },
-                {
-                  "valueSource": "memory",
-                  "dataType": "Boolean",
-                  "name": "on",
-                  "value": false,
-                  "tagType": "AtomicTag"
-                },
-                {
-                  "valueSource": "memory",
-                  "dataType": "Boolean",
-                  "name": "auto",
-                  "value": true,
-                  "tagType": "AtomicTag"
                 }
               ]
             },
@@ -1457,107 +1923,44 @@
                   "tagType": "AtomicTag"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "name": "hmi-valve-mp__status",
-          "tagType": "UdtType",
-          "tags": [
-            {
-              "valueSource": "memory",
-              "dataType": "Boolean",
-              "name": "changing",
-              "tooltip": "Item state in transition",
-              "value": false,
-              "tagType": "AtomicTag"
             },
             {
-              "value": {
-                "bindType": "parameter",
-                "binding": "{RootInstanceName}"
-              },
-              "valueSource": "memory",
-              "dataType": "String",
-              "name": "itemName",
-              "tagType": "AtomicTag"
-            },
-            {
-              "valueSource": "memory",
-              "engHigh": 32767.0,
-              "name": "activatedConfig",
-              "value": 511,
-              "tagType": "AtomicTag"
-            },
-            {
-              "valueSource": "memory",
-              "dataType": "Boolean",
-              "name": "masked",
-              "tooltip": "Item Feedback Masked, Note; inhibits item fault, however this doesn\u0027t mean the ACTUAL item state feedback is ignored.",
-              "value": false,
-              "tagType": "AtomicTag"
-            },
-            {
-              "valueSource": "memory",
-              "dataType": "Boolean",
-              "name": "alarm",
-              "value": false,
-              "tagType": "AtomicTag"
-            },
-            {
-              "valueSource": "memory",
-              "dataType": "Boolean",
-              "name": "manual",
-              "tooltip": "Item in Manual, i.e NOT in Auto",
-              "value": false,
-              "tagType": "AtomicTag"
-            },
-            {
-              "valueSource": "memory",
-              "dataType": "Boolean",
-              "name": "actFB",
-              "tooltip": "Activated Feedback",
-              "value": false,
-              "tagType": "AtomicTag"
-            },
-            {
-              "valueSource": "memory",
-              "dataType": "Boolean",
-              "name": "lsl",
-              "tooltip": "Lower Seat Lift Activated",
-              "value": false,
-              "tagType": "AtomicTag"
-            },
-            {
-              "valueSource": "memory",
-              "dataType": "Boolean",
-              "name": "locate",
-              "tooltip": "Item location functions activated when true",
-              "value": false,
-              "tagType": "AtomicTag"
-            },
-            {
-              "valueSource": "memory",
-              "dataType": "Boolean",
-              "name": "deActFB",
-              "tooltip": "Deactivated Feedback",
-              "value": true,
-              "tagType": "AtomicTag"
-            },
-            {
-              "valueSource": "memory",
-              "dataType": "Boolean",
-              "name": "usl",
-              "tooltip": "Upper Seat Lift Activated",
-              "value": false,
-              "tagType": "AtomicTag"
-            },
-            {
-              "valueSource": "memory",
-              "engHigh": 32767.0,
-              "name": "deactivatedConfig",
-              "value": 4095,
-              "tagType": "AtomicTag"
+              "name": "security",
+              "tagType": "Folder",
+              "tags": [
+                {
+                  "valueSource": "memory",
+                  "dataType": "StringArray",
+                  "name": "user-names",
+                  "value": [
+                    "admin"
+                  ],
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "valueSource": "memory",
+                  "dataType": "StringArray",
+                  "name": "user-roles",
+                  "value": [
+                    "adminAdministators"
+                  ],
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "valueSource": "memory",
+                  "dataType": "Boolean",
+                  "name": "enabled",
+                  "tooltip": "Security write access enabled",
+                  "value": false,
+                  "tagType": "AtomicTag"
+                },
+                {
+                  "valueSource": "memory",
+                  "name": "accesslevel",
+                  "value": 500,
+                  "tagType": "AtomicTag"
+                }
+              ]
             }
           ]
         }

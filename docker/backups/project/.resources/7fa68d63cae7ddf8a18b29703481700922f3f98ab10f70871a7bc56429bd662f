@@ -1,0 +1,70 @@
+{
+  "custom": {},
+  "params": {
+    "parameters": [
+      {
+        "input": {
+          "editable": false,
+          "value": 0
+        },
+        "label": {
+          "text": "Parameter 0"
+        }
+      }
+    ]
+  },
+  "propConfig": {
+    "params.parameters": {
+      "paramDirection": "inout",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 719,
+      "width": 812
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "children": [
+          {
+            "meta": {
+              "name": "parameter-list"
+            },
+            "position": {
+              "grow": 1
+            },
+            "propConfig": {
+              "props.parameters": {
+                "binding": {
+                  "config": {
+                    "path": "view.params.parameters"
+                  },
+                  "type": "property"
+                }
+              }
+            },
+            "type": "hmi.input.ParameterList"
+          }
+        ],
+        "meta": {
+          "name": "FlexContainer"
+        },
+        "position": {
+          "grow": 1
+        },
+        "props": {
+          "alignItems": "center",
+          "direction": "column"
+        },
+        "type": "ia.container.flex"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.flex"
+  }
+}
