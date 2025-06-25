@@ -38,7 +38,7 @@ export const StatusValveMp = (props: ComponentProps<StatusProps>) => {
 									<li key={index}>
 										<label className="checkbox">
 											<div className="text">
-												<p className="x-small">{item.label}</p>
+												<p className={`x-small ${item.lowlight ? "low-light": ""}`}>{item.label}</p>
 											</div>
 											<div className="end">
 												<input
@@ -90,6 +90,72 @@ export class StatusValveMpMeta implements ComponentMeta {
 				{
 					label: `label text`,
 					status: false,
+					lowlight: false,
+				},
+				{
+					label: `label text`,
+					status: false,
+					lowlight: false,
+				},
+				{
+					label: `label text`,
+					status: false,
+					lowlight: false,
+				},
+				{
+					label: `label text`,
+					status: false,
+					lowlight: false,
+				},
+				{
+					label: `label text`,
+					status: false,
+					lowlight: false,
+				},
+				{
+					label: `label text`,
+					status: false,
+					lowlight: false,
+				},
+				{
+					label: `label text`,
+					status: false,
+					lowlight: false,
+				},
+				{
+					label: `label text`,
+					status: false,
+					lowlight: false,
+				},
+				{
+					label: `label text`,
+					status: false,
+					lowlight: false,
+				},
+				{
+					label: `label text`,
+					status: false,
+					lowlight: false,
+				},
+				{
+					label: `label text`,
+					status: false,
+					lowlight: false,
+				},
+				{
+					label: `label text`,
+					status: false,
+					lowlight: false,
+				},
+				{
+					label: `label text`,
+					status: false,
+					lowlight: false,
+				},
+				{
+					label: `label text`,
+					status: false,
+					lowlight: false,
 				},
 			]),
 		};

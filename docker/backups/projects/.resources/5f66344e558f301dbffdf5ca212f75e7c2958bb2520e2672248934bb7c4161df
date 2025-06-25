@@ -3,6 +3,10 @@
     "/": {
       "title": "",
       "viewPath": "View"
+    },
+    "/status": {
+      "title": "",
+      "viewPath": "status"
     }
   },
   "sharedDocks": {

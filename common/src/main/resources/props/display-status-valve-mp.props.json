@@ -15,6 +15,11 @@
 						"type": "boolean",
 						"default": false,
 						"description": "Status of status bit"
+					},
+					"lowlight": {
+						"type": "boolean",
+						"default": false,
+						"description": "Dim text when config bit is false"
 					}
 				}
 			}

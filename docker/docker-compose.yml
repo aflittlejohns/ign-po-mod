@@ -13,7 +13,7 @@ services:
       - ../build/Hmi-Components.unsigned.modl:/usr/local/bin/ignition/user-lib/modules/Hmi-Components.unsigned.modl
       - ./backups/gateway.gwbk:/restore.gwbk
       - ../web:/web-resources
-      - ./backups/project:/usr/local/bin/ignition/data/projects
+      - ./backups/projects:/usr/local/bin/ignition/data/projects
     labels:
       traefik.enable: "true"
       traefik.hostname: "perspective-component"
