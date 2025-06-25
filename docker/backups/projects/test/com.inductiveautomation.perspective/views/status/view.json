@@ -89,21 +89,36 @@
             {
               "label": "Sim Mode"
             },
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
+            {
+              "label": "Alarm Supress Mode"
+            },
+            {
+              "label": "Manual Mode"
+            },
+            {
+              "label": "Main1"
+            },
+            {
+              "label": "Main2/UpperSeat"
+            },
+            {
+              "label": "LowerSeat"
+            },
+            {
+              "label": "Main Activated FB"
+            },
+            {
+              "label": "Main Deactivated FB"
+            },
             {
               "label": "Main1 Auto"
             },
-            null,
-            null,
+            {
+              "label": "Main2/UpperSeat Auto"
+            },
+            {
+              "label": "LowerSeat Auto"
+            },
             {
               "label": "Spare_2_6",
               "stat": false
@@ -144,14 +159,30 @@
               "label": "Spare_1_7",
               "stat": false
             },
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            {
+              "label": "LowerSeat Fault"
+            },
+            {
+              "label": "UpperSeat Fault"
+            },
+            {
+              "label": "Main Fault"
+            },
+            {
+              "label": "Hardware Fault"
+            },
+            {
+              "label": "Acknowledged Fault"
+            },
+            {
+              "label": "Unacknowledged Fault"
+            },
+            {
+              "label": "Fault"
+            },
+            {
+              "label": "Reserved"
+            }
           ],
           "tagpath": "value",
           "textlistTagpath": "value"
@@ -160,7 +191,7 @@
           "name": "Multi-port valve status display"
         },
         "position": {
-          "height": 139,
+          "height": 466,
           "width": 238,
           "x": 36,
           "y": 40
@@ -686,7 +717,7 @@
               },
               "transforms": [
                 {
-                  "code": "\tlabel \u003d value[\u0027label\u0027]\n\tconfigBit \u003d value[\u0027configBit\u0027]\n\tstatBit \u003d value[\u0027statBit\u0027]\n\tnewLabel \u003d \"\"\n\tnewStatus \u003d False\n\tif configBit :\n\t\tnewLabel \u003d label\n\t\tnewStatus \u003d statBit\n\n\tobj \u003d {\n\t\t\u0027label\u0027: newLabel,\n\t\t\u0027status\u0027: newStatus,\n\t\t\u0027lowlight\u0027: not configBit\n\t\t}\n\n\treturn obj\n",
+                  "code": "\tlabel \u003d value[\u0027label\u0027]\n\tconfigBit \u003d value[\u0027configBit\u0027]\n\tstatBit \u003d value[\u0027statBit\u0027]\n\tnewStatus \u003d False\n\tif configBit :\n\t\tnewStatus \u003d statBit\n\n\tobj \u003d {\n\t\t\u0027label\u0027: label,\n\t\t\u0027status\u0027: newStatus,\n\t\t\u0027lowlight\u0027: not configBit\n\t\t}\n\treturn obj\n",
                   "type": "script"
                 }
               ],
@@ -710,7 +741,7 @@
               },
               "transforms": [
                 {
-                  "code": "\tlabel \u003d value[\u0027label\u0027]\n\tconfigBit_0 \u003d value[\u0027configBit_0\u0027]\n\tconfigBit_1 \u003d value[\u0027configBit_1\u0027]\n\tconfigBit_2 \u003d value[\u0027configBit_2\u0027]\n\tstatBit \u003d value[\u0027statBit\u0027]\n\tnewLabel \u003d \"\"\n\tnewStatus \u003d False\n\t\n\tcondition \u003d (configBit_0 and configBit_1) or configBit_2\n\tif condition :\n\t\tnewLabel \u003d label\n\t\tnewStatus \u003d statBit\n\n\tobj \u003d {\n\t\t\u0027label\u0027: newLabel,\n\t\t\u0027status\u0027: newStatus,\n\t\t\u0027lowlight\u0027: not condition\n\t\t}\n\n\n\treturn obj\n",
+                  "code": "\tlabel \u003d value[\u0027label\u0027]\n\tconfigBit_0 \u003d value[\u0027configBit_0\u0027]\n\tconfigBit_1 \u003d value[\u0027configBit_1\u0027]\n\tconfigBit_2 \u003d value[\u0027configBit_2\u0027]\n\tstatBit \u003d value[\u0027statBit\u0027]\n\tnewLabel \u003d \"\"\n\tnewStatus \u003d False\n\tif (configBit_0 and configBit_1) or configBit_2 :\n\n\tcondition \u003d (configBit_0 and configBit_1) or configBit_2\n\tif condition :\n\t\tnewLabel \u003d label\n\t\tnewStatus \u003d statBit\n\n\tobj \u003d {\n\t\t\u0027label\u0027: newLabel,\n\t\t\u0027status\u0027: newStatus,\n\t\t\u0027lowlight\u0027: not condition\n\t\t}\n\n\n\treturn obj\n",
                   "type": "script"
                 }
               ],
@@ -980,7 +1011,11 @@
         },
         "props": {
           "status": [
-            null,
+            {
+              "label": "Main1 Auto",
+              "status": false,
+              "lowlight": false
+            },
             null,
             null,
             null,

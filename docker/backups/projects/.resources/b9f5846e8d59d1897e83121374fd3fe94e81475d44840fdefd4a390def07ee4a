@@ -96,28 +96,19 @@
               "label": "Manual Mode"
             },
             {
-              "label": "Main1 Active"
+              "label": "Main1"
             },
             {
-              "label": "Main2/UpperSeat Active"
+              "label": "Main2/UpperSeat"
             },
             {
-              "label": "LowerSeat Active"
+              "label": "LowerSeat"
             },
             {
               "label": "Main Activated FB"
             },
             {
               "label": "Main Deactivated FB"
-            },
-            {
-              "label": "UpperSeat Activated FB"
-            },
-            {
-              "label": "LowerSeat Activated FB"
-            },
-            {
-              "label": "Allocated"
             },
             {
               "label": "Main1 Auto"
@@ -168,14 +159,30 @@
               "label": "Spare_1_7",
               "stat": false
             },
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            {
+              "label": "LowerSeat Fault"
+            },
+            {
+              "label": "UpperSeat Fault"
+            },
+            {
+              "label": "Main Fault"
+            },
+            {
+              "label": "Hardware Fault"
+            },
+            {
+              "label": "Acknowledged Fault"
+            },
+            {
+              "label": "Unacknowledged Fault"
+            },
+            {
+              "label": "Fault"
+            },
+            {
+              "label": "Reserved"
+            }
           ],
           "tagpath": "value",
           "textlistTagpath": "value"
@@ -184,7 +191,7 @@
           "name": "Multi-port valve status display"
         },
         "position": {
-          "height": 139,
+          "height": 466,
           "width": 238,
           "x": 36,
           "y": 40
@@ -710,7 +717,109 @@
               },
               "transforms": [
                 {
-                  "code": "\tlabel \u003d value[\u0027label\u0027]\n\tconfigBit \u003d value[\u0027configBit\u0027]\n\tstatBit \u003d value[\u0027statBit\u0027]\n\tnewLabel \u003d \"\"\n\tnewStatus \u003d False\n\tif configBit :\n\t\tnewLabel \u003d label\n\t\tnewStatus \u003d statBit\n\n\tobj \u003d {\n\t\t\u0027label\u0027: newLabel,\n\t\t\u0027status\u0027: newStatus,\n\t\t\u0027lowlight\u0027: not configBit\n\t\t}\n\n\treturn obj\n",
+                  "code": "\tlabel \u003d value[\u0027label\u0027]\n\tconfigBit \u003d value[\u0027configBit\u0027]\n\tstatBit \u003d value[\u0027statBit\u0027]\n\tnewStatus \u003d False\n\tif configBit :\n\t\tnewStatus \u003d statBit\n\n\tobj \u003d {\n\t\t\u0027label\u0027: label,\n\t\t\u0027status\u0027: newStatus,\n\t\t\u0027lowlight\u0027: not configBit\n\t\t}\n\treturn obj\n",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.status[0].label": {
+            "persistent": true
+          },
+          "props.status[10]": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "configBit_0": "{this.custom.configBits[0]}",
+                  "configBit_1": "{this.custom.configBits[3]}",
+                  "configBit_2": "{this.custom.configBits[4]}",
+                  "label": "{this.custom.statBits[26].label}",
+                  "statBit": "{this.custom.statBits[26].status}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\tlabel \u003d value[\u0027label\u0027]\n\tconfigBit_0 \u003d value[\u0027configBit_0\u0027]\n\tconfigBit_1 \u003d value[\u0027configBit_1\u0027]\n\tconfigBit_2 \u003d value[\u0027configBit_2\u0027]\n\tstatBit \u003d value[\u0027statBit\u0027]\n\tnewLabel \u003d \"\"\n\tnewStatus \u003d False\n\tif (configBit_0 and configBit_1) or configBit_2 :\n\n\tcondition \u003d (configBit_0 and configBit_1) or configBit_2\n\tif condition :\n\t\tnewLabel \u003d label\n\t\tnewStatus \u003d statBit\n\n\tobj \u003d {\n\t\t\u0027label\u0027: newLabel,\n\t\t\u0027status\u0027: newStatus,\n\t\t\u0027lowlight\u0027: not condition\n\t\t}\n\n\n\treturn obj\n",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.status[11]": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "configBit_0": "{this.custom.configBits[1]}",
+                  "configBit_1": "{this.custom.configBits[5]}",
+                  "label": "{this.custom.statBits[25].label}",
+                  "statBit": "{this.custom.statBits[25].status}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\tlabel \u003d value[\u0027label\u0027]\n\tconfigBit_0 \u003d value[\u0027configBit_0\u0027]\n\tconfigBit_1 \u003d value[\u0027configBit_1\u0027]\n\tstatBit \u003d value[\u0027statBit\u0027]\n\tnewLabel \u003d \"\"\n\tnewStatus \u003d False\n\tcondition \u003d configBit_0 and configBit_1\n\tif condition :\n\t\tnewLabel \u003d label\n\t\tnewStatus \u003d statBit\n\n\tobj \u003d {\n\t\t\u0027label\u0027: newLabel,\n\t\t\u0027status\u0027: newStatus,\n\t\t\u0027lowlight\u0027: not condition\n\t\t}\n\n\treturn obj\n",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.status[12]": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "configBit_0": "{this.custom.configBits[1]}",
+                  "configBit_1": "{this.custom.configBits[6]}",
+                  "label": "{this.custom.statBits[24].label}",
+                  "statBit": "{this.custom.statBits[24].status}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\tlabel \u003d value[\u0027label\u0027]\n\tconfigBit_0 \u003d value[\u0027configBit_0\u0027]\n\tconfigBit_1 \u003d value[\u0027configBit_1\u0027]\n\tstatBit \u003d value[\u0027statBit\u0027]\n\tnewLabel \u003d \"\"\n\tnewStatus \u003d False\n\tcondition \u003d configBit_0 and configBit_1\n\tif condition :\n\t\tnewLabel \u003d label\n\t\tnewStatus \u003d statBit\n\n\tobj \u003d {\n\t\t\u0027label\u0027: newLabel,\n\t\t\u0027status\u0027: newStatus,\n\t\t\u0027lowlight\u0027: not condition\n\t\t}\n\n\treturn obj\n",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.status[13]": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "configBit": "{this.custom.configBits[0]}",
+                  "label": "{this.custom.statBits[27].label}",
+                  "statBit": "{this.custom.statBits[27].status}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\tlabel \u003d value[\u0027label\u0027]\n\tconfigBit \u003d value[\u0027configBit\u0027]\n\tstatBit \u003d value[\u0027statBit\u0027]\n\tnewLabel \u003d \"\"\n\tnewStatus \u003d False\n\tcondition \u003d True\n\tif condition :\n\t\tnewLabel \u003d label\n\t\tnewStatus \u003d statBit\n\n\tobj \u003d {\n\t\t\u0027label\u0027: newLabel,\n\t\t\u0027status\u0027: newStatus,\n\t\t\u0027lowlight\u0027: not condition\n\t\t}\n\n\treturn obj\n",
+                  "type": "script"
+                }
+              ],
+              "type": "expr-struct"
+            }
+          },
+          "props.status[14]": {
+            "binding": {
+              "config": {
+                "struct": {
+                  "configBit": "{this.custom.configBits[0]}",
+                  "label": "{this.custom.statBits[11].label}",
+                  "statBit": "{this.custom.statBits[11].status}"
+                },
+                "waitOnAll": true
+              },
+              "transforms": [
+                {
+                  "code": "\tlabel \u003d value[\u0027label\u0027]\n\tconfigBit \u003d value[\u0027configBit\u0027]\n\tstatBit \u003d value[\u0027statBit\u0027]\n\tnewLabel \u003d \"\"\n\tnewStatus \u003d False\n\tif configBit :\n\t\tnewLabel \u003d label\n\t\tnewStatus \u003d statBit\n\t\n\tobj \u003d {\n\t\t\u0027label\u0027: newLabel,\n\t\t\u0027status\u0027: newStatus\n\t\t}\n\t\t\n\treturn obj",
                   "type": "script"
                 }
               ],
@@ -736,6 +845,9 @@
               ],
               "type": "expr-struct"
             }
+          },
+          "props.status[1].status": {
+            "persistent": true
           },
           "props.status[2]": {
             "binding": {
@@ -895,124 +1007,28 @@
               ],
               "type": "expr-struct"
             }
-          },
-          "props.status[10]": {
-            "binding": {
-              "config": {
-                "struct": {
-                  "configBit_0": "{this.custom.configBits[0]}",
-                  "configBit_1": "{this.custom.configBits[3]}",
-                  "configBit_2": "{this.custom.configBits[4]}",
-                  "label": "{this.custom.statBits[26].label}",
-                  "statBit": "{this.custom.statBits[26].status}"
-                },
-                "waitOnAll": true
-              },
-              "transforms": [
-                {
-                  "code": "\tlabel \u003d value[\u0027label\u0027]\n\tconfigBit_0 \u003d value[\u0027configBit_0\u0027]\n\tconfigBit_1 \u003d value[\u0027configBit_1\u0027]\n\tconfigBit_2 \u003d value[\u0027configBit_2\u0027]\n\tstatBit \u003d value[\u0027statBit\u0027]\n\tnewLabel \u003d \"\"\n\tnewStatus \u003d False\n\tif (configBit_0 and configBit_1) or configBit_2 :\n\n\tcondition \u003d (configBit_0 and configBit_1) or configBit_2\n\tif condition :\n\t\tnewLabel \u003d label\n\t\tnewStatus \u003d statBit\n\n\tobj \u003d {\n\t\t\u0027label\u0027: newLabel,\n\t\t\u0027status\u0027: newStatus,\n\t\t\u0027lowlight\u0027: not condition\n\t\t}\n\n\n\treturn obj\n",
-                  "type": "script"
-                }
-              ],
-              "type": "expr-struct"
-            }
-          },
-          "props.status[11]": {
-            "binding": {
-              "config": {
-                "struct": {
-                  "configBit_0": "{this.custom.configBits[1]}",
-                  "configBit_1": "{this.custom.configBits[5]}",
-                  "label": "{this.custom.statBits[25].label}",
-                  "statBit": "{this.custom.statBits[25].status}"
-                },
-                "waitOnAll": true
-              },
-              "transforms": [
-                {
-                  "code": "\tlabel \u003d value[\u0027label\u0027]\n\tconfigBit_0 \u003d value[\u0027configBit_0\u0027]\n\tconfigBit_1 \u003d value[\u0027configBit_1\u0027]\n\tstatBit \u003d value[\u0027statBit\u0027]\n\tnewLabel \u003d \"\"\n\tnewStatus \u003d False\n\tcondition \u003d configBit_0 and configBit_1\n\tif condition :\n\t\tnewLabel \u003d label\n\t\tnewStatus \u003d statBit\n\n\tobj \u003d {\n\t\t\u0027label\u0027: newLabel,\n\t\t\u0027status\u0027: newStatus,\n\t\t\u0027lowlight\u0027: not condition\n\t\t}\n\n\treturn obj\n",
-                  "type": "script"
-                }
-              ],
-              "type": "expr-struct"
-            }
-          },
-          "props.status[12]": {
-            "binding": {
-              "config": {
-                "struct": {
-                  "configBit_0": "{this.custom.configBits[1]}",
-                  "configBit_1": "{this.custom.configBits[6]}",
-                  "label": "{this.custom.statBits[24].label}",
-                  "statBit": "{this.custom.statBits[24].status}"
-                },
-                "waitOnAll": true
-              },
-              "transforms": [
-                {
-                  "code": "\tlabel \u003d value[\u0027label\u0027]\n\tconfigBit_0 \u003d value[\u0027configBit_0\u0027]\n\tconfigBit_1 \u003d value[\u0027configBit_1\u0027]\n\tstatBit \u003d value[\u0027statBit\u0027]\n\tnewLabel \u003d \"\"\n\tnewStatus \u003d False\n\tcondition \u003d configBit_0 and configBit_1\n\tif condition :\n\t\tnewLabel \u003d label\n\t\tnewStatus \u003d statBit\n\n\tobj \u003d {\n\t\t\u0027label\u0027: newLabel,\n\t\t\u0027status\u0027: newStatus,\n\t\t\u0027lowlight\u0027: not condition\n\t\t}\n\n\treturn obj\n",
-                  "type": "script"
-                }
-              ],
-              "type": "expr-struct"
-            }
-          },
-          "props.status[13]": {
-            "binding": {
-              "config": {
-                "struct": {
-                  "configBit": "{this.custom.configBits[0]}",
-                  "label": "{this.custom.statBits[27].label}",
-                  "statBit": "{this.custom.statBits[27].status}"
-                },
-                "waitOnAll": true
-              },
-              "transforms": [
-                {
-                  "code": "\tlabel \u003d value[\u0027label\u0027]\n\tconfigBit \u003d value[\u0027configBit\u0027]\n\tstatBit \u003d value[\u0027statBit\u0027]\n\tnewLabel \u003d \"\"\n\tnewStatus \u003d False\n\tcondition \u003d True\n\tif condition :\n\t\tnewLabel \u003d label\n\t\tnewStatus \u003d statBit\n\n\tobj \u003d {\n\t\t\u0027label\u0027: newLabel,\n\t\t\u0027status\u0027: newStatus,\n\t\t\u0027lowlight\u0027: not condition\n\t\t}\n\n\treturn obj\n",
-                  "type": "script"
-                }
-              ],
-              "type": "expr-struct"
-            }
-          },
-          "props.status[14]": {
-            "binding": {
-              "config": {
-                "struct": {
-                  "configBit": "{this.custom.configBits[0]}",
-                  "label": "{this.custom.statBits[11].label}",
-                  "statBit": "{this.custom.statBits[11].status}"
-                },
-                "waitOnAll": true
-              },
-              "transforms": [
-                {
-                  "code": "\tlabel \u003d value[\u0027label\u0027]\n\tconfigBit \u003d value[\u0027configBit\u0027]\n\tstatBit \u003d value[\u0027statBit\u0027]\n\tnewLabel \u003d \"\"\n\tnewStatus \u003d False\n\tif configBit :\n\t\tnewLabel \u003d label\n\t\tnewStatus \u003d statBit\n\t\n\tobj \u003d {\n\t\t\u0027label\u0027: newLabel,\n\t\t\u0027status\u0027: newStatus\n\t\t}\n\t\t\n\treturn obj",
-                  "type": "script"
-                }
-              ],
-              "type": "expr-struct"
-            }
-          },
-          "props.status[0].label": {
-            "persistent": true
-          },
-          "props.status[1].status": {
-            "persistent": true
           }
         },
         "props": {
           "status": [
-            null,
             {
-              "label": "Upper seat/Main2 auto",
-              "status": false
+              "label": "Main1 Auto",
+              "status": false,
+              "lowlight": false
             },
-            {
-              "label": "Interlocked",
-              "status": false
-            }
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
           ]
         },
         "type": "hmi.display.StatusValveMp"
