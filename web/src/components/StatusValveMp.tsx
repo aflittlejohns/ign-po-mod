@@ -86,78 +86,7 @@ export class StatusValveMpMeta implements ComponentMeta {
 		console.log(`status ${tree.read(`status`)}`);
 
 		return {
-			statusItems: tree.read("status", [
-				{
-					label: `label text`,
-					status: false,
-					lowlight: false,
-				},
-				{
-					label: `label text`,
-					status: false,
-					lowlight: false,
-				},
-				{
-					label: `label text`,
-					status: false,
-					lowlight: false,
-				},
-				{
-					label: `label text`,
-					status: false,
-					lowlight: false,
-				},
-				{
-					label: `label text`,
-					status: false,
-					lowlight: false,
-				},
-				{
-					label: `label text`,
-					status: false,
-					lowlight: false,
-				},
-				{
-					label: `label text`,
-					status: false,
-					lowlight: false,
-				},
-				{
-					label: `label text`,
-					status: false,
-					lowlight: false,
-				},
-				{
-					label: `label text`,
-					status: false,
-					lowlight: false,
-				},
-				{
-					label: `label text`,
-					status: false,
-					lowlight: false,
-				},
-				{
-					label: `label text`,
-					status: false,
-					lowlight: false,
-				},
-				{
-					label: `label text`,
-					status: false,
-					lowlight: false,
-				},
-				{
-					label: `label text`,
-					status: false,
-					lowlight: false,
-				},
-				{
-					label: `label text`,
-					status: false,
-					lowlight: false,
-				},
-			]),
+			statusItems: tree.readArray("status", []),
 		};
 	}
 }

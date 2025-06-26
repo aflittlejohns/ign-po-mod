@@ -89,48 +89,22 @@
             {
               "label": "Sim Mode"
             },
-            {
-              "label": "Alarm Supress Mode"
-            },
-            {
-              "label": "Manual Mode"
-            },
-            {
-              "label": "Main1"
-            },
-            {
-              "label": "Main2/UpperSeat"
-            },
-            {
-              "label": "LowerSeat"
-            },
-            {
-              "label": "Main Activated FB"
-            },
-            {
-              "label": "Main Deactivated FB"
-            },
-            {
-              "label": "Main1 Auto"
-            },
-            {
-              "label": "Main2/UpperSeat Auto"
-            },
-            {
-              "label": "LowerSeat Auto"
-            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             {
               "label": "Spare_2_6",
               "stat": false
             },
-            {
-              "label": "Spare_2_7",
-              "stat": false
-            },
-            {
-              "label": "Spare_1_0",
-              "stat": false
-            },
+            null,
+            null,
             {
               "label": "Spare_1_1",
               "stat": false
@@ -168,21 +142,11 @@
             {
               "label": "Main Fault"
             },
-            {
-              "label": "Hardware Fault"
-            },
-            {
-              "label": "Acknowledged Fault"
-            },
-            {
-              "label": "Unacknowledged Fault"
-            },
-            {
-              "label": "Fault"
-            },
-            {
-              "label": "Reserved"
-            }
+            null,
+            null,
+            null,
+            null,
+            null
           ],
           "tagpath": "value",
           "textlistTagpath": "value"
@@ -1011,11 +975,7 @@
         },
         "props": {
           "status": [
-            {
-              "label": "Main1 Auto",
-              "status": false,
-              "lowlight": false
-            },
+            null,
             null,
             null,
             null,

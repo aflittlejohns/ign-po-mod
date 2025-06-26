@@ -1,8 +1,13 @@
 services:
-  gateway:
-    image: inductiveautomation/ignition:8.1.44
+  modl-env:
+    build:
+      context: ../third-party-modl
+      args:
+        IGNITION_VERSION: 8.1.44
+    pull_policy: build
+    #image: inductiveautomation/ignition:8.1.44
     ports:
-      - "8088:8088"
+      - "8089:8088"
     environment:
       IGNITION_UID: 2003
       IGNITION_GID: 2003
@@ -21,7 +26,7 @@ services:
       traefik.enable: "true"
       traefik.hostname: "perspective-component"
     command: >
-      -n perspective-component-gateway
+      -n perspective-modl-dev
       -r /restore.gwbk
       --
       -Dia.developer.moduleupload=true
