@@ -86,7 +86,7 @@ export class StatusValveMpMeta implements ComponentMeta {
 		console.log(`status ${tree.read(`status`)}`);
 
 		return {
-			statusItems: tree.readArray("status", []),
+			statusItems: tree.read("status", []),
 		};
 	}
 }
