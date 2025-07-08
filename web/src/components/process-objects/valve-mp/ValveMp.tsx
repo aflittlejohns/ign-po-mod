@@ -18,7 +18,7 @@ import {
 	IA_SYMBOL_COMPONENT_ROW,
 	IA_SYMBOL_COMPONENT_WRAPPER,
 	VALVE_COMPONENT_TYPE,
-} from "../../../constants";
+} from "../../../constants/constants";
 
 // import './valve-mp.module.css'
 // import {valveStatus} from '../../api/initialState'

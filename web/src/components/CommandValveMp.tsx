@@ -18,7 +18,7 @@ import {
 	IA_SYMBOL_COMPONENT_ROW,
 	IA_SYMBOL_COMPONENT_WRAPPER,
 	COMMAND_VALVE_MP_COMPONENT_TYPE,
-} from "../constants";
+} from "../constants/constants";
 
 export const COMPONENT_TYPE = COMMAND_VALVE_MP_COMPONENT_TYPE;
 

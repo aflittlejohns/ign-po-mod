@@ -14,6 +14,7 @@
 		"@fiverr/afterbuild-webpack-plugin": "^1.0.0",
 		"@inductiveautomation/perspective-client": "2.1.44",
 		"@types/uuid": "^10.0.0",
+		"@xyflow/react": "^12.8.1",
 		"immer": "^10.1.1",
 		"opbeta": "npm:open-props@^2.0.0-beta.5",
 		"react": "^19.1.0",

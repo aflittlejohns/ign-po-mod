@@ -21,7 +21,7 @@ import {
 	IA_SYMBOL_COMPONENT_ROW,
 	IA_SYMBOL_COMPONENT_WRAPPER,
 	PUMP_COMPONENT_TYPE,
-} from "../../../constants";
+} from "../../../constants/constants";
 
 export const COMPONENT_TYPE = PUMP_COMPONENT_TYPE;
 

@@ -13,7 +13,7 @@ import {
 	IA_SYMBOL_COMPONENT_ROW,
 	IA_SYMBOL_COMPONENT_WRAPPER,
 	STATUS_COMPONENT_TYPE,
-} from "../constants";
+} from "../constants/constants";
 
 export const COMPONENT_TYPE = STATUS_COMPONENT_TYPE;
 

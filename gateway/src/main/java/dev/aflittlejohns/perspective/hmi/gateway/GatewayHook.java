@@ -17,6 +17,7 @@ import dev.aflittlejohns.perspective.hmi.common.components.level4.process_object
 import dev.aflittlejohns.perspective.hmi.common.components.level4.input.ParameterList;
 import dev.aflittlejohns.perspective.hmi.common.components.level4.input.CommandValveMp;
 import dev.aflittlejohns.perspective.hmi.common.components.level4.display.StatusValveMp;
+import dev.aflittlejohns.perspective.hmi.common.components.flow.FlowProvider;
 
 /**
  * Gateway module hook for the Example Component Library.
@@ -61,6 +62,7 @@ public class GatewayHook extends AbstractGatewayModuleHook {
 			this.componentRegistry.registerComponent(ParameterList.DESCRIPTOR);
 			this.componentRegistry.registerComponent(CommandValveMp.DESCRIPTOR);
 			this.componentRegistry.registerComponent(StatusValveMp.DESCRIPTOR);
+			this.componentRegistry.registerComponent(FlowProvider.DESCRIPTOR);
 		} else {
 			log.error("Reference to component registry not found, HMI Components will fail to function!");
 		}
@@ -80,6 +82,7 @@ public class GatewayHook extends AbstractGatewayModuleHook {
 			this.componentRegistry.removeComponent(ParameterList.COMPONENT_ID);
 			this.componentRegistry.removeComponent(CommandValveMp.COMPONENT_ID);
 			this.componentRegistry.removeComponent(StatusValveMp.COMPONENT_ID);
+			this.componentRegistry.removeComponent(FlowProvider.COMPONENT_ID);
 		} else {
 			log.warn("Component registry was null, could not unregister HMI Components.");
 		}

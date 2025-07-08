@@ -27,7 +27,7 @@ import {
 	IA_SYMBOL_COMPONENT_COLUMN,
 	IA_SYMBOL_COMPONENT_ROW,
 	IA_SYMBOL_COMPONENT_WRAPPER,
-} from "../../../constants";
+} from "../../../constants/constants";
 
 const getPlateColor = (mode: HxModes[keyof HxModes]) => {
 	console.log(`mode: ${mode}`);

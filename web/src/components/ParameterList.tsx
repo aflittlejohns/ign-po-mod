@@ -15,7 +15,7 @@ import {
 	IA_SYMBOL_COMPONENT_COLUMN,
 	IA_SYMBOL_COMPONENT_ROW,
 	IA_SYMBOL_COMPONENT_WRAPPER,
-} from "../constants";
+} from "../constants/constants";
 
 type ParametersListComponentProps = {
 	parameters: ParamItem[];

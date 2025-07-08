@@ -1,0 +1,29 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {
+    "defaultSize": {
+      "width": 1163
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "react-flow-provider"
+        },
+        "position": {
+          "height": 1000,
+          "width": 1800,
+          "x": -59,
+          "y": -48
+        },
+        "type": "hmi.flow.FlowProvider"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}
