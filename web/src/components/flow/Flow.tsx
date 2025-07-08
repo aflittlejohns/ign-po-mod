@@ -3,9 +3,12 @@ import type {
 	PComponent,
 	SizeObject,
 } from "@inductiveautomation/perspective-client";
-import { FLOW_PROVIDER_COMPONENT_TYPE } from "../../constants";
+import {
+	FLOW_PROVIDER_COMPONENT_TYPE,
+	IA_SYMBOL_COMPONENT_COLUMN,
+} from "../../constants";
 
-import * as React from 'react';
+import * as React from "react";
 import { useCallback } from "react";
 import {
 	addEdge,
@@ -24,16 +27,19 @@ import { nodeTypes, type ValveHandleId } from "./types";
 import { getHandlePosition, getPosition } from "./utils/valve";
 import Pipeline from "./Components/Pipeline";
 import { initialNodes } from "./constants/nodes";
+import { css } from "@emotion/css";
+import { useValveNodeContext } from "./Components/ValveMP_node";
 
 const COMPONENT_TYPE = FLOW_PROVIDER_COMPONENT_TYPE;
 
 const edgeTypes = {
-  pipeline: Pipeline
+	pipeline: Pipeline,
 };
 
 export const Flow = () => {
 	const [nodes, , onNodesChange] = useNodesState<Node>(initialNodes); // Empty Node State for now
 	const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]); // Empty Edges State for now
+	const { emit } = useValveNodeContext("flow");
 	const onConnect: OnConnect = useCallback(
 		(edge) => {
 			const sourceNode = nodes.find((n) => n.id === edge.source);
@@ -41,10 +47,10 @@ export const Flow = () => {
 
 			let edgePath = null;
 
-			if (!sourceNode || !targetNode) return [];
+			if (!sourceNode || !targetNode) return;
 
 			// Calculate actual handle positions
-			if (!edge.sourceHandle || !edge.targetHandle) return [];
+			if (!edge.sourceHandle || !edge.targetHandle) return;
 
 			const sourcePos = getHandlePosition(
 				sourceNode,
@@ -89,25 +95,31 @@ export const Flow = () => {
 		[setEdges, nodes]
 	);
 	return (
-		<ReactFlow
-			nodes={nodes}
-			edges={edges}
-			onNodesChange={onNodesChange}
-			onEdgesChange={onEdgesChange}
-			nodeTypes={nodeTypes}
-			edgeTypes={edgeTypes}
-			onConnect={onConnect}
-			fitView
+		<div
+			{...emit({
+				classes: [IA_SYMBOL_COMPONENT_COLUMN],
+			})}
+			data-component={COMPONENT_TYPE}
+			className={css({
+				width: "100vw",
+				height: "100vh",
+			})}
 		>
-			<Background />
-			<MiniMap />
-			<Controls />
-			<div style={{
-				width: '100px',
-				height: '100px',
-				backgroundColor: 'Orange',
-			}}></div>
-		</ReactFlow>
+			<ReactFlow
+				nodes={nodes}
+				edges={edges}
+				onNodesChange={onNodesChange}
+				onEdgesChange={onEdgesChange}
+				nodeTypes={nodeTypes}
+				edgeTypes={edgeTypes}
+				onConnect={onConnect}
+				fitView
+			>
+				<Background />
+				<MiniMap />
+				<Controls />
+			</ReactFlow>
+		</div>
 	);
 };
 

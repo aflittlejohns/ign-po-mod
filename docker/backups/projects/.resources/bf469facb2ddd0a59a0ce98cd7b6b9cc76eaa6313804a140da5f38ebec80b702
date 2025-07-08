@@ -15,8 +15,8 @@
         "position": {
           "height": 1000,
           "width": 1800,
-          "x": -59,
-          "y": -48
+          "x": 7,
+          "y": 4
         },
         "type": "hmi.flow.FlowProvider"
       }
