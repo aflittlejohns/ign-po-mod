@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { useCreateContext } from "../../../store";
 import { FLOW_COMPONENT_TYPE } from "../constants/flowComponentTypes";
 import type { ValveNodeContext } from "../types";
@@ -8,9 +8,11 @@ import {
 	IA_SYMBOL_COMPONENT_ROW,
 	IA_SYMBOL_COMPONENT_WRAPPER,
 } from "../../../constants";
-import { getValveMpItemClassName, valveMpItemNames } from "../../../api/utils";
+import { getItemIdPositionClassName, getValveMpItemClassName, valveMpItemNames } from "../../../api/utils";
 import Item from "../../process-objects/valve/item";
 import { Handle, Position } from "@xyflow/react";
+import { processObjectProps } from "../../../api/initialState";
+
 
 const COMPONENT_TYPE = FLOW_COMPONENT_TYPE.VALVE_NODE;
 
@@ -39,20 +41,23 @@ const valveMp = () => {
 	const valveRef = React.useRef<HTMLDivElement>(null);
 	// const { emit } = componentProps;
 
+	const { processObject } = props;
+	const { status } = processObject || processObjectProps;
 	const onActionPerformed = () => {
 		console.log("onActionPerform Event");
 	};
 	// const inCoord = position?.x ?? false;
 	// if not locate, trim last item from valveMpItemNames
 	let componentItemNames = valveMpItemNames;
-	if (!props?.locate) {
+	if (!status?.locate) {
 		componentItemNames = componentItemNames.slice(0, -1);
 	}
 	const componentClassName = "valve__mp";
+
 	// if (!inCoord) {
 	return (
 		<div
-			className={`${IA_SYMBOL_COMPONENT_COLUMN}`}
+		className={`${IA_SYMBOL_COMPONENT_COLUMN}`}
 			ref={valveRef}
 			{...emit({
 				classes: [`${IA_SYMBOL_COMPONENT_COLUMN}`],
@@ -69,7 +74,7 @@ const valveMp = () => {
 							// ),
 							<Item
 								itemClassName={
-									value + " " + getValveMpItemClassName(index, props)
+									value + " " + getValveMpItemClassName(index, props.processObject?.status)
 								}
 								key={key}
 							/>
@@ -117,30 +122,30 @@ const valveMp = () => {
 	);
 };
 
-// const popover = () => {
-// 	const { valveProps, position } = useValveNodeContext("Popover");
-// 	const { showLabel, labelPosition, processObject } = valveProps;
-// 	const { status } = processObject || {};
-// 	if (!showLabel) return null;
-// 	// const { position } = componentProps;
-// 	let className = "itemId popover position-left";
-// 	if (labelPosition) {
-// 		className = getItemIdPositionClassName(className, labelPosition);
-// 	}
-// 	return (
-// 		<div
-// 			className={className}
-// 			style={{
-// 				top: position.y,
-// 				left: position.x,
-// 			}}
-// 		>
-// 			<div style={{ padding: 8 }}>{status?.itemName}</div>
-// 		</div>
-// 	);
-// };
+const popover = () => {
+	const { props, position } = useValveNodeContext("Popover");
+	const { showLabel, labelPosition, processObject } = props;
+	const { status } = processObject || {};
+	if (!showLabel) return null;
+	// const { position } = componentProps;
+	let className = "itemId popover position-left";
+	if (labelPosition) {
+		className = getItemIdPositionClassName(className, labelPosition);
+	}
+	return (
+		<div
+			className={className}
+			style={{
+				top: position.y,
+				left: position.x,
+			}}
+		>
+			<div style={{ padding: 8 }}>{status?.itemName}</div>
+		</div>
+	);
+};
 export const ValveNodeCompound = {
 	node,
 	valveMp,
-	// popover,
+	popover,
 };

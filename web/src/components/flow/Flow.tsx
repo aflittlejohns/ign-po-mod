@@ -1,12 +1,11 @@
-import type {
-	ComponentMeta,
-	PComponent,
-	SizeObject,
-} from "@inductiveautomation/perspective-client";
-import {
-	FLOW_PROVIDER_COMPONENT_TYPE,
-	IA_SYMBOL_COMPONENT_COLUMN,
-} from "../../constants";
+// import type {
+// 	ComponentMeta,
+// 	PComponent,
+// 	SizeObject,
+// } from "@inductiveautomation/perspective-client";
+// import {
+// 	FLOW_PROVIDER_COMPONENT_TYPE,
+// } from "../../constants";
 
 import * as React from "react";
 import { useCallback } from "react";
@@ -28,9 +27,8 @@ import { getHandlePosition, getPosition } from "./utils/valve";
 import Pipeline from "./Components/Pipeline";
 import { initialNodes } from "./constants/nodes";
 import { css } from "@emotion/css";
-import { useValveNodeContext } from "./Components/ValveMP_node";
 
-const COMPONENT_TYPE = FLOW_PROVIDER_COMPONENT_TYPE;
+// const COMPONENT_TYPE = FLOW_PROVIDER_COMPONENT_TYPE;
 
 const edgeTypes = {
 	pipeline: Pipeline,
@@ -39,7 +37,7 @@ const edgeTypes = {
 export const Flow = () => {
 	const [nodes, , onNodesChange] = useNodesState<Node>(initialNodes); // Empty Node State for now
 	const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]); // Empty Edges State for now
-	const { emit } = useValveNodeContext("flow");
+
 	const onConnect: OnConnect = useCallback(
 		(edge) => {
 			const sourceNode = nodes.find((n) => n.id === edge.source);
@@ -96,10 +94,6 @@ export const Flow = () => {
 	);
 	return (
 		<div
-			{...emit({
-				classes: [IA_SYMBOL_COMPONENT_COLUMN],
-			})}
-			data-component={COMPONENT_TYPE}
 			className={css({
 				width: "100vw",
 				height: "100vh",
@@ -123,17 +117,17 @@ export const Flow = () => {
 	);
 };
 
-export class FlowMeta implements ComponentMeta {
-	getComponentType(): string {
-		return COMPONENT_TYPE;
-	}
-	getViewComponent(): PComponent {
-		return Flow;
-	}
-	getDefaultSize(): SizeObject {
-		return {
-			width: 1800,
-			height: 1000,
-		};
-	}
-}
+// export class FlowMeta implements ComponentMeta {
+// 	getComponentType(): string {
+// 		return COMPONENT_TYPE;
+// 	}
+// 	getViewComponent(): PComponent {
+// 		return Flow;
+// 	}
+// 	getDefaultSize(): SizeObject {
+// 		return {
+// 			width: 1800,
+// 			height: 1000,
+// 		};
+// 	}
+// }

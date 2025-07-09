@@ -3,6 +3,10 @@
     "/": {
       "title": "",
       "viewPath": "View"
+    },
+    "/flowflex": {
+      "title": "",
+      "viewPath": "FlowFlex"
     }
   },
   "sharedDocks": {

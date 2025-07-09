@@ -1,11 +1,7 @@
 {
   "custom": {},
   "params": {},
-  "props": {
-    "defaultSize": {
-      "width": 1163
-    }
-  },
+  "props": {},
   "root": {
     "children": [
       {
@@ -13,10 +9,8 @@
           "name": "react-flow-provider"
         },
         "position": {
-          "height": 1000,
-          "width": 1800,
-          "x": 1,
-          "y": 6
+          "basis": "1000px",
+          "grow": 1
         },
         "type": "hmi.flow.FlowProvider"
       }
@@ -24,6 +18,9 @@
     "meta": {
       "name": "root"
     },
-    "type": "ia.container.coord"
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
   }
 }

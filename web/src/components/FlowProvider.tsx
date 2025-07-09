@@ -16,7 +16,7 @@ import {
 const COMPONENT_TYPE = FLOW_PROVIDER_COMPONENT_TYPE;
 
 import { ReactFlowProvider } from "@xyflow/react";
-// import { Flow } from "./flow/Flow";
+import { Flow } from "./flow/Flow";
 
 export const FlowProvider = (
 	props: ComponentProps<{ label?: string }, any>
@@ -35,8 +35,8 @@ export const FlowProvider = (
 				<div className={`${IA_SYMBOL_COMPONENT_WRAPPER}`}>
 					<div className={`${HMI_COMPONENT_CLASS} ${componentClassName}`}>
 						<ReactFlowProvider>
-							<div></div>
-							{/* <Flow /> */}
+							{/* <div></div> */}
+							<Flow />
 						</ReactFlowProvider>
 					</div>
 				</div>

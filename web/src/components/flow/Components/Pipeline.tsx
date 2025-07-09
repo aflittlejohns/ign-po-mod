@@ -18,9 +18,9 @@ export default function Pipeline(props: EdgeProps) {
 	// const { getEdges} = useReactFlow();
 	// const edges = getEdges();
 	// console.log(`Edges: ${JSON.stringify(edges)}`);
-	const onLoad = ()=>{
-		console.log(`Edge ${id} loaded`)
-	}
+	// const onLoad = ()=>{
+	// 	console.log(`Edge ${id} loaded`)
+	// }
 
 	const [edgePath] = getSmoothStepPath({
 		sourceX,
@@ -33,10 +33,10 @@ export default function Pipeline(props: EdgeProps) {
 	// Add path to edge data
 
 	// const intersections = findIntersections(edgePath, edges.filter(e => e.id !== id))
-	return (<g onLoad={onLoad}
-	>
+	return (
+	// <g onLoad={onLoad} >
 		<BaseEdge id={id} path={edgePath} />
 
-	</g>
+	// </g>
 )
 }

@@ -2,10 +2,12 @@
 :where(.flex-container.responsive-container>:has([data-component^=hmi])) {
 	container-type: inline-size;
 }
+:where(.flex-container.responsive-container>:has([data-component^="hmi.flow"])) {
+	container-type: inline-size;
+}
 :where(.ia_symbolComponent__wrapper:has(.hmi-component)){
 	container-type: inline-size;
-
-}
+	}
  :where(.hmi-component) {
 	/* container-type: inline-size; */
 	font-size: var(--font-size-sm , 14px);

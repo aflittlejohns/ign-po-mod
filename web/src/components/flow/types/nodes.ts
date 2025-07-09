@@ -1,12 +1,12 @@
-import type { Node, NodeTypes } from "@xyflow/react";
+import type { Node } from "@xyflow/react";
 import type { ValveNodeContext } from ".";
-import { ValveMpCompound } from "../../process-objects/valve-mp/ValveMp";
+import ValveNode  from './../Components/ValveNode'
 
 export type ValveNode = Node<ValveNodeContext, "string">;
 
 export const nodeTypes = {
-	valve: ValveMpCompound.valve
-} satisfies NodeTypes;
+	valve: ValveNode
+};
 
 export type ValveHandleId =
 	| "valve-top"
