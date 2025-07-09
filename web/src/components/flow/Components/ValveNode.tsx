@@ -7,9 +7,7 @@ export default function ValveNode({ data }: NodeProps<ValveNode>) {
 	return (
 		<>
 			<ValveNodeCompound.node
-				props={data.props}
-				emit={data.emit}
-				position={data.position}
+				{...data}
 			>
 				<ValveNodeCompound.valveMp />
 			</ValveNodeCompound.node>

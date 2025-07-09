@@ -23,12 +23,10 @@ const COMPONENT_TYPE = FLOW_COMPONENT_TYPE.VALVE_NODE;
 export const [ValveNodeContextProvider, useValveNodeContext] =
 	useCreateContext<ValveNodeContext>("ValveNodeContext");
 
-const node = ({ emit, position, props, children }: ValveNodeContext) => {
+const node = ({ props, children }: ValveNodeContext) => {
 	return (
 		<ValveNodeContextProvider
 			{...{
-				emit,
-				position,
 				props,
 			}}
 		>
@@ -37,11 +35,11 @@ const node = ({ emit, position, props, children }: ValveNodeContext) => {
 	);
 };
 const valveMp = () => {
-	const { props, emit } = useValveNodeContext("Valve");
+	const { props } = useValveNodeContext("Valve");
 	const valveRef = React.useRef<HTMLDivElement>(null);
 	// const { emit } = componentProps;
 
-	const { processObject } = props;
+	const { processObject, emit } = props;
 	const { status } = processObject || processObjectProps;
 	const onActionPerformed = () => {
 		console.log("onActionPerform Event");
@@ -123,8 +121,8 @@ const valveMp = () => {
 };
 
 const popover = () => {
-	const { props, position } = useValveNodeContext("Popover");
-	const { showLabel, labelPosition, processObject } = props;
+	const { props } = useValveNodeContext("Popover");
+	const { showLabel, labelPosition, processObject, position } = props;
 	const { status } = processObject || {};
 	if (!showLabel) return null;
 	// const { position } = componentProps;
