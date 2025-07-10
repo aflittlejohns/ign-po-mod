@@ -11,7 +11,7 @@ import {
 import { getItemIdPositionClassName, getValveMpItemClassName, valveMpItemNames } from "../../../api/utils";
 import Item from "../../process-objects/valve/item";
 import { Handle, Position } from "@xyflow/react";
-import { processObjectProps } from "../../../api/initialState";
+import { processObjectProps, valveProps } from "../../../api/initialState";
 
 
 const COMPONENT_TYPE = FLOW_COMPONENT_TYPE.VALVE_NODE;
@@ -23,11 +23,20 @@ const COMPONENT_TYPE = FLOW_COMPONENT_TYPE.VALVE_NODE;
 export const [ValveNodeContextProvider, useValveNodeContext] =
 	useCreateContext<ValveNodeContext>("ValveNodeContext");
 
-const node = ({ props, children }: ValveNodeContext) => {
+const node = ({
+	emit,
+	position,
+	props,
+	onActionPerformed,
+	children
+}: ValveNodeContext) => {
 	return (
 		<ValveNodeContextProvider
 			{...{
+				emit,
+				position,
 				props,
+				onActionPerformed,
 			}}
 		>
 			{children}
@@ -35,11 +44,10 @@ const node = ({ props, children }: ValveNodeContext) => {
 	);
 };
 const valveMp = () => {
-	const { props } = useValveNodeContext("Valve");
+	const { emit, props, } = useValveNodeContext("Valve");
 	const valveRef = React.useRef<HTMLDivElement>(null);
-	// const { emit } = componentProps;
+	const { processObject } = props || valveProps ;
 
-	const { processObject, emit } = props;
 	const { status } = processObject || processObjectProps;
 	const onActionPerformed = () => {
 		console.log("onActionPerform Event");
@@ -51,13 +59,14 @@ const valveMp = () => {
 		componentItemNames = componentItemNames.slice(0, -1);
 	}
 	const componentClassName = "valve__mp";
-
+	// emit null check
+	const safeEmit = emit || (()=>{})
 	// if (!inCoord) {
 	return (
 		<div
-		className={`${IA_SYMBOL_COMPONENT_COLUMN}`}
+		// className={`${IA_SYMBOL_COMPONENT_COLUMN}`}
 			ref={valveRef}
-			{...emit({
+			{...safeEmit({
 				classes: [`${IA_SYMBOL_COMPONENT_COLUMN}`],
 			})}
 			data-component={COMPONENT_TYPE}
@@ -72,7 +81,7 @@ const valveMp = () => {
 							// ),
 							<Item
 								itemClassName={
-									value + " " + getValveMpItemClassName(index, props.processObject?.status)
+									value + " " + getValveMpItemClassName(index, valveProps.processObject?.status)
 								}
 								key={key}
 							/>
@@ -121,8 +130,8 @@ const valveMp = () => {
 };
 
 const popover = () => {
-	const { props } = useValveNodeContext("Popover");
-	const { showLabel, labelPosition, processObject, position } = props;
+	const {props } = useValveNodeContext("Popover");
+		const { showLabel, labelPosition, processObject } = props || {};
 	const { status } = processObject || {};
 	if (!showLabel) return null;
 	// const { position } = componentProps;
@@ -130,13 +139,14 @@ const popover = () => {
 	if (labelPosition) {
 		className = getItemIdPositionClassName(className, labelPosition);
 	}
+
 	return (
 		<div
 			className={className}
-			style={{
-				top: position.y,
-				left: position.x,
-			}}
+			// style={{
+			// 	top: position.x,
+			// 	left: position.y,
+			// }}
 		>
 			<div style={{ padding: 8 }}>{status?.itemName}</div>
 		</div>

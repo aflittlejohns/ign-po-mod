@@ -12,6 +12,9 @@
           "basis": "1000px",
           "grow": 1
         },
+        "props": {
+          "tagpaths": "V401"
+        },
         "type": "hmi.flow.FlowProvider"
       }
     ],

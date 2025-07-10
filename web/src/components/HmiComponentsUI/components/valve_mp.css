@@ -2,6 +2,7 @@
 	:where([data-component="hmi.flow.valve"]:has(.valve__mp)) {
 		width: 24px;
 		height: 48px;
+		display: flex;
 	}
 	:where(.valve__mp) {
 		display: grid;

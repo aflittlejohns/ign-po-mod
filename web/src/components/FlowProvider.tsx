@@ -3,6 +3,7 @@ import type {
 	ComponentMeta,
 	ComponentProps,
 	PComponent,
+	PropertyTree,
 	SizeObject,
 } from "@inductiveautomation/perspective-client";
 import {
@@ -16,10 +17,10 @@ import {
 const COMPONENT_TYPE = FLOW_PROVIDER_COMPONENT_TYPE;
 
 import { ReactFlowProvider } from "@xyflow/react";
-import { Flow } from "./flow/Flow";
+import { Flow, type IgNodeProps } from "./flow/Flow";
 
 export const FlowProvider = (
-	props: ComponentProps<{ label?: string }, any>
+	props: ComponentProps<IgNodeProps[], any>
 ) => {
 	const { emit } = props;
 	const componentClassName = "flow-provider";
@@ -35,8 +36,7 @@ export const FlowProvider = (
 				<div className={`${IA_SYMBOL_COMPONENT_WRAPPER}`}>
 					<div className={`${HMI_COMPONENT_CLASS} ${componentClassName}`}>
 						<ReactFlowProvider>
-							{/* <div></div> */}
-							<Flow />
+							<Flow flowProviderProps={props}/>
 						</ReactFlowProvider>
 					</div>
 				</div>
@@ -50,12 +50,21 @@ export class FlowProviderMeta implements ComponentMeta {
 		return COMPONENT_TYPE;
 	}
 	getViewComponent(): PComponent {
-		return FlowProvider;
+		return FlowProvider as unknown as PComponent;
 	}
 	getDefaultSize(): SizeObject {
 		return {
 			width: 1800,
 			height: 1000,
+		};
+	}
+		// Invoked when an update to the PropertyTree has occurred,
+	// effectively mapping the valveStatus of the tree to component props.
+	getPropsReducer(tree: PropertyTree): {label?: string} {
+		console.log(`FlowProvider: ${JSON.stringify(tree.read())}`);
+
+		return {
+			...tree.read(),
 		};
 	}
 }

@@ -1,12 +1,3 @@
-// import type {
-// 	ComponentMeta,
-// 	PComponent,
-// 	SizeObject,
-// } from "@inductiveautomation/perspective-client";
-// import {
-// 	FLOW_PROVIDER_COMPONENT_TYPE,
-// } from "../../constants";
-
 import * as React from "react";
 import { useCallback } from "react";
 import {
@@ -22,21 +13,41 @@ import {
 	type Node,
 	type OnConnect,
 } from "@xyflow/react";
-import { nodeTypes, type ValveHandleId } from "./types";
+import { type ValveHandleId } from "./types";
 import { getHandlePosition, getPosition } from "./utils/valve";
 import Pipeline from "./Components/Pipeline";
-import { initialNodes } from "./constants/nodes";
 import { css } from "@emotion/css";
+import { initialNodes, nodeTypes } from "./constants";
+import type { ComponentProps } from "@inductiveautomation/perspective-client";
 
 // const COMPONENT_TYPE = FLOW_PROVIDER_COMPONENT_TYPE;
 
 const edgeTypes = {
 	pipeline: Pipeline,
 };
-
-export const Flow = () => {
-	const [nodes, , onNodesChange] = useNodesState<Node>(initialNodes); // Empty Node State for now
+export type IgNodeProps = {
+	key?:string;
+	id?: string;
+	tagpath?: string
+}
+export type FlowProps = {
+	flowProviderProps?: ComponentProps<IgNodeProps[]>
+}
+export const Flow = (flowProviderProps: FlowProps) => {
+	const [nodes, setNodes, onNodesChange] = useNodesState<Node>(initialNodes); // Empty Node State for now
 	const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]); // Empty Edges State for now
+
+	// Update nodes when FlowProvider props change
+	React.useEffect(()=>{
+		if (flowProviderProps){
+			const updatedNodes = initialNodes.map(node =>({
+				...node,
+				...flowProviderProps,
+			}));
+			setNodes(updatedNodes)
+		}
+
+	}, [flowProviderProps, setNodes])
 
 	const onConnect: OnConnect = useCallback(
 		(edge) => {
