@@ -13,7 +13,10 @@
           "grow": 1
         },
         "props": {
-          "tagpaths": "V401"
+          "tagpaths": [
+            "V412",
+            "V413"
+          ]
         },
         "type": "hmi.flow.FlowProvider"
       }

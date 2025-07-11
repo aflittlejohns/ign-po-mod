@@ -31,7 +31,7 @@ export const getValveMpItemClassName = (
 	const ActivatedConfigValue = convertTPValveConfigToHmiValveConfig(valveStatus?.activatedConfig ?? 0);
 	const DeactivatedConfigValue = convertTPValveConfigToHmiValveConfig(valveStatus?.deactivatedConfig ?? 0);
 
-	console.log(`DeactivatedConfigValue: ${DeactivatedConfigValue}`);
+
 
 	if (index < 8) {
 		if (

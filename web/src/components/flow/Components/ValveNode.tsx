@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ValveNodeCompound } from "./ValveNodeCompound";
-import type { ComponentMeta, ComponentProps, PComponent, PropertyTree, SizeObject } from "@inductiveautomation/perspective-client";
+import { AbstractUIElementStore, ComponentMeta, ComponentProps, ComponentStoreDelegate, PComponent, PropertyTree, SizeObject, type JsObject } from "@inductiveautomation/perspective-client";
 import type { ValveProps } from "../../../api/types";
 import type { Node, NodeProps } from "@xyflow/react";
 
@@ -28,7 +28,7 @@ d
     React.useEffect(() => {
         console.log("Component props updated:", d);
         // Handle property updates here
-    }, [d]);
+	}, [d]);
 
 	/**
 	 * Handler for the component's action event.
@@ -59,10 +59,19 @@ d
 		</>
 	);
 }
+export class ValveNodeComponentDelegate extends ComponentStoreDelegate{
+	handleEvent(eventName: string, eventObject: JsObject): void {
+		return
+	}
+}
 
 export class ValveNodeMeta implements ComponentMeta {
 	getComponentType(): string {
 		return COMPONENT_TYPE;
+	}
+
+	createDelegate(component: AbstractUIElementStore): ComponentStoreDelegate | undefined {
+		return new ValveNodeComponentDelegate(component)
 	}
 
 	/**

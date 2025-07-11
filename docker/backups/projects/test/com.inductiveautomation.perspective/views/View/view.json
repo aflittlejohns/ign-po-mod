@@ -10,9 +10,9 @@
         },
         "position": {
           "height": 16,
-          "width": 173,
-          "x": 93,
-          "y": 89
+          "width": 172.96,
+          "x": 93.04,
+          "y": 89.04
         },
         "props": {
           "elements": [
@@ -142,6 +142,56 @@
           "showLabel": true
         },
         "type": "hmi.process_objects.Valve_mp"
+      },
+      {
+        "meta": {
+          "name": "JsonView"
+        },
+        "position": {
+          "height": 448,
+          "width": 520.96,
+          "x": 176,
+          "y": 331.04
+        },
+        "props": {
+          "viewJson": {
+            "custom": {},
+            "params": {},
+            "props": {},
+            "root": {
+              "children": [],
+              "meta": {
+                "name": "root"
+              },
+              "props": {
+                "direction": "column"
+              },
+              "type": "hmi.flow.FlowProvider"
+            }
+          },
+          "viewParams": {
+            "key": "value"
+          }
+        },
+        "type": "embr.periscope.embedding.json-view"
+      },
+      {
+        "meta": {
+          "name": "faceplate-valve-mp"
+        },
+        "position": {
+          "height": 600,
+          "width": 300,
+          "x": 379.04,
+          "y": 54
+        },
+        "props": {
+          "params": {
+            "tagpath": "[default]V401"
+          },
+          "path": "faceplates/faceplate-valve-mp"
+        },
+        "type": "ia.display.view"
       }
     ],
     "meta": {
