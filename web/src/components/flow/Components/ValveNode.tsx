@@ -25,10 +25,10 @@ d
 	const eventsEnabled = componentProps?.eventsEnabled
 	const componentEvents = componentProps?.componentEvents
     // React to property changes from PropertyTree
-    React.useEffect(() => {
-        console.log("Component props updated:", d);
-        // Handle property updates here
-	}, [d]);
+    // React.useEffect(() => {
+    //     console.log("Component props updated:", d);
+    //     // Handle property updates here
+	// }, [d]);
 
 	/**
 	 * Handler for the component's action event.

@@ -22,20 +22,24 @@ const COMPONENT_TYPE = FLOW_PROVIDER_COMPONENT_TYPE;
 
 import { ReactFlowProvider } from "@xyflow/react";
 import { Flow, type IgNodeProps } from "./flow/Flow";
+import { useFlowProviderStore } from "./flow/store/FlowProvider";
 
 export const FlowProvider = (props: ComponentProps<IgNodeProps[], any>) => {
-	const { emit } = props;
-	React.useEffect(()=>{
-		const unsubscribe = props.store.props.subscribe((tree: PropertyTree)=>{
-			console.log(JSON.stringify(tree.read()));
+	const tagpaths = useFlowProviderStore((state) => state.tagpaths);
+	const { emit, store } = props;
+	React.useEffect(() => {
+		const tree = store.props;
+		console.log("Tree:", tree);
+		console.log("tagpaths", tagpaths);
+		const currentTagpaths = store.props.read("tagpaths") || [];
+		const newTagpath = "V424";
+		// Add new tagpath
+		const updatedTagpaths = [...currentTagpaths, newTagpath];
 
-		});
-		return () => {
-			if (typeof unsubscribe === "function"){
-				unsubscribe();
-			}
-		}
-	},[props.props])
+		// Write back to the property tree
+		store.props.write("tagpaths", updatedTagpaths);
+		console.log("Tree:", tree);
+	}, []);
 
 	const componentClassName = "flow-provider";
 	return (
@@ -59,7 +63,7 @@ export const FlowProvider = (props: ComponentProps<IgNodeProps[], any>) => {
 	);
 };
 export class FlowProviderComponentDelegate extends ComponentStoreDelegate {
-		handleEvent(eventName: string, eventObject: JsObject): void {
+	handleEvent(eventName: string, eventObject: JsObject): void {
 		return;
 	}
 }
@@ -84,13 +88,10 @@ export class FlowProviderMeta implements ComponentMeta {
 	}
 	// Invoked when an update to the PropertyTree has occurred,
 	// effectively mapping the valveStatus of the tree to component props.
-	getPropsReducer(tree: PropertyTree):JsObject {
-		console.log(`FlowProvider: ${JSON.stringify(tree.read())}`);
-		console.log(`ComponentStoreRef: ${JSON.stringify(this.t)}`);
-
+	getPropsReducer(tree: PropertyTree): JsObject {
 		const props = tree.read();
 		return {
-			props
+			props,
 		};
 	}
 }
