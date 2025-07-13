@@ -24,18 +24,17 @@ export const [ValveNodeContextProvider, useValveNodeContext] =
 	useCreateContext<ValveNodeContext>("ValveNodeContext");
 
 const node = ({
-	emit,
-	position,
-	props,
+	componentProps,
+	valveProps,
 	onActionPerformed,
 	children
 }: ValveNodeContext) => {
 	return (
+		// #TODO use zustand store here
 		<ValveNodeContextProvider
 			{...{
-				emit,
-				position,
-				props,
+				componentProps,
+				valveProps,
 				onActionPerformed,
 			}}
 		>
@@ -44,8 +43,9 @@ const node = ({
 	);
 };
 const valveMp = () => {
-	const { emit, props, } = useValveNodeContext("Valve");
+	const { componentProps } = useValveNodeContext("Valve");
 	const valveRef = React.useRef<HTMLDivElement>(null);
+	const {  props } = componentProps || {}
 	const { processObject } = props || valveProps ;
 
 	const { status } = processObject || processObjectProps;
@@ -60,15 +60,14 @@ const valveMp = () => {
 	}
 	const componentClassName = "valve__mp";
 	// emit null check
-	const safeEmit = emit || (()=>{})
 	// if (!inCoord) {
 	return (
 		<div
-		// className={`${IA_SYMBOL_COMPONENT_COLUMN}`}
+		className={`${IA_SYMBOL_COMPONENT_COLUMN}`}
 			ref={valveRef}
-			{...safeEmit({
-				classes: [`${IA_SYMBOL_COMPONENT_COLUMN}`],
-			})}
+				// {...emit({
+				// 	classes: [`${IA_SYMBOL_COMPONENT_COLUMN}`],
+				// })}
 			data-component={COMPONENT_TYPE}
 			onClick={onActionPerformed}
 		>
@@ -130,8 +129,10 @@ const valveMp = () => {
 };
 
 const popover = () => {
-	const {props } = useValveNodeContext("Popover");
-		const { showLabel, labelPosition, processObject } = props || {};
+	const { componentProps } = useValveNodeContext("Popover");
+	if (!componentProps) return <div>ERROR</div>
+	const { props } = componentProps;
+	const { showLabel, labelPosition, processObject  } = props;
 	const { status } = processObject || {};
 	if (!showLabel) return null;
 	// const { position } = componentProps;

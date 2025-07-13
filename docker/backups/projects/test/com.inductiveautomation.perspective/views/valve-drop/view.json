@@ -37,9 +37,7 @@
         },
         "props": {
           "processObject": {
-            "status": {
-              "itemName": "V401"
-            }
+            "status": {}
           }
         },
         "type": "hmi.process_objects.Valve_mp"

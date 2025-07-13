@@ -192,6 +192,18 @@
           "path": "faceplates/faceplate-valve-mp"
         },
         "type": "ia.display.view"
+      },
+      {
+        "meta": {
+          "name": "valve-node"
+        },
+        "position": {
+          "height": 48,
+          "width": 24,
+          "x": 28,
+          "y": 148
+        },
+        "type": "hmi.flow.ValveNode"
       }
     ],
     "meta": {

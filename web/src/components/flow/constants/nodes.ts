@@ -1,5 +1,5 @@
 import type { Node, NodeTypes } from "@xyflow/react";
-import ValveNode from "../Components/ValveNode";
+import { ValveNode } from "../Components/ValveNode";
 import { valveStatus } from "../../../api/initialState";
 
 export const nodeTypes = {

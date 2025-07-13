@@ -6,19 +6,16 @@
     "children": [
       {
         "meta": {
-          "name": "react-flow-provider"
+          "name": "EmbeddedViewPlus"
         },
         "position": {
-          "basis": "1000px",
+          "basis": "300px",
           "grow": 1
         },
         "props": {
-          "tagpaths": [
-            "V412",
-            "V413"
-          ]
+          "viewPath": "FlowFlex"
         },
-        "type": "hmi.flow.FlowProvider"
+        "type": "embr.periscope.embedding.view"
       }
     ],
     "meta": {

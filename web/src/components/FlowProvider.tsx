@@ -22,24 +22,12 @@ const COMPONENT_TYPE = FLOW_PROVIDER_COMPONENT_TYPE;
 
 import { ReactFlowProvider } from "@xyflow/react";
 import { Flow, type IgNodeProps } from "./flow/Flow";
-import { useFlowProviderStore } from "./flow/store/FlowProvider";
+// import { useFlowProviderStore } from "./flow/store/FlowProvider";
 
 export const FlowProvider = (props: ComponentProps<IgNodeProps[], any>) => {
-	const tagpaths = useFlowProviderStore((state) => state.tagpaths);
-	const { emit, store } = props;
-	React.useEffect(() => {
-		const tree = store.props;
-		console.log("Tree:", tree);
-		console.log("tagpaths", tagpaths);
-		const currentTagpaths = store.props.read("tagpaths") || [];
-		const newTagpath = "V424";
-		// Add new tagpath
-		const updatedTagpaths = [...currentTagpaths, newTagpath];
+	// const tagpaths = useFlowProviderStore((state) => state.tagpaths);
+	const { emit } = props;
 
-		// Write back to the property tree
-		store.props.write("tagpaths", updatedTagpaths);
-		console.log("Tree:", tree);
-	}, []);
 
 	const componentClassName = "flow-provider";
 	return (

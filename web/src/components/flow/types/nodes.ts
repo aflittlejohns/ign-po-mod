@@ -1,5 +1,5 @@
 import type { BuiltInNode, Node } from "@xyflow/react";
-import type { ComponentProps, Emitter } from "@inductiveautomation/perspective-client";
+import type { ComponentProps} from "@inductiveautomation/perspective-client";
 import type { ValveProps } from "../../../api/types";
 import type { ReactNode } from "react";
 
@@ -17,9 +17,8 @@ export type ValveHandleId =
 
 
 export type ValveNodeContext = {
-	emit?: Emitter;
-	position?: ComponentProps<any,any>['position']
-	props?: ValveProps;
+	componentProps: ComponentProps<any, any>;
+	valveProps: ValveProps;
 	onActionPerformed?: () => void;
-	children?: ReactNode;
+	children: ReactNode;
 };

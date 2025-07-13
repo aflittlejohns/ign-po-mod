@@ -1,5 +1,5 @@
 @layer hmi-components {
-	:where([data-component="hmi.flow.valve"]:has(.valve__mp)) {
+	:where([data-component="hmi.flow.valve-node"]:has(.valve__mp)) {
 		width: 24px;
 		height: 48px;
 		display: flex;

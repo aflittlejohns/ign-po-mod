@@ -13,22 +13,20 @@ type rfValveNodeProps = Node<{
 
 
 
-export default function ValveNode(
+export function ValveNode(
 d
 : NodeProps<rfValveNodeProps> ){
 
 	const {data} = d;
 	const componentProps = data.componentProps;
-	const props = componentProps?.props
-	const emit = componentProps?.emit
-	const position = componentProps?.position
 	const eventsEnabled = componentProps?.eventsEnabled
 	const componentEvents = componentProps?.componentEvents
-    // React to property changes from PropertyTree
-    // React.useEffect(() => {
-    //     console.log("Component props updated:", d);
-    //     // Handle property updates here
-	// }, [d]);
+	const {custom} = componentProps || {}
+
+
+	React.useEffect(()=> {
+		custom && custom.write("value.tagpath", "V401")
+	},[]);
 
 	/**
 	 * Handler for the component's action event.
@@ -45,13 +43,9 @@ d
 	return (
 		<>
 			<ValveNodeCompound.node
-				{...{
-					emit,
-					position,
-					props,
-					onActionPerformed
-					}
-				}
+			componentProps={data.componentProps}
+			valveProps={data.componentProps.props}
+			onActionPerformed={onActionPerformed}
 			>
 				<ValveNodeCompound.valveMp />
 				<ValveNodeCompound.popover />

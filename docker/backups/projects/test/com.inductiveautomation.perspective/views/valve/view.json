@@ -5,6 +5,11 @@
   "root": {
     "children": [
       {
+        "custom": {
+          "value": {
+            "tagpath": "[default]V401"
+          }
+        },
         "meta": {
           "name": "multi-port-process-valve"
         },
@@ -19,9 +24,11 @@
             "binding": {
               "config": {
                 "fallbackDelay": 2.5,
-                "mode": "direct",
-                "publishInitial": false,
-                "tagPath": "[default]V404"
+                "mode": "indirect",
+                "references": {
+                  "tagpath": "{this.custom.value.tagpath}"
+                },
+                "tagPath": "{tagpath}"
               },
               "type": "tag"
             }
@@ -29,7 +36,10 @@
         },
         "props": {
           "labelPosition": "top-right",
-          "showLabel": true
+          "showLabel": true,
+          "value": {
+            "tagpath": "[default]V401"
+          }
         },
         "type": "hmi.process_objects.Valve_mp"
       }
