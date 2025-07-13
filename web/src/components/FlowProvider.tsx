@@ -22,11 +22,13 @@ const COMPONENT_TYPE = FLOW_PROVIDER_COMPONENT_TYPE;
 
 import { ReactFlowProvider } from "@xyflow/react";
 import { Flow, type IgNodeProps } from "./flow/Flow";
+
 // import { useFlowProviderStore } from "./flow/store/FlowProvider";
 
 export const FlowProvider = (props: ComponentProps<IgNodeProps[], any>) => {
 	// const tagpaths = useFlowProviderStore((state) => state.tagpaths);
 	const { emit } = props;
+
 
 
 	const componentClassName = "flow-provider";
@@ -83,3 +85,4 @@ export class FlowProviderMeta implements ComponentMeta {
 		};
 	}
 }
+

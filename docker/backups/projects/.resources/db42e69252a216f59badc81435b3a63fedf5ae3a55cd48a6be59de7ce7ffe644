@@ -10,6 +10,9 @@
     "/flow": {
       "title": "",
       "viewPath": "FlowFlex"
+    },
+    "/valvenode": {
+      "viewPath": "valveNode"
     }
   },
   "sharedDocks": {

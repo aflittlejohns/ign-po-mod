@@ -1,0 +1,48 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "valve-node"
+        },
+        "position": {
+          "basis": "48px"
+        },
+        "propConfig": {
+          "props.processObject.status.locate": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagpath": "{this.props.value.tagpath}"
+                },
+                "tagPath": "{tagpath}/hmi/status/locate"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "processObject": {
+            "status": {}
+          },
+          "value": {
+            "tagpath": "[default]V401"
+          }
+        },
+        "type": "hmi.flow.ValveNode"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -18,7 +18,7 @@ export type ValveHandleId =
 
 export type ValveNodeContext = {
 	componentProps: ComponentProps<any, any>;
-	valveProps: ValveProps;
+	itemProps: ValveProps;
 	onActionPerformed?: () => void;
 	children: ReactNode;
 };

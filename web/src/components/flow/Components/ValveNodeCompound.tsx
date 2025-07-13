@@ -10,7 +10,6 @@ import {
 } from "../../../constants";
 import { getItemIdPositionClassName, getValveMpItemClassName, valveMpItemNames } from "../../../api/utils";
 import Item from "../../process-objects/valve/item";
-import { Handle, Position } from "@xyflow/react";
 import { processObjectProps, valveProps } from "../../../api/initialState";
 
 
@@ -23,9 +22,9 @@ const COMPONENT_TYPE = FLOW_COMPONENT_TYPE.VALVE_NODE;
 export const [ValveNodeContextProvider, useValveNodeContext] =
 	useCreateContext<ValveNodeContext>("ValveNodeContext");
 
-const node = ({
+const Root = ({
 	componentProps,
-	valveProps,
+	itemProps,
 	onActionPerformed,
 	children
 }: ValveNodeContext) => {
@@ -34,7 +33,7 @@ const node = ({
 		<ValveNodeContextProvider
 			{...{
 				componentProps,
-				valveProps,
+				itemProps,
 				onActionPerformed,
 			}}
 		>
@@ -85,42 +84,6 @@ const valveMp = () => {
 								key={key}
 							/>
 						))}
-						<Handle
-							type="target"
-							position={Position.Top}
-							id="valve-top"
-							className="valvemp-handle-top"
-						/>
-						<Handle
-							type="source"
-							position={Position.Right}
-							id="valve-top-right"
-							className="valvemp-handle-top-right"
-						/>
-						<Handle
-							type="source"
-							position={Position.Right}
-							id="valve-bottom-right"
-							className="valvemp-handle-bottom-right"
-						/>
-						<Handle
-							type="source"
-							position={Position.Bottom}
-							id="valve-bottom"
-							className="valvemp-handle-bottom"
-						/>
-						<Handle
-							type="target"
-							position={Position.Left}
-							id="valve-top-left"
-							className="valvemp-handle-top-left"
-						/>
-						<Handle
-							type="target"
-							position={Position.Left}
-							id="valve-bottom-left"
-							className="valvemp-handle-bottom-left"
-						/>
 					</div>
 				</div>
 			</div>
@@ -154,7 +117,7 @@ const popover = () => {
 	);
 };
 export const ValveNodeCompound = {
-	node,
+	Root,
 	valveMp,
 	popover,
 };
