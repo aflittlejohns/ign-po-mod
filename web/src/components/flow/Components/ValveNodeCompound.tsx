@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useCreateContext } from "../../../store";
-import { FLOW_COMPONENT_TYPE } from "../constants/flowComponentTypes";
+// import { FLOW_COMPONENT_TYPE } from "../constants/flowComponentTypes";
 import type { ValveNodeContext } from "../types";
 import {
 	HMI_COMPONENT_CLASS,
@@ -11,6 +11,9 @@ import {
 import { getItemIdPositionClassName, getValveMpItemClassName, valveMpItemNames } from "../../../api/utils";
 import Item from "../../process-objects/valve/item";
 import { processObjectProps, valveProps } from "../../../api/initialState";
+import type { ValveProps } from "../../../api/types";
+import type { ComponentProps } from "@inductiveautomation/perspective-client";
+import { FLOW_COMPONENT_TYPE } from "../constants";
 
 
 const COMPONENT_TYPE = FLOW_COMPONENT_TYPE.VALVE_NODE;
@@ -39,15 +42,15 @@ const Root = ({
 		</ValveNodeContextProvider>
 	);
 };
-const valveMp = () => {
-	const { componentProps } = useValveNodeContext("Valve");
+const valveMp = (props: ComponentProps<ValveProps>) => {
+
 	const valveRef = React.useRef<HTMLDivElement>(null);
-	const {  props } = componentProps || {}
+
 	const { processObject } = props || valveProps ;
 	const { status } = processObject || processObjectProps;
 	const onActionPerformed = () => {
 		console.log("onActionPerform Event");
-		const value = componentProps.store.custom.read("value.tagpath")
+		const value = props.store.custom.read("value.tagpath")
 		console.log("value", value);
 
 	};

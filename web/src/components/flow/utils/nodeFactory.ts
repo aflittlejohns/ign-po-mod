@@ -4,7 +4,7 @@ import type { ValveProps } from "../../../api/types";
 import { v4 as uuid } from "uuid";
 
 
-export const createValveNodeInstance = (
+export const createValveFlowNode = (
    position: { x: number; y: number },
   componentProps: ComponentProps<ValveProps>
 ): Node => {

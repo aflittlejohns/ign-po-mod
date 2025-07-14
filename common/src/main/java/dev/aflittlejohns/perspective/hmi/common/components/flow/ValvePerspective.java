@@ -18,10 +18,10 @@ import dev.aflittlejohns.perspective.hmi.common.utilities.ImageUtilities;
  * It provides the necessary information for both the Gateway and Designer
  * to recognize and utilize the front-end Valve component.
  */
-public class ValveNode {
+public class ValvePerspective {
 
 	// Unique ID of the component, matching the ID in the JavaScript implementation
-	public static String COMPONENT_ID = "hmi.flow.ValveNode";
+	public static String COMPONENT_ID = "hmi.flow.ValvePerspective";
 
 	// Path to the thumbnail image for the component palette
 	private static final String THUMBNAIL_PATH = "/images/display/status-valve-mp/thumbnail/base.png"; // TODO: Change this to a valve image
@@ -29,12 +29,12 @@ public class ValveNode {
 	private static final int THUMBNAIL_HEIGHT = 35;
 
 	// Path to the JSON schema defining the component's properties
-	private static final String PROPS_SCHEMA_PATH = "/props/flow-valve-node.props.json";
+	private static final String PROPS_SCHEMA_PATH = "/props/flow-valve-perspective.props.json";
 
 	// Component metadata
-	private static final String COMPONENT_NAME = "Valve Node";
-	private static final String COMPONENT_DESCRIPTION = "Valve Node";
-	private static final String COMPONENT_DEFAULT_NAME = "valve-node";
+	private static final String COMPONENT_NAME = "Valve Perspective";
+	private static final String COMPONENT_DESCRIPTION = "Valve";
+	private static final String COMPONENT_DEFAULT_NAME = "valve";
 
 	/**
 	 * Descriptor for the onActionPerformed event of the component.

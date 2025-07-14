@@ -21,9 +21,9 @@ import { css } from "@emotion/css";
 import {
 	type ComponentProps,
 } from "@inductiveautomation/perspective-client";
-import { ValveNode } from "./Components";
+import { ValveFlowNode } from "./Components";
 import { IconHandClick } from "../../utils/icons";
-import { createValveNodeInstance } from "./utils";
+import { createValveFlowNode } from "./utils";
 import { DevTools } from "./DevTools";
 import type { ValveProps } from "../../api/types";
 
@@ -34,7 +34,7 @@ const edgeTypes = {
 };
 
 const nodeTypes = {
-	valve: ValveNode,
+	valve: ValveFlowNode,
 };
 export type IgNodeProps = {
 	key?: string;
@@ -123,7 +123,7 @@ export const Flow = (props: ComponentProps<ValveProps>) => {
 				i18nStale: false,
 			};
 
-			const inst = createValveNodeInstance({ x: 100, y: 100 }, componentProps);
+			const inst = createValveFlowNode({ x: 100, y: 100 }, componentProps);
 			setNodes((prev: Node[]) => [...prev, inst]);
 			console.log("nodes", nodes);
 		}
