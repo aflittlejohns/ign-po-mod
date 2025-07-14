@@ -57,7 +57,7 @@ export class ValvePerspectiveMeta implements ComponentMeta {
 	}
 
 	getViewComponent(): PComponent {
-		return ValvePerspective as unknown as PComponent;
+		return ValvePerspective as PComponent;
 	}
 
 	getDefaultSize(): SizeObject {
