@@ -2,100 +2,143 @@ import * as React from "react";
 import { Handle, Position } from "@xyflow/react";
 import type { NodeProps, Node } from "@xyflow/react";
 import { ValveNodeCompound } from "./ValveNodeCompound";
-import { ComponentStoreDelegate, type AbstractUIElementStore, type ComponentMeta, type ComponentProps, type JsObject, type PComponent, type PropertyTree, type SizeObject } from "@inductiveautomation/perspective-client";
+import {
+	ComponentStoreDelegate,
+	PropertyAccess,
+	type AbstractUIElementStore,
+	type ComponentMeta,
+	type ComponentProps,
+	type JsObject,
+	type PComponent,
+	type PropertyTree,
+	type SizeObject,
+} from "@inductiveautomation/perspective-client";
 import type { ValveProps } from "../../../api/types";
-const COMPONENT_TYPE = "hmi.flow.ValveNode"
+const COMPONENT_TYPE = "hmi.flow.ValveNode";
 // Define the node data structure
 type ValveNodeData = {
-  componentProps: ComponentProps<ValveProps>;
-  // Add any React Flow specific data
-  id: string; // Unique Id
-  label?: string;
-  position?: { x: number; y: number };
+	props: ComponentProps<ValveProps>;
+	// Add any React Flow specific data
+	id: string; // Unique Id
+	label?: string;
+	position?: { x: number; y: number };
 };
 
-type ValveFlowNode = Node<ValveNodeData, 'valve'>;
+type ValveFlowNode = Node<ValveNodeData, "valve">;
 
 export function ValveNode({ data, selected }: NodeProps<ValveFlowNode>) {
-  // Validate that we have the required data
-  if (!data?.componentProps) {
-    console.warn("ValveNode: Missing componentProps in data");
-    return (
-      <div className="valve-node-error">
-        <div>Invalid Valve Node</div>
-        <div>Missing component data</div>
-      </div>
-    );
-  }
+	// Validate that we have the required data
+	if (!data?.props) {
+		console.warn("ValveNode: Missing componentProps in data");
+		return (
+			<div className="valve-node-error">
+				<div>Invalid Valve Node</div>
+				<div>Missing component data</div>
+			</div>
+		);
+	}
 
-  const { componentProps } = data;
-  const { props, eventsEnabled, componentEvents, custom } = componentProps;
+	const { props } = data;
+	const { eventsEnabled, componentEvents } = props;
 
-  // Handle Ignition component lifecycle
-  React.useEffect(() => {
-    if (custom) {
-      // Initialize any custom properties or bindings
-      custom.write("value.tagpath", "V401");
-    }
-  }, [custom]);
+	// Handle Ignition component lifecycle
+	React.useEffect(() => {
+		// Initialize any custom properties or bindings
+		console.log("ValveNode Mounted");
+		console.log("componentProps", props);
+		props["custom"] = { value: { tagpath: "[default]V401" } };
+		props.def = {
+			custom: {
+				value: {
+					tagpath: "[default]V401",
+				},
+			},
+			meta: {
+				name: "valve-node",
+			},
+			position: {
+				basis: "48px",
+			},
+			propConfig: {
+				"props.processObject.status": {
+					access: PropertyAccess.PUBLIC,
+					binding: {
+						config: {
+							fallbackDelay: 2.5,
+							mode: "indirect",
+							references: {
+								tagpath: "{this.custom.value.tagpath}",
+							},
+							tagPath: "{tagpath}/hmi/status",
+						},
+						type: "tag",
+					},
+				},
+			},
+			props: {
+				processObject: {},
+			},
+			type: "hmi.flow.ValveNode",
+			version: 1
+		};
+	}, []);
 
-  // Handle component actions
-  const onActionPerformed = React.useCallback(() => {
-    if (!eventsEnabled) {
-      console.log("Valve is disabled in design mode");
-      return;
-    }
+	// Handle component actions
+	const onActionPerformed = React.useCallback(() => {
+		if (!eventsEnabled) {
+			console.log("Valve is disabled in design mode");
+			return;
+		}
 
-    console.log("Valve clicked!");
-    componentEvents?.fireComponentEvent("onActionPerformed", {
-      nodeId: data.id,
-      position: data.position
-    });
-  }, [eventsEnabled, componentEvents, data]);
+		console.log("Valve clicked!");
+		componentEvents?.fireComponentEvent("onActionPerformed", {
+			nodeId: data.id,
+			position: data.position,
+		});
+	}, [eventsEnabled, componentEvents, data]);
 
-  return (
-    <div className={`valve-flow-node ${selected ? 'selected' : ''}`}>
-      {/* React Flow Handles */}
-      <Handle
-        type="target"
-        position={Position.Top}
-        id="valve-top"
-        className="valve-handle valve-handle-top"
-      />
-      <Handle
-        type="source"
-        position={Position.Right}
-        id="valve-right"
-        className="valve-handle valve-handle-right"
-      />
-      <Handle
-        type="source"
-        position={Position.Bottom}
-        id="valve-bottom"
-        className="valve-handle valve-handle-bottom"
-      />
-      <Handle
-        type="target"
-        position={Position.Left}
-        id="valve-left"
-        className="valve-handle valve-handle-left"
-      />
+	return (
+		<div className={`valve-flow-node ${selected ? "selected" : ""}`}>
+			{/* React Flow Handles */}
+			<Handle
+				type="target"
+				position={Position.Top}
+				id="valve-top"
+				className="valve-handle valve-handle-top"
+			/>
+			<Handle
+				type="source"
+				position={Position.Right}
+				id="valve-right"
+				className="valve-handle valve-handle-right"
+			/>
+			<Handle
+				type="source"
+				position={Position.Bottom}
+				id="valve-bottom"
+				className="valve-handle valve-handle-bottom"
+			/>
+			<Handle
+				type="target"
+				position={Position.Left}
+				id="valve-left"
+				className="valve-handle valve-handle-left"
+			/>
 
-      {/* Wrapped Ignition Component */}
-      <ValveNodeCompound.Root
-        componentProps={componentProps}
-        itemProps={props}
-        onActionPerformed={onActionPerformed}
-      >
-        <ValveNodeCompound.valveMp />
-        {props.showLabel && <ValveNodeCompound.popover />}
-      </ValveNodeCompound.Root>
-    </div>
-  );
+			{/* Wrapped Ignition Component */}
+			<ValveNodeCompound.Root
+				componentProps={props}
+				onActionPerformed={onActionPerformed}
+			>
+				<ValveNodeCompound.valveMp />
+				{props.showLabel && <ValveNodeCompound.popover />}
+			</ValveNodeCompound.Root>
+		</div>
+	);
 }
-export class ValveNodeComponentDelegate extends ComponentStoreDelegate{
+export class ValveNodeComponentDelegate extends ComponentStoreDelegate {
 	handleEvent(eventName: string, eventObject: JsObject): void {
-		return
+		return;
 	}
 }
 
@@ -104,8 +147,10 @@ export class ValveNodeMeta implements ComponentMeta {
 		return COMPONENT_TYPE;
 	}
 
-	createDelegate(component: AbstractUIElementStore): ComponentStoreDelegate | undefined {
-		return new ValveNodeComponentDelegate(component)
+	createDelegate(
+		component: AbstractUIElementStore
+	): ComponentStoreDelegate | undefined {
+		return new ValveNodeComponentDelegate(component);
 	}
 
 	/**

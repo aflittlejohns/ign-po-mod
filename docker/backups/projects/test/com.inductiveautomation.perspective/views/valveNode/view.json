@@ -5,6 +5,11 @@
   "root": {
     "children": [
       {
+        "custom": {
+          "value": {
+            "tagpath": "[default]V401"
+          }
+        },
         "meta": {
           "name": "valve-node"
         },
@@ -12,27 +17,22 @@
           "basis": "48px"
         },
         "propConfig": {
-          "props.processObject.status.locate": {
+          "props.processObject.status": {
             "binding": {
               "config": {
                 "fallbackDelay": 2.5,
                 "mode": "indirect",
                 "references": {
-                  "tagpath": "{this.props.value.tagpath}"
+                  "tagpath": "{this.custom.value.tagpath}"
                 },
-                "tagPath": "{tagpath}/hmi/status/locate"
+                "tagPath": "{tagpath}/hmi/status"
               },
               "type": "tag"
             }
           }
         },
         "props": {
-          "processObject": {
-            "status": {}
-          },
-          "value": {
-            "tagpath": "[default]V401"
-          }
+          "processObject": {}
         },
         "type": "hmi.flow.ValveNode"
       }

@@ -1,4 +1,5 @@
  /* CSS Layer are employed */
+ @import './styles/global.css';
 @import './components/OpenPropsUI/main.css';
 @import './components/flow/reactFlowUI/main.css';
 @import './components/HmiComponentsUI/main.css';

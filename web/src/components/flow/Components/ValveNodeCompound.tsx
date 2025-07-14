@@ -24,7 +24,6 @@ export const [ValveNodeContextProvider, useValveNodeContext] =
 
 const Root = ({
 	componentProps,
-	itemProps,
 	onActionPerformed,
 	children
 }: ValveNodeContext) => {
@@ -33,7 +32,6 @@ const Root = ({
 		<ValveNodeContextProvider
 			{...{
 				componentProps,
-				itemProps,
 				onActionPerformed,
 			}}
 		>
@@ -46,10 +44,12 @@ const valveMp = () => {
 	const valveRef = React.useRef<HTMLDivElement>(null);
 	const {  props } = componentProps || {}
 	const { processObject } = props || valveProps ;
-
 	const { status } = processObject || processObjectProps;
 	const onActionPerformed = () => {
 		console.log("onActionPerform Event");
+		const value = componentProps.store.custom.read("value.tagpath")
+		console.log("value", value);
+
 	};
 	// const inCoord = position?.x ?? false;
 	// if not locate, trim last item from valveMpItemNames
@@ -64,7 +64,7 @@ const valveMp = () => {
 		<div
 		className={`${IA_SYMBOL_COMPONENT_COLUMN}`}
 			ref={valveRef}
-				// {...emit({
+			// {...emit({
 				// 	classes: [`${IA_SYMBOL_COMPONENT_COLUMN}`],
 				// })}
 			data-component={COMPONENT_TYPE}

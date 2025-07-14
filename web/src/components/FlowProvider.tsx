@@ -21,20 +21,17 @@ import {
 const COMPONENT_TYPE = FLOW_PROVIDER_COMPONENT_TYPE;
 
 import { ReactFlowProvider } from "@xyflow/react";
-import { Flow, type IgNodeProps } from "./flow/Flow";
+import type { ValveProps } from "../api/types";
+import { Flow } from "./flow/Flow";
 
 // import { useFlowProviderStore } from "./flow/store/FlowProvider";
 
-export const FlowProvider = (props: ComponentProps<IgNodeProps[], any>) => {
+export const FlowProvider = (props: ComponentProps<ValveProps, any>) => {
 	// const tagpaths = useFlowProviderStore((state) => state.tagpaths);
-	const { emit } = props;
-
-
-
 	const componentClassName = "flow-provider";
 	return (
 		<div
-			{...emit({
+			{...props.emit({
 				classes: [`${IA_SYMBOL_COMPONENT_COLUMN}`],
 			})}
 			data-component={COMPONENT_TYPE}
@@ -44,7 +41,7 @@ export const FlowProvider = (props: ComponentProps<IgNodeProps[], any>) => {
 				<div className={`${IA_SYMBOL_COMPONENT_WRAPPER}`}>
 					<div className={`${HMI_COMPONENT_CLASS} ${componentClassName}`}>
 						<ReactFlowProvider>
-							<Flow flowProviderProps={props} />
+							<Flow {...props} />
 						</ReactFlowProvider>
 					</div>
 				</div>

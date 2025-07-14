@@ -4,15 +4,9 @@
       "title": "",
       "viewPath": "View"
     },
-    "/embeddedflow": {
-      "viewPath": "embeddedFlow"
-    },
     "/flow": {
       "title": "",
       "viewPath": "FlowFlex"
-    },
-    "/valvenode": {
-      "viewPath": "valveNode"
     }
   },
   "sharedDocks": {

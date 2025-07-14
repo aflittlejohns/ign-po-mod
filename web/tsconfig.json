@@ -6,7 +6,8 @@
 		"paths": {
 			"*": [
 				"*"
-			]
+			],
+			"@/*": ["./*"]
 		},
 		"declaration": true,
         "declarationDir": "dist/typings/",

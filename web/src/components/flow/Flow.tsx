@@ -6,6 +6,7 @@ import {
 	Controls,
 	getSmoothStepPath,
 	MiniMap,
+	Panel,
 	ReactFlow,
 	useEdgesState,
 	useNodesState,
@@ -17,8 +18,14 @@ import { type ValveHandleId } from "./types";
 import { getHandlePosition, getPosition } from "./utils/valve";
 import Pipeline from "./Components/Pipeline";
 import { css } from "@emotion/css";
-import type { ComponentProps } from "@inductiveautomation/perspective-client";
+import {
+	type ComponentProps,
+} from "@inductiveautomation/perspective-client";
 import { ValveNode } from "./Components";
+import { IconHandClick } from "../../utils/icons";
+import { createValveNodeInstance } from "./utils";
+import { DevTools } from "./DevTools";
+import type { ValveProps } from "../../api/types";
 
 // const COMPONENT_TYPE = FLOW_PROVIDER_COMPONENT_TYPE;
 
@@ -28,20 +35,18 @@ const edgeTypes = {
 
 const nodeTypes = {
 	valve: ValveNode,
-}
+};
 export type IgNodeProps = {
-	key?:string;
+	key?: string;
 	id?: string;
-	tagpath?: string
-}
+	tagpath?: string;
+};
 export type FlowProps = {
-	flowProviderProps?: ComponentProps<IgNodeProps[]>
-}
-export const Flow = (flowProviderProps: FlowProps) => {
-	const [nodes, , onNodesChange] = useNodesState<Node>([]); // Empty Node State for now
+	flowProviderProps: ComponentProps<IgNodeProps[]>;
+};
+export const Flow = (props: ComponentProps<ValveProps>) => {
+	const [nodes, setNodes, onNodesChange] = useNodesState<Node>([]); // Empty Node State for now
 	const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]); // Empty Edges State for now
-
-
 
 	const onConnect: OnConnect = useCallback(
 		(edge) => {
@@ -97,6 +102,32 @@ export const Flow = (flowProviderProps: FlowProps) => {
 		},
 		[setEdges, nodes]
 	);
+
+	const addValveNodeInstance = () => {
+		if (!props) {
+			console.warn("No flowProviderProps");
+			return;
+		} else {
+			const componentProps = {
+				props: props.props,
+				emit: props.emit,
+				position: { basis: "48px", grow: 0, shrink: 1, display: true },
+				eventsEnabled: true,
+				componentEvents: props.componentEvents,
+				domEvents: props.domEvents,
+				meta: props.meta,
+				store: props.store,
+				def: props.def,
+				custom: props.custom,
+				layout: props.layout,
+				i18nStale: false,
+			};
+
+			const inst = createValveNodeInstance({ x: 100, y: 100 }, componentProps);
+			setNodes((prev: Node[]) => [...prev, inst]);
+			console.log("nodes", nodes);
+		}
+	};
 	return (
 		<div
 			className={css({
@@ -117,6 +148,14 @@ export const Flow = (flowProviderProps: FlowProps) => {
 				<Background />
 				<MiniMap />
 				<Controls />
+				<Panel>
+					<div className="ia_symbolComponent ia_symbolComponent__column">
+						<button className="button" onClick={addValveNodeInstance}>
+							<IconHandClick />
+						</button>
+					</div>
+				</Panel>
+				<DevTools position="top-right" />
 			</ReactFlow>
 		</div>
 	);
