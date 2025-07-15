@@ -1,4 +1,4 @@
-package com.mussonindustrial.ignition.embr.periscope.component.embedding
+package dev.aflittlejohns.perspective.hmi.gateway.componen
 
 import com.inductiveautomation.ignition.common.gson.JsonObject
 import com.inductiveautomation.ignition.common.util.LogUtil
@@ -17,7 +17,7 @@ import com.inductiveautomation.perspective.gateway.property.PropertyTreeChangeEv
 import com.mussonindustrial.embr.perspective.gateway.model.subscribeToParams
 import com.mussonindustrial.embr.perspective.gateway.model.writeToParams
 import com.mussonindustrial.ignition.embr.periscope.PeriscopeGatewayContext
-import com.mussonindustrial.ignition.embr.periscope.api.ViewJoinMsg
+import dev.aflittlejohns.perspective.hmi.gateway.api.ViewJoinMsg
 import java.util.*
 
 class JsonViewModelDelegate(component: Component) : ComponentModelDelegate(component) {
