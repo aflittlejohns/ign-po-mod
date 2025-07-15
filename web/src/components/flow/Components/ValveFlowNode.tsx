@@ -5,7 +5,8 @@ import {
 	type ComponentProps,
 } from "@inductiveautomation/perspective-client";
 import type { ValveProps } from "../../../api/types";
-import { ValveCore } from "../../common/ValveCore";
+// import { ValveCore } from "../../common/ValveCore";
+import { ValvePerspective } from "../../perspective/JsonView";
 // Define the node data structure
 type ValveNodeData = {
 	props: ComponentProps<ValveProps>;
@@ -30,8 +31,7 @@ export function ValveFlowNode({ data, selected }: NodeProps<ValveFlowNode>) {
 	}
 
 	const { props } = data;
-	const { eventsEnabled, componentEvents } = props;
-
+	// const { eventsEnabled, componentEvents } = props;
 	// Handle Ignition component lifecycle
 	// React.useEffect(() => {
 	// 	// Initialize any custom properties or bindings
@@ -75,17 +75,17 @@ export function ValveFlowNode({ data, selected }: NodeProps<ValveFlowNode>) {
 	// }, []);
 
 	// Handle component actions
-	const onActionPerformed = React.useCallback(() => {
-		if (!eventsEnabled) {
-			console.log("Valve is disabled in design mode");
-			return;
-		}
+	// const onActionPerformed = React.useCallback(() => {
+	// 	if (!eventsEnabled) {
+	// 		console.log("Valve is disabled in design mode");
+	// 		return;
+	// 	}
 
-		console.log("Valve clicked!");
-		componentEvents?.fireComponentEvent("onActionPerformed", {
-			nodeId: data.id,
-		});
-	}, [eventsEnabled, componentEvents, data]);
+	// 	console.log("Valve clicked!");
+	// 	componentEvents?.fireComponentEvent("onActionPerformed", {
+	// 		nodeId: data.id,
+	// 	});
+	// }, [eventsEnabled, componentEvents, data]);
 
 	return (
 		<div className={`valve-flow-node ${selected ? "selected" : ""}`}>
@@ -116,10 +116,8 @@ export function ValveFlowNode({ data, selected }: NodeProps<ValveFlowNode>) {
 			/>
 
 			{/* Wrapped Ignition Component */}
-			<ValveCore
-			componentProps={props}
-			onActionPerformed={onActionPerformed}
-			className="valve-flow-node-content"
+			<ValvePerspective
+			{...props}
 			/>
 			{/* <ValveNodeCompound.Root
 				componentProps={props}

@@ -1,4 +1,4 @@
-package dev.aflittlejohns.perspective.hmi.common.components.flow;
+package dev.aflittlejohns.perspective.hmi.common.components;
 
 import java.awt.image.BufferedImage;
 import java.util.List;
@@ -18,10 +18,10 @@ import dev.aflittlejohns.perspective.hmi.common.utilities.ImageUtilities;
  * It provides the necessary information for both the Gateway and Designer
  * to recognize and utilize the front-end Valve component.
  */
-public class ValvePerspective {
+public class JsonView {
 
 	// Unique ID of the component, matching the ID in the JavaScript implementation
-	public static String COMPONENT_ID = "hmi.flow.ValvePerspective";
+	public static String COMPONENT_ID = "hmi.component.JsonView";
 
 	// Path to the thumbnail image for the component palette
 	private static final String THUMBNAIL_PATH = "/images/display/status-valve-mp/thumbnail/base.png"; // TODO: Change this to a valve image
@@ -29,12 +29,12 @@ public class ValvePerspective {
 	private static final int THUMBNAIL_HEIGHT = 35;
 
 	// Path to the JSON schema defining the component's properties
-	private static final String PROPS_SCHEMA_PATH = "/props/flow-valve-perspective.props.json";
+	private static final String PROPS_SCHEMA_PATH = "/props/json-view.props.json";
 
 	// Component metadata
-	private static final String COMPONENT_NAME = "Valve Perspective";
-	private static final String COMPONENT_DESCRIPTION = "Valve";
-	private static final String COMPONENT_DEFAULT_NAME = "valve";
+	private static final String COMPONENT_NAME = "Json View";
+	private static final String COMPONENT_DESCRIPTION = "Json View";
+	private static final String COMPONENT_DEFAULT_NAME = "json-view";
 
 	/**
 	 * Descriptor for the onActionPerformed event of the component.

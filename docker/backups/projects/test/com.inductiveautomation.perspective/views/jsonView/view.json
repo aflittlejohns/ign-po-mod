@@ -1,0 +1,66 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "JsonView"
+        },
+        "position": {
+          "basis": "300px",
+          "grow": 1
+        },
+        "props": {
+          "viewJson": {
+            "custom": {},
+            "params": {},
+            "props": {},
+            "root": {
+              "children": [
+                {
+                  "meta": {
+                    "name": "react-flow-provider"
+                  },
+                  "position": {
+                    "basis": "1000px",
+                    "grow": 1
+                  },
+                  "props": {
+                    "tagpaths": [
+                      "V412",
+                      "V413",
+                      "V424"
+                    ]
+                  },
+                  "type": "hmi.flow.FlowProvider"
+                }
+              ],
+              "meta": {
+                "name": "root"
+              },
+              "props": {
+                "direction": "column"
+              },
+              "type": "ia.container.flex"
+            }
+          },
+          "viewParams": {
+            "value": {
+              "tagpath": "[default]V401"
+            }
+          }
+        },
+        "type": "embr.periscope.embedding.json-view"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

@@ -1,40 +1,48 @@
 {
   "custom": {},
-  "params": {},
-  "props": {},
+  "params": {
+    "value": {
+      "tagpath": "[default]V401"
+    }
+  },
+  "propConfig": {
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 48,
+      "width": 24
+    }
+  },
   "root": {
     "children": [
       {
-        "custom": {
-          "value": {
-            "tagpath": "[default]V401"
-          }
-        },
         "meta": {
-          "name": "valve-node"
+          "name": "multi-port-process-valve"
         },
         "position": {
-          "basis": "48px"
+          "basis": "40px",
+          "grow": 1
         },
         "propConfig": {
-          "props.processObject.status": {
+          "props.processObject": {
             "binding": {
               "config": {
                 "fallbackDelay": 2.5,
                 "mode": "indirect",
                 "references": {
-                  "tagpath": "{this.custom.value.tagpath}"
+                  "tagpath": "{view.params.value.tagpath}"
                 },
-                "tagPath": "{tagpath}/hmi/status"
+                "tagPath": "{tagpath}"
               },
               "type": "tag"
             }
           }
         },
-        "props": {
-          "processObject": {}
-        },
-        "type": "hmi.flow.ValveNode"
+        "type": "hmi.process_objects.Valve_mp"
       }
     ],
     "meta": {

@@ -8,7 +8,7 @@ import { ParameterListComponent, ParameterListComponentMeta} from './components/
 import { CommandValveMp, CommandValveMpMeta } from './components/CommandValveMp';
 import { StatusValveMp, StatusValveMpMeta } from './components/StatusValveMp';
 import { FlowProvider, FlowProviderMeta } from './components/FlowProvider';
-import { ValvePerspective, ValvePerspectiveMeta } from './components/perspective/ValvePerspective';
+import { JsonViewComponent, JsonViewComponentMeta } from './components/perspective/JsonView';
 
 // Export components for external reference
 export {
@@ -19,7 +19,7 @@ export {
 	CommandValveMp,
 	StatusValveMp,
 	FlowProvider,
-	ValvePerspective,
+	JsonViewComponent
 	};
 
 // Import component styles
@@ -34,13 +34,14 @@ const components: Array<ComponentMeta> = [
 	new CommandValveMpMeta(),
 	new StatusValveMpMeta(),
 	new FlowProviderMeta(),
-	new ValvePerspectiveMeta(),
+	new JsonViewComponentMeta(),
+
 ];
 
 // Register each component with the Perspective ComponentRegistry
 components.forEach((c: ComponentMeta) => ComponentRegistry.register(c));
 // Add this after registration
 setTimeout(() => {
-  const registered = ComponentRegistry.getMeta('hmi.flow.ValvePerspective');
+  const registered = ComponentRegistry.getMeta('hmi.component.JsonView');
   console.log('Component registered:', !!registered);
 }, 1000);

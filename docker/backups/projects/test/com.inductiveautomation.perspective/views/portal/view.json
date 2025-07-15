@@ -6,12 +6,15 @@
     "children": [
       {
         "meta": {
-          "name": "valve-node"
+          "name": "Portal"
         },
         "position": {
-          "basis": "48px"
+          "basis": "300px"
         },
-        "type": "hmi.flow.ValveNode"
+        "props": {
+          "element": ""
+        },
+        "type": "embr.periscope.embedding.portal"
       }
     ],
     "meta": {

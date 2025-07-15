@@ -1,15 +1,22 @@
 {
   "custom": {},
   "params": {
-    "tagpath": "[default]V401"
+    "value": {
+      "tagpath": "[default]V401"
+    }
   },
   "propConfig": {
-    "params.tagpath": {
+    "params.value": {
       "paramDirection": "input",
       "persistent": true
     }
   },
-  "props": {},
+  "props": {
+    "defaultSize": {
+      "height": 48,
+      "width": 24
+    }
+  },
   "root": {
     "children": [
       {
@@ -17,27 +24,22 @@
           "name": "multi-port-process-valve"
         },
         "position": {
-          "basis": "711px"
+          "basis": "40px",
+          "grow": 1
         },
         "propConfig": {
-          "props.processObject.status": {
+          "props.processObject": {
             "binding": {
               "config": {
                 "fallbackDelay": 2.5,
                 "mode": "indirect",
                 "references": {
-                  "tagpath": "{view.params.tagpath}"
+                  "tagpath": "{view.params.value.tagpath}"
                 },
-                "tagPath": "{tagpath}/status"
+                "tagPath": "{tagpath}"
               },
               "type": "tag"
-            },
-            "persistent": true
-          }
-        },
-        "props": {
-          "processObject": {
-            "status": {}
+            }
           }
         },
         "type": "hmi.process_objects.Valve_mp"
@@ -47,9 +49,7 @@
       "name": "root"
     },
     "props": {
-      "direction": "column",
-      "justify": "space-evenly",
-      "wrap": "wrap"
+      "direction": "column"
     },
     "type": "ia.container.flex"
   }

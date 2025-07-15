@@ -7,6 +7,12 @@
     "/flow": {
       "title": "",
       "viewPath": "FlowFlex"
+    },
+    "/jsonview": {
+      "viewPath": "jsonView"
+    },
+    "/portal": {
+      "viewPath": "portal"
     }
   },
   "sharedDocks": {

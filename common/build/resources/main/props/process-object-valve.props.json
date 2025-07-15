@@ -9,7 +9,7 @@
           "properties": {
             "itemName": {
               "type": "string",
-              "default": "\"\"",
+              "default": "",
               "description": "Name of the valve"
             },
             "activatedConfig": {

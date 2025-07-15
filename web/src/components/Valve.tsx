@@ -97,11 +97,7 @@ export class ValveMeta implements ComponentMeta {
 	// Invoked when an update to the PropertyTree has occurred,
 	// effectively mapping the valveStatus of the tree to component props.
 	getPropsReducer(tree: PropertyTree): ValveProps {
-		console.log(
-			`itemName: ${tree.readString(
-				"processObject.status.itemName"
-			)} showLabel ${tree.readBoolean("showLabel")}`
-		);
+		console.log("tree", tree.read());
 
 		return {
 			processObject: {
