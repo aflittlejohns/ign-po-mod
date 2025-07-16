@@ -3,24 +3,32 @@ import { Handle, Position } from "@xyflow/react";
 import type { NodeProps, Node } from "@xyflow/react";
 import {
 	type ComponentProps,
+	type ComponentStore,
+	type Emitter,
+	type PlainObject,
 } from "@inductiveautomation/perspective-client";
-import type { ValveProps } from "../../../api/types";
 // import { ValveCore } from "../../common/ValveCore";
-import { ValvePerspective } from "../../perspective/JsonView";
+import { JsonViewComponent, type JsonViewProps } from "../../perspective/JsonView";
 // Define the node data structure
-type ValveNodeData = {
-	props: ComponentProps<ValveProps>;
+export type ValveNodeData = {
+	cprops: ComponentProps<JsonViewProps, PlainObject>;
 	// Add any React Flow specific data
 	id: string; // Unique Id
 	label?: string;
-
 };
+export type JsonViewData = {
+	cprops: ComponentProps<any,any>
+	props: JsonViewProps;
+	store: ComponentStore;
+	emit: Emitter;
+}
+export type ValveFlowNode = Node<JsonViewData, "valve">;
 
-type ValveFlowNode = Node<ValveNodeData, "valve">;
-
-export function ValveFlowNode({ data, selected }: NodeProps<ValveFlowNode>) {
+export function ValveFlowNode(d:NodeProps<ValveFlowNode>) {
+	const {data, selected ,} = d
+	console.log("Data", data);
 	// Validate that we have the required data
-	if (!data?.props) {
+	if (!data) {
 		console.warn("ValveNode: Missing componentProps in data");
 		return (
 			<div className="valve-node-error">
@@ -30,62 +38,13 @@ export function ValveFlowNode({ data, selected }: NodeProps<ValveFlowNode>) {
 		);
 	}
 
-	const { props } = data;
-	// const { eventsEnabled, componentEvents } = props;
-	// Handle Ignition component lifecycle
-	// React.useEffect(() => {
-	// 	// Initialize any custom properties or bindings
-	// 	console.log("ValveNode Mounted");
-	// 	console.log("componentProps", props);
-	// 	props["custom"] = { value: { tagpath: "[default]V401" } };
-	// 	props.def = {
-	// 		custom: {
-	// 			value: {
-	// 				tagpath: "[default]V401",
-	// 			},
-	// 		},
-	// 		meta: {
-	// 			name: "valve-node",
-	// 		},
-	// 		position: {
-	// 			basis: "48px",
-	// 		},
-	// 		propConfig: {
-	// 			"props.processObject.status": {
-	// 				access: PropertyAccess.PUBLIC,
-	// 				binding: {
-	// 					config: {
-	// 						fallbackDelay: 2.5,
-	// 						mode: "indirect",
-	// 						references: {
-	// 							tagpath: "{this.custom.value.tagpath}",
-	// 						},
-	// 						tagPath: "{tagpath}/hmi/status",
-	// 					},
-	// 					type: "tag",
-	// 				},
-	// 			},
-	// 		},
-	// 		props: {
-	// 			processObject: {},
-	// 		},
-	// 		type: "hmi.flow.ValveNode",
-	// 		version: 1
-	// 	};
-	// }, []);
+	const { emit, store, props, cprops  } = data;
 
-	// Handle component actions
-	// const onActionPerformed = React.useCallback(() => {
-	// 	if (!eventsEnabled) {
-	// 		console.log("Valve is disabled in design mode");
-	// 		return;
-	// 	}
 
-	// 	console.log("Valve clicked!");
-	// 	componentEvents?.fireComponentEvent("onActionPerformed", {
-	// 		nodeId: data.id,
-	// 	});
-	// }, [eventsEnabled, componentEvents, data]);
+	console.log("props", props);
+	console.log("emit", emit);
+	console.log("Store", store);
+
 
 	return (
 		<div className={`valve-flow-node ${selected ? "selected" : ""}`}>
@@ -116,8 +75,13 @@ export function ValveFlowNode({ data, selected }: NodeProps<ValveFlowNode>) {
 			/>
 
 			{/* Wrapped Ignition Component */}
-			<ValvePerspective
-			{...props}
+			<JsonViewComponent
+			{...cprops}
+			emit={emit}
+			store={store}
+			props={props}
+			position={{'basis': '48px'}}
+
 			/>
 			{/* <ValveNodeCompound.Root
 				componentProps={props}

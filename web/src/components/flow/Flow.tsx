@@ -18,14 +18,13 @@ import { type ValveHandleId } from "./types";
 import { getHandlePosition, getPosition } from "./utils/valve";
 import Pipeline from "./Components/Pipeline";
 import { css } from "@emotion/css";
-import {
-	type ComponentProps,
-} from "@inductiveautomation/perspective-client";
+import { type ComponentProps } from "@inductiveautomation/perspective-client";
 import { ValveFlowNode } from "./Components";
 import { IconHandClick } from "../../utils/icons";
 import { createValveFlowNode } from "./utils";
 import { DevTools } from "./DevTools";
 import type { ValveProps } from "../../api/types";
+import type { JsonViewProps } from "../perspective/JsonView";
 
 // const COMPONENT_TYPE = FLOW_PROVIDER_COMPONENT_TYPE;
 
@@ -102,6 +101,19 @@ export const Flow = (props: ComponentProps<ValveProps>) => {
 		},
 		[setEdges, nodes]
 	);
+	const viewDef = {};
+	const viewParams = {};
+	const viewStyle = {};
+
+	const jsonViewProps = {
+		viewJson: viewDef,
+		viewParams: viewParams,
+		viewStyle: viewStyle,
+		useDefaultHeight: false,
+		useDefaultMinHeight: false,
+		useDefaultMinWidth: false,
+		useDefaultWidth: false,
+	} as JsonViewProps;
 
 	const addValveNodeInstance = () => {
 		if (!props) {
@@ -109,7 +121,7 @@ export const Flow = (props: ComponentProps<ValveProps>) => {
 			return;
 		} else {
 			const componentProps = {
-				props: props.props,
+				props: jsonViewProps,
 				emit: props.emit,
 				position: { basis: "48px", grow: 0, shrink: 1, display: true },
 				eventsEnabled: true,
@@ -122,8 +134,9 @@ export const Flow = (props: ComponentProps<ValveProps>) => {
 				layout: props.layout,
 				i18nStale: false,
 			};
+			const inst = createValveFlowNode({ x: 100, y: 100 },{ ...componentProps, ...jsonViewProps});
+			console.log("inst", inst);
 
-			const inst = createValveFlowNode({ x: 100, y: 100 }, componentProps);
 			setNodes((prev: Node[]) => [...prev, inst]);
 			console.log("nodes", nodes);
 		}

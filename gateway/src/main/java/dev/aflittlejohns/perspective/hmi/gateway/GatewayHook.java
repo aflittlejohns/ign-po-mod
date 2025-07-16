@@ -11,14 +11,14 @@ import com.inductiveautomation.perspective.gateway.api.PerspectiveContext;
 
 //import dev.kgamble.perspective.examples.common.Constants;
 import dev.aflittlejohns.perspective.hmi.common.Constants;
-import dev.aflittlejohns.perspective.hmi.common.components.level4.process_objects.Valve;;
-import dev.aflittlejohns.perspective.hmi.common.components.level4.process_objects.Pump;;
-import dev.aflittlejohns.perspective.hmi.common.components.level4.process_objects.HeatExchanger;;
+import dev.aflittlejohns.perspective.hmi.common.components.level4.process_objects.Valve;
+import dev.aflittlejohns.perspective.hmi.common.components.level4.process_objects.Pump;
+import dev.aflittlejohns.perspective.hmi.common.components.level4.process_objects.HeatExchanger;
 import dev.aflittlejohns.perspective.hmi.common.components.level4.input.ParameterList;
 import dev.aflittlejohns.perspective.hmi.common.components.level4.input.CommandValveMp;
 import dev.aflittlejohns.perspective.hmi.common.components.level4.display.StatusValveMp;
 import dev.aflittlejohns.perspective.hmi.common.components.flow.FlowProvider;
-import dev.aflittlejohns.perspective.hmi.common.components.flow.ValvePerspective;
+import dev.aflittlejohns.perspective.hmi.common.components.JsonView;
 
 /**
  * Gateway module hook for the Example Component Library.
@@ -64,7 +64,7 @@ public class GatewayHook extends AbstractGatewayModuleHook {
 			this.componentRegistry.registerComponent(CommandValveMp.DESCRIPTOR);
 			this.componentRegistry.registerComponent(StatusValveMp.DESCRIPTOR);
 			this.componentRegistry.registerComponent(FlowProvider.DESCRIPTOR);
-			this.componentRegistry.registerComponent(ValvePerspective.DESCRIPTOR);
+			this.componentRegistry.registerComponent(JsonView.DESCRIPTOR);
 		} else {
 			log.error("Reference to component registry not found, HMI Components will fail to function!");
 		}
@@ -85,7 +85,7 @@ public class GatewayHook extends AbstractGatewayModuleHook {
 			this.componentRegistry.removeComponent(CommandValveMp.COMPONENT_ID);
 			this.componentRegistry.removeComponent(StatusValveMp.COMPONENT_ID);
 			this.componentRegistry.removeComponent(FlowProvider.COMPONENT_ID);
-			this.componentRegistry.removeComponent(ValvePerspective.COMPONENT_ID);
+			this.componentRegistry.removeComponent(JsonView.COMPONENT_ID);
 		} else {
 			log.warn("Component registry was null, could not unregister HMI Components.");
 		}

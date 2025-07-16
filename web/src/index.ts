@@ -1,6 +1,4 @@
 import { ComponentMeta, ComponentRegistry } from '@inductiveautomation/perspective-client';
-//import { Button, ButtonMeta } from './components/Button';
-//import { Valve, ValveMeta } from "./components/Valve";
 import { Valve, ValveMeta } from './components/Valve';
 import { Pump, PumpMeta } from './components/Pump';
 import { HeatExchanger, HeatExchangerMeta } from './components/HeatExchanger';

@@ -1,0 +1,8 @@
+{
+    "name": "@embr-jvm/core-servlets",
+    "version": "0.7.0",
+    "private": true,
+    "dependencies": {
+        "@embr-jvm/core-common": "0.7.0"
+    }
+}

@@ -20,7 +20,7 @@ import {
 import { JoinableView } from "../../utils/JoinableView";
 
 const COMPONENT_TYPE = "hmi.component.JsonView";
-type JsonViewProps = {
+export type JsonViewProps = {
   viewJson: ViewDefinition
   viewParams: JsObject
   viewStyle: StyleObject
