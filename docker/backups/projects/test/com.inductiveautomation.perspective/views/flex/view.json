@@ -45,6 +45,15 @@
           "grow": 1
         },
         "type": "hmi.display.StatusValveMp"
+      },
+      {
+        "meta": {
+          "name": "multi-port-process-valve"
+        },
+        "position": {
+          "basis": "40px"
+        },
+        "type": "hmi.process_objects.Valve_mp"
       }
     ],
     "meta": {

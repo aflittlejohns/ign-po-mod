@@ -18,7 +18,7 @@ import { type ValveHandleId } from "./types";
 import { getHandlePosition, getPosition } from "./utils/valve";
 import Pipeline from "./Components/Pipeline";
 import { css } from "@emotion/css";
-import { type ComponentProps } from "@inductiveautomation/perspective-client";
+import { type ComponentProps, type ViewDefinition } from "@inductiveautomation/perspective-client";
 import { ValveFlowNode } from "./Components";
 import { IconHandClick } from "../../utils/icons";
 import { createValveFlowNode } from "./utils";
@@ -101,12 +101,67 @@ export const Flow = (props: ComponentProps<ValveProps>) => {
 		},
 		[setEdges, nodes]
 	);
-	const viewDef = {};
-	const viewParams = {};
+	const viewDef = {
+  "custom": {},
+  "params": {
+    "value": {
+      "tagpath": "[default]V401"
+    }
+  },
+  "propConfig": {
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 48,
+      "width": 24
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "multi-port-process-valve"
+        },
+        "position": {
+          "height": 48,
+          "width": 24
+        },
+        "propConfig": {
+          "props.processObject": {
+            "binding": {
+              "config": {
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagpath": "{view.params.value.tagpath}"
+                },
+                "tagPath": "{tagpath}"
+              },
+              "type": "tag"
+            }
+          }
+        },
+        "props": {
+          "labelPosition": "top-right"
+        },
+        "type": "hmi.process_objects.Valve_mp"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+} as unknown as ViewDefinition;
+	const viewParams = {value:{tagpath:"[default]V401"}};
 	const viewStyle = {};
 
 	const jsonViewProps = {
-		viewJson: viewDef,
+		viewJson: JSON.parse(JSON.stringify(viewDef)),
 		viewParams: viewParams,
 		viewStyle: viewStyle,
 		useDefaultHeight: false,
@@ -134,7 +189,10 @@ export const Flow = (props: ComponentProps<ValveProps>) => {
 				layout: props.layout,
 				i18nStale: false,
 			};
-			const inst = createValveFlowNode({ x: 100, y: 100 },{ ...componentProps, ...jsonViewProps});
+			const inst = createValveFlowNode(
+				{ x: 100, y: 100 },
+				{ ...componentProps, ...jsonViewProps }
+			);
 			console.log("inst", inst);
 
 			setNodes((prev: Node[]) => [...prev, inst]);

@@ -50,21 +50,22 @@ const Root = ({
 const valve = () => {
 	const { valveProps, onActionPerformed, componentProps } =
 		useValveContext("Valve");
-	const valveRef = React.useRef<HTMLDivElement>(null);
-	const { emit } = componentProps;
+	// const valveRef = React.useRef<HTMLDivElement>(null);
+	const { emit, store } = componentProps;
 	const { processObject } = valveProps;
 	const { status } = processObject || processObjectProps;
-	// const inCoord = position?.x ?? false;
-	// if not locate, trim last item from valveMpItemNames
+store.view.view.params
 	let componentItemNames = valveMpItemNames;
 	if (!status?.locate) {
 		componentItemNames = componentItemNames.slice(0, -1);
 	}
+ 	const ref = React.useRef(null)
+
 	const componentClassName = "valve__mp";
 	// if (!inCoord) {
 		return (
 			<div
-				ref={valveRef}
+				ref={ref}
 				{...emit({
 					classes: [`${IA_SYMBOL_COMPONENT_COLUMN}`],
 				})}

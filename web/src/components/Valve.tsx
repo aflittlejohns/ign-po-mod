@@ -30,16 +30,17 @@ export const COMPONENT_TYPE = "hmi.process_objects.Valve_mp";
  * Provides a customizable valve with proper handling of designer/preview modes.
  */
 export class Valve extends Component<ComponentProps<ValveProps>, any> {
-	valveRef: React.RefObject<HTMLDivElement>;
+
 
 	constructor(props: ComponentProps<ValveProps>) {
 		super(props);
-		this.valveRef = React.createRef<HTMLDivElement>();
+
+
 	}
 
 	// This is a lifecycle method that is called when the component is first mounted to the DOM.
 	componentDidMount(): void {
-		// No need to initialize valveRef here
+
 	}
 	processObject: ProcessObject =
 		this.props.props.processObject || processObjectProps;
@@ -69,7 +70,7 @@ export class Valve extends Component<ComponentProps<ValveProps>, any> {
 				onActionPerformed={this.onActionPerformed}
 			>
 				<ValveMpCompound.valve />
-				<ValveMpCompound.popover anchorEl={this.valveRef.current} />
+				<ValveMpCompound.popover anchorEl={null} />
 			</ValveMpCompound.Root>
 		);
 	}

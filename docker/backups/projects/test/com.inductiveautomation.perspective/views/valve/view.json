@@ -1,23 +1,31 @@
 {
   "custom": {},
-  "params": {},
-  "props": {},
+  "params": {
+    "value": {
+      "tagpath": "[default]V401"
+    }
+  },
+  "propConfig": {
+    "params.value": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 48,
+      "width": 24
+    }
+  },
   "root": {
     "children": [
       {
-        "custom": {
-          "value": {
-            "tagpath": "[default]V401"
-          }
-        },
         "meta": {
           "name": "multi-port-process-valve"
         },
         "position": {
-          "height": 149,
-          "width": 77,
-          "x": 57,
-          "y": 130
+          "height": 48,
+          "width": 24
         },
         "propConfig": {
           "props.processObject": {
@@ -26,19 +34,12 @@
                 "fallbackDelay": 2.5,
                 "mode": "indirect",
                 "references": {
-                  "tagpath": "{this.custom.value.tagpath}"
+                  "tagpath": "{view.params.value.tagpath}"
                 },
                 "tagPath": "{tagpath}"
               },
               "type": "tag"
             }
-          }
-        },
-        "props": {
-          "labelPosition": "top-right",
-          "showLabel": true,
-          "value": {
-            "tagpath": "[default]V401"
           }
         },
         "type": "hmi.process_objects.Valve_mp"

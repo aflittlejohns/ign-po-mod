@@ -19,6 +19,7 @@ import {
 } from "@inductiveautomation/perspective-client";
 import { JoinableView } from "../../utils/JoinableView";
 
+
 const COMPONENT_TYPE = "hmi.component.JsonView";
 export type JsonViewProps = {
   viewJson: ViewDefinition
@@ -47,6 +48,8 @@ function FailedToLoadView({
   emit: Emitter
   message: string
 }) {
+console.log("Failed to Load View");
+
   return (
     <div {...emit({ classes: ['view-parent'] })}>
       <ViewStateDisplay
@@ -109,7 +112,7 @@ export function JsonViewComponent ({
     return (
       <FailedToLoadView
         emit={emit}
-        message="No componenet delegate was found"
+        message="No component delegate was found"
       />
     )
   }
