@@ -1,7 +1,7 @@
 {
   "custom": {},
   "params": {
-    "tagpath": "[default]V401"
+    "tagpath": "[default]V410"
   },
   "propConfig": {
     "params.tagpath": {
@@ -100,7 +100,7 @@
         },
         "props": {
           "params": {
-            "tagpath": "[default]V401"
+            "tagpath": "[default]V410"
           },
           "path": "faceplate-components/command"
         },

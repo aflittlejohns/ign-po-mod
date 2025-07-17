@@ -1,8 +1,8 @@
 import type { NodeTypes } from "@xyflow/react";
-import { ValveFlowNode } from "../Components/ValveFlowNode";
+import { FlowNodeComponent } from "../Components/FlowNode";
 
 export const nodeTypes = {
-	valve: ValveFlowNode,
+	valve: FlowNodeComponent,
 	// Add any of your custom nodes here!
 } satisfies NodeTypes;
 

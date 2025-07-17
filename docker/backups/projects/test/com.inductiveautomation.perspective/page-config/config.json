@@ -8,6 +8,10 @@
       "title": "",
       "viewPath": "FlowFlex"
     },
+    "/fp": {
+      "title": "",
+      "viewPath": "faceplates/faceplate-valve-mp"
+    },
     "/jsonview": {
       "viewPath": "jsonView"
     },

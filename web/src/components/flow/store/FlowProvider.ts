@@ -1,6 +1,6 @@
 import { create} from 'zustand';
 import {immer } from 'zustand/middleware/immer';
-import { createValveFlowNode } from '../utils';
+import { createFlowNode } from '../utils';
 
 export type FlowProviderStore = {
 	tagpaths:[];
@@ -16,6 +16,6 @@ export const useFlowProviderStore = create<FlowProviderStore>()(
 		addTagpath: ()=> {},
 		removeTagpath: ()=> {},
 		getTagpath: ()=> "",
-		createValveFlowNode: createValveFlowNode
+		createFlowNode: createFlowNode
 	})
 ))

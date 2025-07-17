@@ -1,19 +1,9 @@
 {
-  "custom": {
-    "value": [
-      {
-        "label": "label text",
-        "status": false
-      }
-    ]
-  },
+  "custom": {},
   "params": {
-    "tagpath": "[default]V401"
+    "tagpath": "[default]V410"
   },
   "propConfig": {
-    "custom.value": {
-      "persistent": true
-    },
     "params.tagpath": {
       "paramDirection": "input",
       "persistent": true
@@ -43,18 +33,30 @@
           "name": "Multi-port valve status display"
         },
         "position": {
-          "basis": "32px",
-          "grow": 1
+          "basis": "32px"
         },
         "propConfig": {
-          "props.status": {
+          "props.status[0].status": {
             "binding": {
               "config": {
-                "path": "view.custom.value"
+                "fallbackDelay": 2.5,
+                "mode": "indirect",
+                "references": {
+                  "tagpath": "{view.params.tagpath}"
+                },
+                "tagPath": "{tagpath}/status/actFB"
               },
-              "type": "property"
+              "type": "tag"
             }
           }
+        },
+        "props": {
+          "status": [
+            {
+              "label": "Act FB",
+              "lowlight": false
+            }
+          ]
         },
         "type": "hmi.display.StatusValveMp"
       }

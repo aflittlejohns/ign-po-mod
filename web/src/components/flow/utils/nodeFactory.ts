@@ -1,12 +1,12 @@
 import type { Node } from "@xyflow/react";
 import type { ComponentProps } from "@inductiveautomation/perspective-client";
 import { v4 as uuid } from "uuid";
-import type { JsonViewProps } from "../../perspective/JsonView";
+import type { EmbeddedViewProps } from "../Components";
 
 
-export const createValveFlowNode = (
+export const createFlowNode = (
    position: { x: number; y: number },
-  componentProps: ComponentProps<JsonViewProps>
+  componentProps: ComponentProps<EmbeddedViewProps>
 ): Node => {
 	if (componentProps){
 		console.log("valveNode ComponentProps", componentProps);
@@ -16,11 +16,7 @@ export const createValveFlowNode = (
     id: uuid( ),
     type: 'valve',
     position,
-    data: {
-		props: componentProps.props,
-        store: componentProps.store,
-		emit: componentProps.emit,
-      }as ComponentProps<JsonViewProps>,
+    data: {...componentProps }as ComponentProps<EmbeddedViewProps>,
     }
   };
 // Create Component Def
