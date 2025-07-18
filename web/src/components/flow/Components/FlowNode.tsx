@@ -1,136 +1,85 @@
 import * as React from "react";
 import { Handle, Position } from "@xyflow/react";
-import type { NodeProps, Node } from "@xyflow/react";
+import type {
+	NodeProps,
+	 Node
+	} from "@xyflow/react";
 import {
 	PageStore,
-	View,
-	type ClientStore,
+	// PageStore,
+	// View,
+	// type ClientStore,
 	type ComponentMeta,
-	type ComponentProps,
-	type JsObject,
-	type OutputListener,
+	// type ComponentProps,
+	// type JsObject,
+	// type OutputListener,
 	type PComponent,
-	type PlainObject,
+	// type PlainObject,
 	type PropertyTree,
 	type SizeObject,
-	type StyleObject,
+	// type StyleObject,
 } from "@inductiveautomation/perspective-client";
+import { JoinableView } from "../../../utils/JoinableView";
+import { useFlowProviderStore } from "../store/FlowProvider";
+import { EmbeddedNodeView } from "../Flow";
 // import { ValveCore } from "../../common/ValveCore";
-import { formatStyleNames } from "../utils";
+// import { formatStyleNames } from "../utils";
 
 const COMPONENT_TYPE = "hmi.flow.FlowNode";
-type HmiFlowNodeProps = {
-	instances: EmbeddedViewProps[];
-	style?: StyleObject;
-};
+// type HmiFlowNodeProps = {
+// 	instances: EmbeddedViewProps[];
+// 	style?: StyleObject;
+// };
 // Define the node data structure
 export type FlowNodeData = {
 	// Add any React Flow specific data
+	embeddedViewId: string;
 	id: string; // Unique Id
 	label?: string;
-	childProps:ComponentProps<HmiFlowNodeProps>;
 };
-// export type ViewNodeData = {
-// 	cprops: ComponentProps<PlainObject>;
-// 	props: HmiFlowNodeProps;
-// };
-export type EmbeddedViewProps = {
-	key: React.Key;
-	viewPath: string;
-	viewParams: JsObject;
-	viewStyle: StyleObject;
-	useDefaultHeight: boolean;
-	useDefaultMinHeight: boolean;
-	useDefaultMinWidth: boolean;
-	useDefaultWidth: boolean;
-};
-type EmbeddedNodeViewProps = {
-	store: ClientStore;
-	mountPath: string;
-	view: EmbeddedViewProps;
-	listenResize?: boolean;
-	onResize?: () => void;
-	key: React.Key;
-	outputListener?: OutputListener;
-};
-const EmbeddedNodeView = React.memo(
-	({
-		store,
-		mountPath,
-		view,
-		onResize,
-		outputListener,
-	}: EmbeddedNodeViewProps) => {
-		return (
-			<>
-				<View
-					key={PageStore.instanceKeyFor(view.viewPath, mountPath)}
-					store={store}
-					mountPath={mountPath}
-					resourcePath={view.viewPath}
-					useDefaultHeight={view.useDefaultHeight}
-					useDefaultMinHeight={view.useDefaultMinHeight}
-					useDefaultMinWidth={view.useDefaultMinWidth}
-					useDefaultWidth={view.useDefaultWidth}
-					params={{
-						...view.viewParams,
-					}}
-					outputListener={outputListener}
-					onViewSizeChange={() => onResize?.()}
-					rootStyle={{
-						width: view.useDefaultWidth ? undefined : "100%",
-						height: view.useDefaultHeight ? undefined : "100%",
-						...view.viewStyle,
-						classes: formatStyleNames(view.viewStyle.classes),
-					}}
-				/>
-			</>
-		);
-	}
-);
+
 export type FlowNode = Node<FlowNodeData, "valve">;
 
-function getChildMountPath(
-	props: ComponentProps<PlainObject>,
-	childIndex: any
-) {
-	return `${props.store.viewMountPath}.${props.store.addressPathString}[${childIndex}]`;
+
+export function FlowNodeComponent({data , selected}: NodeProps<FlowNode>) {
+    const { getEmbeddedView, outputListener } = useFlowProviderStore();
+    const viewRef = React.useRef<JoinableView>(null);
+
+    const embeddedView = getEmbeddedView(data.embeddedViewId);
+
+    if (!embeddedView) {
+        console.warn(`EmbeddedView not found for ID: ${data.embeddedViewId}`);
+        return (
+            <div className="flow-node-error">
+                <div>Missing Embedded View</div>
+                <div>ID: {data.embeddedViewId}</div>
+            </div>
+        );
+    }
+
+    // Initialize JoinableView when component mounts
+    React.useEffect(() => {
+        if (embeddedView.props?.store) {
+            // Update the embedded view with the JoinableView ref if needed
+            updateEmbeddedView(embeddedView.id, {
+                joinableView: viewRef.current || undefined
+            });
+        }
+    }, [embeddedView.id, updateEmbeddedView]);
+	const {clientStore} = embeddedView.props?.store;
+
+const viewProps = {
+		key: embeddedView.id,
+	viewPath:embeddedView.viewPath,
+	viewParams: embeddedView.viewParams,
+	viewStyle: embeddedView.viewStyle ,
+	useDefaultHeight:false ,
+	useDefaultMinHeight:false ,
+	useDefaultMinWidth:false ,
+	useDefaultWidth:false ,
 }
-function resolveViewProps(
-	props: HmiFlowNodeProps,
-	index: number
-): EmbeddedViewProps {
-	const view = props.instances[index];
-
-	return {
-		key: view.key && view.key !== "" ? view.key : index,
-		viewPath: view.viewPath,
-		viewParams: view.viewParams,
-		viewStyle: view.viewStyle,
-		useDefaultHeight: view.useDefaultHeight,
-		useDefaultMinHeight: view.useDefaultMinHeight,
-		useDefaultMinWidth: view.useDefaultMinWidth,
-		useDefaultWidth: view.useDefaultWidth,
-	};
-}
-export function FlowNodeComponent(d: NodeProps<FlowNode>) {
-	const { data } = d;
-	const { childProps } = data;
-
-	console.log("Data", data);
-	// Validate that we have the required data
-	if (!data) {
-		console.warn("ValveNode: Missing componentProps in data");
-		return (
-			<div className="valve-node-error">
-				<div>Invalid Valve Node</div>
-				<div>Missing component data</div>
-			</div>
-		);
-	}
-
 	return (
-		<div {...childProps.emit()}>
+		   <div className={`flow-node ${selected ? "selected" : ""}`}>
 			{/* React Flow Handles */}
 			<Handle
 				type="target"
@@ -157,24 +106,22 @@ export function FlowNodeComponent(d: NodeProps<FlowNode>) {
 				className="valve-handle valve-handle-left"
 			/>
 
-			{/* Wrapped Ignition Component */}
-			{childProps.props.instances.map((_, index) => {
-				const mountPath = getChildMountPath(childProps, index);
-				const viewProps = resolveViewProps(childProps.props, index);
-				const outputListener = (outputName: string, outputValue: any): void => {
-					childProps.store.props.write(
-						`instances[${index}].viewParams.${outputName}`,
-						outputValue
-					);
-				};
-				<EmbeddedNodeView
-					store={childProps.store.view.page.parent}
+			 {/* Embedded View Content */}
+            <div className="flow-node-content">
+                <EmbeddedNodeView
+				   key={PageStore.instanceKeyFor(embeddedView.viewPath, embeddedView.mountPath)}
+					mountPath={embeddedView.mountPath}
+					store={clientStore}
 					view={viewProps}
-					mountPath={mountPath}
-					key={viewProps.key}
-					outputListener={outputListener}
-				/>;
-			})}
+					outputListener={()=>outputListener}
+				   />
+                ) : (
+                    <div className="embedded-view-placeholder">
+                        <div>{embeddedView.viewPath}</div>
+                        <div>{data.label}</div>
+                    </div>
+                )
+            </div>
 		</div>
 	);
 }
