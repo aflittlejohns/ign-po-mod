@@ -1,0 +1,25 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "flow-node"
+        },
+        "position": {
+          "height": 0,
+          "width": 0,
+          "x": 161,
+          "y": 327
+        },
+        "type": "hmi.flow.FlowNode"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.coord"
+  }
+}

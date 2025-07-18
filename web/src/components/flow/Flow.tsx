@@ -18,13 +18,13 @@ import { type ValveHandleId } from "./types";
 import { getHandlePosition, getPosition } from "./utils/valve";
 import Pipeline from "./Components/Pipeline";
 import { css } from "@emotion/css";
-import { type ComponentProps} from "@inductiveautomation/perspective-client";
+import { ComponentStoreDelegate, ComponentStoreState, type AbstractUIElementStore, type ComponentMeta, type ComponentProps, type JsObject, type PComponent, type PropertyTree, type SizeObject} from "@inductiveautomation/perspective-client";
 import { FlowNodeComponent } from "./Components";
 import { IconHandClick } from "../../utils/icons";
 import { createFlowNode } from "./utils";
 import { DevTools } from "./DevTools";
 
-// const COMPONENT_TYPE = FLOW_PROVIDER_COMPONENT_TYPE;
+const COMPONENT_TYPE = "hmi.flow.Flow";
 
 const edgeTypes = {
 	pipeline: Pipeline,
@@ -44,6 +44,7 @@ export type FlowProps = {
 export const Flow = (props: ComponentProps<any>) => {
 	const [nodes, setNodes, onNodesChange] = useNodesState<Node>([]); // Empty Node State for now
 	const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]); // Empty Edges State for now
+console.log("flow props", props);
 
 	const onConnect: OnConnect = useCallback(
 		(edge) => {
@@ -176,17 +177,38 @@ export const Flow = (props: ComponentProps<any>) => {
 	);
 };
 
-// export class FlowMeta implements ComponentMeta {
-// 	getComponentType(): string {
-// 		return COMPONENT_TYPE;
-// 	}
-// 	getViewComponent(): PComponent {
-// 		return Flow;
-// 	}
-// 	getDefaultSize(): SizeObject {
-// 		return {
-// 			width: 1800,
-// 			height: 1000,
-// 		};
-// 	}
-// }
+export class FlowComponentDelegate extends ComponentStoreDelegate {
+	handleEvent(eventName: string, eventObject: JsObject): void {
+		return;
+	}
+}
+export class FlowMeta implements ComponentMeta {
+	t = ComponentStoreState;
+	getComponentType(): string {
+		return COMPONENT_TYPE;
+	}
+	createDelegate(
+		component: AbstractUIElementStore
+	): ComponentStoreDelegate | undefined {
+		return new FlowComponentDelegate(component);
+	}
+	getViewComponent(): PComponent {
+		return Flow as unknown as PComponent;
+	}
+	getDefaultSize(): SizeObject {
+		return {
+			width: 1800,
+			height: 1000,
+		};
+	}
+	// Invoked when an update to the PropertyTree has occurred,
+	// effectively mapping the valveStatus of the tree to component props.
+	getPropsReducer(tree: PropertyTree): JsObject {
+		const props = tree.read();
+		return {
+			props,
+		};
+	}
+}
+
+

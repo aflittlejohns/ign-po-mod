@@ -1,16 +1,15 @@
-package dev.aflittlejohns.perspective.hmi.common.components;
-
-import java.awt.image.BufferedImage;
-import java.util.List;
+package dev.aflittlejohns.perspective.hmi.common.components.flow;
 
 import com.inductiveautomation.perspective.common.api.ComponentDescriptor;
 import com.inductiveautomation.perspective.common.api.ComponentDescriptorImpl;
 import com.inductiveautomation.perspective.common.api.ComponentEventDescriptor;
-
-import dev.aflittlejohns.perspective.hmi.common.Constants;
 import dev.aflittlejohns.perspective.hmi.common.Components;
+import dev.aflittlejohns.perspective.hmi.common.Constants;
 import dev.aflittlejohns.perspective.hmi.common.utilities.ComponentUtilities;
 import dev.aflittlejohns.perspective.hmi.common.utilities.ImageUtilities;
+
+import java.awt.image.BufferedImage;
+import java.util.List;
 
 
 /**
@@ -18,10 +17,10 @@ import dev.aflittlejohns.perspective.hmi.common.utilities.ImageUtilities;
  * It provides the necessary information for both the Gateway and Designer
  * to recognize and utilize the front-end Valve component.
  */
-public class JsonView {
+public class Flow {
 
 	// Unique ID of the component, matching the ID in the JavaScript implementation
-	public static String COMPONENT_ID = "hmi.component.JsonView";
+	public static String COMPONENT_ID = "hmi.flow.Flow";
 
 	// Path to the thumbnail image for the component palette
 	private static final String THUMBNAIL_PATH = "/images/display/status-valve-mp/thumbnail/base.png"; // TODO: Change this to a valve image
@@ -29,12 +28,12 @@ public class JsonView {
 	private static final int THUMBNAIL_HEIGHT = 35;
 
 	// Path to the JSON schema defining the component's properties
-	private static final String PROPS_SCHEMA_PATH = "/props/json-view.props.json";
+	private static final String PROPS_SCHEMA_PATH = "/props/flow-flow.props.json";
 
 	// Component metadata
-	private static final String COMPONENT_NAME = "Json View";
-	private static final String COMPONENT_DESCRIPTION = "Json View";
-	private static final String COMPONENT_DEFAULT_NAME = "json-view";
+	private static final String COMPONENT_NAME = "Flow";
+	private static final String COMPONENT_DESCRIPTION = "flow";
+	private static final String COMPONENT_DEFAULT_NAME = "flow";
 
 	/**
 	 * Descriptor for the onActionPerformed event of the component.

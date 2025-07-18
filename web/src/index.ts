@@ -6,7 +6,8 @@ import { ParameterListComponent, ParameterListComponentMeta} from './components/
 import { CommandValveMp, CommandValveMpMeta } from './components/CommandValveMp';
 import { StatusValveMp, StatusValveMpMeta } from './components/StatusValveMp';
 import { FlowProvider, FlowProviderMeta } from './components/FlowProvider';
-import { JsonViewComponent, JsonViewComponentMeta } from './components/perspective/JsonView';
+import { FlowNodeComponent, FlowNodeComponentMeta } from './components/flow/Components/FlowNode';
+import { Flow, FlowMeta } from './components/flow/Flow';
 
 // Export components for external reference
 export {
@@ -17,7 +18,8 @@ export {
 	CommandValveMp,
 	StatusValveMp,
 	FlowProvider,
-	JsonViewComponent
+	FlowNodeComponent,
+	Flow,
 	};
 
 // Import component styles
@@ -32,8 +34,8 @@ const components: Array<ComponentMeta> = [
 	new CommandValveMpMeta(),
 	new StatusValveMpMeta(),
 	new FlowProviderMeta(),
-	new JsonViewComponentMeta(),
-
+	new FlowNodeComponentMeta(),
+	new FlowMeta(),
 ];
 
 // Register each component with the Perspective ComponentRegistry

@@ -21,12 +21,11 @@ import {
 const COMPONENT_TYPE = FLOW_PROVIDER_COMPONENT_TYPE;
 
 import { ReactFlowProvider } from "@xyflow/react";
-import type { ValveProps } from "../api/types";
 import { Flow } from "./flow/Flow";
 
-// import { useFlowProviderStore } from "./flow/store/FlowProvider";
 
-export const FlowProvider = (props: ComponentProps<ValveProps, any>) => {
+
+export const FlowProvider = (props: ComponentProps<any, any>) => {
 	// const tagpaths = useFlowProviderStore((state) => state.tagpaths);
 	const componentClassName = "flow-provider";
 	return (

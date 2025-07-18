@@ -16,25 +16,24 @@ import {
 	type StyleObject,
 } from "@inductiveautomation/perspective-client";
 // import { ValveCore } from "../../common/ValveCore";
-import { type JsonViewProps } from "../../perspective/JsonView";
 import { formatStyleNames } from "../utils";
 
-const COMPONENT_TYPE = "hmi.component.FlowNode";
+const COMPONENT_TYPE = "hmi.flow.FlowNode";
 type HmiFlowNodeProps = {
 	instances: EmbeddedViewProps[];
 	style?: StyleObject;
 };
 // Define the node data structure
-export type ValveNodeData = {
-	cprops: ComponentProps<JsonViewProps, PlainObject>;
+export type FlowNodeData = {
 	// Add any React Flow specific data
 	id: string; // Unique Id
 	label?: string;
+	childProps:ComponentProps<HmiFlowNodeProps>;
 };
-export type ViewNodeData = {
-	cprops: ComponentProps<PlainObject>;
-	props: HmiFlowNodeProps;
-};
+// export type ViewNodeData = {
+// 	cprops: ComponentProps<PlainObject>;
+// 	props: HmiFlowNodeProps;
+// };
 export type EmbeddedViewProps = {
 	key: React.Key;
 	viewPath: string;
@@ -89,7 +88,7 @@ const EmbeddedNodeView = React.memo(
 		);
 	}
 );
-export type FlowNode = Node<ViewNodeData, "valve">;
+export type FlowNode = Node<FlowNodeData, "valve">;
 
 function getChildMountPath(
 	props: ComponentProps<PlainObject>,
@@ -116,7 +115,7 @@ function resolveViewProps(
 }
 export function FlowNodeComponent(d: NodeProps<FlowNode>) {
 	const { data } = d;
-	const { cprops, props } = data;
+	const { childProps } = data;
 
 	console.log("Data", data);
 	// Validate that we have the required data
@@ -131,7 +130,7 @@ export function FlowNodeComponent(d: NodeProps<FlowNode>) {
 	}
 
 	return (
-		<div {...cprops.emit()}>
+		<div {...childProps.emit()}>
 			{/* React Flow Handles */}
 			<Handle
 				type="target"
@@ -159,17 +158,17 @@ export function FlowNodeComponent(d: NodeProps<FlowNode>) {
 			/>
 
 			{/* Wrapped Ignition Component */}
-			{props.instances.map((_, index) => {
-				const mountPath = getChildMountPath(cprops, index);
-				const viewProps = resolveViewProps(props, index);
+			{childProps.props.instances.map((_, index) => {
+				const mountPath = getChildMountPath(childProps, index);
+				const viewProps = resolveViewProps(childProps.props, index);
 				const outputListener = (outputName: string, outputValue: any): void => {
-					cprops.store.props.write(
+					childProps.store.props.write(
 						`instances[${index}].viewParams.${outputName}`,
 						outputValue
 					);
 				};
 				<EmbeddedNodeView
-					store={cprops.store.view.page.parent}
+					store={childProps.store.view.page.parent}
 					view={viewProps}
 					mountPath={mountPath}
 					key={viewProps.key}

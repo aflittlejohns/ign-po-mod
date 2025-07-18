@@ -19,9 +19,8 @@ import dev.aflittlejohns.perspective.hmi.common.components.level4.input.Paramete
 import dev.aflittlejohns.perspective.hmi.common.components.level4.input.CommandValveMp;
 import dev.aflittlejohns.perspective.hmi.common.components.level4.display.StatusValveMp;
 import dev.aflittlejohns.perspective.hmi.common.components.flow.FlowProvider;
-import dev.aflittlejohns.perspective.hmi.common.components.JsonView;
-
-
+import dev.aflittlejohns.perspective.hmi.common.components.flow.FlowNode;
+import dev.aflittlejohns.perspective.hmi.common.components.flow.Flow;
 
 /**
  * Designer module hook for the HMI Component Library.
@@ -63,7 +62,8 @@ public class DesignerHook extends AbstractDesignerModuleHook {
   ComponentUtilities.registerComponentWithIcon(registry, CommandValveMp.DESCRIPTOR, "/images/input/command-valve-mp/component.icon.svg");
   ComponentUtilities.registerComponentWithIcon(registry, StatusValveMp.DESCRIPTOR, "/images/display/status-valve-mp/component.icon.svg");
   ComponentUtilities.registerComponentWithIcon(registry, FlowProvider.DESCRIPTOR, "/images/display/status-valve-mp/component.icon.svg");
-  ComponentUtilities.registerComponentWithIcon(registry, JsonView.DESCRIPTOR, "/images/display/status-valve-mp/component.icon.svg");
+  ComponentUtilities.registerComponentWithIcon(registry, FlowNode.DESCRIPTOR, "/images/display/status-valve-mp/component.icon.svg");
+  ComponentUtilities.registerComponentWithIcon(registry, Flow.DESCRIPTOR, "/images/display/status-valve-mp/component.icon.svg");
   }
 
  /**
@@ -86,7 +86,8 @@ public class DesignerHook extends AbstractDesignerModuleHook {
   registry.removeComponent(CommandValveMp.COMPONENT_ID);
   registry.removeComponent(StatusValveMp.COMPONENT_ID);
   registry.removeComponent(FlowProvider.COMPONENT_ID);
-  registry.removeComponent(JsonView.COMPONENT_ID);
+  registry.removeComponent(FlowNode.COMPONENT_ID);
+  registry.removeComponent(Flow.COMPONENT_ID);
  }
 }
 

@@ -4,9 +4,16 @@
       "title": "",
       "viewPath": "View"
     },
+    "/em-flow": {
+      "title": "",
+      "viewPath": "embeddedFlow"
+    },
     "/flow": {
       "title": "",
       "viewPath": "FlowFlex"
+    },
+    "/flownode": {
+      "viewPath": "FlowNode"
     },
     "/fp": {
       "title": "",
