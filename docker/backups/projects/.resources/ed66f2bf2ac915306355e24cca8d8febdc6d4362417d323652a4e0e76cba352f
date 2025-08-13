@@ -4,6 +4,12 @@
       "title": "",
       "viewPath": "View"
     },
+    "/airwolf": {
+      "viewPath": "airwolf"
+    },
+    "/embr-flex-repeater": {
+      "viewPath": "embr-flex-repeater"
+    },
     "/flow": {
       "title": "",
       "viewPath": "FlowFlex"
@@ -13,6 +19,7 @@
       "viewPath": "faceplates/faceplate-valve-mp"
     },
     "/jsonview": {
+      "title": "",
       "viewPath": "jsonView"
     },
     "/portal": {

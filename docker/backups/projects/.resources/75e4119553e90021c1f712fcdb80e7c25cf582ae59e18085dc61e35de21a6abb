@@ -21,13 +21,21 @@
     "children": [
       {
         "meta": {
-          "name": "multi-port-process-valve"
+          "name": "Multi-port Valve"
         },
         "position": {
           "basis": "40px",
           "grow": 1
         },
         "propConfig": {
+          "props.labelPosition": {
+            "binding": {
+              "config": {
+                "path": "this.props.processObject.labelPosition"
+              },
+              "type": "property"
+            }
+          },
           "props.processObject": {
             "binding": {
               "config": {
@@ -40,9 +48,33 @@
               },
               "type": "tag"
             }
+          },
+          "props.showLabel": {
+            "binding": {
+              "config": {
+                "path": "this.props.processObject.showLabel"
+              },
+              "type": "property"
+            }
           }
         },
-        "type": "hmi.process_objects.Valve_mp"
+        "props": {
+          "status": {
+            "actFB": false,
+            "activatedConfig": 511,
+            "alarm": false,
+            "changing": false,
+            "deActFB": false,
+            "deactivatedConfig": 4095,
+            "itemName": "",
+            "locate": false,
+            "lsl": false,
+            "manual": false,
+            "masked": false,
+            "usl": false
+          }
+        },
+        "type": "airwolf.hmi.process-objects.valve-mp"
       }
     ],
     "meta": {

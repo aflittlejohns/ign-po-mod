@@ -142,6 +142,35 @@
           "showLabel": true
         },
         "type": "hmi.process_objects.Valve_mp"
+      },
+      {
+        "meta": {
+          "name": "JsonView"
+        },
+        "position": {
+          "height": 300,
+          "width": 300,
+          "x": 305,
+          "y": 189
+        },
+        "props": {
+          "viewJson": {
+            "custom": {},
+            "params": {},
+            "props": {},
+            "root": {
+              "children": [],
+              "meta": {
+                "name": "root"
+              },
+              "props": {
+                "direction": "column"
+              },
+              "type": "hmi.process_objects.Valve_mp"
+            }
+          }
+        },
+        "type": "airwolf.hmi.flow.json-view"
       }
     ],
     "meta": {

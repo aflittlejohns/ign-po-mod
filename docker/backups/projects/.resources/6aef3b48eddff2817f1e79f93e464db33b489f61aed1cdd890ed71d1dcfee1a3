@@ -6,12 +6,9 @@
     "children": [
       {
         "meta": {
-          "name": "valve-node"
+          "name": "EmbeddedReactFlowProvider"
         },
-        "position": {
-          "basis": "48px"
-        },
-        "type": "hmi.flow.ValveNode"
+        "type": "airwolf.hmi.flow.flow-provider"
       }
     ],
     "meta": {

@@ -9,10 +9,10 @@
           "name": "JsonView"
         },
         "position": {
-          "basis": "300px"
+          "grow": 1
         },
         "propConfig": {
-          "props.viewJson.root.children[0].props.processObject": {
+          "props.viewJson.root.props.processObject": {
             "binding": {
               "config": {
                 "fallbackDelay": 2.5,
@@ -20,7 +20,7 @@
                 "references": {
                   "tagpath": "{this.props.viewJson.params.value.tagpath}"
                 },
-                "tagPath": "[default]{tagpath}"
+                "tagPath": "{tagpath}"
               },
               "type": "tag"
             }
@@ -31,34 +31,21 @@
             "custom": {},
             "params": {
               "value": {
-                "tagpath": "V402"
+                "tagpath": "[default]V402"
               }
             },
             "props": {},
             "root": {
-              "children": [
-                {
-                  "children": [],
-                  "custom": {},
-                  "meta": {
-                    "name": "Name"
-                  },
-                  "position": {},
-                  "props": {},
-                  "type": "hmi.process_objects.Valve_mp"
-                }
-              ],
+              "children": [],
               "meta": {
                 "name": "root"
               },
-              "props": {
-                "direction": "column"
-              },
-              "type": "ia.container.flex"
+              "props": {},
+              "type": "hmi.process_objects.Valve_mp"
             }
           }
         },
-        "type": "embr.periscope.embedding.json-view"
+        "type": "airwolf.hmi.flow.json-view"
       }
     ],
     "meta": {

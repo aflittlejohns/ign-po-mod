@@ -1,0 +1,49 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "FlexRepeaterPlus"
+        },
+        "position": {
+          "basis": "300px",
+          "grow": 1
+        },
+        "props": {
+          "instanceCommon": {
+            "viewPath": "valve"
+          },
+          "instances": [
+            {
+              "key": "ca6241aa-fe30-4cfa-8f21-1978f97ae1f6",
+              "viewParams": {},
+              "viewPosition": {},
+              "viewStyle": {
+                "classes": ""
+              }
+            },
+            {
+              "key": "e1706377-0785-435e-8b02-c0f42b0d98a8",
+              "viewParams": {},
+              "viewPosition": {},
+              "viewStyle": {
+                "classes": ""
+              }
+            }
+          ]
+        },
+        "type": "embr.periscope.embedding.flex-repeater"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}
